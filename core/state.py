@@ -42,27 +42,34 @@ class SurfaceState(BaseModel):
     def feature_vector(self) -> List[float]:
         """
         Convert the structured state into a numerical feature vector.
-        Simplified version for CLASDE v1.
+        V2: Stoichiometry + Descriptor-based encoding.
         """
-        # Encode bulk composition (e.g., fractional content)
-        # Assuming binary oxide [A: x, B: 1-x]
-        bulk_feats = list(self.bulk_composition.values())
+        # 1. Stoichiometry of bulk (normalized)
+        total = sum(self.bulk_composition.values())
+        bulk_stoich = [v / total for v in self.bulk_composition.values()]
         
-        # Miller index (normalized)
-        miller_feats = [float(i) for i in self.miller_index]
+        # 2. Miller index encoding (Sin/Cos to represent periodicity/angle)
+        # Assuming index values are small (0-3)
+        miller_feats = []
+        for i in self.miller_index:
+            miller_feats.extend([float(i), float(i)**2])
+            
+        # 3. Adsorbate encoding (One-hot or atomic number)
+        # Mock: Simple mapping for common adsorbates
+        adsorbate_map = {"O": 8, "OH": 9, "H2O": 10, "CO": 14, None: 0}
+        ads_feat = [float(adsorbate_map.get(self.adsorbate, -1))]
         
-        # Coverage
-        cov_feat = [self.coverage]
-        
-        # External conditions
+        # 4. Coverage and External conditions
         cond_feats = [
+            self.coverage,
             self.external_conditions.get("T", 298.15) / 1000.0,
             self.external_conditions.get("p", 1.0),
             self.external_conditions.get("Phi", 0.0)
         ]
         
-        # Defect count (simple feature)
-        defect_feat = [float(len(self.defects))]
+        # 5. Defect fingerprint (Count by type)
+        v_count = sum(1 for d in self.defects if d.get("type") == "vacancy")
+        s_count = sum(1 for d in self.defects if d.get("type") == "substitution")
+        defect_feats = [float(v_count), float(s_count)]
         
-        # Combined vector
-        return bulk_feats + miller_feats + cov_feat + cond_feats + defect_feat
+        return bulk_stoich + miller_feats + ads_feat + cond_feats + defect_feats

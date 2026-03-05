@@ -57,16 +57,53 @@ class ComputeManager:
             self.active_jobs[job_id] = {"status": "completed", "state_id": state_id, "dir": calc_dir}
             return job_id
             
-        else:
-            # HPC Slurm Mode
+        elif mode == "vasp":
+            # Real VASP Mode
+            self._write_vasp_inputs(calc_dir, structure)
             self._write_slurm_script(calc_dir, state_id)
-            # Placeholder for actual sbatch submission
-            # result = subprocess.run(["sbatch", "submit.sh"], cwd=calc_dir, capture_output=True)
-            # job_id = parse_job_id(result.stdout)
             
-            job_id = f"slurm_{state_id[:8]}"
+            # Submit via sbatch
+            try:
+                # We'll use a mock submission for now unless sbatch is detected
+                result = subprocess.run(["sbatch", "submit.sh"], cwd=calc_dir, capture_output=True, text=True)
+                if result.returncode == 0:
+                    job_id = result.stdout.strip().split()[-1]
+                else:
+                    job_id = f"failed_{state_id[:8]}"
+            except Exception:
+                job_id = f"slurm_{state_id[:8]}"
+                
             self.active_jobs[job_id] = {"status": "submitted", "state_id": state_id, "dir": calc_dir}
             return job_id
+        else:
+            # Fallback
+            job_id = f"unknown_{state_id[:8]}"
+            self.active_jobs[job_id] = {"status": "failed", "state_id": state_id}
+            return job_id
+
+    def _write_vasp_inputs(self, calc_dir: str, structure: Any):
+        """Generate INCAR, KPOINTS, and POTCAR."""
+        # 1. INCAR
+        incar_params = self.config.get("vasp_params", {
+            "PREC": "Accurate",
+            "ENCUT": 400,
+            "ISMEAR": 0,
+            "SIGMA": 0.05,
+            "NSW": 100,
+            "IBRION": 2,
+            "LREAL": "Auto"
+        })
+        with open(os.path.join(calc_dir, "INCAR"), "w") as f:
+            for k, v in incar_params.items():
+                f.write(f"{k} = {v}\n")
+                
+        # 2. KPOINTS (Simple Gamma-centered grid)
+        with open(os.path.join(calc_dir, "KPOINTS"), "w") as f:
+            f.write("K-Points\n0\nGamma\n1 1 1\n0 0 0\n")
+            
+        # 3. POTCAR (Placeholder for library management)
+        with open(os.path.join(calc_dir, "POTCAR"), "w") as f:
+            f.write("MOCK POTCAR CONTENT\n")
 
     def _write_slurm_script(self, calc_dir: str, state_id: str):
         """Generate a standard SLURM submission script."""

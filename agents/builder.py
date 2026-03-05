@@ -64,12 +64,20 @@ class StructureBuilder:
             warnings.warn(f"Failed to cleave surface {state.miller_index}: {e}")
             slab = bulk_atoms.copy()
 
-        # 3. Apply defects (simplified: remove atoms based on type)
+        # 3. Apply defects (simplified)
         for defect in state.defects:
             if defect.get("type") == "vacancy":
-                # Very naive vacancy creation: pop the highest Z atom
+                # Naive vacancy creation: pop the highest Z atom
                 if len(slab) > 0:
                     slab.pop()
+            elif defect.get("type") == "substitution":
+                # Replace an atom of original_element with dopant
+                orig = defect.get("original_element")
+                dopant = defect.get("dopant")
+                indices = [i for i, atom in enumerate(slab) if atom.symbol == orig]
+                if indices:
+                    # Replace the first matching site found
+                    slab[indices[0]].symbol = dopant
                     
         # 4. Place adsorbate a at coverage θ
         if state.adsorbate and state.coverage > 0.0:

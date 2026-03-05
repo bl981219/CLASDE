@@ -42,6 +42,14 @@ def generate_candidates(state: SurfaceState, transition_engine: TransitionEngine
                 parameters={"termination": term}
             )
             candidates.append((action, transition_engine.apply(state, action)))
+
+    # 4. Substitutional Dopant (on the fly logic)
+    # Simple substitution of Mn with Sr
+    action = MutationAction(
+        action_type=ActionType.SUBSTITUTIONAL_DOPANT,
+        parameters={"original_element": "Mn", "dopant": "Sr"}
+    )
+    candidates.append((action, transition_engine.apply(state, action)))
             
     return candidates
 
