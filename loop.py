@@ -55,7 +55,7 @@ def main():
             "target_e_ads": -1.5
         },
         "budget": {
-            "max_evaluations": 10
+            "max_evaluations": 6
         },
         "acquisition": {
             "acquisition_type": "EI", 
@@ -103,6 +103,9 @@ def main():
     print(f"Objective: {config['objective']}")
     
     # 3. Main Optimization Loop
+    sigma_threshold = 0.5 # Trigger VASP if uncertainty > 0.5
+    vasp_frequency = 5    # Or every 5 iterations for validation
+    
     while governor.has_budget():
         # A. Strategic Decision Phase
         strategist.update_model(memory.get_training_data())
@@ -112,8 +115,19 @@ def main():
         
         action, next_state = strategist.select_next_action(current_state, candidates, best_f)
         
-        print(f"\nIteration {governor.current_evaluations + 1}:")
+        # Determine fidelity for this iteration
+        mu, sigma = surrogate.predict(next_state)
+        
+        iteration = governor.current_evaluations + 1
+        use_vasp = (sigma > sigma_threshold) or (iteration % vasp_frequency == 0)
+        compute_mode = "vasp" if use_vasp else "local_emt"
+        
+        print(f"\nIteration {iteration}:")
         print(f"  Action: {action.action_type} -> {action.parameters}")
+        print(f"  Fidelity: {compute_mode.upper()} (sigma={sigma:.3f})")
+        
+        # Update config temporarily for this job
+        compute.config["compute_mode"] = compute_mode
         
         # B. Transition Phase
         memory.add_transition(current_state, action, next_state)
@@ -123,6 +137,8 @@ def main():
         job_id = compute.submit_dft_job(structure, next_state.get_id())
         
         # D. Evaluation & Reward Phase
+        # For VASP, this might be asynchronous, but for this simplified loop 
+        # we assume fetch_results blocks or returns the path immediately
         results_path = compute.fetch_results(job_id)
         observables, reward = evaluator.evaluate_calculation(results_path, {})
         

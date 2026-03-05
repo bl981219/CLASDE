@@ -86,12 +86,14 @@ class ComputeManager:
         # 1. INCAR
         incar_params = self.config.get("vasp_params", {
             "PREC": "Accurate",
-            "ENCUT": 400,
+            "ENCUT": 450,
             "ISMEAR": 0,
             "SIGMA": 0.05,
             "NSW": 100,
             "IBRION": 2,
-            "LREAL": "Auto"
+            "LREAL": "Auto",
+            "LWAVE": ".FALSE.",
+            "LCHARG": ".FALSE."
         })
         with open(os.path.join(calc_dir, "INCAR"), "w") as f:
             for k, v in incar_params.items():
@@ -101,24 +103,47 @@ class ComputeManager:
         with open(os.path.join(calc_dir, "KPOINTS"), "w") as f:
             f.write("K-Points\n0\nGamma\n1 1 1\n0 0 0\n")
             
-        # 3. POTCAR (Placeholder for library management)
-        with open(os.path.join(calc_dir, "POTCAR"), "w") as f:
-            f.write("MOCK POTCAR CONTENT\n")
+        # 3. POTCAR (Concatenation from Potential/PBE)
+        pot_base = os.path.abspath("../Potential/PBE")
+        # Define mapping for specific potentials (e.g., Sr -> Sr_sv)
+        pot_map = self.config.get("pot_map", {"Sr": "Sr_sv", "La": "La", "Mn": "Mn", "O": "O"})
+        
+        symbols = structure.get_chemical_symbols()
+        # Get unique elements in the order they appear in POSCAR
+        unique_elements = []
+        for s in symbols:
+            if s not in unique_elements:
+                unique_elements.append(s)
+        
+        with open(os.path.join(calc_dir, "POTCAR"), "wb") as pot_file:
+            for el in unique_elements:
+                pot_name = pot_map.get(el, el)
+                source = os.path.join(pot_base, pot_name, "POTCAR")
+                if os.path.exists(source):
+                    with open(source, "rb") as f:
+                        pot_file.write(f.read())
+                else:
+                    print(f"Warning: POTCAR for {el} not found at {source}")
 
     def _write_slurm_script(self, calc_dir: str, state_id: str):
-        """Generate a standard SLURM submission script."""
+        """Generate a standard SLURM submission script based on billrun.sh template."""
         script_content = f"""#!/bin/bash
-#SBATCH --job-name=clasde_{state_id[:8]}
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=32
-#SBATCH --time=24:00:00
-#SBATCH --partition=compute
 
-# Placeholder VASP execution
-# module load vasp/6.4.2
-# mpirun -np 32 vasp_std > vasp.out
-echo "Mock HPC run completed" > mock.out
+#SBATCH -J clasde_{state_id[:8]}
+#SBATCH --ntasks=48
+#SBATCH --nodes=1
+#SBATCH --time=24:00:00
+#SBATCH --partition=xeon-p8
+
+module purge
+module load intel-oneapi/2023.1
+ulimit -s unlimited
+
+# Note: Using absolute path from billrun.sh template
+mpirun -np ${{SLURM_NTASKS}} /home/gridsan/groups/byildiz/vasp.6.4.2/bin/vasp_std
 """
+        with open(os.path.join(calc_dir, "submit.sh"), "w") as f:
+            f.write(script_content)
         with open(os.path.join(calc_dir, "submit.sh"), "w") as f:
             f.write(script_content)
 
