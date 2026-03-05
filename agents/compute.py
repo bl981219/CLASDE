@@ -99,7 +99,9 @@ class ComputeManager:
             "IBRION": 2,
             "LREAL": "Auto",
             "LWAVE": ".FALSE.",
-            "LCHARG": ".FALSE."
+            "LCHARG": ".FALSE.",
+            "NELM": 200,
+            "NCORE": 4
         })
         with open(os.path.join(calc_dir, "INCAR"), "w") as f:
             for k, v in incar_params.items():

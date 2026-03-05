@@ -1,11 +1,11 @@
-# CLASDE v2: Formalized Closed-Loop Surface Optimization Engine
+# CLASDE: Formalized Closed-Loop Surface Optimization Engine
 
 **CLASDE** (Closed-Loop Atomistic Surface Design Engine) is a mathematically defined constrained optimization framework for the discovery of stable and high-performing surface configurations.
 
 ---
 
-## 🚀 New in v2
-- **Persistent Memory:** Support for session resumption (`clasde_memory.json`). Never lose progress.
+## 🚀 Key Features
+- **Persistent Memory:** Support for session resumption (`results/clasde_memory.json`). Never lose progress.
 - **VASP Integration:** High-fidelity DFT readiness with automated input generation and OUTCAR parsing.
 - **Dynamic Exploration:** Agents now intelligently propose mutations based on the current surface stoichiometry.
 - **Advanced Visualization:** Automated generation of optimization progress and exploration graph plots.
@@ -43,7 +43,7 @@ python loop.py
 ```bash
 python visualize_loop.py
 ```
-This generates `clasde_summary.png` containing the reward progress and the exploration graph.
+This generates `results/clasde_summary.png` containing the reward progress and the exploration graph.
 
 ---
 

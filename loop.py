@@ -101,7 +101,7 @@ def main():
         last_entry = memory.dataset[-1]
         current_state = last_entry['state']
     
-    print(f"--- CLASDE v1 ENGINE STARTED ---")
+    print(f"--- CLASDE ENGINE STARTED ---")
     print(f"Objective: {config['objective']}")
     
     # 3. Main Optimization Loop
@@ -139,9 +139,34 @@ def main():
         job_id = compute.submit_dft_job(structure, next_state, iteration)
         
         # D. Evaluation & Reward Phase
-        # For VASP, this might be asynchronous, but for this simplified loop 
-        # we assume fetch_results blocks or returns the path immediately
+        import time
+        print(f"  Waiting for calculation to complete...")
+        
         results_path = compute.fetch_results(job_id)
+        
+        # Polling for VASP
+        if compute_mode == "vasp":
+            max_wait = 3600 # 1 hour
+            poll_interval = 60
+            waited = 0
+            while waited < max_wait:
+                outcar = os.path.join(results_path, "OUTCAR")
+                if os.path.exists(outcar):
+                    with open(outcar, "r") as f:
+                        content = f.read()
+                        if "reached required accuracy" in content:
+                            print(f"  VASP converged.")
+                            break
+                        if "NELM" in content and "reached" in content:
+                            # Might have failed convergence but finished NELM
+                            # We'll check the last few lines for more certainty
+                            pass
+                
+                # Also check slurm output for errors
+                time.sleep(poll_interval)
+                waited += poll_interval
+                print(f"    ...still waiting ({waited}s)")
+        
         observables, reward = evaluator.evaluate_calculation(results_path, {})
         
         # E. Memory Update
@@ -153,7 +178,7 @@ def main():
         print(f"  Observed Reward: {reward:.4f}")
         print(f"  Current Best: {memory.get_best_reward():.4f}")
 
-    print("\n--- CLASDE v1 ENGINE TERMINATED: BUDGET EXHAUSTED ---")
+    print("\n--- CLASDE ENGINE TERMINATED: BUDGET EXHAUSTED ---")
     
     # G. Persistence
     memory.save(output_file)
