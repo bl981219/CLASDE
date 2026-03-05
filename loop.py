@@ -12,16 +12,17 @@ from agents.memory import MemoryGraph
 
 def generate_candidates(state: SurfaceState, transition_engine: TransitionEngine) -> List[Tuple[MutationAction, SurfaceState]]:
     """
-    Generate next state candidates from the current state using mutation operators.
-    In v1, we restrict this to a small set of predefined mutations.
+    Generate next state candidates dynamically from the current state.
     """
     candidates = []
     
-    # 1. Vacancy mutations (enumerated)
-    for site in ["O1", "O2"]:
+    # 1. Vacancy mutations (dynamically based on bulk composition)
+    elements = list(state.bulk_composition.keys())
+    for el in elements:
+        # Simplified: propose vacancies for any element present
         action = MutationAction(
             action_type=ActionType.INTRODUCE_VACANCY,
-            parameters={"site": site, "index": 0}
+            parameters={"site": el, "index": 0}
         )
         candidates.append((action, transition_engine.apply(state, action)))
         
@@ -34,28 +35,20 @@ def generate_candidates(state: SurfaceState, transition_engine: TransitionEngine
             )
             candidates.append((action, transition_engine.apply(state, action)))
             
-    # 3. Termination changes
-    for term in ["AO", "BO2"]:
-        if term != state.termination:
-            action = MutationAction(
-                action_type=ActionType.CHANGE_TERMINATION,
-                parameters={"termination": term}
-            )
-            candidates.append((action, transition_engine.apply(state, action)))
-
-    # 4. Substitutional Dopant (on the fly logic)
-    # Simple substitution of Mn with Sr
-    action = MutationAction(
-        action_type=ActionType.SUBSTITUTIONAL_DOPANT,
-        parameters={"original_element": "Mn", "dopant": "Sr"}
-    )
-    candidates.append((action, transition_engine.apply(state, action)))
+    # 3. Substitutional Dopant (dynamic based on neighbors)
+    # If we have Mn, try substituting with Sr (or vice-versa)
+    if "Mn" in state.bulk_composition:
+        action = MutationAction(
+            action_type=ActionType.SUBSTITUTIONAL_DOPANT,
+            parameters={"original_element": "Mn", "dopant": "Sr"}
+        )
+        candidates.append((action, transition_engine.apply(state, action)))
             
     return candidates
 
 def main():
+    import os
     # 0. High-Level Research Objective Configuration
-    # (In production, this could be loaded from a YAML or prompted via Governor LLM)
     config = {
         "objective": {
             "type": "adsorption_tuning", 
@@ -77,6 +70,14 @@ def main():
     # 1. Component Initialization
     governor = ResearchGovernor(config)
     memory = MemoryGraph()
+    
+    # RESUME LOGIC
+    output_file = "clasde_memory.json"
+    if os.path.exists(output_file):
+        print(f"Loading existing session from {output_file}...")
+        memory.load(output_file)
+        governor.current_evaluations = len(memory.dataset)
+
     surrogate = SurrogateModel()
     strategist = OptimizationStrategist(surrogate, config["acquisition"])
     builder = StructureBuilder()
@@ -84,16 +85,19 @@ def main():
     evaluator = EvaluationAgent(governor.get_reward_function())
     transition_engine = TransitionEngine()
 
-    # 2. Initial State Setup (The Root Node)
-    current_state = SurfaceState(
-        bulk_composition=config["constraints"]["bulk"],
-        miller_index=config["constraints"]["facet"],
-        termination="default"
-    )
-    
-    # Record initial state baseline
-    # (Mock evaluation for the first point)
-    memory.add_state(current_state, reward=-5.0) 
+    # 2. Initial State Setup
+    if not memory.dataset:
+        current_state = SurfaceState(
+            bulk_composition=config["constraints"]["bulk"],
+            miller_index=config["constraints"]["facet"],
+            termination="default"
+        )
+        # Record initial state baseline
+        memory.add_state(current_state, reward=-5.0) 
+    else:
+        # Resume from the last known state in memory
+        last_entry = memory.dataset[-1]
+        current_state = last_entry['state']
     
     print(f"--- CLASDE v1 ENGINE STARTED ---")
     print(f"Objective: {config['objective']}")

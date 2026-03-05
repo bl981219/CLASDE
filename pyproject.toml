@@ -9,9 +9,11 @@ dependencies = [
     "ase",
     "pymatgen",
     "numpy",
+    "scipy",
     "scikit-learn",
     "pydantic",
     "networkx",
+    "matplotlib",
     "pyyaml",
     "typing_extensions"
 ]

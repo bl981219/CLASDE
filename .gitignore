@@ -44,4 +44,5 @@ slurm-*.out
 outputs/
 data/raw/
 
+Potential
 AGENT.md

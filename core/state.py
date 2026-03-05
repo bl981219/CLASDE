@@ -44,12 +44,14 @@ class SurfaceState(BaseModel):
         Convert the structured state into a numerical feature vector.
         V2: Stoichiometry + Descriptor-based encoding.
         """
-        # 1. Stoichiometry of bulk (normalized)
-        total = sum(self.bulk_composition.values())
-        bulk_stoich = [v / total for v in self.bulk_composition.values()]
+        # 1. Stoichiometry of bulk (normalized using a fixed chemical space)
+        # Assuming the search space includes La, Sr, Mn, O
+        chem_space = ["La", "Sr", "Mn", "O"]
+        bulk_stoich = []
+        for el in chem_space:
+            bulk_stoich.append(float(self.bulk_composition.get(el, 0.0)))
         
-        # 2. Miller index encoding (Sin/Cos to represent periodicity/angle)
-        # Assuming index values are small (0-3)
+        # 2. Miller index encoding
         miller_feats = []
         for i in self.miller_index:
             miller_feats.extend([float(i), float(i)**2])

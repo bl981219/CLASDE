@@ -80,3 +80,30 @@ class MemoryGraph:
             
         with open(file_path, "w") as f:
             json.dump(data, f, indent=2)
+
+    def load(self, file_path: str):
+        """Load memory from a JSON file."""
+        import os
+        if not os.path.exists(file_path):
+            return
+            
+        with open(file_path, "r") as f:
+            data = json.load(f)
+            
+        # Clear existing
+        self.graph = nx.DiGraph()
+        self.dataset = []
+        
+        # Nodes must be added first
+        for n in data.get("graph", {}).get("nodes", []):
+            state = SurfaceState(**n["state"])
+            self.add_state(state, n.get("observables"), n.get("reward"))
+            
+        # Then edges
+        for e in data.get("graph", {}).get("edges", []):
+            u_data = next(n for n in data["graph"]["nodes"] if n["id"] == e["source"])
+            v_data = next(n for n in data["graph"]["nodes"] if n["id"] == e["target"])
+            source = SurfaceState(**u_data["state"])
+            target = SurfaceState(**v_data["state"])
+            action = MutationAction(**e["action"])
+            self.add_transition(source, action, target)
