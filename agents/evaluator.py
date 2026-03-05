@@ -65,7 +65,7 @@ class EvaluationAgent:
 
         # 2. DOSCAR Parsing for Electronic Properties (d-band, p-band)
         doscar_path = os.path.join(path, "DOSCAR")
-        if os.path.exists(doscar_path):
+        if os.path.exists(doscar_path) and os.path.getsize(doscar_path) > 0:
             try:
                 electronic_props = self._parse_doscar(doscar_path)
                 observables.update(electronic_props)

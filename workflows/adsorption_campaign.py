@@ -70,8 +70,9 @@ def run_adsorption_campaign(config: Dict[str, Any]):
     print(f"Objective: {config['objective']}")
     
     # 3. Main Optimization Loop
-    sigma_threshold = 0.5 # Trigger VASP if uncertainty > 0.5
-    vasp_frequency = 5    # Or every 5 iterations for validation
+    sigma_threshold = config.get("compute", {}).get("sigma_threshold", 0.5) 
+    vasp_frequency = config.get("compute", {}).get("vasp_frequency", 5)
+    force_mode = config.get("compute", {}).get("mode")
     
     while governor.has_budget():
         # A. Strategic Decision Phase
@@ -84,8 +85,13 @@ def run_adsorption_campaign(config: Dict[str, Any]):
         mu, sigma = surrogate.predict(next_state)
         
         iteration = governor.current_evaluations + 1
-        use_vasp = (sigma > sigma_threshold) or (iteration % vasp_frequency == 0)
-        compute_mode = "vasp" if use_vasp else "local_emt"
+        
+        # If mode is explicitly forced in config, use it. Otherwise, use fidelity switching.
+        if force_mode:
+            compute_mode = force_mode
+        else:
+            use_vasp = (sigma > sigma_threshold) or (iteration % vasp_frequency == 0)
+            compute_mode = "vasp" if use_vasp else "local_emt"
         
         print(f"\nIteration {iteration}:")
         print(f"  Action: {action.action_type} -> {action.parameters}")
