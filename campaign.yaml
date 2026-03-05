@@ -1,0 +1,30 @@
+# CLASDE Campaign Configuration
+objective:
+  type: "adsorption_tuning"
+  target_e_ads: -1.2
+  adsorbate: "O"
+
+budget:
+  max_evaluations: 200
+
+constraints:
+  facet: [0, 0, 1]
+  bulk:
+    La: 0.5
+    Sr: 0.5
+    Mn: 1.0
+    O: 3.0
+
+acquisition:
+  acquisition_type: "EI"
+  kappa: 2.576
+
+compute:
+  mode: "local_emt" # Switch to 'vasp' for HPC production
+  vasp_params:
+    PREC: "Accurate"
+    ENCUT: 450
+    ISMEAR: 0
+    SIGMA: 0.05
+    NSW: 100
+    IBRION: 2

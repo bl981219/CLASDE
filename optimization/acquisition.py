@@ -3,11 +3,19 @@ from typing import List, Optional
 import numpy as np
 from scipy.stats import norm
 from .surrogate import SurrogateModel
-from .state import SurfaceState
+from core.state import SurfaceState
 
 class AcquisitionFunction(ABC):
     """
-    Acquisition function α(S) for selecting the next action.
+    Acquisition function α(S) for selecting the next optimal experiment.
+    
+    The acquisition function acts as the mathematical "policy" of the Strategist. 
+    It evaluates candidate states proposed by the ActionProposer by querying the 
+    SurrogateModel for their predicted mean and uncertainty. 
+    
+    Its primary job is to mathematically balance the Exploration-Exploitation trade-off:
+    - Exploitation: Choosing states with high predicted rewards (high mean).
+    - Exploration: Choosing states with high unknown potential (high uncertainty).
     """
     @abstractmethod
     def compute_score(self, state: SurfaceState, surrogate: SurrogateModel) -> float:
@@ -42,7 +50,6 @@ class UpperConfidenceBound(AcquisitionFunction):
 class ThompsonSampling(AcquisitionFunction):
     """Thompson Sampling by sampling from the surrogate posterior."""
     def compute_score(self, state: SurfaceState, surrogate: SurrogateModel) -> float:
-        # For simplicity, we sample a single point from the distribution
         mu, sigma = surrogate.predict(state)
         if sigma <= 0:
             return float(mu)

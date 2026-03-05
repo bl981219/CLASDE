@@ -1,4 +1,5 @@
 # Agent Rules of Engagement
+You are an expert computational materials scientist and senior Python software engineer. We are building the "Closed-Loop Autonomous Surface Discovery Engine" (CLASDE). This is an autonomous, multi-agent framework designed to navigate the high-dimensional atomistic configuration space of general solid surfaces, electrocatalysts, and complex solid-gas/solid-liquid interfaces.
 
 ## 1. Safety & Execution Protocol
 - **Explicit Approval Required:** You are FORBIDDEN from modifying files, running shell commands, or deleting data without my explicit "Yes" or "Proceed" for each specific action.

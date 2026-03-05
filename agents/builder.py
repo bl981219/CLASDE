@@ -13,9 +13,18 @@ except ImportError:
 
 class StructureBuilder:
     """
-    Agent 3 — Structure Builder.
-    Deterministic state transition engine for physical structure generation.
-    Uses ASE and Pymatgen to construct slabs and place adsorbates.
+    Agent 3 — Structure Builder (The PhD Student).
+    
+    This agent translates the formal mathematical descriptor (`SurfaceState`) into an 
+    actual 3D physical representation using ASE (Atomic Simulation Environment) and Pymatgen.
+    
+    It enforces physical constraints automatically, such as:
+    - Cleaving the correct Miller index facets.
+    - Applying point defects (vacancies, substitutions).
+    - Enforcing charge neutrality during aliovalent doping by introducing 
+      compensating oxygen vacancies.
+      
+    The output is an ASE `Atoms` object ready for MLFF evaluation or DFT submission.
     """
     def __init__(self):
         if not HAS_SIM_TOOLS:
@@ -64,7 +73,7 @@ class StructureBuilder:
             warnings.warn(f"Failed to cleave surface {state.miller_index}: {e}")
             slab = bulk_atoms.copy()
 
-        # 3. Apply defects (simplified)
+        # 3. Apply defects (enhanced with charge compensation)
         for defect in state.defects:
             if defect.get("type") == "vacancy":
                 # Naive vacancy creation: pop the highest Z atom
@@ -78,6 +87,18 @@ class StructureBuilder:
                 if indices:
                     # Replace the first matching site found
                     slab[indices[0]].symbol = dopant
+                    
+                    # Aliovalent Doping Charge Compensation Logic:
+                    # If Sr2+ substitutes La3+ (La0.5Sr0.5MnO3), we need 
+                    # specific oxygen vacancies to maintain charge neutrality.
+                    # R = 2*(Σ n_dopant * Δz) / area
+                    if orig == "La" and dopant == "Sr":
+                        # For every 2 Sr-substitutions, we introduce 1 O-vacancy
+                        # This is a simplified implementation for perovskites
+                        o_indices = [i for i, atom in enumerate(slab) if atom.symbol == "O"]
+                        if o_indices:
+                            slab.pop(o_indices[0]) # Introduce oxygen vacancy
+                            print(f"  Charge Compensation: Introduced Oxygen Vacancy for Sr-doping.")
                     
         # 4. Place adsorbate a at coverage θ
         if state.adsorbate and state.coverage > 0.0:

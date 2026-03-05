@@ -7,7 +7,16 @@ from core.action import MutationAction
 
 class MemoryGraph:
     """
-    Maintains the exploration history and dataset D = {S, P(S), R}.
+    Agent 6 — Memory Graph (The Digital Lab Notebook).
+    
+    This is not a simple JSON log; it is a formal semantic map of the exploration space.
+    It uses NetworkX to track the entire history as a Directed Graph:
+    - Nodes: Canonical `SurfaceState` hashes, annotated with physical observables and scalar rewards.
+    - Edges: The `MutationAction` that bridged one state to another.
+    
+    This structure is vital for cycle detection, novelty detection, and the higher-level
+    reasoning performed by the Hypothesis Agent. The entire graph serializes to disk 
+    to enable seamless session resumption.
     """
     def __init__(self):
         self.graph = nx.DiGraph()

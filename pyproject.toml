@@ -19,7 +19,9 @@ dependencies = [
 ]
 
 [project.scripts]
-clasde-loop = "loop:main"
+clasde-loop = "cli.loop_cli:main"
+clasde-builder = "cli.builder_cli:main"
+clasde-visualize = "cli.visualize_cli:main"
 
 [build-system]
 requires = ["setuptools", "wheel"]

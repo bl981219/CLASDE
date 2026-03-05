@@ -3,14 +3,20 @@ from core.reward import (
     StabilityReward, 
     AdsorptionTuningReward, 
     UncertaintyReward,
-    DeviationDiscoveryReward
+    DeviationDiscoveryReward,
+    FunctionalReward,
+    CompositeReward
 )
 from typing import Dict, Any, List, Optional
 
 class ResearchGovernor:
     """
-    Agent 1 — Research Governor.
-    Sets objectives, constraints, and budget.
+    Agent 1 — Research Governor (The Lab Manager).
+    
+    This agent enforces the high-level directives of the campaign. It initializes the 
+    appropriate `RewardFunction` based on the configuration, tracks the computational 
+    budget (e.g., `max_evaluations`), and holds the absolute constraints of the system 
+    (e.g., which facets are allowed to be explored).
     """
     def __init__(self, config: Dict[str, Any]):
         self.config = config
@@ -31,6 +37,18 @@ class ResearchGovernor:
             return UncertaintyReward()
         elif obj_type == "deviation_discovery":
             return DeviationDiscoveryReward()
+        elif obj_type == "functional":
+            expr = obj.get("expression", "0.0")
+            return FunctionalReward(expression=expr)
+        elif obj_type == "composite":
+            components = obj.get("components", [])
+            rewards_map = {}
+            for comp in components:
+                # Recursively initialize component rewards
+                temp_gov = ResearchGovernor({"objective": comp})
+                weight = comp.get("weight", 1.0)
+                rewards_map[temp_gov.get_reward_function()] = weight
+            return CompositeReward(rewards=rewards_map)
         else:
             raise ValueError(f"Unsupported objective type: {obj_type}")
 

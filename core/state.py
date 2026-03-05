@@ -5,8 +5,22 @@ import json
 
 class SurfaceState(BaseModel):
     """
-    Formal representation of the atomistic surface configuration space.
+    Formal canonical representation of the atomistic surface configuration space.
+    
+    This object acts as the universal "Source of Truth" across all agents. Rather than 
+    passing heavy 3D atomic structures (like ASE Atoms objects) between agents, CLASDE 
+    passes this lightweight mathematical descriptor. 
+    
     S = {c, τ, (h,k,l), d, a, θ, (T, p, Φ)}
+    
+    Attributes:
+        bulk_composition (c): Stoichiometry of the host material (e.g., {"La": 0.5, "Sr": 0.5, "Mn": 1.0, "O": 3.0}).
+        miller_index (h,k,l): Crystallographic plane of the surface.
+        termination (τ): Descriptor for the topmost layer (e.g., "SrO" or "MnO2").
+        defects (d): Vector of point defects, like vacancies or substitutions.
+        adsorbate (a): Identity of the bound molecule/atom (e.g., "OH").
+        coverage (θ): Fractional surface coverage of the adsorbate.
+        external_conditions: Environmental parameters: Temperature (T), Pressure (p), Electrochemical Potential (Φ).
     """
     bulk_composition: Dict[str, float] = Field(..., description="Bulk composition vector c")
     miller_index: Tuple[int, int, int] = Field(..., description="Miller index (h, k, l)")
@@ -19,8 +33,45 @@ class SurfaceState(BaseModel):
         description="External conditions (T, p, Φ)"
     )
     
-    # Metadata for tracking
+    # Metadata for tracking origin, lineage, or physical file paths
     metadata: Dict = Field(default_factory=dict)
+
+    def is_physically_equivalent(self, other: 'SurfaceState') -> bool:
+        """
+        Check if two states represent the same physical structure using Pymatgen StructureMatcher.
+        Useful for identifying symmetry-equivalent surfaces or redundant mutations.
+        """
+        if not isinstance(other, SurfaceState):
+            return False
+            
+        # Quick check for identical hashes
+        if self.get_id() == other.get_id():
+            return True
+            
+        # Detailed check using Pymatgen
+        try:
+            from pymatgen.analysis.structure_matcher import StructureMatcher
+            from agents.builder import StructureBuilder
+            
+            builder = StructureBuilder()
+            s1 = builder.build_structure(self)
+            s2 = builder.build_structure(other)
+            
+            if s1 is None or s2 is None:
+                return False
+                
+            # Convert ASE to Pymatgen
+            from pymatgen.io.ase import AseAtomsAdaptor
+            pmg1 = AseAtomsAdaptor.get_structure(s1)
+            pmg2 = AseAtomsAdaptor.get_structure(s2)
+            
+            matcher = StructureMatcher(primitive_cell=True, attempt_supercell=True)
+            return matcher.fit(pmg1, pmg2)
+        except ImportError:
+            # Fallback to hash equality if tools are missing
+            return self.get_id() == other.get_id()
+        except Exception:
+            return False
 
     def to_json(self) -> str:
         """Serialize state to a canonical JSON string."""

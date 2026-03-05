@@ -4,8 +4,9 @@ import networkx as nx
 import numpy as np
 import sys
 import os
+import argparse
 
-def visualize_clasde(memory_file: str):
+def visualize_clasde(memory_file: str, output_png: str):
     if not os.path.exists(memory_file):
         print(f"Error: {memory_file} not found.")
         return
@@ -16,6 +17,10 @@ def visualize_clasde(memory_file: str):
     dataset = data.get("dataset", [])
     graph_data = data.get("graph", {})
     
+    if not dataset:
+        print("No data in memory to visualize.")
+        return
+
     # 1. Reward Progress Plot
     rewards = [d["target_value"] for d in dataset]
     best_rewards = np.maximum.accumulate(rewards)
@@ -49,12 +54,16 @@ def visualize_clasde(memory_file: str):
     plt.axis('off')
 
     plt.tight_layout()
-    output_png = os.path.join(os.path.dirname(memory_file), "clasde_summary.png")
     plt.savefig(output_png)
     print(f"Optimization summary plot saved to {output_png}")
 
+def main():
+    parser = argparse.ArgumentParser(description="CLASDE Visualization Tool")
+    parser.add_argument("--memory", type=str, default="results/clasde_memory.json", help="Path to memory JSON file.")
+    parser.add_argument("--output", type=str, default="results/clasde_summary.png", help="Path for output PNG.")
+    args = parser.parse_args()
+    
+    visualize_clasde(args.memory, args.output)
+
 if __name__ == "__main__":
-    file_path = "results/clasde_memory.json"
-    if len(sys.argv) > 1:
-        file_path = sys.argv[1]
-    visualize_clasde(file_path)
+    main()
