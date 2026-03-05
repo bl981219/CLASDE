@@ -43,3 +43,5 @@ slurm-*.out
 .ipynb_checkpoints/
 outputs/
 data/raw/
+
+AGENT.md

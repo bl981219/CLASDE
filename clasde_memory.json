@@ -1,0 +1,1283 @@
+{
+  "dataset": [
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.5,
+          "Sr": 0.5,
+          "Mn": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "defects": [],
+        "adsorbate": null,
+        "coverage": 0.0,
+        "external_conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "target_value": -5.0,
+      "observables": null
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.5,
+          "Sr": 0.5,
+          "Mn": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          }
+        ],
+        "adsorbate": null,
+        "coverage": 0.0,
+        "external_conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "target_value": -1.651157843457919,
+      "observables": {
+        "total_energy": 3.0231568691583783,
+        "adsorption_energy": 0.15115784345791894,
+        "surface_energy": 0.01,
+        "status": "completed"
+      }
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.5,
+          "Sr": 0.5,
+          "Mn": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          }
+        ],
+        "adsorbate": null,
+        "coverage": 0.0,
+        "external_conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "target_value": -1.6674875693497235,
+      "observables": {
+        "total_energy": 3.3497513869944706,
+        "adsorption_energy": 0.16748756934972353,
+        "surface_energy": 0.01,
+        "status": "completed"
+      }
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.5,
+          "Sr": 0.5,
+          "Mn": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          }
+        ],
+        "adsorbate": null,
+        "coverage": 0.0,
+        "external_conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "target_value": -1.6144970739796336,
+      "observables": {
+        "total_energy": 2.28994147959267,
+        "adsorption_energy": 0.11449707397963349,
+        "surface_energy": 0.01,
+        "status": "completed"
+      }
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.5,
+          "Sr": 0.5,
+          "Mn": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          }
+        ],
+        "adsorbate": null,
+        "coverage": 0.25,
+        "external_conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "target_value": -1.6144970739796336,
+      "observables": {
+        "total_energy": 2.28994147959267,
+        "adsorption_energy": 0.11449707397963349,
+        "surface_energy": 0.01,
+        "status": "completed"
+      }
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.5,
+          "Sr": 0.5,
+          "Mn": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          }
+        ],
+        "adsorbate": null,
+        "coverage": 0.25,
+        "external_conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "target_value": -1.589733221498614,
+      "observables": {
+        "total_energy": 1.7946644299722792,
+        "adsorption_energy": 0.08973322149861396,
+        "surface_energy": 0.01,
+        "status": "completed"
+      }
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.5,
+          "Sr": 0.5,
+          "Mn": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          }
+        ],
+        "adsorbate": null,
+        "coverage": 1.0,
+        "external_conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "target_value": -1.589733221498614,
+      "observables": {
+        "total_energy": 1.7946644299722792,
+        "adsorption_energy": 0.08973322149861396,
+        "surface_energy": 0.01,
+        "status": "completed"
+      }
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.5,
+          "Sr": 0.5,
+          "Mn": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          }
+        ],
+        "adsorbate": null,
+        "coverage": 1.0,
+        "external_conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "target_value": -1.6523622126811048,
+      "observables": {
+        "total_energy": 3.047244253622095,
+        "adsorption_energy": 0.15236221268110475,
+        "surface_energy": 0.01,
+        "status": "completed"
+      }
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.5,
+          "Sr": 0.5,
+          "Mn": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          }
+        ],
+        "adsorbate": null,
+        "coverage": 1.0,
+        "external_conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "target_value": -1.6686924045338654,
+      "observables": {
+        "total_energy": 3.3738480906773063,
+        "adsorption_energy": 0.16869240453386533,
+        "surface_energy": 0.01,
+        "status": "completed"
+      }
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.5,
+          "Sr": 0.5,
+          "Mn": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          }
+        ],
+        "adsorbate": null,
+        "coverage": 1.0,
+        "external_conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "target_value": -1.6157023778586062,
+      "observables": {
+        "total_energy": 2.314047557172125,
+        "adsorption_energy": 0.11570237785860625,
+        "surface_energy": 0.01,
+        "status": "completed"
+      }
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.5,
+          "Sr": 0.5,
+          "Mn": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "O1",
+            "index": 0
+          }
+        ],
+        "adsorbate": null,
+        "coverage": 1.0,
+        "external_conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "target_value": -1.591032328427155,
+      "observables": {
+        "total_energy": 1.8206465685430997,
+        "adsorption_energy": 0.09103232842715499,
+        "surface_energy": 0.01,
+        "status": "completed"
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "b7a3d7d43f7287a510079e998ae729ad46a642a747b3e173043e20f4884ed37d",
+        "state": {
+          "bulk_composition": {
+            "La": 0.5,
+            "Sr": 0.5,
+            "Mn": 1.0,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "defects": [],
+          "adsorbate": null,
+          "coverage": 0.0,
+          "external_conditions": {
+            "T": 298.15,
+            "p": 1.0,
+            "Phi": 0.0
+          },
+          "metadata": {}
+        },
+        "observables": null,
+        "reward": -5.0
+      },
+      {
+        "id": "65f314072c592bfc82f37a244d4850b54c5fa95a411e4fd90f45f1e57028d2c4",
+        "state": {
+          "bulk_composition": {
+            "La": 0.5,
+            "Sr": 0.5,
+            "Mn": 1.0,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            }
+          ],
+          "adsorbate": null,
+          "coverage": 0.0,
+          "external_conditions": {
+            "T": 298.15,
+            "p": 1.0,
+            "Phi": 0.0
+          },
+          "metadata": {}
+        },
+        "observables": {
+          "total_energy": 3.0231568691583783,
+          "adsorption_energy": 0.15115784345791894,
+          "surface_energy": 0.01,
+          "status": "completed"
+        },
+        "reward": -1.651157843457919
+      },
+      {
+        "id": "6996355af3feae818ff5b614e507d087425773d8c8f75e40f26c7a69a4301a95",
+        "state": {
+          "bulk_composition": {
+            "La": 0.5,
+            "Sr": 0.5,
+            "Mn": 1.0,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            }
+          ],
+          "adsorbate": null,
+          "coverage": 0.0,
+          "external_conditions": {
+            "T": 298.15,
+            "p": 1.0,
+            "Phi": 0.0
+          },
+          "metadata": {}
+        },
+        "observables": {
+          "total_energy": 3.3497513869944706,
+          "adsorption_energy": 0.16748756934972353,
+          "surface_energy": 0.01,
+          "status": "completed"
+        },
+        "reward": -1.6674875693497235
+      },
+      {
+        "id": "d7015de65c50aecb021d50d6154cd3d7fce86503d6269a8d42b3482809e253f0",
+        "state": {
+          "bulk_composition": {
+            "La": 0.5,
+            "Sr": 0.5,
+            "Mn": 1.0,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            }
+          ],
+          "adsorbate": null,
+          "coverage": 0.0,
+          "external_conditions": {
+            "T": 298.15,
+            "p": 1.0,
+            "Phi": 0.0
+          },
+          "metadata": {}
+        },
+        "observables": {
+          "total_energy": 2.28994147959267,
+          "adsorption_energy": 0.11449707397963349,
+          "surface_energy": 0.01,
+          "status": "completed"
+        },
+        "reward": -1.6144970739796336
+      },
+      {
+        "id": "c85ec7b05b0df38075bef24cff9f78569846a6144812c3e2057955e390ed9974",
+        "state": {
+          "bulk_composition": {
+            "La": 0.5,
+            "Sr": 0.5,
+            "Mn": 1.0,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            }
+          ],
+          "adsorbate": null,
+          "coverage": 0.25,
+          "external_conditions": {
+            "T": 298.15,
+            "p": 1.0,
+            "Phi": 0.0
+          },
+          "metadata": {}
+        },
+        "observables": {
+          "total_energy": 2.28994147959267,
+          "adsorption_energy": 0.11449707397963349,
+          "surface_energy": 0.01,
+          "status": "completed"
+        },
+        "reward": -1.6144970739796336
+      },
+      {
+        "id": "5bf024a5f4611de9ca30ab6f009b2fa5c082ade6cf9df4eb6a0fb133824b3f53",
+        "state": {
+          "bulk_composition": {
+            "La": 0.5,
+            "Sr": 0.5,
+            "Mn": 1.0,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            }
+          ],
+          "adsorbate": null,
+          "coverage": 0.25,
+          "external_conditions": {
+            "T": 298.15,
+            "p": 1.0,
+            "Phi": 0.0
+          },
+          "metadata": {}
+        },
+        "observables": {
+          "total_energy": 1.7946644299722792,
+          "adsorption_energy": 0.08973322149861396,
+          "surface_energy": 0.01,
+          "status": "completed"
+        },
+        "reward": -1.589733221498614
+      },
+      {
+        "id": "00fcd26b29807c6e5e0682a18339ddd80c464b8f1ce2682204aa6d3f16d842ba",
+        "state": {
+          "bulk_composition": {
+            "La": 0.5,
+            "Sr": 0.5,
+            "Mn": 1.0,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            }
+          ],
+          "adsorbate": null,
+          "coverage": 1.0,
+          "external_conditions": {
+            "T": 298.15,
+            "p": 1.0,
+            "Phi": 0.0
+          },
+          "metadata": {}
+        },
+        "observables": {
+          "total_energy": 1.7946644299722792,
+          "adsorption_energy": 0.08973322149861396,
+          "surface_energy": 0.01,
+          "status": "completed"
+        },
+        "reward": -1.589733221498614
+      },
+      {
+        "id": "3568145f9557181588939b740f9f07fa9f5680e2faaba61000361863b12c78d1",
+        "state": {
+          "bulk_composition": {
+            "La": 0.5,
+            "Sr": 0.5,
+            "Mn": 1.0,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            }
+          ],
+          "adsorbate": null,
+          "coverage": 1.0,
+          "external_conditions": {
+            "T": 298.15,
+            "p": 1.0,
+            "Phi": 0.0
+          },
+          "metadata": {}
+        },
+        "observables": {
+          "total_energy": 3.047244253622095,
+          "adsorption_energy": 0.15236221268110475,
+          "surface_energy": 0.01,
+          "status": "completed"
+        },
+        "reward": -1.6523622126811048
+      },
+      {
+        "id": "66d61a5d6862bfcab57f0375ad5e37c86dca152e2ebc8ce83c08e41c08ef648b",
+        "state": {
+          "bulk_composition": {
+            "La": 0.5,
+            "Sr": 0.5,
+            "Mn": 1.0,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            }
+          ],
+          "adsorbate": null,
+          "coverage": 1.0,
+          "external_conditions": {
+            "T": 298.15,
+            "p": 1.0,
+            "Phi": 0.0
+          },
+          "metadata": {}
+        },
+        "observables": {
+          "total_energy": 3.3738480906773063,
+          "adsorption_energy": 0.16869240453386533,
+          "surface_energy": 0.01,
+          "status": "completed"
+        },
+        "reward": -1.6686924045338654
+      },
+      {
+        "id": "aa80cca9f8b0ffac21249eda3ae686a38f3ef57cf5cea62d31314450a0e275a9",
+        "state": {
+          "bulk_composition": {
+            "La": 0.5,
+            "Sr": 0.5,
+            "Mn": 1.0,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            }
+          ],
+          "adsorbate": null,
+          "coverage": 1.0,
+          "external_conditions": {
+            "T": 298.15,
+            "p": 1.0,
+            "Phi": 0.0
+          },
+          "metadata": {}
+        },
+        "observables": {
+          "total_energy": 2.314047557172125,
+          "adsorption_energy": 0.11570237785860625,
+          "surface_energy": 0.01,
+          "status": "completed"
+        },
+        "reward": -1.6157023778586062
+      },
+      {
+        "id": "da2022e747323ec0526f40a9d109e3001b844e4c02f465f1d64311d6a864b9a8",
+        "state": {
+          "bulk_composition": {
+            "La": 0.5,
+            "Sr": 0.5,
+            "Mn": 1.0,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "O1",
+              "index": 0
+            }
+          ],
+          "adsorbate": null,
+          "coverage": 1.0,
+          "external_conditions": {
+            "T": 298.15,
+            "p": 1.0,
+            "Phi": 0.0
+          },
+          "metadata": {}
+        },
+        "observables": {
+          "total_energy": 1.8206465685430997,
+          "adsorption_energy": 0.09103232842715499,
+          "surface_energy": 0.01,
+          "status": "completed"
+        },
+        "reward": -1.591032328427155
+      }
+    ],
+    "edges": [
+      {
+        "source": "b7a3d7d43f7287a510079e998ae729ad46a642a747b3e173043e20f4884ed37d",
+        "target": "65f314072c592bfc82f37a244d4850b54c5fa95a411e4fd90f45f1e57028d2c4",
+        "action": {
+          "action_type": "introduce_vacancy",
+          "parameters": {
+            "site": "O1",
+            "index": 0
+          },
+          "reasoning": null
+        }
+      },
+      {
+        "source": "65f314072c592bfc82f37a244d4850b54c5fa95a411e4fd90f45f1e57028d2c4",
+        "target": "6996355af3feae818ff5b614e507d087425773d8c8f75e40f26c7a69a4301a95",
+        "action": {
+          "action_type": "introduce_vacancy",
+          "parameters": {
+            "site": "O1",
+            "index": 0
+          },
+          "reasoning": null
+        }
+      },
+      {
+        "source": "6996355af3feae818ff5b614e507d087425773d8c8f75e40f26c7a69a4301a95",
+        "target": "d7015de65c50aecb021d50d6154cd3d7fce86503d6269a8d42b3482809e253f0",
+        "action": {
+          "action_type": "introduce_vacancy",
+          "parameters": {
+            "site": "O1",
+            "index": 0
+          },
+          "reasoning": null
+        }
+      },
+      {
+        "source": "d7015de65c50aecb021d50d6154cd3d7fce86503d6269a8d42b3482809e253f0",
+        "target": "c85ec7b05b0df38075bef24cff9f78569846a6144812c3e2057955e390ed9974",
+        "action": {
+          "action_type": "modify_coverage",
+          "parameters": {
+            "coverage": 0.25
+          },
+          "reasoning": null
+        }
+      },
+      {
+        "source": "c85ec7b05b0df38075bef24cff9f78569846a6144812c3e2057955e390ed9974",
+        "target": "5bf024a5f4611de9ca30ab6f009b2fa5c082ade6cf9df4eb6a0fb133824b3f53",
+        "action": {
+          "action_type": "introduce_vacancy",
+          "parameters": {
+            "site": "O1",
+            "index": 0
+          },
+          "reasoning": null
+        }
+      },
+      {
+        "source": "5bf024a5f4611de9ca30ab6f009b2fa5c082ade6cf9df4eb6a0fb133824b3f53",
+        "target": "00fcd26b29807c6e5e0682a18339ddd80c464b8f1ce2682204aa6d3f16d842ba",
+        "action": {
+          "action_type": "modify_coverage",
+          "parameters": {
+            "coverage": 1.0
+          },
+          "reasoning": null
+        }
+      },
+      {
+        "source": "00fcd26b29807c6e5e0682a18339ddd80c464b8f1ce2682204aa6d3f16d842ba",
+        "target": "3568145f9557181588939b740f9f07fa9f5680e2faaba61000361863b12c78d1",
+        "action": {
+          "action_type": "introduce_vacancy",
+          "parameters": {
+            "site": "O1",
+            "index": 0
+          },
+          "reasoning": null
+        }
+      },
+      {
+        "source": "3568145f9557181588939b740f9f07fa9f5680e2faaba61000361863b12c78d1",
+        "target": "66d61a5d6862bfcab57f0375ad5e37c86dca152e2ebc8ce83c08e41c08ef648b",
+        "action": {
+          "action_type": "introduce_vacancy",
+          "parameters": {
+            "site": "O1",
+            "index": 0
+          },
+          "reasoning": null
+        }
+      },
+      {
+        "source": "66d61a5d6862bfcab57f0375ad5e37c86dca152e2ebc8ce83c08e41c08ef648b",
+        "target": "aa80cca9f8b0ffac21249eda3ae686a38f3ef57cf5cea62d31314450a0e275a9",
+        "action": {
+          "action_type": "introduce_vacancy",
+          "parameters": {
+            "site": "O1",
+            "index": 0
+          },
+          "reasoning": null
+        }
+      },
+      {
+        "source": "aa80cca9f8b0ffac21249eda3ae686a38f3ef57cf5cea62d31314450a0e275a9",
+        "target": "da2022e747323ec0526f40a9d109e3001b844e4c02f465f1d64311d6a864b9a8",
+        "action": {
+          "action_type": "introduce_vacancy",
+          "parameters": {
+            "site": "O1",
+            "index": 0
+          },
+          "reasoning": null
+        }
+      }
+    ]
+  }
+}

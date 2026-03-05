@@ -124,6 +124,11 @@ def main():
         print(f"  Current Best: {memory.get_best_reward():.4f}")
 
     print("\n--- CLASDE v1 ENGINE TERMINATED: BUDGET EXHAUSTED ---")
+    
+    # G. Persistence
+    output_file = "clasde_memory.json"
+    memory.save(output_file)
+    print(f"Memory graph and dataset saved to {output_file}")
 
 if __name__ == "__main__":
     main()

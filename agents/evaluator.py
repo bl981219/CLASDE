@@ -1,3 +1,5 @@
+import os
+import json
 from typing import Dict, Any, Tuple, Optional
 from core.reward import RewardFunction
 
@@ -31,13 +33,25 @@ class EvaluationAgent:
 
     def _extract_observables(self, path: str) -> Dict[str, Any]:
         """
-        Parse energy and structural information from DFT output (e.g., OUTCAR).
+        Parse energy and structural information from DFT output.
+        First tries to read 'results.json' (local mode), then falls back.
         """
-        # 1. Use ase.io.read or pymatgen.io.vasp.Outcar
-        # 2. Extract total_energy
-        # 3. Compute e_ads = E_slab_ads - (E_slab + E_ads_mol)
-        
-        # Mocking for the initial structure
+        results_file = os.path.join(path, "results.json")
+        if os.path.exists(results_file):
+            try:
+                with open(results_file, "r") as f:
+                    return json.load(f)
+            except Exception as e:
+                print(f"Error parsing {results_file}: {e}")
+                
+        # Future HPC Logic:
+        # outcar_path = os.path.join(path, "OUTCAR")
+        # if os.path.exists(outcar_path):
+        #    from ase.io import read
+        #    atoms = read(outcar_path)
+        #    return {"total_energy": atoms.get_potential_energy()}
+
+        # Fallback if no files exist
         return {
             "total_energy": -100.5,
             "adsorption_energy": -1.25,

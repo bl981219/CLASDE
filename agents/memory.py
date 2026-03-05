@@ -19,6 +19,7 @@ class MemoryGraph:
         if not self.graph.has_node(state_id):
             self.graph.add_node(state_id, state=state, observables=observables, reward=reward)
         else:
+            self.graph.nodes[state_id]['state'] = state
             if observables is not None:
                 self.graph.nodes[state_id]['observables'] = observables
             if reward is not None:
@@ -45,6 +46,37 @@ class MemoryGraph:
         return self.dataset
 
     def save(self, file_path: str):
-        """Serialize memory to file (simplified)."""
-        # Note: networkx graphs with pydantic objects need custom serialization
-        pass
+        """Serialize memory to a JSON file."""
+        data = {
+            "dataset": [
+                {
+                    "state": d["state"].model_dump(),
+                    "target_value": d["target_value"],
+                    "observables": d["observables"]
+                } for d in self.dataset
+            ],
+            "graph": {
+                "nodes": [],
+                "edges": []
+            }
+        }
+        
+        # Serialize Nodes
+        for node_id, node_data in self.graph.nodes(data=True):
+            data["graph"]["nodes"].append({
+                "id": node_id,
+                "state": node_data["state"].model_dump(),
+                "observables": node_data.get("observables"),
+                "reward": node_data.get("reward")
+            })
+            
+        # Serialize Edges
+        for u, v, edge_data in self.graph.edges(data=True):
+            data["graph"]["edges"].append({
+                "source": u,
+                "target": v,
+                "action": edge_data["action"].model_dump()
+            })
+            
+        with open(file_path, "w") as f:
+            json.dump(data, f, indent=2)
