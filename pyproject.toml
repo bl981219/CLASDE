@@ -1,0 +1,24 @@
+[project]
+name = "clasde"
+version = "0.1.0"
+description = "Formalized Closed-Loop Surface Optimization Engine"
+authors = [
+    { name = "Mengren Bill Liu" }
+]
+dependencies = [
+    "ase",
+    "pymatgen",
+    "numpy",
+    "scikit-learn",
+    "pydantic",
+    "networkx",
+    "pyyaml",
+    "typing_extensions"
+]
+
+[project.scripts]
+clasde-loop = "loop:main"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
