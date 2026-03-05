@@ -49,11 +49,12 @@ def visualize_clasde(memory_file: str):
     plt.axis('off')
 
     plt.tight_layout()
-    plt.savefig("clasde_summary.png")
-    print("Optimization summary plot saved to clasde_summary.png")
+    output_png = os.path.join(os.path.dirname(memory_file), "clasde_summary.png")
+    plt.savefig(output_png)
+    print(f"Optimization summary plot saved to {output_png}")
 
 if __name__ == "__main__":
-    file_path = "clasde_memory.json"
+    file_path = "results/clasde_memory.json"
     if len(sys.argv) > 1:
         file_path = sys.argv[1]
     visualize_clasde(file_path)

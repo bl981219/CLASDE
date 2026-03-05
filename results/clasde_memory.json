@@ -84,150 +84,6 @@
             "type": "vacancy",
             "site": "La",
             "index": 0
-          },
-          {
-            "type": "vacancy",
-            "site": "La",
-            "index": 0
-          }
-        ],
-        "adsorbate": null,
-        "coverage": 0.0,
-        "external_conditions": {
-          "T": 298.15,
-          "p": 1.0,
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "target_value": -0.25,
-      "observables": {
-        "total_energy": -100.5,
-        "adsorption_energy": -1.25,
-        "surface_energy": 0.05,
-        "status": "failed"
-      }
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.5,
-          "Sr": 0.5,
-          "Mn": 1.0,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "defects": [
-          {
-            "type": "vacancy",
-            "site": "La",
-            "index": 0
-          },
-          {
-            "type": "vacancy",
-            "site": "La",
-            "index": 0
-          }
-        ],
-        "adsorbate": null,
-        "coverage": 1.0,
-        "external_conditions": {
-          "T": 298.15,
-          "p": 1.0,
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "target_value": -0.25,
-      "observables": {
-        "total_energy": -100.5,
-        "adsorption_energy": -1.25,
-        "surface_energy": 0.05,
-        "status": "failed"
-      }
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.5,
-          "Sr": 0.5,
-          "Mn": 1.0,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "defects": [
-          {
-            "type": "vacancy",
-            "site": "La",
-            "index": 0
-          },
-          {
-            "type": "vacancy",
-            "site": "La",
-            "index": 0
-          },
-          {
-            "type": "substitution",
-            "original_element": "Mn",
-            "dopant": "Sr"
-          }
-        ],
-        "adsorbate": null,
-        "coverage": 1.0,
-        "external_conditions": {
-          "T": 298.15,
-          "p": 1.0,
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "target_value": -0.25,
-      "observables": {
-        "total_energy": -100.5,
-        "adsorption_energy": -1.25,
-        "surface_energy": 0.05,
-        "status": "failed"
-      }
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.5,
-          "Sr": 0.5,
-          "Mn": 1.0,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "defects": [
-          {
-            "type": "vacancy",
-            "site": "La",
-            "index": 0
-          },
-          {
-            "type": "vacancy",
-            "site": "La",
-            "index": 0
-          },
-          {
-            "type": "substitution",
-            "original_element": "Mn",
-            "dopant": "Sr"
           }
         ],
         "adsorbate": null,
@@ -266,6 +122,135 @@
             "type": "vacancy",
             "site": "La",
             "index": 0
+          }
+        ],
+        "adsorbate": null,
+        "coverage": 0.5,
+        "external_conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "target_value": -0.25,
+      "observables": {
+        "total_energy": -100.5,
+        "adsorption_energy": -1.25,
+        "surface_energy": 0.05,
+        "status": "failed"
+      }
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.5,
+          "Sr": 0.5,
+          "Mn": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "adsorbate": null,
+        "coverage": 0.5,
+        "external_conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "target_value": -0.25,
+      "observables": {
+        "total_energy": -100.5,
+        "adsorption_energy": -1.25,
+        "surface_energy": 0.05,
+        "status": "failed"
+      }
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.5,
+          "Sr": 0.5,
+          "Mn": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "substitution",
+            "original_element": "Mn",
+            "dopant": "Sr"
+          }
+        ],
+        "adsorbate": null,
+        "coverage": 0.5,
+        "external_conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "target_value": -0.25,
+      "observables": {
+        "total_energy": -100.5,
+        "adsorption_energy": -1.25,
+        "surface_energy": 0.05,
+        "status": "failed"
+      }
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.5,
+          "Sr": 0.5,
+          "Mn": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
           },
           {
             "type": "vacancy",
@@ -278,13 +263,13 @@
             "dopant": "Sr"
           },
           {
-            "type": "substitution",
-            "original_element": "Mn",
-            "dopant": "Sr"
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
           }
         ],
         "adsorbate": null,
-        "coverage": 0.25,
+        "coverage": 0.5,
         "external_conditions": {
           "T": 298.15,
           "p": 1.0,
@@ -371,7 +356,7 @@
         "reward": -1.651157843457919
       },
       {
-        "id": "0c97ddfc324b13975a6db1ac7c2b9f46237a1fcfb9d281bc7f4fc6e2889f8434",
+        "id": "91fcdff3e2ad196aaed143f5740daeda54882d0f5a4f469d9f991a1c8e38467a",
         "state": {
           "bulk_composition": {
             "La": 0.5,
@@ -390,153 +375,6 @@
               "type": "vacancy",
               "site": "La",
               "index": 0
-            },
-            {
-              "type": "vacancy",
-              "site": "La",
-              "index": 0
-            }
-          ],
-          "adsorbate": null,
-          "coverage": 0.0,
-          "external_conditions": {
-            "T": 298.15,
-            "p": 1.0,
-            "Phi": 0.0
-          },
-          "metadata": {}
-        },
-        "observables": {
-          "total_energy": -100.5,
-          "adsorption_energy": -1.25,
-          "surface_energy": 0.05,
-          "status": "failed"
-        },
-        "reward": -0.25
-      },
-      {
-        "id": "3b7114ab9002a9494183c830574ca256612e47e2586b8fea5607cad234cd6a45",
-        "state": {
-          "bulk_composition": {
-            "La": 0.5,
-            "Sr": 0.5,
-            "Mn": 1.0,
-            "O": 3.0
-          },
-          "miller_index": [
-            0,
-            0,
-            1
-          ],
-          "termination": "default",
-          "defects": [
-            {
-              "type": "vacancy",
-              "site": "La",
-              "index": 0
-            },
-            {
-              "type": "vacancy",
-              "site": "La",
-              "index": 0
-            }
-          ],
-          "adsorbate": null,
-          "coverage": 1.0,
-          "external_conditions": {
-            "T": 298.15,
-            "p": 1.0,
-            "Phi": 0.0
-          },
-          "metadata": {}
-        },
-        "observables": {
-          "total_energy": -100.5,
-          "adsorption_energy": -1.25,
-          "surface_energy": 0.05,
-          "status": "failed"
-        },
-        "reward": -0.25
-      },
-      {
-        "id": "2f83272524c6e0ad5167d9be47241fdd4260ca8bbd62c9113370bdfa2efe78c6",
-        "state": {
-          "bulk_composition": {
-            "La": 0.5,
-            "Sr": 0.5,
-            "Mn": 1.0,
-            "O": 3.0
-          },
-          "miller_index": [
-            0,
-            0,
-            1
-          ],
-          "termination": "default",
-          "defects": [
-            {
-              "type": "vacancy",
-              "site": "La",
-              "index": 0
-            },
-            {
-              "type": "vacancy",
-              "site": "La",
-              "index": 0
-            },
-            {
-              "type": "substitution",
-              "original_element": "Mn",
-              "dopant": "Sr"
-            }
-          ],
-          "adsorbate": null,
-          "coverage": 1.0,
-          "external_conditions": {
-            "T": 298.15,
-            "p": 1.0,
-            "Phi": 0.0
-          },
-          "metadata": {}
-        },
-        "observables": {
-          "total_energy": -100.5,
-          "adsorption_energy": -1.25,
-          "surface_energy": 0.05,
-          "status": "failed"
-        },
-        "reward": -0.25
-      },
-      {
-        "id": "19b49e1cef195f1df3444563541e253f8f4bfc3837c4f3a731082b03bb379853",
-        "state": {
-          "bulk_composition": {
-            "La": 0.5,
-            "Sr": 0.5,
-            "Mn": 1.0,
-            "O": 3.0
-          },
-          "miller_index": [
-            0,
-            0,
-            1
-          ],
-          "termination": "default",
-          "defects": [
-            {
-              "type": "vacancy",
-              "site": "La",
-              "index": 0
-            },
-            {
-              "type": "vacancy",
-              "site": "La",
-              "index": 0
-            },
-            {
-              "type": "substitution",
-              "original_element": "Mn",
-              "dopant": "Sr"
             }
           ],
           "adsorbate": null,
@@ -557,7 +395,139 @@
         "reward": -0.25
       },
       {
-        "id": "f80eaddc8dee60c50b966a523d45aa310b333c3afbcecc4a13ad435bc249330b",
+        "id": "af786508cfb0622f10d1fe7d4d1a231c8892067307224798d9f1992b6b6f967e",
+        "state": {
+          "bulk_composition": {
+            "La": 0.5,
+            "Sr": 0.5,
+            "Mn": 1.0,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            }
+          ],
+          "adsorbate": null,
+          "coverage": 0.5,
+          "external_conditions": {
+            "T": 298.15,
+            "p": 1.0,
+            "Phi": 0.0
+          },
+          "metadata": {}
+        },
+        "observables": {
+          "total_energy": -100.5,
+          "adsorption_energy": -1.25,
+          "surface_energy": 0.05,
+          "status": "failed"
+        },
+        "reward": -0.25
+      },
+      {
+        "id": "989e49651ec5a1ceb5394fe9a8ed49e021ecf0c351cf33c7625f15223796c865",
+        "state": {
+          "bulk_composition": {
+            "La": 0.5,
+            "Sr": 0.5,
+            "Mn": 1.0,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            }
+          ],
+          "adsorbate": null,
+          "coverage": 0.5,
+          "external_conditions": {
+            "T": 298.15,
+            "p": 1.0,
+            "Phi": 0.0
+          },
+          "metadata": {}
+        },
+        "observables": {
+          "total_energy": -100.5,
+          "adsorption_energy": -1.25,
+          "surface_energy": 0.05,
+          "status": "failed"
+        },
+        "reward": -0.25
+      },
+      {
+        "id": "69ecb0eab13a7f0f229c120b68761c4beb2d703dde1160c421e708358b79490c",
+        "state": {
+          "bulk_composition": {
+            "La": 0.5,
+            "Sr": 0.5,
+            "Mn": 1.0,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "substitution",
+              "original_element": "Mn",
+              "dopant": "Sr"
+            }
+          ],
+          "adsorbate": null,
+          "coverage": 0.5,
+          "external_conditions": {
+            "T": 298.15,
+            "p": 1.0,
+            "Phi": 0.0
+          },
+          "metadata": {}
+        },
+        "observables": {
+          "total_energy": -100.5,
+          "adsorption_energy": -1.25,
+          "surface_energy": 0.05,
+          "status": "failed"
+        },
+        "reward": -0.25
+      },
+      {
+        "id": "239c651642cc06d67a61d23b868509d3ab6ed58ac81c31209ffd504cd0d7cbed",
         "state": {
           "bulk_composition": {
             "La": 0.5,
@@ -588,13 +558,13 @@
               "dopant": "Sr"
             },
             {
-              "type": "substitution",
-              "original_element": "Mn",
-              "dopant": "Sr"
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
             }
           ],
           "adsorbate": null,
-          "coverage": 0.25,
+          "coverage": 0.5,
           "external_conditions": {
             "T": 298.15,
             "p": 1.0,
@@ -626,7 +596,29 @@
       },
       {
         "source": "caaca2fd5508de3d273bf08e298a9feb11ad471ee45c8358e3bbfa273a8ce402",
-        "target": "0c97ddfc324b13975a6db1ac7c2b9f46237a1fcfb9d281bc7f4fc6e2889f8434",
+        "target": "91fcdff3e2ad196aaed143f5740daeda54882d0f5a4f469d9f991a1c8e38467a",
+        "action": {
+          "action_type": "modify_coverage",
+          "parameters": {
+            "coverage": 0.25
+          },
+          "reasoning": null
+        }
+      },
+      {
+        "source": "91fcdff3e2ad196aaed143f5740daeda54882d0f5a4f469d9f991a1c8e38467a",
+        "target": "af786508cfb0622f10d1fe7d4d1a231c8892067307224798d9f1992b6b6f967e",
+        "action": {
+          "action_type": "modify_coverage",
+          "parameters": {
+            "coverage": 0.5
+          },
+          "reasoning": null
+        }
+      },
+      {
+        "source": "af786508cfb0622f10d1fe7d4d1a231c8892067307224798d9f1992b6b6f967e",
+        "target": "989e49651ec5a1ceb5394fe9a8ed49e021ecf0c351cf33c7625f15223796c865",
         "action": {
           "action_type": "introduce_vacancy",
           "parameters": {
@@ -637,19 +629,8 @@
         }
       },
       {
-        "source": "0c97ddfc324b13975a6db1ac7c2b9f46237a1fcfb9d281bc7f4fc6e2889f8434",
-        "target": "3b7114ab9002a9494183c830574ca256612e47e2586b8fea5607cad234cd6a45",
-        "action": {
-          "action_type": "modify_coverage",
-          "parameters": {
-            "coverage": 1.0
-          },
-          "reasoning": null
-        }
-      },
-      {
-        "source": "3b7114ab9002a9494183c830574ca256612e47e2586b8fea5607cad234cd6a45",
-        "target": "2f83272524c6e0ad5167d9be47241fdd4260ca8bbd62c9113370bdfa2efe78c6",
+        "source": "989e49651ec5a1ceb5394fe9a8ed49e021ecf0c351cf33c7625f15223796c865",
+        "target": "69ecb0eab13a7f0f229c120b68761c4beb2d703dde1160c421e708358b79490c",
         "action": {
           "action_type": "substitutional_dopant",
           "parameters": {
@@ -660,24 +641,13 @@
         }
       },
       {
-        "source": "2f83272524c6e0ad5167d9be47241fdd4260ca8bbd62c9113370bdfa2efe78c6",
-        "target": "19b49e1cef195f1df3444563541e253f8f4bfc3837c4f3a731082b03bb379853",
+        "source": "69ecb0eab13a7f0f229c120b68761c4beb2d703dde1160c421e708358b79490c",
+        "target": "239c651642cc06d67a61d23b868509d3ab6ed58ac81c31209ffd504cd0d7cbed",
         "action": {
-          "action_type": "modify_coverage",
+          "action_type": "introduce_vacancy",
           "parameters": {
-            "coverage": 0.25
-          },
-          "reasoning": null
-        }
-      },
-      {
-        "source": "19b49e1cef195f1df3444563541e253f8f4bfc3837c4f3a731082b03bb379853",
-        "target": "f80eaddc8dee60c50b966a523d45aa310b333c3afbcecc4a13ad435bc249330b",
-        "action": {
-          "action_type": "substitutional_dopant",
-          "parameters": {
-            "original_element": "Mn",
-            "dopant": "Sr"
+            "site": "La",
+            "index": 0
           },
           "reasoning": null
         }

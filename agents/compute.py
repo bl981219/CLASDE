@@ -2,6 +2,7 @@ from typing import Dict, Any, List, Optional
 import os
 import subprocess
 import json
+from core.state import SurfaceState
 
 try:
     from ase.calculators.emt import EMT
@@ -21,12 +22,17 @@ class ComputeManager:
         self.base_dir = "outputs"
         os.makedirs(self.base_dir, exist_ok=True)
 
-    def submit_dft_job(self, structure: Any, state_id: str) -> str:
+    def submit_dft_job(self, structure: Any, state: SurfaceState, iteration: int) -> str:
         """
         Write input files and submit a job for a state.
-        Returns job ID.
+        Uses a descriptive, human-readable directory name.
+        Returns unique job ID.
         """
-        calc_dir = os.path.join(self.base_dir, state_id)
+        # Create a readable name like: iter001_La0.5Sr0.5Mn1.0O3.0_001_vac_La_a1b2c3
+        summary = state.get_summary()
+        state_id = state.get_id()
+        folder_name = f"iter{iteration:03d}_{summary}_{state_id[:8]}"
+        calc_dir = os.path.join(self.base_dir, folder_name)
         os.makedirs(calc_dir, exist_ok=True)
         
         mode = self.config.get("compute_mode", "local_emt")
@@ -54,7 +60,7 @@ class ComputeManager:
                 json.dump(results, f)
                 
             job_id = f"local_{state_id[:8]}"
-            self.active_jobs[job_id] = {"status": "completed", "state_id": state_id, "dir": calc_dir}
+            self.active_jobs[job_id] = {"status": "completed", "state_id": state_id, "dir": calc_dir, "iteration": iteration}
             return job_id
             
         elif mode == "vasp":
@@ -73,12 +79,12 @@ class ComputeManager:
             except Exception:
                 job_id = f"slurm_{state_id[:8]}"
                 
-            self.active_jobs[job_id] = {"status": "submitted", "state_id": state_id, "dir": calc_dir}
+            self.active_jobs[job_id] = {"status": "submitted", "state_id": state_id, "dir": calc_dir, "iteration": iteration}
             return job_id
         else:
             # Fallback
             job_id = f"unknown_{state_id[:8]}"
-            self.active_jobs[job_id] = {"status": "failed", "state_id": state_id}
+            self.active_jobs[job_id] = {"status": "failed", "state_id": state_id, "dir": calc_dir, "iteration": iteration}
             return job_id
 
     def _write_vasp_inputs(self, calc_dir: str, structure: Any):

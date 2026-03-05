@@ -72,7 +72,9 @@ def main():
     memory = MemoryGraph()
     
     # RESUME LOGIC
-    output_file = "clasde_memory.json"
+    results_dir = "results"
+    os.makedirs(results_dir, exist_ok=True)
+    output_file = os.path.join(results_dir, "clasde_memory.json")
     if os.path.exists(output_file):
         print(f"Loading existing session from {output_file}...")
         memory.load(output_file)
@@ -134,7 +136,7 @@ def main():
         
         # C. Physical Execution Phase
         structure = builder.build_structure(next_state)
-        job_id = compute.submit_dft_job(structure, next_state.get_id())
+        job_id = compute.submit_dft_job(structure, next_state, iteration)
         
         # D. Evaluation & Reward Phase
         # For VASP, this might be asynchronous, but for this simplified loop 
@@ -154,7 +156,6 @@ def main():
     print("\n--- CLASDE v1 ENGINE TERMINATED: BUDGET EXHAUSTED ---")
     
     # G. Persistence
-    output_file = "clasde_memory.json"
     memory.save(output_file)
     print(f"Memory graph and dataset saved to {output_file}")
 

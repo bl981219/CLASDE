@@ -26,6 +26,24 @@ class SurfaceState(BaseModel):
         """Serialize state to a canonical JSON string."""
         return json.dumps(self.model_dump(), sort_keys=True)
 
+    def get_summary(self) -> str:
+        """Generate a human-readable summary string for folder naming."""
+        comp = "".join([f"{k}{v}" for k, v in self.bulk_composition.items() if v > 0])
+        facet = "".join([str(i) for i in self.miller_index])
+        
+        # Identify the most recent defect or adsorbate
+        defect_str = ""
+        if self.defects:
+            last = self.defects[-1]
+            if last.get("type") == "vacancy":
+                defect_str = f"_vac_{last.get('site')}"
+            elif last.get("type") == "substitution":
+                defect_str = f"_sub_{last.get('dopant')}"
+        
+        ads_str = f"_ads_{self.adsorbate}" if self.adsorbate else ""
+        
+        return f"{comp}_{facet}{defect_str}{ads_str}"
+
     def get_id(self) -> str:
         """Generate a unique SHA-256 hash for this state."""
         return hashlib.sha256(self.to_json().encode()).hexdigest()
