@@ -12,21 +12,14 @@ from agents.builder import StructureBuilder
 from agents.compute import ComputeManager
 from agents.evaluator import EvaluationAgent
 from agents.memory import MemoryGraph
+from research.experiment_graph import KnowledgeGraph, ExperimentNode
+from research.hypothesis_agent import HypothesisAgent
+from research.theory_builder import TheoryBuilder
 
 def run_adsorption_campaign(config: Dict[str, Any]):
     """
     Orchestrate the high-level CLASDE Bayesian Optimization loop.
-    
-    This is the standard "slow-but-accurate" discovery loop, typically executed 
-    with high-fidelity DFT.
-    
-    The loop executes the following deterministic sequence:
-    1. Update Surrogate: The memory graph trains the GPR model.
-    2. Strategize: The Strategist agent scores candidate mutations and selects the best action.
-    3. Transition: The logical state is mutated.
-    4. Build & Execute: The Builder converts the state to 3D atoms; Compute submits to HPC.
-    5. Evaluate: The Evaluator extracts observables and computes the Reward.
-    6. Memorize: The graph updates with the new state and reward.
+    Enhanced with Autonomous Reasoning (PI Agent).
     """
     # Normalize facet to tuple if loaded from YAML
     if "constraints" in config and "facet" in config["constraints"]:
@@ -35,8 +28,11 @@ def run_adsorption_campaign(config: Dict[str, Any]):
     # 1. Component Initialization
     governor = ResearchGovernor(config)
     memory = MemoryGraph()
+    knowledge_graph = KnowledgeGraph()
+    pi_agent = HypothesisAgent(knowledge_graph)
+    theory_builder = TheoryBuilder(knowledge_graph)
     
-    # RESUME LOGIC
+    # ... rest of initialization ...
     results_dir = "results"
     os.makedirs(results_dir, exist_ok=True)
     output_file = os.path.join(results_dir, "clasde_memory.json")
@@ -132,12 +128,38 @@ def run_adsorption_campaign(config: Dict[str, Any]):
         memory.add_state(next_state, observables, reward)
         governor.consume_budget()
         
+        # Populate Knowledge Graph for Hypothesis Agent
+        exp_node = ExperimentNode(
+            node_id=next_state.get_id(),
+            state=next_state,
+            action=action,
+            objective=config["objective"].get("type", "unknown"),
+            result={"reward": reward, **observables}
+        )
+        knowledge_graph.add_experiment(exp_node, parent_id=current_state.get_id())
+        
         # F. State Transition
         current_state = next_state
         print(f"  Observed Reward: {reward:.4f}")
         print(f"  Current Best: {memory.get_best_reward():.4f}")
 
     print("\n--- CLASDE ENGINE TERMINATED: BUDGET EXHAUSTED ---")
+    
+    # H. Autonomous Reasoning Phase
+    print("\n--- PI AGENT REASONING PHASE ---")
+    patterns = pi_agent.analyze_graph()
+    if patterns:
+        for p in patterns:
+            theory = theory_builder.build_theory(p)
+            print(f"  [Theory Found] {theory}")
+        
+        # Propose new campaigns
+        new_hypotheses = pi_agent.propose_experiments(patterns)
+        print(f"  [PI Agent] Proposed {len(new_hypotheses)} new hypothesis-testing campaigns.")
+    else:
+        print("  [PI Agent] No statistically significant patterns detected yet.")
+
+    print(theory_builder.generate_report())
     
     # G. Persistence
     memory.save(output_file)
