@@ -1,11 +1,11 @@
 import os
 import yaml
 import argparse
-from workflows.adsorption_campaign import run_adsorption_campaign
+from workflows.autonomous_campaign import run_adsorption_campaign
 
 def main():
     parser = argparse.ArgumentParser(description="CLASDE: Closed-Loop Atomistic Surface Design Engine")
-    parser.add_argument("--config", type=str, default="campaign.yaml", help="Path to campaign YAML configuration.")
+    parser.add_argument("--config", type=str, default="configs/default.yaml", help="Path to campaign YAML configuration.")
     args = parser.parse_args()
 
     # 0. Load Campaign Configuration

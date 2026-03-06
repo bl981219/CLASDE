@@ -35,6 +35,8 @@ class TransitionEngine:
             self._modify_coverage(new_state, action.parameters)
         elif action.action_type == ActionType.ALTER_CHARGE_STATE:
             self._alter_charge_state(new_state, action.parameters)
+        elif action.action_type == ActionType.SWAP_ATOMS:
+            self._swap_atoms(new_state, action.parameters)
         else:
             raise ValueError(f"Unknown action type: {action.action_type}")
             
@@ -66,3 +68,7 @@ class TransitionEngine:
         Computational Hydrogen Electrode (CHE) calculations.
         """
         state.external_conditions["Phi"] = params.get("Phi", state.external_conditions.get("Phi", 0.0))
+
+    def _swap_atoms(self, state: SurfaceState, params: Dict[str, Any]):
+        """Records an atomic swap as a complex defect (e.g., params={"element_a": "La", "element_b": "Sr"})."""
+        state.defects.append({"type": "swap", **params})

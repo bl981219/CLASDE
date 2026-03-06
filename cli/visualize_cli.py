@@ -59,8 +59,8 @@ def visualize_clasde(memory_file: str, output_png: str):
 
 def main():
     parser = argparse.ArgumentParser(description="CLASDE Visualization Tool")
-    parser.add_argument("--memory", type=str, default="results/clasde_memory.json", help="Path to memory JSON file.")
-    parser.add_argument("--output", type=str, default="results/clasde_summary.png", help="Path for output PNG.")
+    parser.add_argument("--memory", type=str, default="data/results/clasde_memory.json", help="Path to memory JSON file.")
+    parser.add_argument("--output", type=str, default="data/results/clasde_summary.png", help="Path for output PNG.")
     args = parser.parse_args()
     
     visualize_clasde(args.memory, args.output)

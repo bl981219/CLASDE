@@ -146,6 +146,32 @@ class MicrokineticReward(RewardFunction):
         tof = observables.get("tof", 1e-3)
         return float(np.log10(tof)) # Optimize for log(TOF)
 
+class SegregationReward(RewardFunction):
+    """
+    Reward based on surface segregation: R = - (G_surface - G_bulk_reference).
+    Focuses on enriching a target species at the surface layer.
+    """
+    def __init__(self, target_species: str):
+        self.target_species = target_species
+
+    def compute_reward(self, observables: Dict[str, Any], context: Dict[str, Any]) -> float:
+        # In this simplified model, reward is proportional to the concentration 
+        # of the target species in the topmost layers relative to bulk.
+        # R = count_at_surface / total_count
+        counts = observables.get("species_counts", {})
+        target_n = counts.get(self.target_species, 0)
+        total_n = sum(counts.values()) if counts else 1
+        
+        if total_n == 0:
+            return -1e9
+            
+        concentration = target_n / total_n
+        
+        # We also want it to be stable, so we might combine it with surface energy
+        surface_energy = observables.get("surface_energy", 0.0)
+        
+        return float(concentration - 0.1 * surface_energy)
+
 class AutonomousDiscoveryReward(RewardFunction):
     """
     Dynamic reward balancing three competing scientific goals:

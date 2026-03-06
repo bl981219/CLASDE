@@ -15,6 +15,7 @@ class ActionType(str, Enum):
     CHANGE_ADSORBATE = "change_adsorbate"           # e.g., replacing O* with OH*
     MODIFY_COVERAGE = "modify_coverage"             # e.g., changing from 0.25 ML to 0.5 ML
     ALTER_CHARGE_STATE = "alter_charge_state"       # e.g., adjusting the applied electrochemical potential
+    SWAP_ATOMS = "swap_atoms"                       # e.g., swapping a surface La with a bulk Sr
 
 class MutationAction(BaseModel):
     """

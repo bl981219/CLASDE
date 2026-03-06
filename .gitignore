@@ -7,29 +7,16 @@ __pycache__/
 *.so
 
 # Distribution / packaging
-.python-version
 build/
-develop-eggs/
 dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
 *.egg-info/
-.installed.cfg
-*.egg
+.eggs/
 
 # Virtual environments
 .env
 .venv
 env/
 venv/
-ENV/
 
 # IDEs
 .vscode/
@@ -37,12 +24,16 @@ ENV/
 *.swp
 *.swo
 
-# Project specific
-*.log
-slurm-*.out
-.ipynb_checkpoints/
+# Project Data & HPC Outputs
+data/
 outputs/
-data/raw/
+results/
+slurm-*.out
+*.log
 
-Potential
-AGENT.mdbillrun.sh
+# Simulation Specifics
+Potential/
+workflows/templates/slurm_vasp.sh
+
+# Agent System
+.gemini/

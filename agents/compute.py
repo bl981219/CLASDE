@@ -30,8 +30,50 @@ class ComputeManager:
     def __init__(self, config: Dict[str, Any]):
         self.config = config
         self.active_jobs = {}
-        self.base_dir = "outputs"
+        self.base_dir = "data/outputs"
         os.makedirs(self.base_dir, exist_ok=True)
+        
+        # Probe environment for Slurm settings
+        self.env_info = self._probe_hpc_environment()
+
+    def _probe_hpc_environment(self) -> Dict[str, Any]:
+        """
+        Attempt to detect available Slurm partitions, accounts, and constraints.
+        """
+        info = {
+            "has_slurm": False,
+            "partitions": [],
+            "default_partition": None,
+            "max_tasks_per_node": 48 # Common default
+        }
+        
+        try:
+            # Check for sinfo availability
+            result = subprocess.run(["sinfo", "-h", "-o", "%P %c"], capture_output=True, text=True)
+            if result.returncode == 0:
+                info["has_slurm"] = True
+                lines = result.stdout.strip().split("\n")
+                for line in lines:
+                    parts = line.split()
+                    if len(parts) >= 2:
+                        p_name = parts[0].replace("*", "") # Remove default marker
+                        try:
+                            p_cpus = int(parts[1])
+                        except ValueError:
+                            p_cpus = 48
+                        info["partitions"].append({"name": p_name, "cpus": p_cpus})
+                        if "*" in parts[0]:
+                            info["default_partition"] = p_name
+                            info["max_tasks_per_node"] = p_cpus
+                
+                if not info["default_partition"] and info["partitions"]:
+                    info["default_partition"] = info["partitions"][0]["name"]
+                    info["max_tasks_per_node"] = info["partitions"][0]["cpus"]
+        except Exception:
+            # Fallback for non-Slurm or restricted environments
+            pass
+            
+        return info
 
     def _run_mlff_screening(self, structure: Any) -> bool:
         """
@@ -264,21 +306,47 @@ class ComputeManager:
                 else:
                     print(f"Warning: POTCAR for {el} not found at {source}")
 
-    def _write_slurm_script(self, calc_dir: str, state_id: str):
-        """Generate a standard SLURM submission script."""
-        script_content = f"""#!/bin/bash
-#SBATCH -J clasde_{state_id[:8]}
-#SBATCH --ntasks=48
-#SBATCH --nodes=1
-#SBATCH --time=24:00:00
-#SBATCH --partition=xeon-p8
+    def _generate_slurm_template(self, state_id: str) -> str:
+        """
+        Autonomously generates a Slurm submission script.
+        Priority: User Config -> templates/slurm_vasp.sh -> Auto-Detected Environment.
+        """
+        # 1. Check for a dedicated template file
+        template_path = os.path.join("workflows", "templates", "slurm_vasp.sh")
+        if os.path.exists(template_path):
+            with open(template_path, "r") as f:
+                content = f.read()
+                # Update job name if it has a placeholder
+                return content.replace("#SBATCH -J name", f"#SBATCH -J clasde_{state_id[:8]}")
 
+        # 2. Heuristic-based Auto-Generation
+        partition = self.config.get("partition") or self.env_info.get("default_partition", "xeon-p8")
+        ntasks = self.config.get("ntasks") or self.env_info.get("max_tasks_per_node", 48)
+        time_limit = self.config.get("time_limit", "24:00:00")
+        
+        # Detect VASP binary path (Common convention or user path)
+        vasp_bin = self.config.get("vasp_bin", "vasp_std")
+        
+        script = f"""#!/bin/bash
+#SBATCH -J clasde_{state_id[:8]}
+#SBATCH --ntasks={ntasks}
+#SBATCH --nodes=1
+#SBATCH --time={time_limit}
+#SBATCH --partition={partition}
+
+# Auto-Generated HPC Environment Setup
 module purge
-module load intel-oneapi/2023.1
+module load intel-oneapi/2023.1 2>/dev/null || echo "Warning: Could not load intel module."
 ulimit -s unlimited
 
-mpirun -np ${{SLURM_NTASKS}} /home/gridsan/groups/byildiz/vasp.6.4.2/bin/vasp_std
+# Execution
+mpirun -np ${{SLURM_NTASKS}} {vasp_bin}
 """
+        return script
+
+    def _write_slurm_script(self, calc_dir: str, state_id: str):
+        """Writes the autonomously generated Slurm script to disk."""
+        script_content = self._generate_slurm_template(state_id)
         with open(os.path.join(calc_dir, "submit.sh"), "w") as f:
             f.write(script_content)
 

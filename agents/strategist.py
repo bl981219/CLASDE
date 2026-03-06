@@ -49,6 +49,18 @@ class ActionProposer:
                 action_type=ActionType.SUBSTITUTIONAL_DOPANT,
                 parameters={"original_element": "Mn", "dopant": "Sr"}
             ))
+
+        # 4. Heuristic: Swapping (Segregation)
+        # If Sr and La are present, propose swapping them
+        if "Sr" in state.bulk_composition and "La" in state.bulk_composition:
+            actions.append(MutationAction(
+                action_type=ActionType.SWAP_ATOMS,
+                parameters={"element_a": "La", "element_b": "Sr", "direction": "surface_to_bulk"}
+            ))
+            actions.append(MutationAction(
+                action_type=ActionType.SWAP_ATOMS,
+                parameters={"element_a": "Sr", "element_b": "La", "direction": "surface_to_bulk"}
+            ))
             
         return actions
 
