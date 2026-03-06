@@ -145,3 +145,30 @@ class MicrokineticReward(RewardFunction):
         # Placeholder for microkinetic modeling:
         tof = observables.get("tof", 1e-3)
         return float(np.log10(tof)) # Optimize for log(TOF)
+
+class AutonomousDiscoveryReward(RewardFunction):
+    """
+    Dynamic reward balancing three competing scientific goals:
+    R = α * objective_improvement + β * surrogate_uncertainty + γ * novelty
+    
+    This ensures the engine doesn't just get stuck exploiting one good surface 
+    (optimization), but actively explores uncertain regions and pursues novel 
+    configurations (scientific discovery).
+    """
+    def __init__(self, base_reward: RewardFunction, alpha: float = 1.0, beta: float = 0.5, gamma: float = 0.5):
+        self.base_reward = base_reward
+        self.alpha = alpha
+        self.beta = beta
+        self.gamma = gamma
+
+    def compute_reward(self, observables: Dict[str, Any], context: Dict[str, Any]) -> float:
+        # 1. Exploitation: How good is the physical property?
+        objective_reward = self.base_reward.compute_reward(observables, context)
+        
+        # 2. Exploration: How uncertain was the model? (provided via context)
+        uncertainty = context.get("uncertainty", 0.0)
+        
+        # 3. Novelty: How different is this from previously known states? (provided via context)
+        novelty = context.get("novelty", 0.0)
+        
+        return float(self.alpha * objective_reward + self.beta * uncertainty + self.gamma * novelty)
