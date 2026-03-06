@@ -21,9 +21,10 @@ The framework separates physical ground truths, optimization mathematics, execut
 CLASDE/
 ├── core/               # Scientific Primitives
 │   ├── state.py        # Canonical SurfaceState representation (Pydantic)
+│   ├── campaign.py     # Formal representation of a scientific research campaign
 │   ├── action.py       # Formal mutation operators (vacancies, doping, etc.)
 │   ├── transition.py   # Deterministic application of actions to states
-│   └── reward.py       # Reward functions (Phase Diagram, Microkinetics)
+│   └── reward.py       # Reward functions (Phase Diagram, Microkinetics, Discovery)
 │
 ├── optimization/       # Bayesian Optimization Engine
 │   ├── surrogate.py    # Probabilistic models (GPR, Random Forest)
@@ -41,6 +42,7 @@ CLASDE/
 │
 ├── research/           # Autonomous Reasoning Layer
 │   ├── hypothesis_agent.py # The PI Agent: Detects patterns, pivots objectives
+│   ├── planner_agent.py    # The Research Planner: Converts hypotheses to Campaigns
 │   ├── experiment_graph.py # Semantic Knowledge Graph of the campaign
 │   └── theory_builder.py   # Synthesizes data into natural language theories
 │
@@ -60,7 +62,8 @@ CLASDE/
 
 | Role | Agent | Metaphor | Responsibility |
 | :--- | :--- | :--- | :--- |
-| **Agent 0** | **Hypothesis Agent** | **The Principal Investigator** | Analyzes the Knowledge Graph to form theories and define new objectives. |
+| **Agent 0** | **Hypothesis Agent** | **The Principal Investigator** | Analyzes the Knowledge Graph via RandomForest feature importance to form theories. |
+| **Agent 0.5**| **Research Planner** | **The Research Scientist** | Translates high-level PI hypotheses into structured, executable `Campaign` plans. |
 | **Agent 1** | **Research Governor** | **The Lab Manager** | Enforces the PI's current objective, budget, and experimental constraints. |
 | **Agent 2** | **Optimization Strategist** | **The Senior Postdoc** | Operates the **Surrogate Model** and selects the optimal next experiment via Acquisition Functions. |
 | **Agent 3** | **Structure Builder** | **The PhD Student** | Builds 3D atomic structures, enforcing charge compensation for aliovalent doping. |
