@@ -1,0 +1,563 @@
+{
+  "dataset": [
+    {
+      "state": {
+        "bulk_composition": {
+          "Cu": 1.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "defects": [],
+        "adsorbate": null,
+        "coverage": 0.0,
+        "external_conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "target_value": -5.0,
+      "observables": null
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "Cu": 1.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "Cu",
+            "index": 0
+          }
+        ],
+        "adsorbate": null,
+        "coverage": 0.0,
+        "external_conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "target_value": -1.3511578434579188,
+      "observables": {
+        "total_energy": 3.0231568691583783,
+        "adsorption_energy": 0.15115784345791894,
+        "surface_energy": 0.01,
+        "status": "completed"
+      }
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "Cu": 1.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "Cu",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "Cu",
+            "index": 0
+          }
+        ],
+        "adsorbate": null,
+        "coverage": 0.0,
+        "external_conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "target_value": -1.3674875693497235,
+      "observables": {
+        "total_energy": 3.3497513869944706,
+        "adsorption_energy": 0.16748756934972353,
+        "surface_energy": 0.01,
+        "status": "completed"
+      }
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "Cu": 1.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "Cu",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "Cu",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "Cu",
+            "index": 0
+          }
+        ],
+        "adsorbate": null,
+        "coverage": 0.0,
+        "external_conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "target_value": -1.3144970739796333,
+      "observables": {
+        "total_energy": 2.28994147959267,
+        "adsorption_energy": 0.11449707397963349,
+        "surface_energy": 0.01,
+        "status": "completed"
+      }
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "Cu": 1.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "Cu",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "Cu",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "Cu",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "Cu",
+            "index": 0
+          }
+        ],
+        "adsorbate": null,
+        "coverage": 0.0,
+        "external_conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "target_value": -1.289733221498614,
+      "observables": {
+        "total_energy": 1.7946644299722792,
+        "adsorption_energy": 0.08973322149861396,
+        "surface_energy": 0.01,
+        "status": "completed"
+      }
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "Cu": 1.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "Cu",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "Cu",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "Cu",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "Cu",
+            "index": 0
+          }
+        ],
+        "adsorbate": null,
+        "coverage": 0.25,
+        "external_conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "target_value": -1.289733221498614,
+      "observables": {
+        "total_energy": 1.7946644299722792,
+        "adsorption_energy": 0.08973322149861396,
+        "surface_energy": 0.01,
+        "status": "completed"
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "69123d8a618637551c3679ddc77fb7577535cab4237057b94fe8c5fb3e56767d",
+        "state": {
+          "bulk_composition": {
+            "Cu": 1.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "defects": [],
+          "adsorbate": null,
+          "coverage": 0.0,
+          "external_conditions": {
+            "T": 298.15,
+            "p": 1.0,
+            "Phi": 0.0
+          },
+          "metadata": {}
+        },
+        "observables": null,
+        "reward": -5.0
+      },
+      {
+        "id": "65ee072b1995515b2068d350aa6188dd0834cb7c65ff07e04e1c952b644dc7c5",
+        "state": {
+          "bulk_composition": {
+            "Cu": 1.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "Cu",
+              "index": 0
+            }
+          ],
+          "adsorbate": null,
+          "coverage": 0.0,
+          "external_conditions": {
+            "T": 298.15,
+            "p": 1.0,
+            "Phi": 0.0
+          },
+          "metadata": {}
+        },
+        "observables": {
+          "total_energy": 3.0231568691583783,
+          "adsorption_energy": 0.15115784345791894,
+          "surface_energy": 0.01,
+          "status": "completed"
+        },
+        "reward": -1.3511578434579188
+      },
+      {
+        "id": "4a46bdb3dcdfc601aa707f275435a4daecdde58c5294dda41ca90a4f1e59bdb0",
+        "state": {
+          "bulk_composition": {
+            "Cu": 1.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "Cu",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "Cu",
+              "index": 0
+            }
+          ],
+          "adsorbate": null,
+          "coverage": 0.0,
+          "external_conditions": {
+            "T": 298.15,
+            "p": 1.0,
+            "Phi": 0.0
+          },
+          "metadata": {}
+        },
+        "observables": {
+          "total_energy": 3.3497513869944706,
+          "adsorption_energy": 0.16748756934972353,
+          "surface_energy": 0.01,
+          "status": "completed"
+        },
+        "reward": -1.3674875693497235
+      },
+      {
+        "id": "045478751183332329a4d2af78a6718c05fbafbb3964f54a3fbfefe7184f2df8",
+        "state": {
+          "bulk_composition": {
+            "Cu": 1.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "Cu",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "Cu",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "Cu",
+              "index": 0
+            }
+          ],
+          "adsorbate": null,
+          "coverage": 0.0,
+          "external_conditions": {
+            "T": 298.15,
+            "p": 1.0,
+            "Phi": 0.0
+          },
+          "metadata": {}
+        },
+        "observables": {
+          "total_energy": 2.28994147959267,
+          "adsorption_energy": 0.11449707397963349,
+          "surface_energy": 0.01,
+          "status": "completed"
+        },
+        "reward": -1.3144970739796333
+      },
+      {
+        "id": "e1e312f64fe947cbe52f5244416ddc52f849f7c32c9d597dc076250f66b83d42",
+        "state": {
+          "bulk_composition": {
+            "Cu": 1.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "Cu",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "Cu",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "Cu",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "Cu",
+              "index": 0
+            }
+          ],
+          "adsorbate": null,
+          "coverage": 0.0,
+          "external_conditions": {
+            "T": 298.15,
+            "p": 1.0,
+            "Phi": 0.0
+          },
+          "metadata": {}
+        },
+        "observables": {
+          "total_energy": 1.7946644299722792,
+          "adsorption_energy": 0.08973322149861396,
+          "surface_energy": 0.01,
+          "status": "completed"
+        },
+        "reward": -1.289733221498614
+      },
+      {
+        "id": "28d7db5fd7c5723f7f4374095a104c38e301dbd7c84583b060b01e0933273652",
+        "state": {
+          "bulk_composition": {
+            "Cu": 1.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "Cu",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "Cu",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "Cu",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "Cu",
+              "index": 0
+            }
+          ],
+          "adsorbate": null,
+          "coverage": 0.25,
+          "external_conditions": {
+            "T": 298.15,
+            "p": 1.0,
+            "Phi": 0.0
+          },
+          "metadata": {}
+        },
+        "observables": {
+          "total_energy": 1.7946644299722792,
+          "adsorption_energy": 0.08973322149861396,
+          "surface_energy": 0.01,
+          "status": "completed"
+        },
+        "reward": -1.289733221498614
+      }
+    ],
+    "edges": [
+      {
+        "source": "69123d8a618637551c3679ddc77fb7577535cab4237057b94fe8c5fb3e56767d",
+        "target": "65ee072b1995515b2068d350aa6188dd0834cb7c65ff07e04e1c952b644dc7c5",
+        "action": {
+          "action_type": "introduce_vacancy",
+          "parameters": {
+            "site": "Cu",
+            "index": 0
+          },
+          "reasoning": null
+        }
+      },
+      {
+        "source": "65ee072b1995515b2068d350aa6188dd0834cb7c65ff07e04e1c952b644dc7c5",
+        "target": "4a46bdb3dcdfc601aa707f275435a4daecdde58c5294dda41ca90a4f1e59bdb0",
+        "action": {
+          "action_type": "introduce_vacancy",
+          "parameters": {
+            "site": "Cu",
+            "index": 0
+          },
+          "reasoning": null
+        }
+      },
+      {
+        "source": "4a46bdb3dcdfc601aa707f275435a4daecdde58c5294dda41ca90a4f1e59bdb0",
+        "target": "045478751183332329a4d2af78a6718c05fbafbb3964f54a3fbfefe7184f2df8",
+        "action": {
+          "action_type": "introduce_vacancy",
+          "parameters": {
+            "site": "Cu",
+            "index": 0
+          },
+          "reasoning": null
+        }
+      },
+      {
+        "source": "045478751183332329a4d2af78a6718c05fbafbb3964f54a3fbfefe7184f2df8",
+        "target": "e1e312f64fe947cbe52f5244416ddc52f849f7c32c9d597dc076250f66b83d42",
+        "action": {
+          "action_type": "introduce_vacancy",
+          "parameters": {
+            "site": "Cu",
+            "index": 0
+          },
+          "reasoning": null
+        }
+      },
+      {
+        "source": "e1e312f64fe947cbe52f5244416ddc52f849f7c32c9d597dc076250f66b83d42",
+        "target": "28d7db5fd7c5723f7f4374095a104c38e301dbd7c84583b060b01e0933273652",
+        "action": {
+          "action_type": "modify_coverage",
+          "parameters": {
+            "coverage": 0.25
+          },
+          "reasoning": null
+        }
+      }
+    ]
+  }
+}
