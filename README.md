@@ -141,7 +141,8 @@ clasde-collaborator --prompt "how does Sr segregation in LaSrFeO3 depend on T?"
 ## Case Studies & Examples
 
 ### Cr and S Poisoning on LSCF Perovskites
-A 100-iteration discovery campaign targeting $CrO_3$ and $SO_2$ adsorption competition on pristine $La_{0.6}Sr_{0.4}Fe_{0.8}Co_{0.2}O_3$.
+A full 100-iteration discovery campaign targeting $CrO_3$ and $SO_2$ adsorption competition on pristine $La_{0.6}Sr_{0.4}Fe_{0.8}Co_{0.2}O_3$.
+- **Reference:** [DOI: 10.1021/acs.chemmater.4c01936](https://pubs.acs.org/doi/abs/10.1021/acs.chemmater.4c01936)
 - **Location:** `examples/LSCF_Poisoning_CaseStudy/`
 - **Key Outcome:** Induced physical laws linking vacancy density and metal d-band center to poison binding strength.
 
@@ -149,3 +150,9 @@ A 100-iteration discovery campaign targeting $CrO_3$ and $SO_2$ adsorption compe
 A 50-iteration thermodynamic study of Sr enrichment in $La_{0.6}Sr_{0.4}FeO_3$ as a function of Temperature and Oxygen Pressure.
 - **Location:** `examples/LSF_Segregation_CaseStudy/`
 - **Key Outcome:** Mapping the $(T, P_{O2})$ drivers for segregation and the corresponding electronic d-band center shifts.
+
+### B-site Doping Effects on SrTiO3
+Autonomous screening of transition metal dopants (Mn, Fe, Co) on the $SrTiO_3$ (001) surface to activate oxygen adsorption.
+- **Location:** `examples/SrTiO3_Doping_CaseStudy/`
+- **Key Outcome:** Identified Mn as a high-performance dopant for enhancing oxygen affinity through localized electronic states.
+
