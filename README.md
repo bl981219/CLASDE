@@ -1,6 +1,6 @@
 # CLASDE: Closed-Loop Autonomous Surface Discovery Engine
 
-CLASDE is a multi-agent, autonomous optimization framework designed for the discovery of stable and high-performing surface configurations. 
+CLASDE is a multi-agent, autonomous optimization framework designed for the discovery of stable and high-performing surface configurations in complex functional materials and electrocatalysts.
 
 Following expert architectural review, the repository is organized into a hierarchy that separates decision-makers from domain objects.
 
@@ -22,12 +22,14 @@ CLASDE/
 ├── science/            # DOMAIN OBJECTS (The "What")
 │   ├── experiment_graph.py   # Semantic Knowledge Graph
 │   ├── hypothesis.py         # Scientific Uncertainty Modeling
+│   ├── objective_functions.py# Sabatier and Catalytic Metrics
 │   └── theory_builder.py     # Natural Language Theory Synthesis
 │
 ├── memory/             # CENTRALIZED KNOWLEDGE (The "Where")
 │   ├── knowledge_graph.py    # Persistence for cross-campaign logic
-│   ├── experiment_memory.py  # Local trajectory storage
-│   └── literature_memory.py  # Prior knowledge & Literature ingestion
+│   ├── experiment_db.py      # Detailed physical/computational database
+│   ├── hypothesis_db.py      # Formal scientific theory storage
+│   └── literature_db.py      # Prior knowledge & Literature ingestion
 │
 ├── optimization/       # MATHEMATICS (The "How")
 │   ├── surrogate_models.py   # GPR, Random Forest, etc.
@@ -43,14 +45,11 @@ CLASDE/
 ├── core/               # SCIENTIFIC PRIMITIVES
 │   ├── state.py              # SurfaceState representation
 │   ├── action.py             # Mutation operators
-│   ├── transition.py         # Physics rules
-│   └── reward.py             # Objective functions
+│   └── transition.py         # Physics rules
 │
 ├── cli/                # Command-Line Interfaces
-└── teaching/           # Educational Demos
+└── examples/           # Educational Demos and Tutorials
 ```
-
----
 
 ---
 
