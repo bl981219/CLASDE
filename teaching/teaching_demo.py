@@ -6,7 +6,7 @@ from datetime import datetime
 # Ensure the project root is in the path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from workflows.autonomous_campaign import run_adsorption_campaign
+from execution.workflow_runner import run_adsorption_campaign
 
 def run_teaching_demo():
     """

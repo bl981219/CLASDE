@@ -1,7 +1,10 @@
-from typing import Dict, Any, Optional
+import logging
+from typing import Dict, Any, Optional, List
 from core.state import SurfaceState
 import warnings
 import os
+
+logger = logging.getLogger(__name__)
 
 try:
     from ase import Atoms
@@ -27,8 +30,9 @@ class StructureBuilder:
       
     The output is an ASE `Atoms` object ready for MLFF evaluation or DFT submission.
     """
-    def __init__(self):
+    def __init__(self) -> None:
         if not HAS_SIM_TOOLS:
+            logger.warning("ase or pymatgen not found. Physical structure generation will fail.")
             warnings.warn("ase or pymatgen not found. Physical structure generation will fail.")
 
     def build_structure(self, state: SurfaceState) -> Any:
@@ -71,6 +75,7 @@ class StructureBuilder:
                     bulk_atoms[1].symbol = b_site_els[0]
                 
             except Exception as e:
+                logger.warning(f"Failed to build perovskite bulk: {e}. Falling back to Cu.")
                 warnings.warn(f"Failed to build perovskite bulk: {e}. Falling back to Cu.")
                 bulk_atoms = bulk('Cu', cubic=True)
         elif len(elements) == 1:
@@ -79,6 +84,7 @@ class StructureBuilder:
             try:
                 bulk_atoms = bulk(element, cubic=True)
             except Exception as e:
+                logger.warning(f"Failed to build bulk {element}: {e}. Falling back to placeholder.")
                 warnings.warn(f"Failed to build bulk {element}: {e}. Falling back to placeholder.")
                 return self._placeholder_generation(state)
         else:
@@ -90,6 +96,7 @@ class StructureBuilder:
                     from ase.io import read
                     bulk_atoms = read(cif_path)
                 except Exception as e:
+                    logger.warning(f"Failed to read {cif_path}: {e}")
                     warnings.warn(f"Failed to read {cif_path}: {e}")
                     bulk_atoms = bulk('Cu', cubic=True)
             else:
@@ -102,6 +109,7 @@ class StructureBuilder:
             slab = surface(bulk_atoms, (h, k, l), layers=3, vacuum=15.0)
             slab.center(vacuum=15.0, axis=2)
         except Exception as e:
+            logger.warning(f"Failed to cleave surface {state.miller_index}: {e}")
             warnings.warn(f"Failed to cleave surface {state.miller_index}: {e}")
             slab = bulk_atoms.copy()
 
@@ -127,7 +135,7 @@ class StructureBuilder:
                         o_indices = [i for i, atom in enumerate(slab) if atom.symbol == "O"]
                         if o_indices:
                             slab.pop(o_indices[0]) # Introduce oxygen vacancy
-                            print(f"  Charge Compensation: Introduced Oxygen Vacancy for Sr-doping.")
+                            logger.info("Charge Compensation: Introduced Oxygen Vacancy for Sr-doping.")
             elif defect.get("type") == "swap":
                 # Segregation modeling: swap surface element_a with subsurface element_b
                 el_a = defect.get("element_a")
@@ -145,6 +153,7 @@ class StructureBuilder:
                 height = 1.5 
                 add_adsorbate(slab, state.adsorbate, height, 'ontop')
             except Exception as e:
+                logger.warning(f"Failed to add adsorbate {state.adsorbate}: {e}")
                 warnings.warn(f"Failed to add adsorbate {state.adsorbate}: {e}")
 
         # Final Sanity Check: Never return an empty structure

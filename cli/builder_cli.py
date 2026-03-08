@@ -2,7 +2,7 @@ import argparse
 import json
 import os
 from core.state import SurfaceState
-from agents.builder import StructureBuilder
+from agents.builder_agent import StructureBuilder
 
 def main():
     parser = argparse.ArgumentParser(description="CLASDE Structure Builder CLI")

@@ -1,6 +1,9 @@
+import logging
 from enum import Enum
 from pydantic import BaseModel, Field
 from typing import Dict, Any, Optional
+
+logger = logging.getLogger(__name__)
 
 class ActionType(str, Enum):
     """
@@ -33,5 +36,5 @@ class MutationAction(BaseModel):
     parameters: Dict[str, Any] = Field(..., description="Parameters required for the mutation")
     reasoning: Optional[str] = Field(None, description="Optional reasoning for this action choice")
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"Action({self.action_type.value}, {self.parameters})"

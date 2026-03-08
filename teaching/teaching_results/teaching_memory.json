@@ -75,15 +75,10 @@
             "type": "vacancy",
             "site": "Cu",
             "index": 0
-          },
-          {
-            "type": "vacancy",
-            "site": "Cu",
-            "index": 0
           }
         ],
         "adsorbate": null,
-        "coverage": 0.0,
+        "coverage": 0.25,
         "external_conditions": {
           "T": 298.15,
           "p": 1.0,
@@ -91,10 +86,10 @@
         },
         "metadata": {}
       },
-      "target_value": -1.6902773779734022,
+      "target_value": -1.6750637263797232,
       "observables": {
-        "total_energy": 3.805547559468044,
-        "adsorption_energy": 0.19027737797340222,
+        "total_energy": 3.5012745275944646,
+        "adsorption_energy": 0.17506372637972323,
         "surface_energy": 0.01,
         "status": "completed"
       }
@@ -164,7 +159,7 @@
         "reward": -1.6750637263797232
       },
       {
-        "id": "393636082c2a0a4fc572ee903b97d3e4639f1e853f640a77ec966d3b4a4808b6",
+        "id": "474a82c4874aa98b426eb0d9bdb0e16902b4deed2f2675be58e9530065cdcbe0",
         "state": {
           "bulk_composition": {
             "Cu": 1.0
@@ -180,15 +175,10 @@
               "type": "vacancy",
               "site": "Cu",
               "index": 0
-            },
-            {
-              "type": "vacancy",
-              "site": "Cu",
-              "index": 0
             }
           ],
           "adsorbate": null,
-          "coverage": 0.0,
+          "coverage": 0.25,
           "external_conditions": {
             "T": 298.15,
             "p": 1.0,
@@ -197,12 +187,12 @@
           "metadata": {}
         },
         "observables": {
-          "total_energy": 3.805547559468044,
-          "adsorption_energy": 0.19027737797340222,
+          "total_energy": 3.5012745275944646,
+          "adsorption_energy": 0.17506372637972323,
           "surface_energy": 0.01,
           "status": "completed"
         },
-        "reward": -1.6902773779734022
+        "reward": -1.6750637263797232
       }
     ],
     "edges": []

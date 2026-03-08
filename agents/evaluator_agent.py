@@ -1,7 +1,10 @@
+import logging
 import os
 import json
 from typing import Dict, Any, Tuple, Optional
 from core.reward import RewardFunction
+
+logger = logging.getLogger(__name__)
 
 class EvaluationAgent:
     """
@@ -14,10 +17,10 @@ class EvaluationAgent:
     Research Governor) to compute the final scalar reward `R` that the Strategist (BO) will use 
     to update its surrogate model.
     """
-    def __init__(self, reward_function: RewardFunction):
+    def __init__(self, reward_function: RewardFunction) -> None:
         self.reward_function = reward_function
 
-    def set_reward_function(self, reward_function: RewardFunction):
+    def set_reward_function(self, reward_function: RewardFunction) -> None:
         """Update the active reward function."""
         self.reward_function = reward_function
 
@@ -41,7 +44,7 @@ class EvaluationAgent:
         Parse energy and structural information from DFT output.
         Enhanced to include DOSCAR parsing for electronic properties.
         """
-        observables = {}
+        observables: Dict[str, Any] = {}
         
         # 1. Energy and Structural Data
         results_file = os.path.join(path, "results.json")
@@ -50,7 +53,7 @@ class EvaluationAgent:
                 with open(results_file, "r") as f:
                     observables.update(json.load(f))
             except Exception as e:
-                print(f"Error parsing {results_file}: {e}")
+                logger.error(f"Error parsing {results_file}: {e}")
                 
         # VASP Logic for OUTCAR
         outcar_path = os.path.join(path, "OUTCAR")
@@ -61,7 +64,7 @@ class EvaluationAgent:
                 observables["total_energy"] = float(atoms.get_potential_energy())
                 observables["status"] = "completed"
             except Exception as e:
-                print(f"Error reading OUTCAR at {path}: {e}")
+                logger.error(f"Error reading OUTCAR at {path}: {e}")
 
         # 2. DOSCAR Parsing for Electronic Properties (d-band, p-band)
         doscar_path = os.path.join(path, "DOSCAR")
@@ -70,7 +73,7 @@ class EvaluationAgent:
                 electronic_props = self._parse_doscar(doscar_path)
                 observables.update(electronic_props)
             except Exception as e:
-                print(f"Error parsing DOSCAR: {e}")
+                logger.error(f"Error parsing DOSCAR: {e}")
 
         if not observables:
             return {"status": "failed", "total_energy": 0.0}

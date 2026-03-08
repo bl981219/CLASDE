@@ -1,6 +1,9 @@
+import logging
 from pydantic import BaseModel, Field
 from typing import Dict, Any, List, Optional
 from core.action import ActionType
+
+logger = logging.getLogger(__name__)
 
 class Campaign(BaseModel):
     """

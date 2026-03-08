@@ -1,7 +1,10 @@
-from .state import SurfaceState
-from .action import MutationAction, ActionType
+import logging
 import copy
 from typing import Dict, Any
+from .state import SurfaceState
+from .action import MutationAction, ActionType
+
+logger = logging.getLogger(__name__)
 
 class TransitionEngine:
     """
@@ -38,37 +41,38 @@ class TransitionEngine:
         elif action.action_type == ActionType.SWAP_ATOMS:
             self._swap_atoms(new_state, action.parameters)
         else:
+            logger.error(f"Unknown action type: {action.action_type}")
             raise ValueError(f"Unknown action type: {action.action_type}")
             
         return new_state
 
-    def _change_termination(self, state: SurfaceState, params: Dict[str, Any]):
+    def _change_termination(self, state: SurfaceState, params: Dict[str, Any]) -> None:
         """Updates the surface termination descriptor (e.g., 'TiO2' to 'SrO')."""
         state.termination = params["termination"]
 
-    def _introduce_vacancy(self, state: SurfaceState, params: Dict[str, Any]):
+    def _introduce_vacancy(self, state: SurfaceState, params: Dict[str, Any]) -> None:
         """Appends a vacancy defect to the state's defect vector (e.g., params={"site": "O"})."""
         state.defects.append({"type": "vacancy", **params})
 
-    def _substitutional_dopant(self, state: SurfaceState, params: Dict[str, Any]):
+    def _substitutional_dopant(self, state: SurfaceState, params: Dict[str, Any]) -> None:
         """Appends a substitution defect to the state's defect vector (e.g., params={"original_element": "La", "dopant": "Sr"})."""
         state.defects.append({"type": "substitution", **params})
 
-    def _change_adsorbate(self, state: SurfaceState, params: Dict[str, Any]):
+    def _change_adsorbate(self, state: SurfaceState, params: Dict[str, Any]) -> None:
         """Updates the target adsorbate identity (e.g., params={"adsorbate": "OH"})."""
         state.adsorbate = params["adsorbate"]
 
-    def _modify_coverage(self, state: SurfaceState, params: Dict[str, Any]):
+    def _modify_coverage(self, state: SurfaceState, params: Dict[str, Any]) -> None:
         """Updates the surface coverage fraction (e.g., params={"coverage": 0.5})."""
         state.coverage = params["coverage"]
 
-    def _alter_charge_state(self, state: SurfaceState, params: Dict[str, Any]):
+    def _alter_charge_state(self, state: SurfaceState, params: Dict[str, Any]) -> None:
         """
         Updates the external electrochemical potential (Phi), used in 
         Computational Hydrogen Electrode (CHE) calculations.
         """
         state.external_conditions["Phi"] = params.get("Phi", state.external_conditions.get("Phi", 0.0))
 
-    def _swap_atoms(self, state: SurfaceState, params: Dict[str, Any]):
+    def _swap_atoms(self, state: SurfaceState, params: Dict[str, Any]) -> None:
         """Records an atomic swap as a complex defect (e.g., params={"element_a": "La", "element_b": "Sr"})."""
         state.defects.append({"type": "swap", **params})

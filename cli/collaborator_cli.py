@@ -1,8 +1,8 @@
 import os
 import argparse
 import json
-from agents.collaborator import LLMCollaborator
-from workflows.autonomous_campaign import run_adsorption_campaign
+from agents.collaborator_agent import LLMCollaborator
+from execution.workflow_runner import run_adsorption_campaign
 
 def main():
     parser = argparse.ArgumentParser(description="CLASDE Collaborator: Natural Language Research Interface")

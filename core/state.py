@@ -1,7 +1,10 @@
+import logging
 from pydantic import BaseModel, Field
-from typing import List, Dict, Optional, Tuple
+from typing import List, Dict, Optional, Tuple, Any
 import hashlib
 import json
+
+logger = logging.getLogger(__name__)
 
 class SurfaceState(BaseModel):
     """
@@ -36,7 +39,7 @@ class SurfaceState(BaseModel):
     # Metadata for tracking origin, lineage, or physical file paths
     metadata: Dict = Field(default_factory=dict)
 
-    def is_physically_equivalent(self, other: 'SurfaceState') -> bool:
+    def is_physically_equivalent(self, other: Any) -> bool:
         """
         Check if two states represent the same physical structure using Pymatgen StructureMatcher.
         Useful for identifying symmetry-equivalent surfaces or redundant mutations.
@@ -51,7 +54,7 @@ class SurfaceState(BaseModel):
         # Detailed check using Pymatgen
         try:
             from pymatgen.analysis.structure_matcher import StructureMatcher
-            from agents.builder import StructureBuilder
+            from agents.builder_agent import StructureBuilder
             
             builder = StructureBuilder()
             s1 = builder.build_structure(self)
@@ -70,7 +73,8 @@ class SurfaceState(BaseModel):
         except ImportError:
             # Fallback to hash equality if tools are missing
             return self.get_id() == other.get_id()
-        except Exception:
+        except Exception as e:
+            logger.error(f"Error checking physical equivalence: {e}")
             return False
 
     def to_json(self) -> str:
@@ -99,10 +103,10 @@ class SurfaceState(BaseModel):
         """Generate a unique SHA-256 hash for this state."""
         return hashlib.sha256(self.to_json().encode()).hexdigest()
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return int(self.get_id(), 16)
 
-    def __eq__(self, other):
+    def __eq__(self, other: Any) -> bool:
         if not isinstance(other, SurfaceState):
             return False
         return self.get_id() == other.get_id()

@@ -1,6 +1,9 @@
+import logging
 from abc import ABC, abstractmethod
-from typing import Dict, Any
+from typing import Dict, Any, Optional, Union
 import numpy as np
+
+logger = logging.getLogger(__name__)
 
 class RewardFunction(ABC):
     """
@@ -28,7 +31,7 @@ class StabilityReward(RewardFunction):
 
 class AdsorptionTuningReward(RewardFunction):
     """Reward based on target adsorption energy: R = -|E_ads - E_optimum|."""
-    def __init__(self, target_e_ads: float):
+    def __init__(self, target_e_ads: float) -> None:
         self.target_e_ads = target_e_ads
         
     def compute_reward(self, observables: Dict[str, Any], context: Dict[str, Any]) -> float:
@@ -60,7 +63,7 @@ class CompositeReward(RewardFunction):
     Weighted combination of multiple reward functions.
     R = Σ w_i * R_i
     """
-    def __init__(self, rewards: Dict[RewardFunction, float]):
+    def __init__(self, rewards: Dict[RewardFunction, float]) -> None:
         self.rewards = rewards
         
     def compute_reward(self, observables: Dict[str, Any], context: Dict[str, Any]) -> float:
@@ -74,7 +77,7 @@ class FunctionalReward(RewardFunction):
     Reward defined as an arbitrary mathematical expression of observables.
     e.g., "-abs(adsorption_energy - (-1.5))"
     """
-    def __init__(self, expression: str):
+    def __init__(self, expression: str) -> None:
         self.expression = expression
 
     def compute_reward(self, observables: Dict[str, Any], context: Dict[str, Any]) -> float:
@@ -86,7 +89,7 @@ class FunctionalReward(RewardFunction):
             eval_scope = {**safe_dict, **observables, **context}
             return float(eval(self.expression, {"__builtins__": {}}, eval_scope))
         except Exception as e:
-            print(f"Error evaluating reward expression '{self.expression}': {e}")
+            logger.error(f"Error evaluating reward expression '{self.expression}': {e}")
             return -1e9
 
 class SurfacePhaseDiagramReward(RewardFunction):
@@ -127,7 +130,7 @@ class ElectrochemicalStabilityReward(RewardFunction):
         # Logic similar to phase diagram but with U-dependent chemical potentials
         return self._compute_che_reward(observables, context, phi)
 
-    def _compute_che_reward(self, obs, ctx, phi):
+    def _compute_che_reward(self, observables: Dict[str, Any], context: Dict[str, Any], phi: float) -> float:
         # Implementation of CHE thermodynamics
         return -1.0 # Placeholder for detailed CHE logic
 
@@ -151,7 +154,7 @@ class SegregationReward(RewardFunction):
     Reward based on surface segregation: R = - (G_surface - G_bulk_reference).
     Focuses on enriching a target species at the surface layer.
     """
-    def __init__(self, target_species: str):
+    def __init__(self, target_species: str) -> None:
         self.target_species = target_species
 
     def compute_reward(self, observables: Dict[str, Any], context: Dict[str, Any]) -> float:
@@ -181,7 +184,7 @@ class AutonomousDiscoveryReward(RewardFunction):
     (optimization), but actively explores uncertain regions and pursues novel 
     configurations (scientific discovery).
     """
-    def __init__(self, base_reward: RewardFunction, alpha: float = 1.0, beta: float = 0.5, gamma: float = 0.5):
+    def __init__(self, base_reward: RewardFunction, alpha: float = 1.0, beta: float = 0.5, gamma: float = 0.5) -> None:
         self.base_reward = base_reward
         self.alpha = alpha
         self.beta = beta

@@ -1,8 +1,11 @@
+import logging
 import os
 import google.generativeai as genai
 from typing import Dict, Any, Optional
 import json
 from dotenv import load_dotenv
+
+logger = logging.getLogger(__name__)
 
 class LLMCollaborator:
     """
@@ -18,7 +21,7 @@ class LLMCollaborator:
     3. Suggesting relevant environmental variables (T, p, Phi) for the campaign.
     4. Providing a scientific rationale for the proposed strategy.
     """
-    def __init__(self, api_key: Optional[str] = None):
+    def __init__(self, api_key: Optional[str] = None) -> None:
         """
         Initialize the collaborator with an API key and configure the generative model.
         Falls back to a heuristic-based 'mock' mode if the API is unavailable.
@@ -39,7 +42,7 @@ class LLMCollaborator:
                     # We use gemini-pro for stable structured output in research tasks
                     self.model = genai.GenerativeModel('gemini-pro')
                 except Exception as e:
-                    print(f"Warning: Failed to initialize Gemini API ({e}). Using mock mode.")
+                    logger.warning(f"Failed to initialize Gemini API ({e}). Using mock mode.")
                     self.use_mock = True
 
     def translate_goal_to_campaign(self, prompt: str) -> Dict[str, Any]:
@@ -79,10 +82,10 @@ class LLMCollaborator:
                 f"{system_instruction}\n\nUser Goal: {prompt}\n\nJSON Output:",
                 generation_config={"response_mime_type": "application/json"}
             )
-            config = json.loads(response.text)
+            config: Dict[str, Any] = json.loads(response.text)
             return config
         except Exception as e:
-            print(f"LLM translation failed: {e}. Falling back to internal heuristics.")
+            logger.error(f"LLM translation failed: {e}. Falling back to internal heuristics.")
             return self._mock_translation(prompt)
 
     def _mock_translation(self, prompt: str) -> Dict[str, Any]:

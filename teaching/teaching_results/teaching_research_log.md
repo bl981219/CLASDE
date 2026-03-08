@@ -1,6 +1,7 @@
 
 # Research Campaign: Teaching_Demo_Cu111
-**Timestamp:** Fri Mar  6 13:59:58 2026
+**Timestamp:** Sun Mar  8 00:49:55 2026
+**Reproducibility:** Python 3.9.15 on Linux-6.1.161-llgrid-x86_64-with-glibc2.39
 **Original User Intent:** *"teach me about oxygen on copper 111"*
 **Scientific Interpretation:** Minimal 2-iteration test for teaching user about discovery logs.
 **Objective Config:** `{'type': 'adsorption_tuning', 'adsorbate': 'O', 'target_e_ads': -1.5}`
@@ -9,18 +10,22 @@
 ## 1. Exploration Phase
 | Iteration | Action | Fidelity | Reward | Best Reward |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | introduce_vacancy | LOCAL_EMT | -1.6751 | -1.6751 |
-| 2 | introduce_vacancy | LOCAL_EMT | -1.6903 | -1.6751 |
+| 1 | introduce_vacancy | MLIP | -1.6751 | -1.6751 |
+| 2 | introduce_vacancy | DFT | -1000000000.0000 | -1.6751 |
 
 ## 2. Scientific Reasoning Phase
-- **Discovered Theory:** Theory: Vacancy_Density consistently leads to decreased stability/activity (Confidence: 1.00)
+- **Discovered Theory:** Theory: Vacancy_Density consistently leads to decreased stability (Confidence: 1.00)
 
 **PI Agent Recommendation:** Formulated 1 new hypotheses for next-gen campaigns.
 
 ### Final Summary
 ```text
---- Autonomous Scientific Discovery Report ---
-- Theory: Vacancy_Density consistently leads to decreased stability/activity (Confidence: 1.00)
+
+==================================================
+   AUTONOMOUS SCIENTIFIC DISCOVERY REPORT
+==================================================
+- Theory: Vacancy_Density consistently leads to decreased stability (Confidence: 1.00)
+--------------------------------------------------
 
 ```
 --------------------------------------------------------------------------------
