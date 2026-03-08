@@ -123,3 +123,42 @@ class UncertaintyObjective(ObjectiveFunction):
         if uncertainty is None:
             return 0.0
         return float(uncertainty)
+
+class SurfaceEnergyObjective(ObjectiveFunction):
+    """Minimize surface energy for stability."""
+    def compute_objective(self, observables: Dict[str, Any], context: Dict[str, Any]) -> float:
+        gamma = observables.get("surface_energy")
+        if gamma is None:
+            return -1e9
+        return -float(gamma)
+
+class DBandCenterObjective(ObjectiveFunction):
+    """Tune electronic structure by targeting a specific d-band center."""
+    def __init__(self, target_center: float) -> None:
+        self.target_center = target_center
+        
+    def compute_objective(self, observables: Dict[str, Any], context: Dict[str, Any]) -> float:
+        center = observables.get("d_band_center")
+        if center is None:
+            return -1e9
+        return -abs(float(center) - self.target_center)
+
+class WorkFunctionObjective(ObjectiveFunction):
+    """Target a specific work function value."""
+    def __init__(self, target_wf: float) -> None:
+        self.target_wf = target_wf
+        
+    def compute_objective(self, observables: Dict[str, Any], context: Dict[str, Any]) -> float:
+        wf = observables.get("work_function")
+        if wf is None:
+            return -1e9
+        return -abs(float(wf) - self.target_wf)
+
+class ChargeTransferObjective(ObjectiveFunction):
+    """Maximize charge transfer to a specific adsorbate."""
+    def compute_objective(self, observables: Dict[str, Any], context: Dict[str, Any]) -> float:
+        # Bader charge transfer (e.g. from surface to adsorbate)
+        delta_q = observables.get("charge_transfer")
+        if delta_q is None:
+            return -1e9
+        return float(delta_q)

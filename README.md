@@ -23,6 +23,8 @@ CLASDE/
 │   ├── experiment_graph.py   # Semantic Knowledge Graph
 │   ├── hypothesis.py         # Scientific Uncertainty Modeling
 │   ├── objective_functions.py# Sabatier and Catalytic Metrics
+│   ├── reaction_network.py   # Catalytic Cycles & Reaction Pathways
+│   ├── descriptors.py        # d-band, Coordination, Bader charges
 │   └── theory_builder.py     # Natural Language Theory Synthesis
 │
 ├── memory/             # CENTRALIZED KNOWLEDGE (The "Where")
@@ -40,6 +42,10 @@ CLASDE/
 │   ├── compute_agent.py      # HPC/Slurm Execution (Agent 4)
 │   ├── mlip_manager.py       # Force Field management
 │   ├── dynamics_engine.py    # Relaxation & MD
+│   ├── neb_runner.py         # Transition State search (NEB)
+│   ├── slab_generator.py     # Surface cleaving
+│   ├── adsorption_site_finder.py # High-symmetry site detection
+│   ├── coverage_generator.py # Lateral interaction modeling
 │   └── workflow_runner.py    # Main autonomous loop
 │
 ├── core/               # SCIENTIFIC PRIMITIVES

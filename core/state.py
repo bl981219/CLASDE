@@ -9,9 +9,12 @@ logger = logging.getLogger(__name__)
 class AdsorbateInstance(BaseModel):
     """Specific instance of an adsorbate on a surface site."""
     identity: str = Field(..., description="Chemical formula of the adsorbate, e.g., 'CO'")
-    site_type: str = Field("top", description="Site type, e.g., 'top', 'bridge', 'hollow'")
+    site_type: str = Field("top", description="Site type, e.g., 'top', 'bridge', 'fcc_hollow', 'hcp_hollow'")
+    site_coordination: Optional[int] = Field(None, description="Coordination number of the adsorption site")
+    site_neighbor_atoms: List[str] = Field(default_factory=list, description="Elements of neighboring surface atoms")
     coverage: float = Field(0.0, description="Coverage fraction of this specific adsorbate")
-    orientation: Optional[Dict[str, Any]] = Field(default_factory=dict, description="Orientation descriptors")
+    orientation: Optional[Dict[str, Any]] = Field(default_factory=dict, description="Orientation descriptors (e.g., tilt angle, azimuthal)")
+    geometry: Optional[Dict[str, Any]] = Field(default_factory=dict, description="Local adsorption geometry (bond lengths, etc.)")
 
 class SurfaceState(BaseModel):
     """
@@ -27,6 +30,7 @@ class SurfaceState(BaseModel):
     
     slab_atoms: Optional[Any] = Field(None, description="Physical structure object (e.g., ASE Atoms). Excluded from direct hashing.")
     
+    available_sites: List[Dict[str, Any]] = Field(default_factory=list, description="Available adsorption sites on this surface")
     adsorbates: List[AdsorbateInstance] = Field(default_factory=list, description="List of adsorbates on the surface")
     coverage: float = Field(0.0, description="Total coverage θ (legacy/summary field)")
     
