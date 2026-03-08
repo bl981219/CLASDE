@@ -36,6 +36,8 @@ class TransitionEngine:
             self._alter_charge_state(new_state, action.parameters)
         elif action.action_type == ActionType.SWAP_ATOMS:
             self._swap_atoms(new_state, action.parameters)
+        elif action.action_type == ActionType.MODIFY_ENVIRONMENT:
+            self._modify_environment(new_state, action.parameters)
         else:
             logger.error(f"Unknown action type: {action.action_type}")
             raise ValueError(f"Unknown action type: {action.action_type}")
@@ -85,3 +87,10 @@ class TransitionEngine:
     def _swap_atoms(self, state: SurfaceState, params: Dict[str, Any]) -> None:
         """Records an atomic swap as a complex defect (e.g., params={"element_a": "La", "element_b": "Sr"})."""
         state.defects.append({"type": "swap", **params})
+
+    def _modify_environment(self, state: SurfaceState, params: Dict[str, Any]) -> None:
+        """Updates global environmental variables like T and P."""
+        if "temperature" in params:
+            state.temperature = params["temperature"]
+        if "pressure" in params:
+            state.pressure = params["pressure"]

@@ -1,0 +1,35 @@
+name: "LSF_Sr_Segregation_Thermodynamics"
+description: "Investigation of Sr surface segregation in La0.6Sr0.4FeO3 (001) as a function of T and PO2."
+original_prompt: "whats the surface segregation event for La0.6Sr0.4FeO3 perovskite depends on Temperature and oxygen pressure?"
+
+objective:
+  type: "segregation"
+  target_species: "Sr"
+
+constraints:
+  bulk:
+    La: 0.6
+    Sr: 0.4
+    Fe: 1.0
+    O: 3.0
+  facet: [0, 0, 1]
+  allowed_actions: ["swap_atoms", "change_termination", "modify_coverage"]
+
+variables:
+  - name: "temperature"
+    range: [300, 1200] # Kelvin
+  - name: "pressure"
+    range: [1e-10, 1.0] # atm (PO2)
+
+budget:
+  max_evaluations: 50
+
+acquisition:
+  acquisition_type: "SCIENTIFIC"
+  beta: 1.5
+  gamma: 1.0
+  delta: 0.1
+
+compute:
+  mode: "local_emt"
+  nodes: 4

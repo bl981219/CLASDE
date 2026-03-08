@@ -1,0 +1,7609 @@
+{
+  "experiments": [
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [],
+        "coverage": 0.0,
+        "defects": [],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 298.15,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": -5.0,
+      "observables": {
+        "reward": -5.0
+      },
+      "method": "unknown",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 298.15,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 1,
+        "sigma": 0.03162277818282259,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "status": "failed",
+        "total_energy": 0.0,
+        "reward": 0.0,
+        "iteration": 2,
+        "fidelity": "DFT",
+        "sigma": 2.297346566111325,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "status": "failed",
+        "total_energy": 0.0,
+        "reward": 0.0,
+        "iteration": 3,
+        "fidelity": "DFT",
+        "sigma": 0.5093471141603072,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 4,
+        "sigma": 0.38112629855618335,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "status": "failed",
+        "total_energy": 0.0,
+        "reward": 0.0,
+        "iteration": 5,
+        "fidelity": "DFT",
+        "sigma": 0.06456923372530321,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 6,
+        "sigma": 0.002072173022988797,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 7,
+        "sigma": 0.0002534934572501697,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 8,
+        "sigma": 0.00011063477489139165,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 9,
+        "sigma": 9.902834233922396e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "status": "failed",
+        "total_energy": 0.0,
+        "reward": 0.0,
+        "iteration": 10,
+        "fidelity": "DFT",
+        "sigma": 0.00012801379352214156,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 11,
+        "sigma": 6.188890371890551e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 12,
+        "sigma": 6.195526998885319e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 13,
+        "sigma": 9.134950252641459e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 14,
+        "sigma": 4.341029360537447e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "status": "failed",
+        "total_energy": 0.0,
+        "reward": 0.0,
+        "iteration": 15,
+        "fidelity": "DFT",
+        "sigma": 4.263568936566182e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 16,
+        "sigma": 5.770689912642631e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 17,
+        "sigma": 3.317883005169419e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 18,
+        "sigma": 3.4661731906796826e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 19,
+        "sigma": 4.648514508829557e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "status": "failed",
+        "total_energy": 0.0,
+        "reward": 0.0,
+        "iteration": 20,
+        "fidelity": "DFT",
+        "sigma": 3.054405112848217e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 21,
+        "sigma": 3.225206809121493e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 22,
+        "sigma": 3.270274578325503e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 23,
+        "sigma": 5.114916575666057e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 24,
+        "sigma": 2.6422158169702774e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "status": "failed",
+        "total_energy": 0.0,
+        "reward": 0.0,
+        "iteration": 25,
+        "fidelity": "DFT",
+        "sigma": 2.7078641370337805e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 26,
+        "sigma": 3.531768470398178e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 27,
+        "sigma": 2.4235723606244884e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 28,
+        "sigma": 2.332637672714162e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 29,
+        "sigma": 3.1558559216580274e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "status": "failed",
+        "total_energy": 0.0,
+        "reward": 0.0,
+        "iteration": 30,
+        "fidelity": "DFT",
+        "sigma": 2.178995238308998e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 31,
+        "sigma": 2.0641207939388782e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 32,
+        "sigma": 2.8508111080533042e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 33,
+        "sigma": 2.0284083534581078e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 34,
+        "sigma": 1.930943363510135e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "status": "failed",
+        "total_energy": 0.0,
+        "reward": 0.0,
+        "iteration": 35,
+        "fidelity": "DFT",
+        "sigma": 1.940201022966895e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 36,
+        "sigma": 3.3383544766226726e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 37,
+        "sigma": 1.8636354376810986e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 38,
+        "sigma": 1.798790228072111e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 39,
+        "sigma": 1.8689199506188473e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "status": "failed",
+        "total_energy": 0.0,
+        "reward": 0.0,
+        "iteration": 40,
+        "fidelity": "DFT",
+        "sigma": 3.0110464897307914e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 41,
+        "sigma": 1.7576576314146985e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 42,
+        "sigma": 1.6891154624476927e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 43,
+        "sigma": 1.737474896178087e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 44,
+        "sigma": 2.7370146377014016e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "status": "failed",
+        "total_energy": 0.0,
+        "reward": 0.0,
+        "iteration": 45,
+        "fidelity": "DFT",
+        "sigma": 1.6583082815331538e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 46,
+        "sigma": 1.5628523423335718e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1e-05,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 47,
+        "sigma": 1.5775718767498134e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 48,
+        "sigma": 2.4757761013644144e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "total_energy": 0.0,
+        "adsorption_energy": 0.0,
+        "status": "completed",
+        "fidelity": "MLIP",
+        "reward": 0.0,
+        "iteration": 49,
+        "sigma": 1.5484809315674515e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "MLIP",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 1.0,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "slab_atoms": null,
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "O",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 1.0,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 1.0,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 900.0,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": 0.0,
+      "observables": {
+        "status": "failed",
+        "total_energy": 0.0,
+        "reward": 0.0,
+        "iteration": 50,
+        "fidelity": "DFT",
+        "sigma": 1.4480312704504687e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    }
+  ],
+  "provenance": [
+    {
+      "source": "2aba4d3f5e886582b5068284451cd53a98ae553650e5488bc986785d058bfbff",
+      "target": "63f685569ce6a2c7bec734b585ce28462f86f5cfbc984e28f76776f4ffe1545f",
+      "action": {
+        "action_type": "modify_coverage",
+        "parameters": {
+          "coverage": 1.0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "63f685569ce6a2c7bec734b585ce28462f86f5cfbc984e28f76776f4ffe1545f",
+      "target": "5cc3622046ad547c27920375acf3295b4672ccdd8f6769d24f422a1dc0715a18",
+      "action": {
+        "action_type": "modify_environment",
+        "parameters": {
+          "temperature": 900.0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "5cc3622046ad547c27920375acf3295b4672ccdd8f6769d24f422a1dc0715a18",
+      "target": "a7b93822413d33679f364d6b25728117aad50857e69841da8aac33fd5a381e99",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "a7b93822413d33679f364d6b25728117aad50857e69841da8aac33fd5a381e99",
+      "target": "715884505d4aab3ea464a7a01034263a8174c63031dd82b7a5edfbb51996e702",
+      "action": {
+        "action_type": "modify_environment",
+        "parameters": {
+          "pressure": 1e-05
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "715884505d4aab3ea464a7a01034263a8174c63031dd82b7a5edfbb51996e702",
+      "target": "51bb774db75461fcf3da39bdf59b0cab5e90f0f231d673ff80116fd6fb2fed06",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "51bb774db75461fcf3da39bdf59b0cab5e90f0f231d673ff80116fd6fb2fed06",
+      "target": "8d5746a47fe16bffd9aec45b3e9ba73e5a83de27a2c6b16fb1f4e6d2542b0c06",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "8d5746a47fe16bffd9aec45b3e9ba73e5a83de27a2c6b16fb1f4e6d2542b0c06",
+      "target": "5bebd2a6ac8296f7e2a18fa4cd726137842eeae28dc17573338c1a5f359f4556",
+      "action": {
+        "action_type": "modify_environment",
+        "parameters": {
+          "pressure": 1.0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "5bebd2a6ac8296f7e2a18fa4cd726137842eeae28dc17573338c1a5f359f4556",
+      "target": "2cf74184994036699db1eba5052fcee4f6a74a89e4077f48596535d9e5673de5",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "2cf74184994036699db1eba5052fcee4f6a74a89e4077f48596535d9e5673de5",
+      "target": "42b1ab13aa182fa8736a4f317191d67b1433762f9852b7650ad32d40ff7a371c",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "42b1ab13aa182fa8736a4f317191d67b1433762f9852b7650ad32d40ff7a371c",
+      "target": "2c7b9bfb5ddd50784201309a4d2479dcaee5d9d45fbdfccc14f7568c65caac69",
+      "action": {
+        "action_type": "modify_environment",
+        "parameters": {
+          "pressure": 1e-05
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "2c7b9bfb5ddd50784201309a4d2479dcaee5d9d45fbdfccc14f7568c65caac69",
+      "target": "236051fbe5081df70a3a46e31058e316dcff63e7fa8f7fb8671135a06d44e1aa",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "236051fbe5081df70a3a46e31058e316dcff63e7fa8f7fb8671135a06d44e1aa",
+      "target": "51387d9ae1e56e7b1ce868641406532a5c817599867b308f164b6c61db82b4b2",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "51387d9ae1e56e7b1ce868641406532a5c817599867b308f164b6c61db82b4b2",
+      "target": "7a860ae3983a06887ab18f1e04fb8d9d02f6cc40c1ff606cc103123c7ec5e2bd",
+      "action": {
+        "action_type": "modify_environment",
+        "parameters": {
+          "pressure": 1.0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "7a860ae3983a06887ab18f1e04fb8d9d02f6cc40c1ff606cc103123c7ec5e2bd",
+      "target": "dbab4ff1879846b6260a9b25e390b71b76c962d66684fa95ade7000e8069681b",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "dbab4ff1879846b6260a9b25e390b71b76c962d66684fa95ade7000e8069681b",
+      "target": "5ad2bb5822676f7361ecb98ddbc9d57b549a1953d8c617011ffbdc86bcc45158",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "5ad2bb5822676f7361ecb98ddbc9d57b549a1953d8c617011ffbdc86bcc45158",
+      "target": "03eafdb1d1ad86915288af5b9b5059682e39722b9144b365610ccbd9a3d365a0",
+      "action": {
+        "action_type": "modify_environment",
+        "parameters": {
+          "pressure": 1e-05
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "03eafdb1d1ad86915288af5b9b5059682e39722b9144b365610ccbd9a3d365a0",
+      "target": "1d3fd4cba635b8506f1ccddda027bfd32c65a17d2c316b5b6407ab5ee4d01dbc",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "1d3fd4cba635b8506f1ccddda027bfd32c65a17d2c316b5b6407ab5ee4d01dbc",
+      "target": "4cb6868063643e88261e1a8021f42b2ac4a2bf2ed964551aed89fe95a03f4c53",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "4cb6868063643e88261e1a8021f42b2ac4a2bf2ed964551aed89fe95a03f4c53",
+      "target": "b247a2c5ad107ebf39210e6fb912fb84bf76ba987528a63b2a0e2dcc65a400a8",
+      "action": {
+        "action_type": "modify_environment",
+        "parameters": {
+          "pressure": 1.0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "b247a2c5ad107ebf39210e6fb912fb84bf76ba987528a63b2a0e2dcc65a400a8",
+      "target": "6fde383c0179d0e31af9d008e5cecac500f6cc022b2ec8f8a517b43d31813e92",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "6fde383c0179d0e31af9d008e5cecac500f6cc022b2ec8f8a517b43d31813e92",
+      "target": "59c366dda02f516cf6325e58c4cc3bd3dc331bb2343b9f958ec5948e484c4007",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "59c366dda02f516cf6325e58c4cc3bd3dc331bb2343b9f958ec5948e484c4007",
+      "target": "157895beccd6eafe6b7edc10edfe6e540124c5e7c00d4de0de83617f175e65a5",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "157895beccd6eafe6b7edc10edfe6e540124c5e7c00d4de0de83617f175e65a5",
+      "target": "8cbad4ca8841ddc144f9398ca893f9ab0387bf6af48c1daf63abb61c14d1ad5f",
+      "action": {
+        "action_type": "modify_environment",
+        "parameters": {
+          "pressure": 1e-05
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "8cbad4ca8841ddc144f9398ca893f9ab0387bf6af48c1daf63abb61c14d1ad5f",
+      "target": "e489e3d21e754a6ebfe5bd9da202a3b2045aee68c9e37cda668d96502b4c2d37",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "e489e3d21e754a6ebfe5bd9da202a3b2045aee68c9e37cda668d96502b4c2d37",
+      "target": "e1812758d5503d5b15f935888bd85968502ffcaaf224e4128c4a221cf5daf02e",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "e1812758d5503d5b15f935888bd85968502ffcaaf224e4128c4a221cf5daf02e",
+      "target": "46ced6a59e311f6bcd5f07acbb534887cbd4d778922ffda95f4700c75fc41855",
+      "action": {
+        "action_type": "modify_environment",
+        "parameters": {
+          "pressure": 1.0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "46ced6a59e311f6bcd5f07acbb534887cbd4d778922ffda95f4700c75fc41855",
+      "target": "56a34b13666b9d621fa613283b20be51477b78502a0359735ac9320e4931765c",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "56a34b13666b9d621fa613283b20be51477b78502a0359735ac9320e4931765c",
+      "target": "0e96a6bc6fbd414d711d6d3299cf09102873a844fd55530b8d1c7166877cde72",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "0e96a6bc6fbd414d711d6d3299cf09102873a844fd55530b8d1c7166877cde72",
+      "target": "aa7bdb84465575bc77c4ef958779e1bf77bbb66805eaf1c1b0d6944edfe4cd89",
+      "action": {
+        "action_type": "modify_environment",
+        "parameters": {
+          "pressure": 1e-05
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "aa7bdb84465575bc77c4ef958779e1bf77bbb66805eaf1c1b0d6944edfe4cd89",
+      "target": "ea9e9f97ad314946601feeed1631ee9f43b729b976c54c03590a8a4b78957854",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "ea9e9f97ad314946601feeed1631ee9f43b729b976c54c03590a8a4b78957854",
+      "target": "74ee998a270e3b9b09a7fc49b9dfb83bec1bf0258f31bdb79731c81a1b47d017",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "74ee998a270e3b9b09a7fc49b9dfb83bec1bf0258f31bdb79731c81a1b47d017",
+      "target": "4b4cb0beda1da42954a492e4410bd3403a2dc565b5cbe5f9cdf36e8a832b2621",
+      "action": {
+        "action_type": "modify_environment",
+        "parameters": {
+          "pressure": 1.0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "4b4cb0beda1da42954a492e4410bd3403a2dc565b5cbe5f9cdf36e8a832b2621",
+      "target": "7f18088965fb51dc7eda8adaf7234ccf54ff4f4a7033b897a707d52df02be3ef",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "7f18088965fb51dc7eda8adaf7234ccf54ff4f4a7033b897a707d52df02be3ef",
+      "target": "163ea5c295e9c55f59b6fcaedd231751b1a9820a1123fb0b24dc4adba7f00bca",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "163ea5c295e9c55f59b6fcaedd231751b1a9820a1123fb0b24dc4adba7f00bca",
+      "target": "73ada9af7156387134b4fc620b327c054eac5d4d6cb98dba1c73858f41754a89",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "73ada9af7156387134b4fc620b327c054eac5d4d6cb98dba1c73858f41754a89",
+      "target": "08355969b8e3c657c5b025a921893a622f249d79a144c444d25d7d2e72035f38",
+      "action": {
+        "action_type": "modify_environment",
+        "parameters": {
+          "pressure": 1e-05
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "08355969b8e3c657c5b025a921893a622f249d79a144c444d25d7d2e72035f38",
+      "target": "460e965dfc37c1c920bfc360823010e8dcf0f97337036e0eb5b192c02e5cbda7",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "460e965dfc37c1c920bfc360823010e8dcf0f97337036e0eb5b192c02e5cbda7",
+      "target": "b29fa17b333a6904e040d4cf35f408c1e231b4c09aab94dce02b429c1c2a0054",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "b29fa17b333a6904e040d4cf35f408c1e231b4c09aab94dce02b429c1c2a0054",
+      "target": "77c72667d76c86ae54fadbd8df84fae8f6d9e5ce5c358f093e28856e54ca09a0",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "77c72667d76c86ae54fadbd8df84fae8f6d9e5ce5c358f093e28856e54ca09a0",
+      "target": "66eead8d50a7f1594dc882c4416db2f8267a46760b862caf79016f239366278d",
+      "action": {
+        "action_type": "modify_environment",
+        "parameters": {
+          "pressure": 1.0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "66eead8d50a7f1594dc882c4416db2f8267a46760b862caf79016f239366278d",
+      "target": "69e88bc4004a15169fff31030e2254d9f421a231c51103a10e40a87f79f387ab",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "69e88bc4004a15169fff31030e2254d9f421a231c51103a10e40a87f79f387ab",
+      "target": "73e9280e553fed3c397d5561c019592d94b2352885358584d6e5f345ae04be94",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "73e9280e553fed3c397d5561c019592d94b2352885358584d6e5f345ae04be94",
+      "target": "c91ab834d72df3e1179cf661e5327bcc022260578578f48b81eabb8e2568480c",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "c91ab834d72df3e1179cf661e5327bcc022260578578f48b81eabb8e2568480c",
+      "target": "3342251802cd1ba0a806309d846af94ac6d8d665e59260507f0eecaf37d0b00f",
+      "action": {
+        "action_type": "modify_environment",
+        "parameters": {
+          "pressure": 1e-05
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "3342251802cd1ba0a806309d846af94ac6d8d665e59260507f0eecaf37d0b00f",
+      "target": "fcbc950616ee9f9e25d53fce8cb42de2d5ec8fa57d516096a339bca5956c2463",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "fcbc950616ee9f9e25d53fce8cb42de2d5ec8fa57d516096a339bca5956c2463",
+      "target": "647a9e2e234382b756168094845156cdeff561a5913523828e990d5623dcec37",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "647a9e2e234382b756168094845156cdeff561a5913523828e990d5623dcec37",
+      "target": "7bda6369a087abba88ca97ff02d69e54052191d4fd90debe0c5a853d4811edd7",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "7bda6369a087abba88ca97ff02d69e54052191d4fd90debe0c5a853d4811edd7",
+      "target": "21a95524ae3eafedf928e7b3edf84b74c8accde30043e31c996d7d80541cd25d",
+      "action": {
+        "action_type": "modify_environment",
+        "parameters": {
+          "pressure": 1.0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "21a95524ae3eafedf928e7b3edf84b74c8accde30043e31c996d7d80541cd25d",
+      "target": "843b7af366519d5e3d5e5d8a50e0db0b5e256196415aa5d3b642a5d3fdd0651d",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "843b7af366519d5e3d5e5d8a50e0db0b5e256196415aa5d3b642a5d3fdd0651d",
+      "target": "af92bd368870aa19b375056bb4b2bac6d822be5bb341b6ec90a543e5a1925075",
+      "action": {
+        "action_type": "introduce_vacancy",
+        "parameters": {
+          "site": "La",
+          "index": 0
+        },
+        "reasoning": null
+      }
+    }
+  ]
+}

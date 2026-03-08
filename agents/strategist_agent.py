@@ -22,54 +22,69 @@ logger = logging.getLogger(__name__)
 class ActionProposer:
     """
     Component responsible for suggesting candidate mutation actions.
-    
-    This acts as the "idea generator." It scans the current state and enumerates 
-    physically permissible mutations (e.g., adding a vacancy, changing coverage).
-    It separates the logic of *proposing* an experiment from the logic of *selecting* it.
-    This architecture natively supports LLM-driven heuristic proposals in the future.
     """
+    def __init__(self, allowed_actions: Optional[List[str]] = None) -> None:
+        self.allowed_actions = allowed_actions
+
     def propose_actions(self, state: SurfaceState) -> List[MutationAction]:
         """
         Suggest mutation operators for the current state.
-        This is where 'Expert Knowledge' or 'LLM Heuristics' are applied.
+        Only proposes actions that are present in the allowed_actions whitelist.
         """
-        actions: List[MutationAction] = []
+        all_possible: List[MutationAction] = []
         
-        # 1. Heuristic: Vacancies for all elements in bulk
+        # 1. Vacancies
         for el in state.bulk_composition.keys():
-            actions.append(MutationAction(
+            all_possible.append(MutationAction(
                 action_type=ActionType.INTRODUCE_VACANCY,
                 parameters={"site": el, "index": 0}
             ))
             
-        # 2. Heuristic: Coverage modifications
+        # 2. Coverage
         current_total_coverage = state.coverage
         for new_cov in [0.25, 0.5, 0.75, 1.0]:
             if abs(new_cov - current_total_coverage) > 0.01:
-                actions.append(MutationAction(
+                all_possible.append(MutationAction(
                     action_type=ActionType.MODIFY_COVERAGE,
                     parameters={"coverage": new_cov}
                 ))
                 
-        # 3. Heuristic: Substitutions
+        # 3. Substitutions
         if "Mn" in state.bulk_composition:
-            actions.append(MutationAction(
+            all_possible.append(MutationAction(
                 action_type=ActionType.SUBSTITUTIONAL_DOPANT,
                 parameters={"original_element": "Mn", "dopant": "Sr"}
             ))
 
-        # 4. Heuristic: Swapping (Segregation)
+        # 4. Swapping
         if "Sr" in state.bulk_composition and "La" in state.bulk_composition:
-            actions.append(MutationAction(
+            all_possible.append(MutationAction(
                 action_type=ActionType.SWAP_ATOMS,
                 parameters={"element_a": "La", "element_b": "Sr", "direction": "surface_to_bulk"}
             ))
-            actions.append(MutationAction(
+            all_possible.append(MutationAction(
                 action_type=ActionType.SWAP_ATOMS,
                 parameters={"element_a": "Sr", "element_b": "La", "direction": "surface_to_bulk"}
             ))
             
-        return actions
+        # 5. Environment (T, P)
+        for t in [600, 900, 1200]:
+            if abs(t - state.temperature) > 1.0:
+                all_possible.append(MutationAction(
+                    action_type=ActionType.MODIFY_ENVIRONMENT,
+                    parameters={"temperature": float(t)}
+                ))
+        for p in [1e-5, 1e-2, 1.0]:
+            if abs(p - state.pressure) > 1e-7:
+                all_possible.append(MutationAction(
+                    action_type=ActionType.MODIFY_ENVIRONMENT,
+                    parameters={"pressure": float(p)}
+                ))
+            
+        # Filter based on whitelist
+        if self.allowed_actions:
+            return [a for a in all_possible if a.action_type.value in self.allowed_actions]
+        return all_possible
 
 class OptimizationStrategist(BaseAgent):
     """
@@ -77,16 +92,13 @@ class OptimizationStrategist(BaseAgent):
     
     A true autonomous agent implementing the observe -> update_belief -> 
     propose -> score -> execute -> update_memory lifecycle.
-    
-    It maintains a belief state (the SurrogateModel), evaluates uncertainty 
-    via AcquisitionFunctions, and decides which physical experiment to run next.
     """
     def __init__(self, surrogate: SurrogateModel, config: Dict[str, Any], 
                  experiment_db: Any, compute_manager: Any, builder: Any, evaluator: Any, 
                  knowledge_graph: Any, hypothesis_db: Any, proposer: Optional[ActionProposer] = None) -> None:
         super().__init__()
         self.config = config
-        self.proposer = proposer or ActionProposer()
+        self.proposer = proposer or ActionProposer(allowed_actions=config.get("allowed_actions"))
         self.transition_engine = TransitionEngine()
         
         # External Tools & Interfaces
@@ -174,8 +186,16 @@ class OptimizationStrategist(BaseAgent):
         
         # 2. Uncertainty Reasoning: Decide fidelity based on model confidence
         mu, sigma = self.belief_state.predict(next_state)
-        sigma_threshold = self.config.get("compute", {}).get("sigma_threshold", 0.5)
-        use_vasp = (sigma > sigma_threshold) or (self.iteration % 5 == 0)
+        
+        # Check if mode is forced in global config
+        force_mode = self.config.get("mode") 
+        if force_mode == "local_emt":
+            use_vasp = False
+        else:
+            sigma_threshold = self.config.get("sigma_threshold", 0.5)
+            use_vasp = (sigma > sigma_threshold) or (self.iteration % 5 == 0)
+        
+        # Map compute mode to SimulationType
         sim_type = SimulationType.DFT if use_vasp else SimulationType.MLIP
         
         # 3. Execution of the Sequence (Simplified for demo)

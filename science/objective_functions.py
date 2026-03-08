@@ -21,12 +21,18 @@ class ObjectiveFunction(ABC):
 RewardFunction = ObjectiveFunction
 
 class StabilityObjective(ObjectiveFunction):
-    """Objective based on surface energy minimization: O = -γ_surf."""
+    """Objective based on energy minimization: O = -E."""
     def compute_objective(self, observables: Dict[str, Any], context: Dict[str, Any]) -> float:
-        surface_energy = observables.get("surface_energy")
-        if surface_energy is None:
+        # Prioritize surface energy or adsorption energy
+        energy = observables.get("surface_energy")
+        if energy is None:
+            energy = observables.get("adsorption_energy")
+        if energy is None:
+            energy = observables.get("total_energy")
+            
+        if energy is None:
             return -1e9 # Penalty for failed calculation
-        return -float(surface_energy)
+        return -float(energy)
 
 class SabatierObjective(ObjectiveFunction):
     """
