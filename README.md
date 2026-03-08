@@ -11,13 +11,13 @@ Following expert architectural review, the repository is organized into a hierar
 ```text
 CLASDE/
 ├── agents/             # DECISION MAKERS (The "Who")
-│   ├── collaborator_agent.py # Agent -1: Human-Machine Interface (LLM)
-│   ├── hypothesis_agent.py   # Agent 0: Scientific Theory Induction
-│   ├── planner_agent.py      # Agent 0.5: Campaign Formulation
-│   ├── governor_agent.py     # Agent 1: Budget & Constraint Enforcement
-│   ├── strategist_agent.py   # Agent 2: Experiment Selection (BO)
-│   ├── builder_agent.py      # Agent 3: Structural Construction
-│   └── evaluator_agent.py    # Agent 5: Result Interpretation
+│   ├── collaborator_agent.py # Human-Machine Interface (LLM)
+│   ├── hypothesis_agent.py   # Scientific Theory Induction (PI)
+│   ├── planner_agent.py      # Dynamic Workflow Formulation
+│   ├── governor_agent.py     # Budget & Constraint Enforcement
+│   ├── strategist_agent.py   # Experiment Selection (BO)
+│   ├── builder_agent.py      # Structural Construction
+│   └── evaluator_agent.py    # Result Interpretation
 │
 ├── science/            # DOMAIN OBJECTS (The "What")
 │   ├── experiment_graph.py   # Semantic Knowledge Graph
@@ -39,7 +39,7 @@ CLASDE/
 │   └── campaign_optimizer.py # BO Orchestration
 │
 ├── execution/          # INFRASTRUCTURE (The "Action")
-│   ├── compute_agent.py      # HPC/Slurm Execution (Agent 4)
+│   ├── compute_agent.py      # HPC/Slurm Execution
 │   ├── mlip_manager.py       # Force Field management
 │   ├── dynamics_engine.py    # Relaxation & MD
 │   ├── neb_runner.py         # Transition State search (NEB)
@@ -63,58 +63,40 @@ CLASDE/
 
 CLASDE mimics the hierarchy of a world-class computational surface science group. The system is designed not as a generic optimizer, but specifically to discover catalytic mechanisms, adsorption scaling relations, and stable surface phases.
 
-| Role | Agent | Responsibility | Metaphor |
-| :--- | :--- | :--- | :--- |
-| **Strategic Collaborator** | `Agent -1` | Translates natural language intent into formal surface science campaigns (e.g., "Find CO oxidation pathways on Pt"). | **The Investor/Expert** |
-| **Hypothesis Agent** | `Agent 0` | Induces physical laws (e.g., d-band center correlations, scaling relations) from the Knowledge Graph. | **The Principal Investigator** |
-| **Research Planner** | `Agent 0.5` | Dynamically constructs task sequences based on scientific reasoning (e.g., if unstable -> run MD; if pathway unknown -> run NEB). | **The Research Planner** |
-| **Research Governor** | `Agent 1` | Enforces budget ceilings, Sabatier optimum windows, and chemical constraints. | **The Lab Manager** |
-| **Optimization Strategist** | `Agent 2` | Operates surrogate models to balance Expected Reward, Uncertainty, Novelty, and Cost. | **The Senior Postdoc** |
-| **Structure Builder** | `Agent 3` | Constructs 3D atomistic slabs, places specific adsorbates on defined sites (top, bridge, hollow), and manages coverages. | **The PhD Student** |
-| **Compute Manager** | `Agent 4` | Orchestrates HPC execution (VASP, MLIP, MD, NEB) and handles SCF/Ionic failure recovery. | **The Lab Technician** |
-| **Evaluation Agent** | `Agent 5` | Parses raw DFT outputs into core surface metrics (Adsorption Energy, Reaction Barrier, d-band center, Work Function). | **The Data Analyst** |
+| Role | Responsibility | Metaphor |
+| :--- | :--- | :--- |
+| **Strategic Collaborator** | Translates natural language intent into formal surface science campaigns (e.g., "Find CO oxidation pathways on Pt"). | **The Investor/Expert** |
+| **Principal Investigator** | Induces physical laws (e.g., d-band center correlations, scaling relations) from the Knowledge Graph. | **The PI Agent** |
+| **Research Planner** | Dynamically constructs task sequences based on scientific reasoning (e.g., if unstable -> run MD; if pathway unknown -> run NEB). | **The Planner** |
+| **Research Governor** | Enforces budget ceilings, Sabatier optimum windows, and chemical constraints. | **The Lab Manager** |
+| **Optimization Strategist** | Operates surrogate models to balance Expected Reward, Uncertainty, Novelty, and Cost. | **The Senior Postdoc** |
+| **Structure Builder** | Constructs 3D atomistic slabs, places specific adsorbates on defined sites (top, bridge, hollow), and manages coverages. | **The PhD Student** |
+| **Compute Manager** | Orchestrates HPC execution (VASP, MLIP, MD, NEB) and handles SCF/Ionic failure recovery. | **The Lab Technician** |
+| **Evaluation Agent** | Parses raw DFT outputs into core surface metrics (Adsorption Energy, Reaction Barrier, d-band center, Work Function). | **The Data Analyst** |
 
 ---
 
-## How CLASDE Works: Surface Science Agentic Loop
+## How CLASDE Works: The Agentic Discovery Loop
 
-The system operates as a continuous, self-correcting feedback loop centered around a **Scientific Knowledge Graph** tailored for surface catalysis.
+CLASDE operates through a self-correcting feedback loop where specialized agents interact via a shared **Scientific Knowledge Graph**. This loop elevates the system from simple "search" to "autonomous discovery."
 
-```text
-===================================================================================
-                     THE CLASDE AUTONOMOUS DISCOVERY ENGINE
-===================================================================================
+### 1. Conceptualization (Natural Language to Formal Goal)
+The discovery starts when a user provides a research question. The **Collaborator Agent** uses chemical domain knowledge to translate this intent into a formal **Campaign**. For example, "How does poisoning affect LSCF?" is translated into an objective to minimize adsorption energy for $SO_2$ on specific LSCF facets.
 
-[ USER INTENT ]  "Explore CO adsorption on Cu(111)"
-      |
-      v
-[ COLLABORATOR AGENT ] -----> Formulates Objective: Sabatier Target E_ads = -1.5 eV
-      |
-      +-------------------------------------------------------------------+
-      |                                                                   |
-      v                                                                   v
-[ RESEARCH GOVERNOR ]                                           [ HYPOTHESIS AGENT ]
-(Enforces max 100 DFT calls)                                    (Induces Scaling Relations)
-      |                                                                   ^
-      v                                                                   |
-[ STRATEGIST AGENT ] <----------------------------------------- [ KNOWLEDGE GRAPH ]
-(Surrogate Model + UCB)                                           (Central Memory)
-      |                                                                   ^
-      +----(Proposes: Add Vacancy, Change Coverage)-----------------------+
-      |                                                                   |
-      v                                                                   |
-[ PLANNER AGENT ]  <-----(Scientific Reasoning: High Uncertainty?)        |
-      |                                                                   |
-      v (Dynamic Workflow: MLIP Relax -> NEB Barrier -> DFT Adsorption)   |
-      |                                                                   |
-[ BUILDER AGENT ] ---------> [ COMPUTE MANAGER ] ---------> [ EVALUATION AGENT ]
-(Slab/Site Gen)              (VASP / MACE / MD)             (Extracts d-band, E_a)
-```
+### 2. Strategic Observation (Memory to Belief)
+The **Optimization Strategist** observes all prior experiments stored in the **Knowledge Graph**. It updates its internal **Belief State**—a probabilistic surrogate model (Gaussian Process)—that maps structural descriptors to physical performance.
 
-1.  **State Representation:** Everything revolves around the `SurfaceState`, tracking bulk composition, facet, termination, specific adsorbate sites/orientations, coverage, defects, and strain.
-2.  **Scientific Planning:** The Planner agent doesn't use hardcoded pipelines. If an adsorption energy is highly uncertain, it requests more adsorption calculations. If a surface is unstable, it triggers MD. If a mechanism is unknown, it triggers NEB.
-3.  **Execution & Recovery:** The Compute Manager uses specialized tools (`slab_generator`, `adsorption_site_finder`, `neb_runner`) to submit jobs to Slurm, actively monitoring and fixing divergence issues.
-4.  **Knowledge Integration:** Results update the `KnowledgeGraph`, linking `Surface -> Site -> Adsorbate -> Reaction Path`.
+### 3. Hypothesis Generation (PI Reasoning)
+Simultaneously, the **Principal Investigator (PI)** agent analyzes the graph for emergent trends. It calculates statistical support for physical laws (e.g., "Is d-band center a valid predictor for this surface?"). These induced theories are used to bias the search toward scientifically interesting regions.
+
+### 4. Dynamic Planning (Task Sequencing)
+Unlike static pipelines, the **Research Planner** dynamically generates a sequence of tasks for each candidate structure. If the PI is uncertain about stability, the Planner might insert a Molecular Dynamics (MD) equilibration step before the final DFT relaxation.
+
+### 5. Physical Execution (HPC Orchestration)
+The **Compute Manager** translates these plans into HPC job scripts. It probes the cluster environment, submits to Slurm, and monitors the queue. If a calculation diverges (e.g., electronic SCF failure), the agent autonomously applies a physical fix and restarts the job.
+
+### 6. Knowledge Integration (The Digital Lab Notebook)
+Finally, the **Evaluation Agent** parses the raw output files. Results are not just saved as numbers; they are decomposed into semantic nodes (Sites, Intermediates, Transitions) and integrated back into the **Knowledge Graph**, completing the discovery cycle.
 
 ---
 
@@ -145,20 +127,13 @@ The system operates as a continuous, self-correcting feedback loop centered arou
 ## Usage
 
 ### Domain-Specific Surface Exploration
-Launch a targeted surface science campaign directly from the CLI:
 ```bash
 clasde-explore LaSrFeO3 001 O
 ```
 
 ### Natural Language Collaboration
-Initiate a campaign by describing your research goal in plain English:
 ```bash
 clasde-collaborator --prompt "how does Sr segregation in LaSrFeO3 depend on T?"
-```
-
-### Start a Campaign from YAML
-```bash
-clasde-loop --config configs/default.yaml
 ```
 
 ---
@@ -166,7 +141,11 @@ clasde-loop --config configs/default.yaml
 ## Case Studies & Examples
 
 ### Cr and S Poisoning on LSCF Perovskites
-A full 100-iteration discovery campaign targeting $CrO_3$ and $SO_2$ adsorption competition on pristine $La_{0.6}Sr_{0.4}Fe_{0.8}Co_{0.2}O_3$.
+A 100-iteration discovery campaign targeting $CrO_3$ and $SO_2$ adsorption competition on pristine $La_{0.6}Sr_{0.4}Fe_{0.8}Co_{0.2}O_3$.
 - **Location:** `examples/LSCF_Poisoning_CaseStudy/`
 - **Key Outcome:** Induced physical laws linking vacancy density and metal d-band center to poison binding strength.
-- **Workflow:** Trace the agentic decision logic through the provided `discovery_log.md`.
+
+### Sr Surface Segregation in LSF
+A 50-iteration thermodynamic study of Sr enrichment in $La_{0.6}Sr_{0.4}FeO_3$ as a function of Temperature and Oxygen Pressure.
+- **Location:** `examples/LSF_Segregation_CaseStudy/`
+- **Key Outcome:** Mapping the $(T, P_{O2})$ drivers for segregation and the corresponding electronic d-band center shifts.
