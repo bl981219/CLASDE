@@ -43,8 +43,9 @@ class ActionProposer:
             ))
             
         # 2. Heuristic: Coverage modifications
+        current_total_coverage = state.coverage
         for new_cov in [0.25, 0.5, 0.75, 1.0]:
-            if abs(new_cov - state.coverage) > 0.01:
+            if abs(new_cov - current_total_coverage) > 0.01:
                 actions.append(MutationAction(
                     action_type=ActionType.MODIFY_COVERAGE,
                     parameters={"coverage": new_cov}

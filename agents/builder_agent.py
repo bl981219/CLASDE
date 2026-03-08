@@ -1,5 +1,6 @@
 import logging
 from typing import Dict, Any, Optional, List
+import numpy as np
 from core.state import SurfaceState
 import warnings
 import os
@@ -147,14 +148,22 @@ class StructureBuilder:
                     slab[idx_a[-1]].symbol = el_b
                     slab[idx_b[0]].symbol = el_a
                     
-        # 4. Place adsorbate a at coverage θ
-        if state.adsorbate and state.coverage > 0.0:
-            try:
-                height = 1.5 
-                add_adsorbate(slab, state.adsorbate, height, 'ontop')
-            except Exception as e:
-                logger.warning(f"Failed to add adsorbate {state.adsorbate}: {e}")
-                warnings.warn(f"Failed to add adsorbate {state.adsorbate}: {e}")
+        # 4. Place adsorbates at specified coverage and site
+        for ads_instance in state.adsorbates:
+            if ads_instance.coverage > 0.0:
+                try:
+                    height = 1.5 
+                    # Try named site first, if it fails use absolute coordinates
+                    try:
+                        add_adsorbate(slab, ads_instance.identity, height, ads_instance.site_type if ads_instance.site_type == 'ontop' else 'ontop')
+                    except:
+                        # Heuristic: place at center of XY plane, above the highest atom
+                        com = slab.get_center_of_mass()
+                        z_max = np.max(slab.positions[:, 2])
+                        add_adsorbate(slab, ads_instance.identity, height, position=(com[0], com[1]))
+                except Exception as e:
+                    logger.warning(f"Failed to add adsorbate {ads_instance.identity}: {e}")
+                    warnings.warn(f"Failed to add adsorbate {ads_instance.identity}: {e}")
 
         # Final Sanity Check: Never return an empty structure
         if len(slab) == 0:

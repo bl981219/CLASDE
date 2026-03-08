@@ -1,6 +1,6 @@
 import unittest
 from agents.governor_agent import ResearchGovernor
-from core.reward import StabilityReward
+from science.objective_functions import StabilityObjective
 
 class TestAgents(unittest.TestCase):
     def test_governor_initialization(self):
@@ -11,7 +11,7 @@ class TestAgents(unittest.TestCase):
         }
         governor = ResearchGovernor(config)
         self.assertEqual(governor.max_evaluations, 10)
-        self.assertIsInstance(governor.reward_function, StabilityReward)
+        self.assertIsInstance(governor.reward_function, StabilityObjective)
 
     def test_governor_budget(self):
         config = {"objective": {"type": "stability"}, "budget": {"max_evaluations": 2}}

@@ -4,7 +4,7 @@ import time
 from typing import List, Tuple, Dict, Any, Optional
 
 import yaml
-from core.state import SurfaceState
+from core.state import SurfaceState, AdsorbateInstance
 from core.action import MutationAction, ActionType
 from core.transition import TransitionEngine
 from optimization.surrogate_models import GaussianProcessModel as SurrogateModel
@@ -70,7 +70,6 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
     
     results_dir: str = "data/results"
     os.makedirs(results_dir, exist_ok=True)
-    # output_file = os.path.join(results_dir, "clasde_memory.json")
     log_file: str = os.path.join(results_dir, "research_log.md")
     
     # Initialize Research Log
@@ -90,7 +89,6 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
     builder = StructureBuilder()
     compute = ComputeManager(config["compute"] if "compute" in config else config)
     evaluator = EvaluationAgent(governor.get_reward_function())
-    # transition_engine = TransitionEngine()
     
     # Initialize the fully autonomous Strategist Agent
     strategist = OptimizationStrategist(
@@ -106,16 +104,19 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
 
     # 2. Initial State Setup
     if not experiment_db.dataset:
+        obj = config.get("objective", {})
+        initial_adsorbates = []
+        if obj.get("adsorbate"):
+            initial_adsorbates.append(AdsorbateInstance(identity=obj["adsorbate"], coverage=0.25))
+            
         current_state = SurfaceState(
             bulk_composition=config["constraints"]["bulk"],
             miller_index=config["constraints"]["facet"],
-            termination="default"
+            termination="default",
+            adsorbates=initial_adsorbates,
+            coverage=sum(a.coverage for a in initial_adsorbates)
         )
         experiment_db.add_experiment(current_state, {"reward": -5.0}) 
-    else:
-        # last_entry = experiment_db.dataset[-1]
-        # current_state = last_entry['state']
-        pass
     
     logger.info("--- CLASDE ENGINE STARTED ---")
     
@@ -144,7 +145,6 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
     if patterns:
         for p in patterns:
             theory = theory_builder.build_theory(p)
-            # Record theory in builder's list for report
             theory_builder.discovered_laws.append({"type": "custom", "statement": theory})
             logger.info(f"Theory Found: {theory}")
             with open(log_file, "a") as f:

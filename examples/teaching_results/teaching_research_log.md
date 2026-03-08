@@ -1,6 +1,6 @@
 
 # Research Campaign: Teaching_Demo_Cu111
-**Timestamp:** Sun Mar  8 00:49:55 2026
+**Timestamp:** Sun Mar  8 01:49:41 2026
 **Reproducibility:** Python 3.9.15 on Linux-6.1.161-llgrid-x86_64-with-glibc2.39
 **Original User Intent:** *"teach me about oxygen on copper 111"*
 **Scientific Interpretation:** Minimal 2-iteration test for teaching user about discovery logs.
@@ -10,8 +10,8 @@
 ## 1. Exploration Phase
 | Iteration | Action | Fidelity | Reward | Best Reward |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | introduce_vacancy | MLIP | -1.6751 | -1.6751 |
-| 2 | introduce_vacancy | DFT | -1000000000.0000 | -1.6751 |
+| 1 | introduce_vacancy | MLIP | -1.7356 | -1.7356 |
+| 2 | introduce_vacancy | DFT | -1000000000.0000 | -1.7356 |
 
 ## 2. Scientific Reasoning Phase
 - **Discovered Theory:** Theory: Vacancy_Density consistently leads to decreased stability (Confidence: 1.00)

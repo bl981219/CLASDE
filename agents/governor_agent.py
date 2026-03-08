@@ -1,13 +1,13 @@
 import logging
-from core.reward import (
-    RewardFunction, 
-    StabilityReward, 
-    AdsorptionTuningReward, 
-    UncertaintyReward,
-    DeviationDiscoveryReward,
-    FunctionalReward,
-    CompositeReward,
-    SegregationReward
+from science.objective_functions import (
+    ObjectiveFunction, 
+    StabilityObjective, 
+    SabatierObjective, 
+    UncertaintyObjective,
+    ReactionBarrierObjective,
+    FunctionalObjective,
+    CompositeObjective,
+    SegregationObjective
 )
 from typing import Dict, Any, List, Optional
 
@@ -26,7 +26,7 @@ class ResearchGovernor:
     computational resources are used within safe limits.
     
     Responsibilities:
-    1. Instantiating the appropriate RewardFunction (the BO objective).
+    1. Instantiating the appropriate ObjectiveFunction (the BO objective).
     2. Enforcing computational budget ceilings (e.g., maximum evaluations).
     3. Maintaining global system constraints (e.g., allowed facets or elements).
     """
@@ -52,44 +52,44 @@ class ResearchGovernor:
             
         self.current_evaluations = 0
 
-    def _initialize_reward(self) -> RewardFunction:
+    def _initialize_reward(self) -> ObjectiveFunction:
         """
-        Factory method to instantiate the correct RewardFunction based on the goal.
+        Factory method to instantiate the correct ObjectiveFunction based on the goal.
         """
         obj = self.config.get("objective", {})
         obj_type = obj.get("type", "stability")
         
         # Mapping categorical goals to formal mathematical objectives
         if obj_type == "stability":
-            return StabilityReward()
+            return StabilityObjective()
         elif obj_type == "adsorption_tuning":
             target = obj.get("target_e_ads", 0.0)
-            return AdsorptionTuningReward(target_e_ads=target)
+            return SabatierObjective(target_e_ads=target)
         elif obj_type == "uncertainty_maximization":
-            return UncertaintyReward()
-        elif obj_type == "deviation_discovery":
-            return DeviationDiscoveryReward()
+            return UncertaintyObjective()
+        elif obj_type == "reaction_barrier":
+            return ReactionBarrierObjective()
         elif obj_type == "segregation":
             # Targeted at surface enrichment of specific elements (e.g., Sr segregation)
             species = obj.get("target_species", "Sr")
-            return SegregationReward(target_species=species)
+            return SegregationObjective(target_species=species)
         elif obj_type == "functional":
             # Allows users to provide a custom mathematical expression for the reward
             expr = obj.get("expression", "0.0")
-            return FunctionalReward(expression=expr)
+            return FunctionalObjective(expression=expr)
         elif obj_type == "composite":
             # Supports multi-objective optimization via weighted sums
             components = obj.get("components", [])
-            rewards_map: Dict[RewardFunction, float] = {}
+            rewards_map: Dict[ObjectiveFunction, float] = {}
             for comp in components:
                 temp_gov = ResearchGovernor({"objective": comp})
                 weight = comp.get("weight", 1.0)
                 rewards_map[temp_gov.get_reward_function()] = weight
-            return CompositeReward(rewards=rewards_map)
+            return CompositeObjective(objectives=rewards_map)
         else:
             raise ValueError(f"Unsupported objective type: {obj_type}")
 
-    def get_reward_function(self) -> RewardFunction:
+    def get_reward_function(self) -> ObjectiveFunction:
         """Returns the active reward function for the BO loop."""
         return self.reward_function
 

@@ -98,10 +98,10 @@ class KnowledgeGraph:
         self.add_relation(surf_id, struct_id, RelationType.HAS_STRUCTURE)
 
         # 4. Adsorbate Node (if present)
-        if state.adsorbate:
-            ads_id = f"ads_{state.adsorbate}"
+        for ads_instance in state.adsorbates:
+            ads_id = f"ads_{ads_instance.identity}"
             if ads_id not in self.nodes:
-                self.add_node(ScienceNode(ads_id, NodeType.ADSORBATE, {"identity": state.adsorbate}))
+                self.add_node(ScienceNode(ads_id, NodeType.ADSORBATE, {"identity": ads_instance.identity}))
             self.add_relation(struct_id, ads_id, RelationType.ADSORBS)
 
         # 5. Calculation Node

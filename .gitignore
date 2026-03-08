@@ -37,4 +37,4 @@ workflows/templates/slurm_vasp.sh
 
 # Agent System
 .gemini/
-GEMINI.md
+GEMINI.mdexamples/teaching_results/

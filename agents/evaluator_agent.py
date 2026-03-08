@@ -2,7 +2,7 @@ import logging
 import os
 import json
 from typing import Dict, Any, Tuple, Optional
-from core.reward import RewardFunction
+from science.objective_functions import ObjectiveFunction
 
 logger = logging.getLogger(__name__)
 
@@ -13,16 +13,16 @@ class EvaluationAgent:
     This agent reads the raw, unstructured outputs from high-fidelity simulations (e.g., VASP `OUTCAR` 
     and `DOSCAR`) and maps them into structured physical observables `P(S)`.
     
-    It then passes these observables through the currently active `RewardFunction` (set by the 
+    It then passes these observables through the currently active `ObjectiveFunction` (set by the 
     Research Governor) to compute the final scalar reward `R` that the Strategist (BO) will use 
     to update its surrogate model.
     """
-    def __init__(self, reward_function: RewardFunction) -> None:
-        self.reward_function = reward_function
+    def __init__(self, objective_function: ObjectiveFunction) -> None:
+        self.objective_function = objective_function
 
-    def set_reward_function(self, reward_function: RewardFunction) -> None:
-        """Update the active reward function."""
-        self.reward_function = reward_function
+    def set_objective_function(self, objective_function: ObjectiveFunction) -> None:
+        """Update the active objective function."""
+        self.objective_function = objective_function
 
     def evaluate_calculation(self, results_path: str, context: Dict[str, Any]) -> Tuple[Dict[str, Any], float]:
         """
@@ -35,7 +35,7 @@ class EvaluationAgent:
         
         # 2. Calculation step
         # R = f_θ(P(S))
-        reward = self.reward_function.compute_reward(observables, context)
+        reward = self.objective_function.compute_objective(observables, context)
         
         return observables, reward
 

@@ -1,7 +1,7 @@
 import logging
 import copy
 from typing import Dict, Any
-from .state import SurfaceState
+from .state import SurfaceState, AdsorbateInstance
 from .action import MutationAction, ActionType
 
 logger = logging.getLogger(__name__)
@@ -12,10 +12,6 @@ class TransitionEngine:
     
     This engine handles state transitions purely in the *configuration space* (the mathematical descriptor).
     It takes a current `SurfaceState` and a `MutationAction`, and returns a new, independent `SurfaceState`.
-    
-    Crucially, this does NOT generate the 3D atomic structure (that is the job of the `StructureBuilder`). 
-    Separating the mathematical state transition from the physical structure generation allows the system 
-    to rapidly search and hash millions of configurations without the overhead of ASE/Pymatgen.
     """
     def apply(self, state: SurfaceState, action: MutationAction) -> SurfaceState:
         """
@@ -60,11 +56,24 @@ class TransitionEngine:
 
     def _change_adsorbate(self, state: SurfaceState, params: Dict[str, Any]) -> None:
         """Updates the target adsorbate identity (e.g., params={"adsorbate": "OH"})."""
-        state.adsorbate = params["adsorbate"]
+        # For simplicity, we replace all adsorbates or just the first one
+        if state.adsorbates:
+            state.adsorbates[0].identity = params["adsorbate"]
+        else:
+            state.adsorbates.append(AdsorbateInstance(identity=params["adsorbate"], coverage=0.25))
+        
+        # Keep summary field updated
+        state.coverage = sum(a.coverage for a in state.adsorbates)
 
     def _modify_coverage(self, state: SurfaceState, params: Dict[str, Any]) -> None:
         """Updates the surface coverage fraction (e.g., params={"coverage": 0.5})."""
-        state.coverage = params["coverage"]
+        if state.adsorbates:
+            state.adsorbates[0].coverage = params["coverage"]
+        else:
+            # Assume some default if list is empty
+            state.adsorbates.append(AdsorbateInstance(identity="O", coverage=params["coverage"]))
+            
+        state.coverage = sum(a.coverage for a in state.adsorbates)
 
     def _alter_charge_state(self, state: SurfaceState, params: Dict[str, Any]) -> None:
         """
