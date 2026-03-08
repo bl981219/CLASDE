@@ -25,6 +25,7 @@ clasde-loop = "cli.loop_cli:main"
 clasde-builder = "cli.builder_cli:main"
 clasde-visualize = "cli.visualize_cli:main"
 clasde-collaborator = "cli.collaborator_cli:main"
+clasde-explore = "cli.explore_cli:main"
 
 [build-system]
 requires = ["setuptools", "wheel"]

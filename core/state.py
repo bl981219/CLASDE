@@ -6,38 +6,45 @@ import json
 
 logger = logging.getLogger(__name__)
 
+class AdsorbateInstance(BaseModel):
+    """Specific instance of an adsorbate on a surface site."""
+    identity: str = Field(..., description="Chemical formula of the adsorbate, e.g., 'CO'")
+    site_type: str = Field("top", description="Site type, e.g., 'top', 'bridge', 'hollow'")
+    coverage: float = Field(0.0, description="Coverage fraction of this specific adsorbate")
+    orientation: Optional[Dict[str, Any]] = Field(default_factory=dict, description="Orientation descriptors")
+
 class SurfaceState(BaseModel):
     """
     Formal canonical representation of the atomistic surface configuration space.
     
-    This object acts as the universal "Source of Truth" across all agents. Rather than 
-    passing heavy 3D atomic structures (like ASE Atoms objects) between agents, CLASDE 
-    passes this lightweight mathematical descriptor. 
-    
-    S = {c, τ, (h,k,l), d, a, θ, (T, p, Φ)}
-    
-    Attributes:
-        bulk_composition (c): Stoichiometry of the host material (e.g., {"La": 0.5, "Sr": 0.5, "Mn": 1.0, "O": 3.0}).
-        miller_index (h,k,l): Crystallographic plane of the surface.
-        termination (τ): Descriptor for the topmost layer (e.g., "SrO" or "MnO2").
-        defects (d): Vector of point defects, like vacancies or substitutions.
-        adsorbate (a): Identity of the bound molecule/atom (e.g., "OH").
-        coverage (θ): Fractional surface coverage of the adsorbate.
-        external_conditions: Environmental parameters: Temperature (T), Pressure (p), Electrochemical Potential (Φ).
+    This object acts as the universal "Source of Truth" across all agents. 
+    It is designed to be physically expressive for surface science, containing 
+    bulk properties, surface specifics, and detailed adsorbate configurations.
     """
     bulk_composition: Dict[str, float] = Field(..., description="Bulk composition vector c")
     miller_index: Tuple[int, int, int] = Field(..., description="Miller index (h, k, l)")
     termination: str = Field(..., description="Surface termination descriptor τ")
+    
+    slab_atoms: Optional[Any] = Field(None, description="Physical structure object (e.g., ASE Atoms). Excluded from direct hashing.")
+    
+    adsorbates: List[AdsorbateInstance] = Field(default_factory=list, description="List of adsorbates on the surface")
+    coverage: float = Field(0.0, description="Total coverage θ (legacy/summary field)")
+    
     defects: List[Dict] = Field(default_factory=list, description="Defect vector d")
-    adsorbate: Optional[str] = Field(None, description="Adsorbate identity a")
-    coverage: float = Field(0.0, description="Coverage θ")
+    strain: Tuple[float, float, float] = Field((0.0, 0.0, 0.0), description="Strain applied to the slab (xx, yy, xy)")
+    
+    temperature: float = Field(298.15, description="Temperature in Kelvin")
+    pressure: float = Field(1.0, description="Pressure in atm")
     external_conditions: Dict[str, float] = Field(
-        default_factory=lambda: {"T": 298.15, "p": 1.0, "Phi": 0.0},
-        description="External conditions (T, p, Φ)"
+        default_factory=lambda: {"Phi": 0.0},
+        description="Other external conditions (e.g., Electrochemical Potential Φ)"
     )
     
     # Metadata for tracking origin, lineage, or physical file paths
     metadata: Dict = Field(default_factory=dict)
+
+    class Config:
+        arbitrary_types_allowed = True
 
     def is_physically_equivalent(self, other: Any) -> bool:
         """
@@ -79,7 +86,7 @@ class SurfaceState(BaseModel):
 
     def to_json(self) -> str:
         """Serialize state to a canonical JSON string."""
-        return json.dumps(self.model_dump(), sort_keys=True)
+        return json.dumps(self.model_dump(exclude={'slab_atoms'}), sort_keys=True)
 
     def get_summary(self) -> str:
         """Generate a human-readable summary string for folder naming."""
@@ -95,7 +102,7 @@ class SurfaceState(BaseModel):
             elif last.get("type") == "substitution":
                 defect_str = f"_sub_{last.get('dopant')}"
         
-        ads_str = f"_ads_{self.adsorbate}" if self.adsorbate else ""
+        ads_str = f"_ads_{self.adsorbates[0].identity}" if self.adsorbates else ""
         
         return f"{comp}_{facet}{defect_str}{ads_str}"
 
@@ -132,13 +139,14 @@ class SurfaceState(BaseModel):
         # 3. Adsorbate encoding (One-hot or atomic number)
         # Mock: Simple mapping for common adsorbates
         adsorbate_map = {"O": 8, "OH": 9, "H2O": 10, "CO": 14, None: 0}
-        ads_feat = [float(adsorbate_map.get(self.adsorbate, -1))]
+        primary_ads = self.adsorbates[0].identity if self.adsorbates else None
+        ads_feat = [float(adsorbate_map.get(primary_ads, -1))]
         
         # 4. Coverage and External conditions
         cond_feats = [
             self.coverage,
-            self.external_conditions.get("T", 298.15) / 1000.0,
-            self.external_conditions.get("p", 1.0),
+            self.temperature / 1000.0,
+            self.pressure,
             self.external_conditions.get("Phi", 0.0)
         ]
         

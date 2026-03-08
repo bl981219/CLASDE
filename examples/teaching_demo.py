@@ -37,7 +37,7 @@ def run_teaching_demo():
 
     # 2. Cleanup previous data for a fresh demo
     results_dir = "data/results"
-    output_dir = "teaching/teaching_results"
+    output_dir = "examples/teaching_results"
     
     if os.path.exists(results_dir):
         shutil.rmtree(results_dir)
@@ -86,7 +86,7 @@ def run_teaching_demo():
         f.write("3. Observe how 'Vacancy_Density' or 'Coverage' were identified as driving factors in the theory section.\n")
 
     print(f"\n[Phase 3] Created Teaching Guide at {teaching_guide_path}")
-    print("\nTeaching Demo Complete. Results preserved in teaching/teaching_results/\n")
+    print("\nTeaching Demo Complete. Results preserved in examples/teaching_results/\n")
 
 if __name__ == "__main__":
     run_teaching_demo()

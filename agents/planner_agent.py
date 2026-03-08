@@ -47,18 +47,27 @@ class ResearchPlanner(BaseAgent):
 
     def update_belief(self, observations: Dict[str, Any]) -> None:
         """Update utility estimates for different task types."""
-        # Heuristic: If recent jobs failed convergence, increase utility of MD (pre-equilibration)
-        # If uncertainty is high, increase utility of MLIP_TRAIN
-        pass
+        recent_failed = False
+        high_uncertainty = False
+        
+        for exp in observations.get("recent", []):
+            if not exp.get("convergence", True):
+                recent_failed = True
+            if exp.get("metadata", {}).get("sigma", 0) > 0.5:
+                high_uncertainty = True
+                
+        self.belief_state["needs_md"] = recent_failed
+        self.belief_state["needs_mlip"] = high_uncertainty
+        self.belief_state["needs_neb"] = len(self.hyp_db.hypotheses) > 0
 
     def propose_actions(self) -> List[List[WorkflowTask]]:
         """Propose candidate workflow sequences."""
-        # Simple sequences for demonstration
         candidates = [
             [WorkflowTask.RELAX, WorkflowTask.ADSORPTION],
             [WorkflowTask.MD, WorkflowTask.RELAX, WorkflowTask.ADSORPTION],
             [WorkflowTask.RELAX, WorkflowTask.DOS, WorkflowTask.ADSORPTION],
-            [WorkflowTask.MLIP_TRAIN, WorkflowTask.RELAX]
+            [WorkflowTask.MLIP_TRAIN, WorkflowTask.RELAX],
+            [WorkflowTask.RELAX, WorkflowTask.NEB]
         ]
         return candidates
 
@@ -66,10 +75,18 @@ class ResearchPlanner(BaseAgent):
         """Score workflows based on scientific goal and resource cost."""
         scores: List[float] = []
         for sequence in candidates:
-            # Heuristic score based on length and task diversity
-            score = 1.0 / len(sequence) 
-            if WorkflowTask.MD in sequence:
-                score += 0.5 # Bias towards stability checks
+            score = 0.0
+            if self.belief_state.get("needs_md") and WorkflowTask.MD in sequence:
+                score += 2.0
+            if self.belief_state.get("needs_mlip") and WorkflowTask.MLIP_TRAIN in sequence:
+                score += 2.0
+            if self.belief_state.get("needs_neb") and WorkflowTask.NEB in sequence:
+                score += 2.0
+                
+            # Default fallback score
+            if score == 0.0 and sequence == [WorkflowTask.RELAX, WorkflowTask.ADSORPTION]:
+                score = 1.0
+                
             scores.append(score)
         return scores
 

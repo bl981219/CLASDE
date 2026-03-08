@@ -56,66 +56,69 @@ CLASDE/
 
 ## The Lab Metaphor: Roles & Responsibilities
 
-CLASDE mimics the hierarchy of a world-class computational research group, where specialized agents collaborate through a shared knowledge base.
+CLASDE mimics the hierarchy of a world-class computational surface science group. The system is designed not as a generic optimizer, but specifically to discover catalytic mechanisms, adsorption scaling relations, and stable surface phases.
 
 | Role | Agent | Responsibility | Metaphor |
 | :--- | :--- | :--- | :--- |
-| **Strategic Collaborator** | `Agent -1` | Translates natural language intent into formal campaigns. | **The Investor/Expert** |
-| **Hypothesis Agent** | `Agent 0` | Induces physical laws from the Knowledge Graph. | **The Principal Investigator** |
-| **Research Planner** | `Agent 0.5` | Dynamically constructs task sequences (MD, NEB, Relax). | **The Research Planner** |
-| **Research Governor** | `Agent 1` | Enforces budget ceilings and chemical constraints. | **The Lab Manager** |
-| **Optimization Strategist** | `Agent 2` | Operates surrogate models to select next experiments. | **The Senior Postdoc** |
-| **Structure Builder** | `Agent 3` | Constructs 3D atomistic slabs and applies defects. | **The PhD Student** |
-| **Compute Manager** | `Agent 4` | Orchestrates HPC execution and failure recovery. | **The Lab Technician** |
-| **Evaluation Agent** | `Agent 5` | Parses raw DFT/MLFF outputs into scalar rewards. | **The Data Analyst** |
+| **Strategic Collaborator** | `Agent -1` | Translates natural language intent into formal surface science campaigns (e.g., "Find CO oxidation pathways on Pt"). | **The Investor/Expert** |
+| **Hypothesis Agent** | `Agent 0` | Induces physical laws (e.g., d-band center correlations, scaling relations) from the Knowledge Graph. | **The Principal Investigator** |
+| **Research Planner** | `Agent 0.5` | Dynamically constructs task sequences based on scientific reasoning (e.g., if unstable -> run MD; if pathway unknown -> run NEB). | **The Research Planner** |
+| **Research Governor** | `Agent 1` | Enforces budget ceilings, Sabatier optimum windows, and chemical constraints. | **The Lab Manager** |
+| **Optimization Strategist** | `Agent 2` | Operates surrogate models to balance Expected Reward, Uncertainty, Novelty, and Cost. | **The Senior Postdoc** |
+| **Structure Builder** | `Agent 3` | Constructs 3D atomistic slabs, places specific adsorbates on defined sites (top, bridge, hollow), and manages coverages. | **The PhD Student** |
+| **Compute Manager** | `Agent 4` | Orchestrates HPC execution (VASP, MLIP, MD, NEB) and handles SCF/Ionic failure recovery. | **The Lab Technician** |
+| **Evaluation Agent** | `Agent 5` | Parses raw DFT outputs into core surface metrics (Adsorption Energy, Reaction Barrier, d-band center, Work Function). | **The Data Analyst** |
 
 ---
 
-## How CLASDE Works: The Agentic Discovery Loop
+## How CLASDE Works: Surface Science Agentic Loop
 
-The system operates as a continuous, self-correcting feedback loop centered around a **Scientific Knowledge Graph**.
+The system operates as a continuous, self-correcting feedback loop centered around a **Scientific Knowledge Graph** tailored for surface catalysis.
 
 ```text
-[ User Intent ] 
+===================================================================================
+                     THE CLASDE AUTONOMOUS DISCOVERY ENGINE
+===================================================================================
+
+[ USER INTENT ]  "Explore CO adsorption on Cu(111)"
       |
       v
-[ Collaborator Agent ]  <--- (Natural Language -> Formal Campaign)
+[ COLLABORATOR AGENT ] -----> Formulates Objective: Sabatier Target E_ads = -1.5 eV
       |
-      +----------------------------+
-      |                            |
-      v                            v
-[ Research Governor ]       [ Hypothesis Agent ] <--- (Theory Induction)
-      |                            ^
-      v                            |
-[ Strategist Agent ] <------- [ Knowledge Graph ] <--- (Central Memory)
-      |                            ^
-      +----(Propose Actions)-------+
-      |                            |
-      v                            |
-[ Planner Agent ]  <---------(Observe Beliefs)
-      |
-      v (Dynamic Workflow: MD -> Relax -> Adsorption)
-      |
-[ Builder Agent ]  -----> [ Compute Manager ] -----> [ Evaluation Agent ]
-      |                          |                          |
-      +---(Build POSCAR)         +---(Run VASP/MLIP)        +---(Extract R)
+      +-------------------------------------------------------------------+
+      |                                                                   |
+      v                                                                   v
+[ RESEARCH GOVERNOR ]                                           [ HYPOTHESIS AGENT ]
+(Enforces max 100 DFT calls)                                    (Induces Scaling Relations)
+      |                                                                   ^
+      v                                                                   |
+[ STRATEGIST AGENT ] <----------------------------------------- [ KNOWLEDGE GRAPH ]
+(Surrogate Model + UCB)                                           (Central Memory)
+      |                                                                   ^
+      +----(Proposes: Add Vacancy, Change Coverage)-----------------------+
+      |                                                                   |
+      v                                                                   |
+[ PLANNER AGENT ]  <-----(Scientific Reasoning: High Uncertainty?)        |
+      |                                                                   |
+      v (Dynamic Workflow: MLIP Relax -> NEB Barrier -> DFT Adsorption)   |
+      |                                                                   |
+[ BUILDER AGENT ] ---------> [ COMPUTE MANAGER ] ---------> [ EVALUATION AGENT ]
+(Slab/Site Gen)              (VASP / MACE / MD)             (Extracts d-band, E_a)
 ```
 
-1.  **Observing State:** The Strategist observes the current `ExperimentDatabase` and the `KnowledgeGraph`.
-2.  **Updating Belief:** The internal Surrogate Model (Gaussian Process) is refitted with new data.
-3.  **Proposing Actions:** The Strategist projects potential mutations (vacancies, swaps, coverage changes).
-4.  **Dynamic Planning:** The Planner generates a custom task sequence for the most promising candidates.
-5.  **Autonomous Execution:** The Compute Manager probes the cluster, submits Slurm jobs, and handles restarts.
-6.  **Knowledge Integration:** Results are decomposed into semantic nodes and relations, updating the group's "Scientific Memory."
+1.  **State Representation:** Everything revolves around the `SurfaceState`, tracking bulk composition, facet, termination, specific adsorbate sites/orientations, coverage, defects, and strain.
+2.  **Scientific Planning:** The Planner agent doesn't use hardcoded pipelines. If an adsorption energy is highly uncertain, it requests more adsorption calculations. If a surface is unstable, it triggers MD. If a mechanism is unknown, it triggers NEB.
+3.  **Execution & Recovery:** The Compute Manager uses specialized tools (`slab_generator`, `adsorption_site_finder`, `neb_runner`) to submit jobs to Slurm, actively monitoring and fixing divergence issues.
+4.  **Knowledge Integration:** Results update the `KnowledgeGraph`, linking `Surface -> Site -> Adsorbate -> Reaction Path`.
 
 ---
 
 ## Key Features
-- **Semantic Knowledge Graph:** Tracks Material -> Surface -> Structure -> Result with full provenance.
-- **Dynamic Workflows:** Agents decide if a structure needs MD pre-equilibration or NEB barrier mapping.
+- **Surface Science Ontology:** Native support for modeling reaction pathways, activation barriers, surface reconstructions, and coverage effects.
+- **Dynamic Workflows:** Agents autonomously decide the execution path (e.g., MD pre-equilibration vs. NEB barrier mapping).
 - **HPC Robustness:** Autonomous Slurm management with automatic SCF/Ionic recovery.
-- **Multi-Objective Optimization:** Acquisition functions balance Reward, Uncertainty, Novelty, and Cost.
-- **Scientific Uncertainty:** Quantifies the epistemic support for every discovered physical law.
+- **Multi-Objective Optimization:** Acquisition functions balance Catalytic Activity, Uncertainty, Novelty, and Computational Cost.
+- **Scientific Uncertainty:** Quantifies the epistemic support for every discovered physical law (e.g., d-band theory).
 
 ---
 
@@ -136,7 +139,14 @@ The system operates as a continuous, self-correcting feedback loop centered arou
 
 ## Usage
 
+### Domain-Specific Surface Exploration
+Launch a targeted surface science campaign directly from the CLI:
+```bash
+clasde-explore LaSrFeO3 001 O
+```
+
 ### Natural Language Collaboration
+Initiate a campaign by describing your research goal in plain English:
 ```bash
 clasde-collaborator --prompt "how does Sr segregation in LaSrFeO3 depend on T?"
 ```

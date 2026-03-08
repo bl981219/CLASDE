@@ -10,8 +10,15 @@ logger = logging.getLogger(__name__)
 class NodeType(str, Enum):
     MATERIAL = "material"
     SURFACE = "surface"
+    SITE = "site"
+    COVERAGE_STATE = "coverage_state"
+    ADSORPTION_CONFIGURATION = "adsorption_configuration"
     ADSORBATE = "adsorbate"
     STRUCTURE = "structure"
+    INTERMEDIATE = "intermediate"
+    TRANSITION_STATE = "transition_state"
+    REACTION = "reaction"
+    REACTION_PATH = "reaction_path"
     CALCULATION = "calculation"
     RESULT = "result"
 
