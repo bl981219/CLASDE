@@ -129,7 +129,25 @@ class LLMCollaborator:
                 "description": "Rule-based mapping: Studying oxygen adsorption behavior on Cu(111)."
             }
         
-        # Heuristic 3: General Stability Search
+        # Heuristic 3: Detect LSCF Poisoning (Cr and S)
+        if "lscf" in prompt_lower or ("la" in prompt_lower and "sr" in prompt_lower and "fe" in prompt_lower):
+            return {
+                "name": "LSCF_Poisoning_Mechanism",
+                "objective": {
+                    "type": "adsorption_tuning",
+                    "adsorbate": "SO2",
+                    "target_e_ads": -1.5
+                },
+                "constraints": {
+                    "bulk": {"La": 0.6, "Sr": 0.4, "Fe": 0.8, "Co": 0.2, "O": 3.0},
+                    "facet": [0, 0, 1]
+                },
+                "variables": ["T", "p", "Phi"],
+                "budget": {"max_evaluations": 100},
+                "description": "Investigating the competition between CrO3 and SO2 poisoning on La0.6Sr0.4Fe0.8Co0.2O3 (001) surfaces."
+            }
+        
+        # Heuristic 4: General Stability Search
         return {
             "name": "General_Discovery",
             "objective": {"type": "stability"},
