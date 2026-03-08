@@ -160,3 +160,13 @@ clasde-collaborator --prompt "how does Sr segregation in LaSrFeO3 depend on T?"
 ```bash
 clasde-loop --config configs/default.yaml
 ```
+
+---
+
+## Case Studies & Examples
+
+### Cr and S Poisoning on LSCF Perovskites
+A full 100-iteration discovery campaign targeting $CrO_3$ and $SO_2$ adsorption competition on pristine $La_{0.6}Sr_{0.4}Fe_{0.8}Co_{0.2}O_3$.
+- **Location:** `examples/LSCF_Poisoning_CaseStudy/`
+- **Key Outcome:** Induced physical laws linking vacancy density and metal d-band center to poison binding strength.
+- **Workflow:** Trace the agentic decision logic through the provided `discovery_log.md`.

@@ -1,0 +1,2496 @@
+{
+  "nodes": [
+    {
+      "id": "mat_1440655973489291345",
+      "type": "material",
+      "properties": {
+        "composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 0.8,
+          "Co": 0.2,
+          "O": 3.0
+        }
+      }
+    },
+    {
+      "id": "surf_(0, 0, 1)_default",
+      "type": "surface",
+      "properties": {
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default"
+      }
+    },
+    {
+      "id": "site_surf_(0, 0, 1)_default_top_None",
+      "type": "site",
+      "properties": {
+        "type": "top",
+        "coordination": null,
+        "neighbors": []
+      }
+    },
+    {
+      "id": "config_8bfdb9ac_O",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "O",
+        "coverage": 1.0,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "ads_O",
+      "type": "adsorbate",
+      "properties": {
+        "identity": "O"
+      }
+    },
+    {
+      "id": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "type": "structure",
+      "properties": {
+        "defects": [],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "O",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 1.0,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 1.0,
+          "defects": [],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_8bfdb9ac_1",
+      "type": "calculation",
+      "properties": {
+        "iteration": 1,
+        "fidelity": "MLIP",
+        "sigma": 0.005998897302888161,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_8bfdb9ac_1",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "config_a50700b2_O",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "O",
+        "coverage": 0.25,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
+      "type": "structure",
+      "properties": {
+        "defects": [],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "O",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 0.25,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 0.25,
+          "defects": [],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_a50700b2_2",
+      "type": "calculation",
+      "properties": {
+        "iteration": 2,
+        "fidelity": "MLIP",
+        "sigma": 1.6766720393725438,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_a50700b2_2",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "config_d6e4a885_O",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "O",
+        "coverage": 0.5,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
+      "type": "structure",
+      "properties": {
+        "defects": [],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "O",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 0.5,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 0.5,
+          "defects": [],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_d6e4a885_3",
+      "type": "calculation",
+      "properties": {
+        "iteration": 3,
+        "fidelity": "MLIP",
+        "sigma": 0.006678497609636287,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_d6e4a885_3",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "config_aeae18b6_O",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "O",
+        "coverage": 0.75,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
+      "type": "structure",
+      "properties": {
+        "defects": [],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "O",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 0.75,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 0.75,
+          "defects": [],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_aeae18b6_4",
+      "type": "calculation",
+      "properties": {
+        "iteration": 4,
+        "fidelity": "MLIP",
+        "sigma": 2.688855839943169e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_aeae18b6_4",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_8bfdb9ac_5",
+      "type": "calculation",
+      "properties": {
+        "iteration": 5,
+        "fidelity": "MLIP",
+        "sigma": 2.2823716483873792e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_8bfdb9ac_5",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_a50700b2_6",
+      "type": "calculation",
+      "properties": {
+        "iteration": 6,
+        "fidelity": "MLIP",
+        "sigma": 2.1255346763776868e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_a50700b2_6",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_aeae18b6_7",
+      "type": "calculation",
+      "properties": {
+        "iteration": 7,
+        "fidelity": "MLIP",
+        "sigma": 1.679531655026452e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_aeae18b6_7",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_a50700b2_8",
+      "type": "calculation",
+      "properties": {
+        "iteration": 8,
+        "fidelity": "MLIP",
+        "sigma": 1.5546296276183444e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_a50700b2_8",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_8bfdb9ac_9",
+      "type": "calculation",
+      "properties": {
+        "iteration": 9,
+        "fidelity": "MLIP",
+        "sigma": 1.4768783606365066e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_8bfdb9ac_9",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_d6e4a885_10",
+      "type": "calculation",
+      "properties": {
+        "iteration": 10,
+        "fidelity": "MLIP",
+        "sigma": 1.3222233490311891e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_d6e4a885_10",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_a50700b2_11",
+      "type": "calculation",
+      "properties": {
+        "iteration": 11,
+        "fidelity": "MLIP",
+        "sigma": 1.2358039470513867e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_a50700b2_11",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_8bfdb9ac_12",
+      "type": "calculation",
+      "properties": {
+        "iteration": 12,
+        "fidelity": "MLIP",
+        "sigma": 1.1879064357127308e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_8bfdb9ac_12",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_aeae18b6_13",
+      "type": "calculation",
+      "properties": {
+        "iteration": 13,
+        "fidelity": "MLIP",
+        "sigma": 1.1035088598026002e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_aeae18b6_13",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_a50700b2_14",
+      "type": "calculation",
+      "properties": {
+        "iteration": 14,
+        "fidelity": "MLIP",
+        "sigma": 1.0521200421591903e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_a50700b2_14",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_8bfdb9ac_15",
+      "type": "calculation",
+      "properties": {
+        "iteration": 15,
+        "fidelity": "MLIP",
+        "sigma": 1.0190474627333731e-05,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_8bfdb9ac_15",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_d6e4a885_16",
+      "type": "calculation",
+      "properties": {
+        "iteration": 16,
+        "fidelity": "MLIP",
+        "sigma": 9.709245265466582e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_d6e4a885_16",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_a50700b2_17",
+      "type": "calculation",
+      "properties": {
+        "iteration": 17,
+        "fidelity": "MLIP",
+        "sigma": 9.294224893805574e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_a50700b2_17",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_8bfdb9ac_18",
+      "type": "calculation",
+      "properties": {
+        "iteration": 18,
+        "fidelity": "MLIP",
+        "sigma": 9.048030639887402e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_8bfdb9ac_18",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_aeae18b6_19",
+      "type": "calculation",
+      "properties": {
+        "iteration": 19,
+        "fidelity": "MLIP",
+        "sigma": 8.703931405779264e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_aeae18b6_19",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_8bfdb9ac_20",
+      "type": "calculation",
+      "properties": {
+        "iteration": 20,
+        "fidelity": "MLIP",
+        "sigma": 8.414518995287164e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_8bfdb9ac_20",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_a50700b2_21",
+      "type": "calculation",
+      "properties": {
+        "iteration": 21,
+        "fidelity": "MLIP",
+        "sigma": 8.214959153814986e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_a50700b2_21",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_d6e4a885_22",
+      "type": "calculation",
+      "properties": {
+        "iteration": 22,
+        "fidelity": "MLIP",
+        "sigma": 7.9832585727196e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_d6e4a885_22",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_a50700b2_23",
+      "type": "calculation",
+      "properties": {
+        "iteration": 23,
+        "fidelity": "MLIP",
+        "sigma": 7.737237263875868e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_a50700b2_23",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_8bfdb9ac_24",
+      "type": "calculation",
+      "properties": {
+        "iteration": 24,
+        "fidelity": "MLIP",
+        "sigma": 7.57813177097435e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_8bfdb9ac_24",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_aeae18b6_25",
+      "type": "calculation",
+      "properties": {
+        "iteration": 25,
+        "fidelity": "MLIP",
+        "sigma": 7.385091096554175e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_aeae18b6_25",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_a50700b2_26",
+      "type": "calculation",
+      "properties": {
+        "iteration": 26,
+        "fidelity": "MLIP",
+        "sigma": 7.195101603683208e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_a50700b2_26",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_8bfdb9ac_27",
+      "type": "calculation",
+      "properties": {
+        "iteration": 27,
+        "fidelity": "MLIP",
+        "sigma": 7.06260286009893e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_8bfdb9ac_27",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_d6e4a885_28",
+      "type": "calculation",
+      "properties": {
+        "iteration": 28,
+        "fidelity": "MLIP",
+        "sigma": 6.9210424591232554e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_d6e4a885_28",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_a50700b2_29",
+      "type": "calculation",
+      "properties": {
+        "iteration": 29,
+        "fidelity": "MLIP",
+        "sigma": 6.751635193639115e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_a50700b2_29",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_8bfdb9ac_30",
+      "type": "calculation",
+      "properties": {
+        "iteration": 30,
+        "fidelity": "MLIP",
+        "sigma": 6.639002744914748e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_8bfdb9ac_30",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_d6e4a885_31",
+      "type": "calculation",
+      "properties": {
+        "iteration": 31,
+        "fidelity": "MLIP",
+        "sigma": 6.528565640290844e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_d6e4a885_31",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_a50700b2_32",
+      "type": "calculation",
+      "properties": {
+        "iteration": 32,
+        "fidelity": "MLIP",
+        "sigma": 6.383785255384759e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_a50700b2_32",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_aeae18b6_33",
+      "type": "calculation",
+      "properties": {
+        "iteration": 33,
+        "fidelity": "MLIP",
+        "sigma": 6.286401778366698e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_aeae18b6_33",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_8bfdb9ac_34",
+      "type": "calculation",
+      "properties": {
+        "iteration": 34,
+        "fidelity": "MLIP",
+        "sigma": 6.190217626443402e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_8bfdb9ac_34",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_aeae18b6_35",
+      "type": "calculation",
+      "properties": {
+        "iteration": 35,
+        "fidelity": "MLIP",
+        "sigma": 6.065882695600673e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_aeae18b6_35",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_8bfdb9ac_36",
+      "type": "calculation",
+      "properties": {
+        "iteration": 36,
+        "fidelity": "MLIP",
+        "sigma": 5.980598041064931e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_8bfdb9ac_36",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_a50700b2_37",
+      "type": "calculation",
+      "properties": {
+        "iteration": 37,
+        "fidelity": "MLIP",
+        "sigma": 5.895803639123666e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_a50700b2_37",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_aeae18b6_38",
+      "type": "calculation",
+      "properties": {
+        "iteration": 38,
+        "fidelity": "MLIP",
+        "sigma": 5.794452582181497e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_aeae18b6_38",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_a50700b2_39",
+      "type": "calculation",
+      "properties": {
+        "iteration": 39,
+        "fidelity": "MLIP",
+        "sigma": 5.718872111613622e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_a50700b2_39",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_8bfdb9ac_40",
+      "type": "calculation",
+      "properties": {
+        "iteration": 40,
+        "fidelity": "MLIP",
+        "sigma": 5.646032115817167e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_8bfdb9ac_40",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_d6e4a885_41",
+      "type": "calculation",
+      "properties": {
+        "iteration": 41,
+        "fidelity": "MLIP",
+        "sigma": 5.5703109577369946e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_d6e4a885_41",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_8bfdb9ac_42",
+      "type": "calculation",
+      "properties": {
+        "iteration": 42,
+        "fidelity": "MLIP",
+        "sigma": 5.480894352802722e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_8bfdb9ac_42",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_a50700b2_43",
+      "type": "calculation",
+      "properties": {
+        "iteration": 43,
+        "fidelity": "MLIP",
+        "sigma": 5.4210031670821965e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_a50700b2_43",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_d6e4a885_44",
+      "type": "calculation",
+      "properties": {
+        "iteration": 44,
+        "fidelity": "MLIP",
+        "sigma": 5.349892217135159e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_d6e4a885_44",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_a50700b2_45",
+      "type": "calculation",
+      "properties": {
+        "iteration": 45,
+        "fidelity": "MLIP",
+        "sigma": 5.278341757445025e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_a50700b2_45",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_aeae18b6_46",
+      "type": "calculation",
+      "properties": {
+        "iteration": 46,
+        "fidelity": "MLIP",
+        "sigma": 5.216733836202904e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_aeae18b6_46",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "calc_8bfdb9ac_47",
+      "type": "calculation",
+      "properties": {
+        "iteration": 47,
+        "fidelity": "MLIP",
+        "sigma": 5.167312650891397e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_8bfdb9ac_47",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "config_bdddf82c_O",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "O",
+        "coverage": 1.0,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "bdddf82c510485b1bc4eae6bb6cbbbfe159331c3ebc65959fa4fc3951e17d348",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "O",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 1.0,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 1.0,
+          "defects": [
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_bdddf82c_48",
+      "type": "calculation",
+      "properties": {
+        "iteration": 48,
+        "fidelity": "MLIP",
+        "sigma": 5.093923835591267e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_bdddf82c_48",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "config_24c8d318_O",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "O",
+        "coverage": 0.25,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "24c8d318f8f69d0f0817d0beec79bf5407f103c89d8ed9269f67ac4a5c066483",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "O",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 0.25,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 0.25,
+          "defects": [
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_24c8d318_49",
+      "type": "calculation",
+      "properties": {
+        "iteration": 49,
+        "fidelity": "MLIP",
+        "sigma": 5.045304971703021e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_24c8d318_49",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    },
+    {
+      "id": "config_2e92de61_O",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "O",
+        "coverage": 0.5,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "2e92de6111a50c3a97700460033fed2878a8ccc3fc2e7f06278c1c9cb5b43b33",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "O",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 0.5,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 0.5,
+          "defects": [
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_2e92de61_50",
+      "type": "calculation",
+      "properties": {
+        "iteration": 50,
+        "fidelity": "MLIP",
+        "sigma": 4.990619314010181e-06,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_2e92de61_50",
+      "type": "result",
+      "properties": {
+        "reward": -1.6466558883586782,
+        "total_energy": 32.93311776717356,
+        "adsorption_energy": 1.6466558883586782,
+        "status": "completed",
+        "fidelity": "local_emt"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "mat_1440655973489291345",
+      "target": "surf_(0, 0, 1)_default",
+      "relation": "has_surface",
+      "metadata": {}
+    },
+    {
+      "source": "surf_(0, 0, 1)_default",
+      "target": "site_surf_(0, 0, 1)_default_top_None",
+      "relation": "has_site",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_8bfdb9ac_O",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_a50700b2_O",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_d6e4a885_O",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_aeae18b6_O",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_bdddf82c_O",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_24c8d318_O",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_2e92de61_O",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "config_8bfdb9ac_O",
+      "target": "ads_O",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_8bfdb9ac_O",
+      "target": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "target": "calc_8bfdb9ac_1",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "target": "calc_8bfdb9ac_5",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "target": "calc_8bfdb9ac_9",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "target": "calc_8bfdb9ac_12",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "target": "calc_8bfdb9ac_15",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "target": "calc_8bfdb9ac_18",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "target": "calc_8bfdb9ac_20",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "target": "calc_8bfdb9ac_24",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "target": "calc_8bfdb9ac_27",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "target": "calc_8bfdb9ac_30",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "target": "calc_8bfdb9ac_34",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "target": "calc_8bfdb9ac_36",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "target": "calc_8bfdb9ac_40",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "target": "calc_8bfdb9ac_42",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "target": "calc_8bfdb9ac_47",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_8bfdb9ac_1",
+      "target": "res_calc_8bfdb9ac_1",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "config_a50700b2_O",
+      "target": "ads_O",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_a50700b2_O",
+      "target": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
+      "target": "calc_a50700b2_2",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
+      "target": "calc_a50700b2_6",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
+      "target": "calc_a50700b2_8",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
+      "target": "calc_a50700b2_11",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
+      "target": "calc_a50700b2_14",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
+      "target": "calc_a50700b2_17",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
+      "target": "calc_a50700b2_21",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
+      "target": "calc_a50700b2_23",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
+      "target": "calc_a50700b2_26",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
+      "target": "calc_a50700b2_29",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
+      "target": "calc_a50700b2_32",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
+      "target": "calc_a50700b2_37",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
+      "target": "calc_a50700b2_39",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
+      "target": "calc_a50700b2_43",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
+      "target": "calc_a50700b2_45",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_a50700b2_2",
+      "target": "res_calc_a50700b2_2",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "config_d6e4a885_O",
+      "target": "ads_O",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_d6e4a885_O",
+      "target": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
+      "target": "calc_d6e4a885_3",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
+      "target": "calc_d6e4a885_10",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
+      "target": "calc_d6e4a885_16",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
+      "target": "calc_d6e4a885_22",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
+      "target": "calc_d6e4a885_28",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
+      "target": "calc_d6e4a885_31",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
+      "target": "calc_d6e4a885_41",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
+      "target": "calc_d6e4a885_44",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_d6e4a885_3",
+      "target": "res_calc_d6e4a885_3",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "config_aeae18b6_O",
+      "target": "ads_O",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_aeae18b6_O",
+      "target": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
+      "target": "calc_aeae18b6_4",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
+      "target": "calc_aeae18b6_7",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
+      "target": "calc_aeae18b6_13",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
+      "target": "calc_aeae18b6_19",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
+      "target": "calc_aeae18b6_25",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
+      "target": "calc_aeae18b6_33",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
+      "target": "calc_aeae18b6_35",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
+      "target": "calc_aeae18b6_38",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
+      "target": "calc_aeae18b6_46",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_aeae18b6_4",
+      "target": "res_calc_aeae18b6_4",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_8bfdb9ac_5",
+      "target": "res_calc_8bfdb9ac_5",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_a50700b2_6",
+      "target": "res_calc_a50700b2_6",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_aeae18b6_7",
+      "target": "res_calc_aeae18b6_7",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_a50700b2_8",
+      "target": "res_calc_a50700b2_8",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_8bfdb9ac_9",
+      "target": "res_calc_8bfdb9ac_9",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_d6e4a885_10",
+      "target": "res_calc_d6e4a885_10",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_a50700b2_11",
+      "target": "res_calc_a50700b2_11",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_8bfdb9ac_12",
+      "target": "res_calc_8bfdb9ac_12",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_aeae18b6_13",
+      "target": "res_calc_aeae18b6_13",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_a50700b2_14",
+      "target": "res_calc_a50700b2_14",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_8bfdb9ac_15",
+      "target": "res_calc_8bfdb9ac_15",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_d6e4a885_16",
+      "target": "res_calc_d6e4a885_16",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_a50700b2_17",
+      "target": "res_calc_a50700b2_17",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_8bfdb9ac_18",
+      "target": "res_calc_8bfdb9ac_18",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_aeae18b6_19",
+      "target": "res_calc_aeae18b6_19",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_8bfdb9ac_20",
+      "target": "res_calc_8bfdb9ac_20",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_a50700b2_21",
+      "target": "res_calc_a50700b2_21",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_d6e4a885_22",
+      "target": "res_calc_d6e4a885_22",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_a50700b2_23",
+      "target": "res_calc_a50700b2_23",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_8bfdb9ac_24",
+      "target": "res_calc_8bfdb9ac_24",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_aeae18b6_25",
+      "target": "res_calc_aeae18b6_25",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_a50700b2_26",
+      "target": "res_calc_a50700b2_26",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_8bfdb9ac_27",
+      "target": "res_calc_8bfdb9ac_27",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_d6e4a885_28",
+      "target": "res_calc_d6e4a885_28",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_a50700b2_29",
+      "target": "res_calc_a50700b2_29",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_8bfdb9ac_30",
+      "target": "res_calc_8bfdb9ac_30",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_d6e4a885_31",
+      "target": "res_calc_d6e4a885_31",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_a50700b2_32",
+      "target": "res_calc_a50700b2_32",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_aeae18b6_33",
+      "target": "res_calc_aeae18b6_33",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_8bfdb9ac_34",
+      "target": "res_calc_8bfdb9ac_34",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_aeae18b6_35",
+      "target": "res_calc_aeae18b6_35",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_8bfdb9ac_36",
+      "target": "res_calc_8bfdb9ac_36",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_a50700b2_37",
+      "target": "res_calc_a50700b2_37",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_aeae18b6_38",
+      "target": "res_calc_aeae18b6_38",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_a50700b2_39",
+      "target": "res_calc_a50700b2_39",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_8bfdb9ac_40",
+      "target": "res_calc_8bfdb9ac_40",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_d6e4a885_41",
+      "target": "res_calc_d6e4a885_41",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_8bfdb9ac_42",
+      "target": "res_calc_8bfdb9ac_42",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_a50700b2_43",
+      "target": "res_calc_a50700b2_43",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_d6e4a885_44",
+      "target": "res_calc_d6e4a885_44",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_a50700b2_45",
+      "target": "res_calc_a50700b2_45",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_aeae18b6_46",
+      "target": "res_calc_aeae18b6_46",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_8bfdb9ac_47",
+      "target": "res_calc_8bfdb9ac_47",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "config_bdddf82c_O",
+      "target": "ads_O",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_bdddf82c_O",
+      "target": "bdddf82c510485b1bc4eae6bb6cbbbfe159331c3ebc65959fa4fc3951e17d348",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "bdddf82c510485b1bc4eae6bb6cbbbfe159331c3ebc65959fa4fc3951e17d348",
+      "target": "calc_bdddf82c_48",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_bdddf82c_48",
+      "target": "res_calc_bdddf82c_48",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "config_24c8d318_O",
+      "target": "ads_O",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_24c8d318_O",
+      "target": "24c8d318f8f69d0f0817d0beec79bf5407f103c89d8ed9269f67ac4a5c066483",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "24c8d318f8f69d0f0817d0beec79bf5407f103c89d8ed9269f67ac4a5c066483",
+      "target": "calc_24c8d318_49",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_24c8d318_49",
+      "target": "res_calc_24c8d318_49",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "config_2e92de61_O",
+      "target": "ads_O",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_2e92de61_O",
+      "target": "2e92de6111a50c3a97700460033fed2878a8ccc3fc2e7f06278c1c9cb5b43b33",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "2e92de6111a50c3a97700460033fed2878a8ccc3fc2e7f06278c1c9cb5b43b33",
+      "target": "calc_2e92de61_50",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_2e92de61_50",
+      "target": "res_calc_2e92de61_50",
+      "relation": "yields",
+      "metadata": {}
+    }
+  ]
+}
