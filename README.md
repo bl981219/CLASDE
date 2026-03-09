@@ -102,6 +102,7 @@ Finally, the **Evaluation Agent** parses the raw output files. Results are not j
 
 ## Key Features
 - **Surface Science Ontology:** Native support for modeling reaction pathways, activation barriers, surface reconstructions, and coverage effects.
+- **Advanced Descriptors:** Automated calculation and correlation analysis for **GCN**, **d-band center/edge**, **O2p center**, **charge transfer energy**, and **$e_g$ occupancy**.
 - **Dynamic Workflows:** Agents autonomously decide the execution path (e.g., MD pre-equilibration vs. NEB barrier mapping).
 - **HPC Robustness:** Autonomous Slurm management with automatic SCF/Ionic recovery.
 - **Multi-Objective Optimization:** Acquisition functions balance Catalytic Activity, Uncertainty, Novelty, and Computational Cost.

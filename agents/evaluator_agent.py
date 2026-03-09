@@ -60,9 +60,18 @@ class EvaluationAgent:
         if os.path.exists(outcar_path):
             try:
                 from ase.io import read
+                from science.descriptors import SurfaceDescriptors
                 atoms = read(outcar_path, index="-1", format="vasp-out")
                 observables["total_energy"] = float(atoms.get_potential_energy())
                 observables["status"] = "completed"
+                
+                # 3. Geometric Descriptors (GCN)
+                # Compute GCN for the topmost atoms (heuristic: highest Z)
+                if len(atoms) > 0:
+                    top_idx = int(np.argmax(atoms.positions[:, 2]))
+                    observables["gcn"] = SurfaceDescriptors.compute_gcn(atoms, top_idx)
+                    observables["coordination_number"] = SurfaceDescriptors.compute_coordination_number(atoms, top_idx)
+                    
             except Exception as e:
                 logger.error(f"Error reading OUTCAR at {path}: {e}")
 
@@ -72,6 +81,13 @@ class EvaluationAgent:
             try:
                 electronic_props = self._parse_doscar(doscar_path)
                 observables.update(electronic_props)
+                
+                # Derived Electronic Descriptors
+                from science.descriptors import SurfaceDescriptors
+                observables["charge_transfer_energy"] = SurfaceDescriptors.calculate_charge_transfer_energy(
+                    electronic_props.get("d_band_center", 0.0),
+                    electronic_props.get("o2p_band_center", 0.0)
+                )
             except Exception as e:
                 logger.error(f"Error parsing DOSCAR: {e}")
 
@@ -104,7 +120,12 @@ class EvaluationAgent:
         # and p-band of surface oxygen.
         results = {
             "d_band_center": 0.0,
-            "p_band_center": 0.0
+            "d_band_edge": 0.0,
+            "p_band_center": 0.0,
+            "o2p_band_center": 0.0,
+            "eg_occupancy": 0.0,
+            "charge_transfer_energy": 0.0,
+            "work_function": 4.5 # Default work function placeholder
         }
         
         # This is a placeholder for the complex projection logic:

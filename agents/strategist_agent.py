@@ -29,18 +29,19 @@ class ActionProposer:
     def propose_actions(self, state: SurfaceState) -> List[MutationAction]:
         """
         Suggest mutation operators for the current state.
-        Only proposes actions that are present in the allowed_actions whitelist.
+        V2: Element-agnostic heuristics. Proposes moves based on existing bulk chemistry.
         """
         all_possible: List[MutationAction] = []
+        bulk_elements = list(state.bulk_composition.keys())
         
-        # 1. Vacancies
-        for el in state.bulk_composition.keys():
+        # 1. Heuristic: Vacancies for any element currently in the bulk
+        for el in bulk_elements:
             all_possible.append(MutationAction(
                 action_type=ActionType.INTRODUCE_VACANCY,
                 parameters={"site": el, "index": 0}
             ))
             
-        # 2. Coverage
+        # 2. Heuristic: Coverage modifications
         current_total_coverage = state.coverage
         for new_cov in [0.25, 0.5, 0.75, 1.0]:
             if abs(new_cov - current_total_coverage) > 0.01:
@@ -49,25 +50,42 @@ class ActionProposer:
                     parameters={"coverage": new_cov}
                 ))
                 
-        # 3. Substitutions
-        if "Mn" in state.bulk_composition:
-            all_possible.append(MutationAction(
-                action_type=ActionType.SUBSTITUTIONAL_DOPANT,
-                parameters={"original_element": "Mn", "dopant": "Sr"}
-            ))
+        # 3. Heuristic: Substitutions (Doping)
+        # Propose substituting each existing element with a chemically similar one
+        from ase.data import atomic_numbers
+        for el in bulk_elements:
+            z = atomic_numbers.get(el)
+            if z:
+                # Propose neighbor in periodic table (Simple heuristic for doping)
+                for shift in [-1, 1]:
+                    # Find element symbol for Z+shift
+                    dopant = None
+                    for symbol, num in atomic_numbers.items():
+                        if num == z + shift:
+                            dopant = symbol
+                            break
+                    if dopant:
+                        all_possible.append(MutationAction(
+                            action_type=ActionType.SUBSTITUTIONAL_DOPANT,
+                            parameters={"original_element": el, "dopant": dopant}
+                        ))
 
-        # 4. Swapping
-        if "Sr" in state.bulk_composition and "La" in state.bulk_composition:
-            all_possible.append(MutationAction(
-                action_type=ActionType.SWAP_ATOMS,
-                parameters={"element_a": "La", "element_b": "Sr", "direction": "surface_to_bulk"}
-            ))
-            all_possible.append(MutationAction(
-                action_type=ActionType.SWAP_ATOMS,
-                parameters={"element_a": "Sr", "element_b": "La", "direction": "surface_to_bulk"}
-            ))
+        # 4. Heuristic: Swapping (Segregation)
+        # If multiple cations are present, propose swapping them between layers
+        if len(bulk_elements) > 1:
+            # Propose swaps between any two distinct elements in the bulk
+            for i in range(len(bulk_elements)):
+                for j in range(i + 1, len(bulk_elements)):
+                    el_a, el_b = bulk_elements[i], bulk_elements[j]
+                    if el_a == "O" or el_b == "O": continue # Focus on cation segregation
+                    
+                    all_possible.append(MutationAction(
+                        action_type=ActionType.SWAP_ATOMS,
+                        parameters={"element_a": el_a, "element_b": el_b, "direction": "surface_to_bulk"}
+                    ))
             
         # 5. Environment (T, P)
+        # (Heuristics for environment remain the same but use state values)
         for t in [600, 900, 1200]:
             if abs(t - state.temperature) > 1.0:
                 all_possible.append(MutationAction(

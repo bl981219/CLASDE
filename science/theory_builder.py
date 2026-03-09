@@ -57,9 +57,20 @@ class TheoryBuilder:
 
     def identify_electronic_descriptors(self, target_property: str = "reward") -> List[Dict[str, Any]]:
         """
-        Scan electronic properties (d-band, p-band) for correlation with target performance.
+        Scan electronic and geometric properties for correlation with target performance.
         """
-        descriptors = ["d_band_center", "p_band_center", "bader_charge"]
+        descriptors = [
+            "d_band_center", 
+            "d_band_edge",
+            "p_band_center", 
+            "o2p_band_center", 
+            "eg_occupancy",
+            "charge_transfer_energy",
+            "work_function",
+            "gcn",
+            "coordination_number",
+            "bader_charge"
+        ]
         discovered: List[Dict[str, Any]] = []
         
         # Collect results from the graph

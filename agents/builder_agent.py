@@ -10,8 +10,6 @@ logger = logging.getLogger(__name__)
 try:
     from ase import Atoms
     from ase.build import bulk, surface, add_adsorbate
-    from pymatgen.core.surface import SlabGenerator
-    from pymatgen.io.ase import AseAtomsAdaptor
     HAS_SIM_TOOLS = True
 except ImportError:
     HAS_SIM_TOOLS = False
@@ -23,18 +21,11 @@ class StructureBuilder:
     This agent translates the formal mathematical descriptor (`SurfaceState`) into an 
     actual 3D physical representation using ASE (Atomic Simulation Environment) and Pymatgen.
     
-    It enforces physical constraints automatically, such as:
-    - Cleaving the correct Miller index facets.
-    - Applying point defects (vacancies, substitutions).
-    - Enforcing charge neutrality during aliovalent doping by introducing 
-      compensating oxygen vacancies.
-      
-    The output is an ASE `Atoms` object ready for MLFF evaluation or DFT submission.
+    V2: Generalized architecture supporting CIF loading and robust procedural generation.
     """
     def __init__(self) -> None:
         if not HAS_SIM_TOOLS:
-            logger.warning("ase or pymatgen not found. Physical structure generation will fail.")
-            warnings.warn("ase or pymatgen not found. Physical structure generation will fail.")
+            logger.warning("ase not found. Physical structure generation will fail.")
 
     def build_structure(self, state: SurfaceState) -> Any:
         """
@@ -44,135 +35,94 @@ class StructureBuilder:
         if not HAS_SIM_TOOLS:
             return None
             
-        elements = list(state.bulk_composition.keys())
-        
         # 1. Load or generate bulk structure
-        # Special case: Perovskites (ABO3)
-        is_perovskite = any(el in ["La", "Sr", "Ba", "Ca"] for el in elements) and \
-                        any(el in ["Mn", "Fe", "Co", "Ni", "Ti"] for el in elements) and \
-                        "O" in elements
+        bulk_atoms = None
         
-        if is_perovskite:
-            # For the demo, we'll try to load a perovskite reference or build a simple SrTiO3-like bulk
-            # In a real scenario, we'd use a database of CIFs.
+        # Priority A: Load from metadata CIF if provided
+        cif_path = state.metadata.get("bulk_cif_path")
+        if cif_path and os.path.exists(cif_path):
             try:
-                # Mock: Build a 5-atom perovskite unit cell for demo
-                # (Simple cubic perovskite approx)
-                a = 3.905 # Lattice constant (A)
-                bulk_atoms = Atoms('SrTiO3', 
-                                   scaled_positions=[(0,0,0), (0.5,0.5,0.5), (0.5,0.5,0), (0.5,0,0.5), (0,0.5,0.5)],
-                                   cell=(a, a, a), pbc=True)
-                # Map the user's chemistry onto the sites
-                # Site 0: A-site (Sr/La), Site 1: B-site (Ti/Fe/Mn), Sites 2-4: Oxygen
-                
-                # A-site mapping
-                a_site_els = [el for el in elements if el in ["La", "Sr", "Ba", "Ca"]]
-                if a_site_els:
-                    bulk_atoms[0].symbol = a_site_els[0]
-                    
-                # B-site mapping
-                b_site_els = [el for el in elements if el in ["Mn", "Fe", "Co", "Ni", "Ti"]]
-                if b_site_els:
-                    bulk_atoms[1].symbol = b_site_els[0]
-                
+                from ase.io import read
+                bulk_atoms = read(cif_path)
+                logger.info(f"Loaded bulk structure from {cif_path}")
             except Exception as e:
-                logger.warning(f"Failed to build perovskite bulk: {e}. Falling back to Cu.")
-                warnings.warn(f"Failed to build perovskite bulk: {e}. Falling back to Cu.")
-                bulk_atoms = bulk('Cu', cubic=True)
-        elif len(elements) == 1:
-            # Simple elemental bulk (e.g., {'Cu': 1.0})
-            element = elements[0]
-            try:
-                bulk_atoms = bulk(element, cubic=True)
-            except Exception as e:
-                logger.warning(f"Failed to build bulk {element}: {e}. Falling back to placeholder.")
-                warnings.warn(f"Failed to build bulk {element}: {e}. Falling back to placeholder.")
-                return self._placeholder_generation(state)
-        else:
-            # For complex materials, we'd load from a CIF in metadata. 
-            # In this demo version, we'll fall back to a default Cu bulk if CIF is missing.
-            cif_path = state.metadata.get("bulk_cif_path")
-            if cif_path:
-                try:
-                    from ase.io import read
-                    bulk_atoms = read(cif_path)
-                except Exception as e:
-                    logger.warning(f"Failed to read {cif_path}: {e}")
-                    warnings.warn(f"Failed to read {cif_path}: {e}")
-                    bulk_atoms = bulk('Cu', cubic=True)
-            else:
-                bulk_atoms = bulk('Cu', cubic=True) # Fallback
+                logger.warning(f"Failed to read CIF at {cif_path}: {e}")
 
-        # 2. Cleave facet (h,k,l) using ASE surface
+        # Priority B: Procedural Generation based on stoichiometry
+        if bulk_atoms is None:
+            elements = sorted(list(state.bulk_composition.keys()))
+            
+            # Sub-Priority B1: Standard Perovskite Detection (ABO3)
+            # General check: 3+ elements, contains Oxygen
+            is_perovskite = len(elements) >= 3 and "O" in elements
+            if is_perovskite:
+                try:
+                    a = state.metadata.get("lattice_constant", 3.905)
+                    # We create a generic ABO3 template
+                    # Map sorted elements: 0 -> A, 1 -> B, 2 -> O
+                    bulk_atoms = Atoms(symbols=[elements[0], elements[1], 'O', 'O', 'O'], 
+                                       scaled_positions=[(0,0,0), (0.5,0.5,0.5), (0.5,0.5,0), (0.5,0,0.5), (0,0.5,0.5)],
+                                       cell=(a, a, a), pbc=True)
+                except Exception as e:
+                    logger.debug(f"Perovskite template failed: {e}")
+
+            # Sub-Priority B2: Simple Elemental Bulk
+            if bulk_atoms is None and len(elements) == 1:
+                try:
+                    bulk_atoms = bulk(elements[0], cubic=True)
+                except: pass
+
+        # Priority C: Absolute Fallback
+        if bulk_atoms is None:
+            logger.warning("All bulk generation methods failed. Using Cu fallback.")
+            bulk_atoms = bulk('Cu', cubic=True)
+
+        # 2. Cleave facet (h,k,l)
         h, k, l = state.miller_index
+        if h == 0 and k == 0 and l == 0: l = 1 
+        
         try:
-            # Create a slab with 3 layers and 15A vacuum
+            # We use a 3-layer slab with 15A vacuum
             slab = surface(bulk_atoms, (h, k, l), layers=3, vacuum=15.0)
             slab.center(vacuum=15.0, axis=2)
         except Exception as e:
-            logger.warning(f"Failed to cleave surface {state.miller_index}: {e}")
-            warnings.warn(f"Failed to cleave surface {state.miller_index}: {e}")
-            slab = bulk_atoms.copy()
+            logger.warning(f"Surface cleave failed: {e}")
+            slab = bulk_atoms.repeat((2,2,2))
+            slab.center(vacuum=15.0, axis=2)
 
-        # 3. Apply defects (enhanced with charge compensation)
+        # Final sanity check on slab integrity
+        if len(slab) == 0 or slab.cell is None or np.any(np.linalg.norm(slab.cell, axis=1) == 0):
+            slab = Atoms('Cu', cell=(3.6, 3.6, 3.6), positions=[(0,0,0)], pbc=True)
+
+        # 3. Apply defects (Dynamic mapping)
         for defect in state.defects:
-            if defect.get("type") == "vacancy":
-                if len(slab) > 0:
-                    # Target a specific element if provided
+            try:
+                if defect.get("type") == "vacancy" and len(slab) > 0:
                     target = defect.get("site")
                     indices = [i for i, atom in enumerate(slab) if atom.symbol == target] if target else list(range(len(slab)))
-                    if indices:
-                        slab.pop(indices[-1])
-            elif defect.get("type") == "substitution":
-                # Replace an atom of original_element with dopant
-                orig = defect.get("original_element")
-                dopant = defect.get("dopant")
-                indices = [i for i, atom in enumerate(slab) if atom.symbol == orig]
-                if indices:
-                    slab[indices[0]].symbol = dopant
+                    if indices: slab.pop(indices[-1])
+                elif defect.get("type") == "substitution" and len(slab) > 0:
+                    orig, dopant = defect.get("original_element"), defect.get("dopant")
+                    indices = [i for i, atom in enumerate(slab) if atom.symbol == orig]
+                    if indices: slab[indices[0]].symbol = dopant
+            except Exception as e:
+                logger.debug(f"Defect application failed: {e}")
                     
-                    # Aliovalent Doping Charge Compensation Logic:
-                    if orig == "La" and dopant == "Sr":
-                        o_indices = [i for i, atom in enumerate(slab) if atom.symbol == "O"]
-                        if o_indices:
-                            slab.pop(o_indices[0]) # Introduce oxygen vacancy
-                            logger.info("Charge Compensation: Introduced Oxygen Vacancy for Sr-doping.")
-            elif defect.get("type") == "swap":
-                # Segregation modeling: swap surface element_a with subsurface element_b
-                el_a = defect.get("element_a")
-                el_b = defect.get("element_b")
-                idx_a = [i for i, atom in enumerate(slab) if atom.symbol == el_a]
-                idx_b = [i for i, atom in enumerate(slab) if atom.symbol == el_b]
-                if idx_a and idx_b:
-                    # Swap the top-most idx_a with the bottom-most idx_b (approx)
-                    slab[idx_a[-1]].symbol = el_b
-                    slab[idx_b[0]].symbol = el_a
-                    
-        # 4. Place adsorbates at specified coverage and site
-        for ads_instance in state.adsorbates:
-            if ads_instance.coverage > 0.0:
+        # 4. Place adsorbates
+        for ads in state.adsorbates:
+            if ads.coverage > 0.0 and len(slab) > 0:
                 try:
                     height = 1.5 
                     # Try named site first, if it fails use absolute coordinates
                     try:
-                        add_adsorbate(slab, ads_instance.identity, height, ads_instance.site_type if ads_instance.site_type == 'ontop' else 'ontop')
+                        add_adsorbate(slab, ads.identity, height, ads.site_type if ads.site_type == 'ontop' else 'ontop')
                     except:
-                        # Heuristic: place at center of XY plane, above the highest atom
-                        com = slab.get_center_of_mass()
-                        z_max = np.max(slab.positions[:, 2])
-                        add_adsorbate(slab, ads_instance.identity, height, position=(com[0], com[1]))
+                        com = np.mean(slab.positions, axis=0)
+                        add_adsorbate(slab, ads.identity, height, position=(com[0], com[1]))
                 except Exception as e:
-                    logger.warning(f"Failed to add adsorbate {ads_instance.identity}: {e}")
-                    warnings.warn(f"Failed to add adsorbate {ads_instance.identity}: {e}")
-
-        # Final Sanity Check: Never return an empty structure
-        if len(slab) == 0:
-            return Atoms('Cu', positions=[(0, 0, 0)])
+                    logger.warning(f"Adsorbate placement failed: {e}")
 
         return slab
 
     def _placeholder_generation(self, state: SurfaceState) -> Any:
-        """Simple placeholder atoms object."""
-        if not HAS_SIM_TOOLS:
-            return None
-        return Atoms('Cu', positions=[(0, 0, 0)])
+        return Atoms('Cu', cell=(3.6, 3.6, 3.6), pbc=True)

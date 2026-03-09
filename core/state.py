@@ -126,25 +126,35 @@ class SurfaceState(BaseModel):
     def feature_vector(self) -> List[float]:
         """
         Convert the structured state into a numerical feature vector.
-        V2: Stoichiometry + Descriptor-based encoding.
+        V3: Universal encoding using periodic table indices (1-100).
         """
-        # 1. Stoichiometry of bulk (normalized using a fixed chemical space)
-        # Assuming the search space includes La, Sr, Mn, O
-        chem_space = ["La", "Sr", "Mn", "O"]
-        bulk_stoich = []
-        for el in chem_space:
-            bulk_stoich.append(float(self.bulk_composition.get(el, 0.0)))
+        # 1. Stoichiometry of bulk (Universal 100-dimension vector)
+        # We use a fixed size to ensure compatibility with surrogate models across campaigns
+        bulk_vector = [0.0] * 100
+        from ase.data import atomic_numbers
+        for el, fraction in self.bulk_composition.items():
+            z = atomic_numbers.get(el)
+            if z and z <= 100:
+                bulk_vector[z-1] = float(fraction)
         
         # 2. Miller index encoding
         miller_feats = []
         for i in self.miller_index:
             miller_feats.extend([float(i), float(i)**2])
             
-        # 3. Adsorbate encoding (One-hot or atomic number)
-        # Mock: Simple mapping for common adsorbates
-        adsorbate_map = {"O": 8, "OH": 9, "H2O": 10, "CO": 14, None: 0}
-        primary_ads = self.adsorbates[0].identity if self.adsorbates else None
-        ads_feat = [float(adsorbate_map.get(primary_ads, -1))]
+        # 3. Adsorbate encoding (Universal sum of atomic numbers)
+        # Encodes the "size/identity" of the adsorbate without a hardcoded map
+        ads_sum = 0.0
+        if self.adsorbates:
+            from ase import Atoms
+            try:
+                # Sum Z for all atoms in the primary adsorbate identity
+                primary_ads = self.adsorbates[0].identity
+                temp_atoms = Atoms(primary_ads)
+                ads_sum = float(sum(temp_atoms.get_atomic_numbers()))
+            except:
+                ads_sum = -1.0 # Unknown or invalid
+        ads_feat = [ads_sum]
         
         # 4. Coverage and External conditions
         cond_feats = [
@@ -159,4 +169,4 @@ class SurfaceState(BaseModel):
         s_count = sum(1 for d in self.defects if d.get("type") == "substitution")
         defect_feats = [float(v_count), float(s_count)]
         
-        return bulk_stoich + miller_feats + ads_feat + cond_feats + defect_feats
+        return bulk_vector + miller_feats + ads_feat + cond_feats + defect_feats
