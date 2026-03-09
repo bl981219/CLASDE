@@ -76,6 +76,18 @@ CLASDE mimics the hierarchy of a world-class computational surface science group
 
 ---
 
+## Research Modes: Mapping, Tuning, and Stability
+
+CLASDE allows you to toggle between three fundamental modes of research by setting the `research_mode` field in your campaign configuration. This ensures that exploration and optimization are treated as connected strategies.
+
+| Mode | Scientific Intent | Agent Behavior | Use Case |
+| :--- | :--- | :--- | :--- |
+| **MAPPING** | **Pure Discovery** | Maximizes **Uncertainty & Novelty**. The goal is to build an accurate physical model of the entire space. | "How does $SO_2$ affect LSCF across different facets and temperatures?" |
+| **TUNING** | **Optimization** | Maximizes **Expected Improvement**. Standard Bayesian Optimization focused on finding the best material. | "Find the dopant that minimizes the oxygen adsorption energy." |
+| **STABILITY** | **Thermodynamics** | Minimizes **Grand Potential**. Focuses on finding the most stable phase under varying $(T, P)$ conditions. | "What is the equilibrium surface structure of LSF at 1000 K?" |
+
+---
+
 ## How CLASDE Works: The Agentic Discovery Loop
 
 CLASDE operates through a self-correcting feedback loop where specialized agents interact via a shared **Scientific Knowledge Graph**. This loop elevates the system from simple "search" to "autonomous discovery."

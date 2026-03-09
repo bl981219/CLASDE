@@ -1,9 +1,10 @@
 import logging
 import os
-import google.generativeai as genai
 from typing import Dict, Any, Optional
 import json
 from dotenv import load_dotenv
+from google import genai
+from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
 
@@ -14,12 +15,6 @@ class LLMCollaborator:
     This agent serves as the entry point for human-machine collaboration. It utilizes 
     Large Language Models (LLMs) to parse natural language research intents into 
     the formalized JSON schema required by the CLASDE engine.
-    
-    Responsibilities:
-    1. Semantic parsing of high-level goals (e.g., "Find Sr segregation trends").
-    2. Mapping chemical entities to stoichiometric vectors.
-    3. Suggesting relevant environmental variables (T, p, Phi) for the campaign.
-    4. Providing a scientific rationale for the proposed strategy.
     """
     def __init__(self, api_key: Optional[str] = None) -> None:
         """
@@ -38,9 +33,8 @@ class LLMCollaborator:
                 self.use_mock = True
             else:
                 try:
-                    genai.configure(api_key=self.api_key)
-                    # We use gemini-pro for stable structured output in research tasks
-                    self.model = genai.GenerativeModel('gemini-pro')
+                    self.client = genai.Client(api_key=self.api_key)
+                    self.model_id = "gemini-2.0-flash" # Optimized for structured output
                 except Exception as e:
                     logger.warning(f"Failed to initialize Gemini API ({e}). Using mock mode.")
                     self.use_mock = True
@@ -48,12 +42,6 @@ class LLMCollaborator:
     def translate_goal_to_campaign(self, prompt: str) -> Dict[str, Any]:
         """
         Translates a natural language string into a structured Campaign configuration.
-        
-        Args:
-            prompt: The user's research question or high-level goal.
-            
-        Returns:
-            A dictionary containing the campaign configuration (objective, constraints, budget).
         """
         if self.use_mock:
             return self._mock_translation(prompt)
@@ -72,15 +60,17 @@ class LLMCollaborator:
         - variables: List of strings (T, p, Phi).
         - budget: { 'max_evaluations': int }
         - description: Scientific summary of the objective.
-
-        Example Input: "how does LaSrFeO3 Sr segregation depends on T, PO2, and overpotential"
         """
 
         try:
-            # Generate the content with a JSON-enforcing response MIME type
-            response = self.model.generate_content(
-                f"{system_instruction}\n\nUser Goal: {prompt}\n\nJSON Output:",
-                generation_config={"response_mime_type": "application/json"}
+            # Generate the content using the new SDK
+            response = self.client.models.generate_content(
+                model=self.model_id,
+                contents=f"User Goal: {prompt}",
+                config={
+                    "system_instruction": system_instruction,
+                    "response_mime_type": "application/json"
+                }
             )
             config: Dict[str, Any] = json.loads(response.text)
             return config
@@ -91,7 +81,6 @@ class LLMCollaborator:
     def _mock_translation(self, prompt: str) -> Dict[str, Any]:
         """
         A rule-based heuristic fallback for demonstration and offline testing.
-        Identifies key terms in the prompt to construct a reasonable campaign.
         """
         prompt_lower = prompt.lower()
         

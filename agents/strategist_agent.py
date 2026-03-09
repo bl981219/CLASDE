@@ -14,6 +14,7 @@ from core.state import SurfaceState
 from core.action import MutationAction, ActionType
 from core.transition import TransitionEngine
 from agents.base_agent import BaseAgent
+from core.campaign import ResearchMode
 from execution.compute_agent import SimulationType
 from agents.planner_agent import ResearchPlanner, WorkflowTask
 

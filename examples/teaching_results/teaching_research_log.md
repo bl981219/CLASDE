@@ -1,6 +1,6 @@
 
 # Research Campaign: Teaching_Demo_Cu111
-**Timestamp:** Mon Mar  9 02:04:24 2026
+**Timestamp:** Mon Mar  9 19:52:39 2026
 **Reproducibility:** Python 3.9.15 on Linux-6.1.161-llgrid-x86_64-with-glibc2.39
 **Original User Intent:** *"teach me about oxygen on copper 111"*
 **Scientific Interpretation:** Minimal 2-iteration test for teaching user about discovery logs.
@@ -11,10 +11,10 @@
 | Iteration | Action | Fidelity | Reward | Best Reward |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | introduce_vacancy | MLIP | -1.7356 | -1.7356 |
-| 2 | introduce_vacancy | DFT | -1000000000.0000 | -1.7356 |
+| 2 | modify_coverage | DFT | -1000000000.0000 | -1.7356 |
 
 ## 2. Scientific Reasoning Phase
-- **Discovered Theory:** Theory: Feature_111 consistently leads to decreased stability (Confidence: 1.00)
+- **Discovered Theory:** Theory: Feature_107 consistently leads to decreased stability (Confidence: 1.00)
 
 **PI Agent Recommendation:** Formulated 1 new hypotheses for next-gen campaigns.
 
@@ -24,7 +24,7 @@
 ==================================================
    AUTONOMOUS SCIENTIFIC DISCOVERY REPORT
 ==================================================
-- Theory: Feature_111 consistently leads to decreased stability (Confidence: 1.00)
+- Theory: Feature_107 consistently leads to decreased stability (Confidence: 1.00)
 --------------------------------------------------
 
 ```
