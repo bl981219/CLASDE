@@ -141,19 +141,21 @@ clasde-collaborator --prompt "how does Sr segregation in LaSrFeO3 depend on T?"
 
 ## Case Studies & Examples
 
-### Cr and S Poisoning on LSCF Perovskites
-A full 100-iteration discovery campaign targeting $CrO_3$ and $SO_2$ adsorption competition on pristine $La_{0.6}Sr_{0.4}Fe_{0.8}Co_{0.2}O_3$.
-- **Reference:** [DOI: 10.1021/acs.chemmater.4c01936](https://pubs.acs.org/doi/abs/10.1021/acs.chemmater.4c01936)
+These case studies demonstrate how CLASDE can be used to investigate complex surface science problems autonomously.
+
+### 1. Cr and S Poisoning on LSCF
+An autonomous exploration of $CrO_3$ and $SO_2$ adsorption competition on the $La_{0.6}Sr_{0.4}Fe_{0.8}Co_{0.2}O_3$ (001) surface.
+- **Scientific Context:** This campaign was inspired by and serves as an autonomous validation of research themes found in [DOI: 10.1021/acs.chemmater.4c01936](https://pubs.acs.org/doi/abs/10.1021/acs.chemmater.4c01936).
+- **Discovery Trajectory:** The agent autonomously identifies stable configurations and induces physical laws linking metal d-band centers to poison binding strength.
 - **Location:** `examples/LSCF_Poisoning_CaseStudy/`
-- **Key Outcome:** Induced physical laws linking vacancy density and metal d-band center to poison binding strength.
 
-### Sr Surface Segregation in LSF
-A 50-iteration thermodynamic study of Sr enrichment in $La_{0.6}Sr_{0.4}FeO_3$ as a function of Temperature and Oxygen Pressure.
+### 2. Sr Surface Segregation in LSF
+A 50-iteration thermodynamic study mapping the Sr enrichment of $La_{0.6}Sr_{0.4}FeO_3$ as a function of Temperature and Oxygen Pressure.
+- **Outcome:** Mapping the $(T, P_{O2})$ drivers for segregation and identifying the electronic stabilization of the segregated phase.
 - **Location:** `examples/LSF_Segregation_CaseStudy/`
-- **Key Outcome:** Mapping the $(T, P_{O2})$ drivers for segregation and the corresponding electronic d-band center shifts.
 
-### B-site Doping Effects on SrTiO3
-Autonomous screening of transition metal dopants (Mn, Fe, Co) on the $SrTiO_3$ (001) surface to activate oxygen adsorption.
+### 3. B-site Doping in SrTiO3
+Autonomous screening of transition metal dopants (Mn, Fe, Co) to activate oxygen adsorption on the $SrTiO_3$ (001) surface.
+- **Outcome:** Rapidly identified Mn as a high-performance dopant for enhancing surface reactivity.
 - **Location:** `examples/SrTiO3_Doping_CaseStudy/`
-- **Key Outcome:** Identified Mn as a high-performance dopant for enhancing oxygen affinity through localized electronic states.
 
