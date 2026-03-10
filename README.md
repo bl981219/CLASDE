@@ -93,7 +93,10 @@ CLASDE allows you to toggle between three fundamental modes of research by setti
 CLASDE operates through a self-correcting feedback loop where specialized agents interact via a shared **Scientific Knowledge Graph**. This loop elevates the system from simple "search" to "autonomous discovery."
 
 ### 1. Conceptualization (Natural Language to Formal Goal)
-The discovery starts when a user provides a research question. The **Collaborator Agent** uses chemical domain knowledge to translate this intent into a formal **Campaign**. For example, "How does poisoning affect LSCF?" is translated into an objective to minimize adsorption energy for $SO_2$ on specific LSCF facets.
+The discovery starts when a user provides a research question. The **Collaborator Agent** translates this intent into a formal **Campaign** by selecting the appropriate **Research Mode**. For example, starting with $LaSrFeO_3$ (LSF):
+- **Question:** *"How does oxygen adsorption change across all facets of LSF?"* -> **MAPPING Mode** (Builds a global electronic property map).
+- **Question:** *"Which dopant minimizes the oxygen vacancy formation energy on LSF?"* -> **TUNING Mode** (Finds the optimal chemistry).
+- **Question:** *"What is the equilibrium structure of the LSF surface at 1000 K and 1 atm O2?"* -> **STABILITY Mode** (Finds the thermodynamic global minimum).
 
 ### 2. Strategic Observation (Memory to Belief)
 The **Optimization Strategist** observes all prior experiments stored in the **Knowledge Graph**. It updates its internal **Belief State**—a probabilistic surrogate model (Gaussian Process)—that maps structural descriptors to physical performance.
@@ -109,6 +112,46 @@ The **Compute Manager** translates these plans into HPC job scripts. It probes t
 
 ### 6. Knowledge Integration (The Digital Lab Notebook)
 Finally, the **Evaluation Agent** parses the raw output files. Results are not just saved as numbers; they are decomposed into semantic nodes (Sites, Intermediates, Transitions) and integrated back into the **Knowledge Graph**, completing the discovery cycle.
+
+#### Agent Communication & Data Flow
+The following scheme illustrates how agents interact and pass messages within the discovery loop:
+
+```text
+================================================================================================
+                            CLASDE AGENTIC MESSAGE-PASSING SCHEME
+================================================================================================
+
+[ USER ] --------------------( Research Question )--------------------> [ COLLABORATOR AGENT ]
+                                                                                 |
+                                                                         ( Campaign Config )
+                                                                                 |
+                                                                                 v
++----------------------------------------------------------------------- [ RESEARCH GOVERNOR ]
+|                                                                                |
+|                                                                        ( Constraints/Budget )
+|                                                                                |
+v                                                                                v
+[ HYPOTHESIS AGENT ] <-------( Scientific Provenance )---------+-------> [ STRATEGIST AGENT ]
+         |                                                     |                 |
+  ( Physical Laws )                                     [ KNOWLEDGE GRAPH ]      ( Optimal State )
+         |                                              ( Central Memory )       |
+         v                                                     ^                 v
+[ PLANNER AGENT ] <--------------------------------------------+---------- ( Observe Beliefs )
+         |
+  ( Dynamic Task Sequence: e.g., MD -> Relax -> NEB )
+         |
+         v
+[ BUILDER AGENT ] ---------( POSCAR )--------> [ COMPUTE MANAGER ] --------( Raw Output )------>
+         |                                             |                                       |
+         +---------------------------------------------+---------------------------------------+
+                                                       |
+                                               [ EVALUATION AGENT ]
+                                                       |
+                                               ( Semantic Result )
+                                                       |
+                                                       v
+                                              [ KNOWLEDGE GRAPH ]
+```
 
 ---
 
@@ -140,13 +183,30 @@ Finally, the **Evaluation Agent** parses the raw output files. Results are not j
 ## Usage
 
 ### Domain-Specific Surface Exploration
+Quickly launch a targeted campaign for a specific material, surface facet, and adsorbate. This command bypasses the natural language interface for direct execution.
 ```bash
+# Syntax: clasde-explore <Material> <Facet> <Adsorbate>
 clasde-explore LaSrFeO3 001 O
 ```
+**Arguments:**
+- **Material:** Chemical formula of the bulk substrate (e.g., `Cu`, `Pt`, `SrTiO3`, `LaSrFeO3`).
+- **Facet:** Miller indices of the surface plane (e.g., `111`, `001`, `110`).
+- **Adsorbate:** The chemical species to be adsorbed (e.g., `O`, `CO`, `OH`, `SO2`).
 
 ### Natural Language Collaboration
+Initiate a research project by describing your goal in plain English. The **Collaborator Agent** will analyze your intent, suggest the optimal **Research Mode**, and formulate the full campaign configuration.
 ```bash
-clasde-collaborator --prompt "how does Sr segregation in LaSrFeO3 depend on T?"
+# Example: Start an interactive session or provide a direct prompt
+clasde-collaborator --prompt "how does Sr segregation in LaSrFeO3 depend on temperature?"
+```
+**Options:**
+- `--prompt`: Your research question or scientific goal. If omitted, the agent will start an interactive dialogue.
+- `--key`: Manually provide a Google Gemini API key (alternatively, use the `.env` file).
+
+### Start a Campaign from YAML
+For full control, you can define your campaign in a standard YAML file and run it directly.
+```bash
+clasde-loop --config configs/default.yaml
 ```
 
 ---
@@ -170,4 +230,3 @@ A 50-iteration thermodynamic study mapping the Sr enrichment of $La_{0.6}Sr_{0.4
 Autonomous screening of transition metal dopants (Mn, Fe, Co) to activate oxygen adsorption on the $SrTiO_3$ (001) surface.
 - **Outcome:** Rapidly identified Mn as a high-performance dopant for enhancing surface reactivity.
 - **Location:** `examples/SrTiO3_Doping_CaseStudy/`
-

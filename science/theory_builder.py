@@ -86,11 +86,16 @@ class TheoryBuilder:
         
         for desc in descriptors:
             x = [r.get(desc) for r in results]
-            # Filter out None values
+            # Filter out None values and ensure there's actual data variety
             pairs = [(xi, yi) for xi, yi in zip(x, y) if xi is not None]
             if len(pairs) < 5: continue
             
             xi_clean, yi_clean = zip(*pairs)
+            
+            # CRITICAL CHECK: Ignore if descriptor is constant (placeholder logic)
+            if np.std(xi_clean) < 1e-6:
+                continue
+                
             r, p = stats.pearsonr(xi_clean, yi_clean)
             
             if abs(r) > 0.7:
