@@ -20,4 +20,7 @@ budget:
   max_evaluations: 15
 
 compute:
+  platform: "local"
   mode: "chgnet"
+  resources:
+    ntasks: 1

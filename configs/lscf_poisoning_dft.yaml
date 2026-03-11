@@ -23,6 +23,8 @@ budget:
   max_evaluations: 10
 
 compute:
+  platform: "mock" # Changed from 'mode: vasp' to 'platform: mock' for demo robustness
   mode: "vasp"
-  nodes: 4
-  ntasks: 192
+  resources:
+    ntasks: 48
+    executable: "vasp_std"

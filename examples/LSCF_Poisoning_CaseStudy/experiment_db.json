@@ -43,7 +43,9 @@
       },
       "reward": -5.0,
       "observables": {
-        "reward": -5.0
+        "reward": -5.0,
+        "fidelity": "unknown",
+        "convergence": true
       },
       "method": "unknown",
       "convergence": true
@@ -100,21 +102,18 @@
         "total_energy": -151.46,
         "adsorption_energy": -1.46,
         "d_band_center": -1.5,
-        "o2p_band_center": -2.1,
+        "o2p_band_center": -2.5,
         "status": "completed",
         "fidelity": "DFT",
         "convergence": true,
-        "p_band_center": -2.0,
-        "charge_transfer_energy": 0.6,
-        "work_function": 4.8,
         "species_counts": {
-          "Co": 3,
-          "Fe": 3,
-          "O": 9
+          "Fe": 4,
+          "La": 3,
+          "O": 12
         },
         "reward": -0.040000000000000036,
         "iteration": 1,
-        "sigma": 0.0020605446697851823,
+        "sigma": 0.013254186638672026,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -181,21 +180,18 @@
         "total_energy": -151.573,
         "adsorption_energy": -1.573,
         "d_band_center": -1.5,
-        "o2p_band_center": -2.1,
+        "o2p_band_center": -2.5,
         "status": "completed",
         "fidelity": "DFT",
         "convergence": true,
-        "p_band_center": -2.0,
-        "charge_transfer_energy": 0.6,
-        "work_function": 4.8,
         "species_counts": {
-          "Co": 3,
-          "Fe": 3,
-          "O": 9
+          "Fe": 4,
+          "La": 3,
+          "O": 12
         },
         "reward": -0.07299999999999995,
         "iteration": 2,
-        "sigma": 0.4160809635537226,
+        "sigma": 0.012160399967121854,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -268,21 +264,18 @@
         "total_energy": -151.02,
         "adsorption_energy": -1.02,
         "d_band_center": -1.5,
-        "o2p_band_center": -2.1,
+        "o2p_band_center": -2.5,
         "status": "completed",
         "fidelity": "DFT",
         "convergence": true,
-        "p_band_center": -2.0,
-        "charge_transfer_energy": 0.6,
-        "work_function": 4.8,
         "species_counts": {
-          "Co": 3,
-          "Fe": 3,
-          "O": 9
+          "Fe": 4,
+          "La": 3,
+          "O": 12
         },
         "reward": -0.48,
         "iteration": 3,
-        "sigma": 0.028578979610663507,
+        "sigma": 0.028578981549729612,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -361,21 +354,18 @@
         "total_energy": -151.043,
         "adsorption_energy": -1.043,
         "d_band_center": -1.5,
-        "o2p_band_center": -2.1,
+        "o2p_band_center": -2.5,
         "status": "completed",
         "fidelity": "DFT",
         "convergence": true,
-        "p_band_center": -2.0,
-        "charge_transfer_energy": 0.6,
-        "work_function": 4.8,
         "species_counts": {
-          "Co": 3,
-          "Fe": 3,
-          "O": 9
+          "Fe": 4,
+          "La": 3,
+          "O": 12
         },
         "reward": -0.4570000000000001,
         "iteration": 4,
-        "sigma": 0.2831935013602726,
+        "sigma": 0.2831934892367759,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -460,21 +450,18 @@
         "total_energy": -151.098,
         "adsorption_energy": -1.098,
         "d_band_center": -1.5,
-        "o2p_band_center": -2.1,
+        "o2p_band_center": -2.5,
         "status": "completed",
         "fidelity": "DFT",
         "convergence": true,
-        "p_band_center": -2.0,
-        "charge_transfer_energy": 0.6,
-        "work_function": 4.8,
         "species_counts": {
-          "Co": 3,
-          "Fe": 3,
-          "O": 9
+          "Fe": 4,
+          "La": 3,
+          "O": 12
         },
         "reward": -0.4019999999999999,
         "iteration": 5,
-        "sigma": 0.2667488554788854,
+        "sigma": 0.2667488470583039,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -565,21 +552,18 @@
         "total_energy": -151.294,
         "adsorption_energy": -1.294,
         "d_band_center": -1.5,
-        "o2p_band_center": -2.1,
+        "o2p_band_center": -2.5,
         "status": "completed",
         "fidelity": "DFT",
         "convergence": true,
-        "p_band_center": -2.0,
-        "charge_transfer_energy": 0.6,
-        "work_function": 4.8,
         "species_counts": {
-          "Co": 3,
-          "Fe": 3,
-          "O": 9
+          "Fe": 4,
+          "La": 3,
+          "O": 12
         },
         "reward": -0.20599999999999996,
         "iteration": 6,
-        "sigma": 0.23640184460009372,
+        "sigma": 0.236401846150607,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -676,21 +660,18 @@
         "total_energy": -151.681,
         "adsorption_energy": -1.681,
         "d_band_center": -1.5,
-        "o2p_band_center": -2.1,
+        "o2p_band_center": -2.5,
         "status": "completed",
         "fidelity": "DFT",
         "convergence": true,
-        "p_band_center": -2.0,
-        "charge_transfer_energy": 0.6,
-        "work_function": 4.8,
         "species_counts": {
-          "Co": 3,
-          "Fe": 3,
-          "O": 9
+          "Fe": 4,
+          "La": 3,
+          "O": 12
         },
         "reward": -0.18100000000000005,
         "iteration": 7,
-        "sigma": 0.21175670945612068,
+        "sigma": 0.2117567185371094,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -793,21 +774,18 @@
         "total_energy": -151.82,
         "adsorption_energy": -1.8199999999999998,
         "d_band_center": -1.5,
-        "o2p_band_center": -2.1,
+        "o2p_band_center": -2.5,
         "status": "completed",
         "fidelity": "DFT",
         "convergence": true,
-        "p_band_center": -2.0,
-        "charge_transfer_energy": 0.6,
-        "work_function": 4.8,
         "species_counts": {
-          "Co": 3,
-          "Fe": 3,
-          "O": 9
+          "Fe": 4,
+          "La": 3,
+          "O": 12
         },
         "reward": -0.31999999999999984,
         "iteration": 8,
-        "sigma": 0.1951500096959933,
+        "sigma": 0.19515000918229714,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -916,21 +894,18 @@
         "total_energy": -151.116,
         "adsorption_energy": -1.116,
         "d_band_center": -1.5,
-        "o2p_band_center": -2.1,
+        "o2p_band_center": -2.5,
         "status": "completed",
         "fidelity": "DFT",
         "convergence": true,
-        "p_band_center": -2.0,
-        "charge_transfer_energy": 0.6,
-        "work_function": 4.8,
         "species_counts": {
-          "Co": 3,
-          "Fe": 3,
-          "O": 9
+          "Fe": 4,
+          "La": 3,
+          "O": 12
         },
         "reward": -0.3839999999999999,
         "iteration": 9,
-        "sigma": 0.18053018299649434,
+        "sigma": 0.18053017829406035,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -1045,21 +1020,1608 @@
         "total_energy": -151.599,
         "adsorption_energy": -1.599,
         "d_band_center": -1.5,
-        "o2p_band_center": -2.1,
+        "o2p_band_center": -2.5,
         "status": "completed",
         "fidelity": "DFT",
         "convergence": true,
-        "p_band_center": -2.0,
-        "charge_transfer_energy": 0.6,
-        "work_function": 4.8,
         "species_counts": {
-          "Co": 3,
-          "Fe": 3,
-          "O": 9
+          "Fe": 4,
+          "La": 3,
+          "O": 12
         },
         "reward": -0.09899999999999998,
         "iteration": 10,
-        "sigma": 0.17254536130244152,
+        "sigma": 0.17254537002344025,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 0.8,
+          "Co": 0.2,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "SO2",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 0.25,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 0.25,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 298.15,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": -0.355,
+      "observables": {
+        "total_energy": -151.855,
+        "adsorption_energy": -1.855,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.5,
+        "status": "completed",
+        "fidelity": "DFT",
+        "convergence": true,
+        "species_counts": {
+          "Fe": 4,
+          "La": 3,
+          "O": 12
+        },
+        "reward": -0.355,
+        "iteration": 1,
+        "sigma": 0.1729326640238828,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 0.8,
+          "Co": 0.2,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "SO2",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 0.25,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 0.25,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 298.15,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": -0.16300000000000003,
+      "observables": {
+        "total_energy": -151.663,
+        "adsorption_energy": -1.663,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.5,
+        "status": "completed",
+        "fidelity": "DFT",
+        "convergence": true,
+        "species_counts": {
+          "Fe": 4,
+          "La": 3,
+          "O": 12
+        },
+        "reward": -0.16300000000000003,
+        "iteration": 2,
+        "sigma": 0.16585970698269611,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 0.8,
+          "Co": 0.2,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "SO2",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 0.25,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 0.25,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 298.15,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": -0.3859999999999999,
+      "observables": {
+        "total_energy": -151.114,
+        "adsorption_energy": -1.114,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.5,
+        "status": "completed",
+        "fidelity": "DFT",
+        "convergence": true,
+        "species_counts": {
+          "Fe": 4,
+          "La": 3,
+          "O": 12
+        },
+        "reward": -0.3859999999999999,
+        "iteration": 3,
+        "sigma": 0.160984257189499,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 0.8,
+          "Co": 0.2,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "SO2",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 0.25,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 0.25,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 298.15,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": -0.46199999999999997,
+      "observables": {
+        "total_energy": -151.038,
+        "adsorption_energy": -1.038,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.5,
+        "status": "completed",
+        "fidelity": "DFT",
+        "convergence": true,
+        "species_counts": {
+          "Fe": 4,
+          "La": 3,
+          "O": 12
+        },
+        "reward": -0.46199999999999997,
+        "iteration": 4,
+        "sigma": 0.15767667670411487,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 0.8,
+          "Co": 0.2,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "SO2",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 0.25,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 0.25,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 298.15,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": -0.2450000000000001,
+      "observables": {
+        "total_energy": -151.255,
+        "adsorption_energy": -1.255,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.5,
+        "status": "completed",
+        "fidelity": "DFT",
+        "convergence": true,
+        "species_counts": {
+          "Fe": 4,
+          "La": 3,
+          "O": 12
+        },
+        "reward": -0.2450000000000001,
+        "iteration": 5,
+        "sigma": 0.15991598076999938,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 0.8,
+          "Co": 0.2,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "SO2",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 0.25,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 0.25,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 298.15,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": -0.008999999999999897,
+      "observables": {
+        "total_energy": -151.491,
+        "adsorption_energy": -1.491,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.5,
+        "status": "completed",
+        "fidelity": "DFT",
+        "convergence": true,
+        "species_counts": {
+          "Fe": 4,
+          "La": 3,
+          "O": 12
+        },
+        "reward": -0.008999999999999897,
+        "iteration": 6,
+        "sigma": 0.1541481487486289,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 0.8,
+          "Co": 0.2,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "SO2",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 0.25,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 0.25,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 298.15,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": -0.05899999999999994,
+      "observables": {
+        "total_energy": -151.441,
+        "adsorption_energy": -1.441,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.5,
+        "status": "completed",
+        "fidelity": "DFT",
+        "convergence": true,
+        "species_counts": {
+          "Fe": 4,
+          "La": 3,
+          "O": 12
+        },
+        "reward": -0.05899999999999994,
+        "iteration": 7,
+        "sigma": 0.1646110601014028,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 0.8,
+          "Co": 0.2,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "SO2",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 0.25,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 0.25,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 298.15,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": -0.09799999999999986,
+      "observables": {
+        "total_energy": -151.402,
+        "adsorption_energy": -1.4020000000000001,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.5,
+        "status": "completed",
+        "fidelity": "DFT",
+        "convergence": true,
+        "species_counts": {
+          "Fe": 4,
+          "La": 3,
+          "O": 12
+        },
+        "reward": -0.09799999999999986,
+        "iteration": 8,
+        "sigma": 0.1673143614695573,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 0.8,
+          "Co": 0.2,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "SO2",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 0.25,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 0.25,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 298.15,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": -0.4990000000000001,
+      "observables": {
+        "total_energy": -151.999,
+        "adsorption_energy": -1.999,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.5,
+        "status": "completed",
+        "fidelity": "DFT",
+        "convergence": true,
+        "species_counts": {
+          "Fe": 4,
+          "La": 3,
+          "O": 12
+        },
+        "reward": -0.4990000000000001,
+        "iteration": 9,
+        "sigma": 0.1664221764157123,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      },
+      "method": "DFT",
+      "convergence": true
+    },
+    {
+      "state": {
+        "bulk_composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 0.8,
+          "Co": 0.2,
+          "O": 3.0
+        },
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default",
+        "available_sites": [],
+        "adsorbates": [
+          {
+            "identity": "SO2",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 0.25,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 0.25,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperature": 298.15,
+        "pressure": 1.0,
+        "external_conditions": {
+          "Phi": 0.0
+        },
+        "metadata": {}
+      },
+      "reward": -0.1280000000000001,
+      "observables": {
+        "total_energy": -151.372,
+        "adsorption_energy": -1.3719999999999999,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.5,
+        "status": "completed",
+        "fidelity": "DFT",
+        "convergence": true,
+        "species_counts": {
+          "Fe": 4,
+          "La": 3,
+          "O": 12
+        },
+        "reward": -0.1280000000000001,
+        "iteration": 10,
+        "sigma": 0.1721801337913844,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -1189,6 +2751,136 @@
     {
       "source": "aa6da2e32d7d0ded746720485b3a66ad16f96aab674bd427a88c5a432e15b5dd",
       "target": "c297be3489ff987b0b27e62734399bb2fa20114ac74f6003b1253d08059aef2d",
+      "action": {
+        "action_type": "swap_atoms",
+        "parameters": {
+          "element_a": "La",
+          "element_b": "Sr",
+          "direction": "surface_to_bulk"
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "c297be3489ff987b0b27e62734399bb2fa20114ac74f6003b1253d08059aef2d",
+      "target": "3cd4b8f715f502b19d2ba729ed9543d7881e41a2603cc0f7e431b8d04bf1288e",
+      "action": {
+        "action_type": "swap_atoms",
+        "parameters": {
+          "element_a": "La",
+          "element_b": "Sr",
+          "direction": "surface_to_bulk"
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "3cd4b8f715f502b19d2ba729ed9543d7881e41a2603cc0f7e431b8d04bf1288e",
+      "target": "2563a6d5b7dab5982fbe32feff69862a19567cd168a9042e595b89c7d06b7a4e",
+      "action": {
+        "action_type": "swap_atoms",
+        "parameters": {
+          "element_a": "La",
+          "element_b": "Sr",
+          "direction": "surface_to_bulk"
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "2563a6d5b7dab5982fbe32feff69862a19567cd168a9042e595b89c7d06b7a4e",
+      "target": "7ce0d3dd99151f0cd30ef7913699f3e69f373db32df23fbc4d27f3ad962fd73c",
+      "action": {
+        "action_type": "swap_atoms",
+        "parameters": {
+          "element_a": "La",
+          "element_b": "Sr",
+          "direction": "surface_to_bulk"
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "7ce0d3dd99151f0cd30ef7913699f3e69f373db32df23fbc4d27f3ad962fd73c",
+      "target": "d8c9a0c182dac5c65fb163af006f32f291662f728479aa103a4fff473052f451",
+      "action": {
+        "action_type": "swap_atoms",
+        "parameters": {
+          "element_a": "La",
+          "element_b": "Sr",
+          "direction": "surface_to_bulk"
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "d8c9a0c182dac5c65fb163af006f32f291662f728479aa103a4fff473052f451",
+      "target": "5beeef31b890cef7b3d82855d44da15e385c3463998e11888ad85237755ebd39",
+      "action": {
+        "action_type": "swap_atoms",
+        "parameters": {
+          "element_a": "La",
+          "element_b": "Sr",
+          "direction": "surface_to_bulk"
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "5beeef31b890cef7b3d82855d44da15e385c3463998e11888ad85237755ebd39",
+      "target": "0b96058b59bc3108855145d45f59affc700a894aecaba9cf3776fd70a5382e92",
+      "action": {
+        "action_type": "swap_atoms",
+        "parameters": {
+          "element_a": "La",
+          "element_b": "Sr",
+          "direction": "surface_to_bulk"
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "0b96058b59bc3108855145d45f59affc700a894aecaba9cf3776fd70a5382e92",
+      "target": "08b63be943ce5a08dc3f017f74b3417214df05d355519f60e6a4bb7dbeed0daa",
+      "action": {
+        "action_type": "swap_atoms",
+        "parameters": {
+          "element_a": "La",
+          "element_b": "Sr",
+          "direction": "surface_to_bulk"
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "08b63be943ce5a08dc3f017f74b3417214df05d355519f60e6a4bb7dbeed0daa",
+      "target": "6d560fbcd4ac44a280c5fae0f10d07ad86a15b1572b1e8e7c2479828f9bb432d",
+      "action": {
+        "action_type": "swap_atoms",
+        "parameters": {
+          "element_a": "La",
+          "element_b": "Sr",
+          "direction": "surface_to_bulk"
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "6d560fbcd4ac44a280c5fae0f10d07ad86a15b1572b1e8e7c2479828f9bb432d",
+      "target": "ac5cc0502bfd136eb4868de63bd62673f46a464235cb0bcc291bd2ef09c06d62",
+      "action": {
+        "action_type": "swap_atoms",
+        "parameters": {
+          "element_a": "La",
+          "element_b": "Sr",
+          "direction": "surface_to_bulk"
+        },
+        "reasoning": null
+      }
+    },
+    {
+      "source": "ac5cc0502bfd136eb4868de63bd62673f46a464235cb0bcc291bd2ef09c06d62",
+      "target": "9107b1ff292a3c861674890367b687f60cfc7a1238267c6f7ae38fdcb5c7d3f6",
       "action": {
         "action_type": "swap_atoms",
         "parameters": {

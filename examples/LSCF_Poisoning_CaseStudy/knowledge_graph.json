@@ -1,7 +1,7 @@
 {
   "nodes": [
     {
-      "id": "mat_5365264156001086698",
+      "id": "mat_-3979779108513151550",
       "type": "material",
       "properties": {
         "composition": {
@@ -126,7 +126,7 @@
       "properties": {
         "iteration": 1,
         "fidelity": "DFT",
-        "sigma": 0.0020605446697851823,
+        "sigma": 0.013254186638672026,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -141,17 +141,14 @@
         "total_energy": -151.46,
         "adsorption_energy": -1.46,
         "d_band_center": -1.5,
-        "o2p_band_center": -2.1,
+        "o2p_band_center": -2.5,
         "status": "completed",
-        "fidelity": "DFT",
+        "fidelity": "DFT (Mock)",
         "convergence": true,
-        "p_band_center": -2.0,
-        "charge_transfer_energy": 0.6,
-        "work_function": 4.8,
         "species_counts": {
-          "Co": 3,
-          "Fe": 3,
-          "O": 9
+          "Fe": 4,
+          "La": 3,
+          "O": 12
         }
       }
     },
@@ -252,7 +249,7 @@
       "properties": {
         "iteration": 2,
         "fidelity": "DFT",
-        "sigma": 0.4160809635537226,
+        "sigma": 0.012160399967121854,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -267,17 +264,14 @@
         "total_energy": -151.573,
         "adsorption_energy": -1.573,
         "d_band_center": -1.5,
-        "o2p_band_center": -2.1,
+        "o2p_band_center": -2.5,
         "status": "completed",
-        "fidelity": "DFT",
+        "fidelity": "DFT (Mock)",
         "convergence": true,
-        "p_band_center": -2.0,
-        "charge_transfer_energy": 0.6,
-        "work_function": 4.8,
         "species_counts": {
-          "Co": 3,
-          "Fe": 3,
-          "O": 9
+          "Fe": 4,
+          "La": 3,
+          "O": 12
         }
       }
     },
@@ -390,7 +384,7 @@
       "properties": {
         "iteration": 3,
         "fidelity": "DFT",
-        "sigma": 0.028578979610663507,
+        "sigma": 0.028578981549729612,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -405,17 +399,14 @@
         "total_energy": -151.02,
         "adsorption_energy": -1.02,
         "d_band_center": -1.5,
-        "o2p_band_center": -2.1,
+        "o2p_band_center": -2.5,
         "status": "completed",
-        "fidelity": "DFT",
+        "fidelity": "DFT (Mock)",
         "convergence": true,
-        "p_band_center": -2.0,
-        "charge_transfer_energy": 0.6,
-        "work_function": 4.8,
         "species_counts": {
-          "Co": 3,
-          "Fe": 3,
-          "O": 9
+          "Fe": 4,
+          "La": 3,
+          "O": 12
         }
       }
     },
@@ -540,7 +531,7 @@
       "properties": {
         "iteration": 4,
         "fidelity": "DFT",
-        "sigma": 0.2831935013602726,
+        "sigma": 0.2831934892367759,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -555,17 +546,14 @@
         "total_energy": -151.043,
         "adsorption_energy": -1.043,
         "d_band_center": -1.5,
-        "o2p_band_center": -2.1,
+        "o2p_band_center": -2.5,
         "status": "completed",
-        "fidelity": "DFT",
+        "fidelity": "DFT (Mock)",
         "convergence": true,
-        "p_band_center": -2.0,
-        "charge_transfer_energy": 0.6,
-        "work_function": 4.8,
         "species_counts": {
-          "Co": 3,
-          "Fe": 3,
-          "O": 9
+          "Fe": 4,
+          "La": 3,
+          "O": 12
         }
       }
     },
@@ -702,7 +690,7 @@
       "properties": {
         "iteration": 5,
         "fidelity": "DFT",
-        "sigma": 0.2667488554788854,
+        "sigma": 0.2667488470583039,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -717,17 +705,14 @@
         "total_energy": -151.098,
         "adsorption_energy": -1.098,
         "d_band_center": -1.5,
-        "o2p_band_center": -2.1,
+        "o2p_band_center": -2.5,
         "status": "completed",
-        "fidelity": "DFT",
+        "fidelity": "DFT (Mock)",
         "convergence": true,
-        "p_band_center": -2.0,
-        "charge_transfer_energy": 0.6,
-        "work_function": 4.8,
         "species_counts": {
-          "Co": 3,
-          "Fe": 3,
-          "O": 9
+          "Fe": 4,
+          "La": 3,
+          "O": 12
         }
       }
     },
@@ -876,7 +861,7 @@
       "properties": {
         "iteration": 6,
         "fidelity": "DFT",
-        "sigma": 0.23640184460009372,
+        "sigma": 0.236401846150607,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -891,17 +876,14 @@
         "total_energy": -151.294,
         "adsorption_energy": -1.294,
         "d_band_center": -1.5,
-        "o2p_band_center": -2.1,
+        "o2p_band_center": -2.5,
         "status": "completed",
-        "fidelity": "DFT",
+        "fidelity": "DFT (Mock)",
         "convergence": true,
-        "p_band_center": -2.0,
-        "charge_transfer_energy": 0.6,
-        "work_function": 4.8,
         "species_counts": {
-          "Co": 3,
-          "Fe": 3,
-          "O": 9
+          "Fe": 4,
+          "La": 3,
+          "O": 12
         }
       }
     },
@@ -1062,7 +1044,7 @@
       "properties": {
         "iteration": 7,
         "fidelity": "DFT",
-        "sigma": 0.21175670945612068,
+        "sigma": 0.2117567185371094,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -1077,17 +1059,14 @@
         "total_energy": -151.681,
         "adsorption_energy": -1.681,
         "d_band_center": -1.5,
-        "o2p_band_center": -2.1,
+        "o2p_band_center": -2.5,
         "status": "completed",
-        "fidelity": "DFT",
+        "fidelity": "DFT (Mock)",
         "convergence": true,
-        "p_band_center": -2.0,
-        "charge_transfer_energy": 0.6,
-        "work_function": 4.8,
         "species_counts": {
-          "Co": 3,
-          "Fe": 3,
-          "O": 9
+          "Fe": 4,
+          "La": 3,
+          "O": 12
         }
       }
     },
@@ -1260,7 +1239,7 @@
       "properties": {
         "iteration": 8,
         "fidelity": "DFT",
-        "sigma": 0.1951500096959933,
+        "sigma": 0.19515000918229714,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -1275,17 +1254,14 @@
         "total_energy": -151.82,
         "adsorption_energy": -1.8199999999999998,
         "d_band_center": -1.5,
-        "o2p_band_center": -2.1,
+        "o2p_band_center": -2.5,
         "status": "completed",
-        "fidelity": "DFT",
+        "fidelity": "DFT (Mock)",
         "convergence": true,
-        "p_band_center": -2.0,
-        "charge_transfer_energy": 0.6,
-        "work_function": 4.8,
         "species_counts": {
-          "Co": 3,
-          "Fe": 3,
-          "O": 9
+          "Fe": 4,
+          "La": 3,
+          "O": 12
         }
       }
     },
@@ -1470,7 +1446,7 @@
       "properties": {
         "iteration": 9,
         "fidelity": "DFT",
-        "sigma": 0.18053018299649434,
+        "sigma": 0.18053017829406035,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -1485,17 +1461,14 @@
         "total_energy": -151.116,
         "adsorption_energy": -1.116,
         "d_band_center": -1.5,
-        "o2p_band_center": -2.1,
+        "o2p_band_center": -2.5,
         "status": "completed",
-        "fidelity": "DFT",
+        "fidelity": "DFT (Mock)",
         "convergence": true,
-        "p_band_center": -2.0,
-        "charge_transfer_energy": 0.6,
-        "work_function": 4.8,
         "species_counts": {
-          "Co": 3,
-          "Fe": 3,
-          "O": 9
+          "Fe": 4,
+          "La": 3,
+          "O": 12
         }
       }
     },
@@ -1692,7 +1665,7 @@
       "properties": {
         "iteration": 10,
         "fidelity": "DFT",
-        "sigma": 0.17254536130244152,
+        "sigma": 0.17254537002344025,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -1707,24 +1680,2884 @@
         "total_energy": -151.599,
         "adsorption_energy": -1.599,
         "d_band_center": -1.5,
-        "o2p_band_center": -2.1,
+        "o2p_band_center": -2.5,
         "status": "completed",
-        "fidelity": "DFT",
+        "fidelity": "DFT (Mock)",
         "convergence": true,
-        "p_band_center": -2.0,
-        "charge_transfer_energy": 0.6,
-        "work_function": 4.8,
         "species_counts": {
-          "Co": 3,
-          "Fe": 3,
-          "O": 9
+          "Fe": 4,
+          "La": 3,
+          "O": 12
+        }
+      }
+    },
+    {
+      "id": "mat_-5080290357359347762",
+      "type": "material",
+      "properties": {
+        "composition": {
+          "La": 0.6,
+          "Sr": 0.4,
+          "Fe": 0.8,
+          "Co": 0.2,
+          "O": 3.0
+        }
+      }
+    },
+    {
+      "id": "config_3cd4b8f7_SO2",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "SO2",
+        "coverage": 0.25,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "3cd4b8f715f502b19d2ba729ed9543d7881e41a2603cc0f7e431b8d04bf1288e",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "SO2",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 0.25,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 0.25,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_3cd4b8f7_1",
+      "type": "calculation",
+      "properties": {
+        "iteration": 1,
+        "fidelity": "DFT",
+        "sigma": 0.1729326640238828,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_3cd4b8f7_1",
+      "type": "result",
+      "properties": {
+        "reward": -0.355,
+        "total_energy": -151.855,
+        "adsorption_energy": -1.855,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.5,
+        "status": "completed",
+        "fidelity": "DFT (Mock)",
+        "convergence": true,
+        "species_counts": {
+          "Fe": 4,
+          "La": 3,
+          "O": 12
+        }
+      }
+    },
+    {
+      "id": "config_2563a6d5_SO2",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "SO2",
+        "coverage": 0.25,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "2563a6d5b7dab5982fbe32feff69862a19567cd168a9042e595b89c7d06b7a4e",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "SO2",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 0.25,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 0.25,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_2563a6d5_2",
+      "type": "calculation",
+      "properties": {
+        "iteration": 2,
+        "fidelity": "DFT",
+        "sigma": 0.16585970698269611,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_2563a6d5_2",
+      "type": "result",
+      "properties": {
+        "reward": -0.16300000000000003,
+        "total_energy": -151.663,
+        "adsorption_energy": -1.663,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.5,
+        "status": "completed",
+        "fidelity": "DFT (Mock)",
+        "convergence": true,
+        "species_counts": {
+          "Fe": 4,
+          "La": 3,
+          "O": 12
+        }
+      }
+    },
+    {
+      "id": "config_7ce0d3dd_SO2",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "SO2",
+        "coverage": 0.25,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "7ce0d3dd99151f0cd30ef7913699f3e69f373db32df23fbc4d27f3ad962fd73c",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "SO2",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 0.25,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 0.25,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_7ce0d3dd_3",
+      "type": "calculation",
+      "properties": {
+        "iteration": 3,
+        "fidelity": "DFT",
+        "sigma": 0.160984257189499,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_7ce0d3dd_3",
+      "type": "result",
+      "properties": {
+        "reward": -0.3859999999999999,
+        "total_energy": -151.114,
+        "adsorption_energy": -1.114,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.5,
+        "status": "completed",
+        "fidelity": "DFT (Mock)",
+        "convergence": true,
+        "species_counts": {
+          "Fe": 4,
+          "La": 3,
+          "O": 12
+        }
+      }
+    },
+    {
+      "id": "config_d8c9a0c1_SO2",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "SO2",
+        "coverage": 0.25,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "d8c9a0c182dac5c65fb163af006f32f291662f728479aa103a4fff473052f451",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "SO2",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 0.25,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 0.25,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_d8c9a0c1_4",
+      "type": "calculation",
+      "properties": {
+        "iteration": 4,
+        "fidelity": "DFT",
+        "sigma": 0.15767667670411487,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_d8c9a0c1_4",
+      "type": "result",
+      "properties": {
+        "reward": -0.46199999999999997,
+        "total_energy": -151.038,
+        "adsorption_energy": -1.038,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.5,
+        "status": "completed",
+        "fidelity": "DFT (Mock)",
+        "convergence": true,
+        "species_counts": {
+          "Fe": 4,
+          "La": 3,
+          "O": 12
+        }
+      }
+    },
+    {
+      "id": "config_5beeef31_SO2",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "SO2",
+        "coverage": 0.25,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "5beeef31b890cef7b3d82855d44da15e385c3463998e11888ad85237755ebd39",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "SO2",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 0.25,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 0.25,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_5beeef31_5",
+      "type": "calculation",
+      "properties": {
+        "iteration": 5,
+        "fidelity": "DFT",
+        "sigma": 0.15991598076999938,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_5beeef31_5",
+      "type": "result",
+      "properties": {
+        "reward": -0.2450000000000001,
+        "total_energy": -151.255,
+        "adsorption_energy": -1.255,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.5,
+        "status": "completed",
+        "fidelity": "DFT (Mock)",
+        "convergence": true,
+        "species_counts": {
+          "Fe": 4,
+          "La": 3,
+          "O": 12
+        }
+      }
+    },
+    {
+      "id": "config_0b96058b_SO2",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "SO2",
+        "coverage": 0.25,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "0b96058b59bc3108855145d45f59affc700a894aecaba9cf3776fd70a5382e92",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "SO2",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 0.25,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 0.25,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_0b96058b_6",
+      "type": "calculation",
+      "properties": {
+        "iteration": 6,
+        "fidelity": "DFT",
+        "sigma": 0.1541481487486289,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_0b96058b_6",
+      "type": "result",
+      "properties": {
+        "reward": -0.008999999999999897,
+        "total_energy": -151.491,
+        "adsorption_energy": -1.491,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.5,
+        "status": "completed",
+        "fidelity": "DFT (Mock)",
+        "convergence": true,
+        "species_counts": {
+          "Fe": 4,
+          "La": 3,
+          "O": 12
+        }
+      }
+    },
+    {
+      "id": "config_08b63be9_SO2",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "SO2",
+        "coverage": 0.25,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "08b63be943ce5a08dc3f017f74b3417214df05d355519f60e6a4bb7dbeed0daa",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "SO2",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 0.25,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 0.25,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_08b63be9_7",
+      "type": "calculation",
+      "properties": {
+        "iteration": 7,
+        "fidelity": "DFT",
+        "sigma": 0.1646110601014028,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_08b63be9_7",
+      "type": "result",
+      "properties": {
+        "reward": -0.05899999999999994,
+        "total_energy": -151.441,
+        "adsorption_energy": -1.441,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.5,
+        "status": "completed",
+        "fidelity": "DFT (Mock)",
+        "convergence": true,
+        "species_counts": {
+          "Fe": 4,
+          "La": 3,
+          "O": 12
+        }
+      }
+    },
+    {
+      "id": "config_6d560fbc_SO2",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "SO2",
+        "coverage": 0.25,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "6d560fbcd4ac44a280c5fae0f10d07ad86a15b1572b1e8e7c2479828f9bb432d",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "SO2",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 0.25,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 0.25,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_6d560fbc_8",
+      "type": "calculation",
+      "properties": {
+        "iteration": 8,
+        "fidelity": "DFT",
+        "sigma": 0.1673143614695573,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_6d560fbc_8",
+      "type": "result",
+      "properties": {
+        "reward": -0.09799999999999986,
+        "total_energy": -151.402,
+        "adsorption_energy": -1.4020000000000001,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.5,
+        "status": "completed",
+        "fidelity": "DFT (Mock)",
+        "convergence": true,
+        "species_counts": {
+          "Fe": 4,
+          "La": 3,
+          "O": 12
+        }
+      }
+    },
+    {
+      "id": "config_ac5cc050_SO2",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "SO2",
+        "coverage": 0.25,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "ac5cc0502bfd136eb4868de63bd62673f46a464235cb0bcc291bd2ef09c06d62",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "SO2",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 0.25,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 0.25,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_ac5cc050_9",
+      "type": "calculation",
+      "properties": {
+        "iteration": 9,
+        "fidelity": "DFT",
+        "sigma": 0.1664221764157123,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_ac5cc050_9",
+      "type": "result",
+      "properties": {
+        "reward": -0.4990000000000001,
+        "total_energy": -151.999,
+        "adsorption_energy": -1.999,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.5,
+        "status": "completed",
+        "fidelity": "DFT (Mock)",
+        "convergence": true,
+        "species_counts": {
+          "Fe": 4,
+          "La": 3,
+          "O": 12
+        }
+      }
+    },
+    {
+      "id": "config_9107b1ff_SO2",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "SO2",
+        "coverage": 0.25,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "9107b1ff292a3c861674890367b687f60cfc7a1238267c6f7ae38fdcb5c7d3f6",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "SO2",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 0.25,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 0.25,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_9107b1ff_10",
+      "type": "calculation",
+      "properties": {
+        "iteration": 10,
+        "fidelity": "DFT",
+        "sigma": 0.1721801337913844,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_9107b1ff_10",
+      "type": "result",
+      "properties": {
+        "reward": -0.1280000000000001,
+        "total_energy": -151.372,
+        "adsorption_energy": -1.3719999999999999,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.5,
+        "status": "completed",
+        "fidelity": "DFT (Mock)",
+        "convergence": true,
+        "species_counts": {
+          "Fe": 4,
+          "La": 3,
+          "O": 12
         }
       }
     }
   ],
   "edges": [
     {
-      "source": "mat_5365264156001086698",
+      "source": "mat_-3979779108513151550",
       "target": "surf_(0, 0, 1)_default",
       "relation": "has_surface",
       "metadata": {}
@@ -1792,6 +4625,66 @@
     {
       "source": "site_surf_(0, 0, 1)_default_top_None",
       "target": "config_c297be34_SO2",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_3cd4b8f7_SO2",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_2563a6d5_SO2",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_7ce0d3dd_SO2",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_d8c9a0c1_SO2",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_5beeef31_SO2",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_0b96058b_SO2",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_08b63be9_SO2",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_6d560fbc_SO2",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_ac5cc050_SO2",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_9107b1ff_SO2",
       "relation": "has_structure",
       "metadata": {}
     },
@@ -2032,6 +4925,246 @@
     {
       "source": "calc_c297be34_10",
       "target": "res_calc_c297be34_10",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "config_3cd4b8f7_SO2",
+      "target": "ads_SO2",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_3cd4b8f7_SO2",
+      "target": "3cd4b8f715f502b19d2ba729ed9543d7881e41a2603cc0f7e431b8d04bf1288e",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "3cd4b8f715f502b19d2ba729ed9543d7881e41a2603cc0f7e431b8d04bf1288e",
+      "target": "calc_3cd4b8f7_1",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_3cd4b8f7_1",
+      "target": "res_calc_3cd4b8f7_1",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "config_2563a6d5_SO2",
+      "target": "ads_SO2",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_2563a6d5_SO2",
+      "target": "2563a6d5b7dab5982fbe32feff69862a19567cd168a9042e595b89c7d06b7a4e",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "2563a6d5b7dab5982fbe32feff69862a19567cd168a9042e595b89c7d06b7a4e",
+      "target": "calc_2563a6d5_2",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_2563a6d5_2",
+      "target": "res_calc_2563a6d5_2",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "config_7ce0d3dd_SO2",
+      "target": "ads_SO2",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_7ce0d3dd_SO2",
+      "target": "7ce0d3dd99151f0cd30ef7913699f3e69f373db32df23fbc4d27f3ad962fd73c",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "7ce0d3dd99151f0cd30ef7913699f3e69f373db32df23fbc4d27f3ad962fd73c",
+      "target": "calc_7ce0d3dd_3",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_7ce0d3dd_3",
+      "target": "res_calc_7ce0d3dd_3",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "config_d8c9a0c1_SO2",
+      "target": "ads_SO2",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_d8c9a0c1_SO2",
+      "target": "d8c9a0c182dac5c65fb163af006f32f291662f728479aa103a4fff473052f451",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "d8c9a0c182dac5c65fb163af006f32f291662f728479aa103a4fff473052f451",
+      "target": "calc_d8c9a0c1_4",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_d8c9a0c1_4",
+      "target": "res_calc_d8c9a0c1_4",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "config_5beeef31_SO2",
+      "target": "ads_SO2",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_5beeef31_SO2",
+      "target": "5beeef31b890cef7b3d82855d44da15e385c3463998e11888ad85237755ebd39",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "5beeef31b890cef7b3d82855d44da15e385c3463998e11888ad85237755ebd39",
+      "target": "calc_5beeef31_5",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_5beeef31_5",
+      "target": "res_calc_5beeef31_5",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "config_0b96058b_SO2",
+      "target": "ads_SO2",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_0b96058b_SO2",
+      "target": "0b96058b59bc3108855145d45f59affc700a894aecaba9cf3776fd70a5382e92",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "0b96058b59bc3108855145d45f59affc700a894aecaba9cf3776fd70a5382e92",
+      "target": "calc_0b96058b_6",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_0b96058b_6",
+      "target": "res_calc_0b96058b_6",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "config_08b63be9_SO2",
+      "target": "ads_SO2",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_08b63be9_SO2",
+      "target": "08b63be943ce5a08dc3f017f74b3417214df05d355519f60e6a4bb7dbeed0daa",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "08b63be943ce5a08dc3f017f74b3417214df05d355519f60e6a4bb7dbeed0daa",
+      "target": "calc_08b63be9_7",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_08b63be9_7",
+      "target": "res_calc_08b63be9_7",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "config_6d560fbc_SO2",
+      "target": "ads_SO2",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_6d560fbc_SO2",
+      "target": "6d560fbcd4ac44a280c5fae0f10d07ad86a15b1572b1e8e7c2479828f9bb432d",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "6d560fbcd4ac44a280c5fae0f10d07ad86a15b1572b1e8e7c2479828f9bb432d",
+      "target": "calc_6d560fbc_8",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_6d560fbc_8",
+      "target": "res_calc_6d560fbc_8",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "config_ac5cc050_SO2",
+      "target": "ads_SO2",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_ac5cc050_SO2",
+      "target": "ac5cc0502bfd136eb4868de63bd62673f46a464235cb0bcc291bd2ef09c06d62",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "ac5cc0502bfd136eb4868de63bd62673f46a464235cb0bcc291bd2ef09c06d62",
+      "target": "calc_ac5cc050_9",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_ac5cc050_9",
+      "target": "res_calc_ac5cc050_9",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "config_9107b1ff_SO2",
+      "target": "ads_SO2",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_9107b1ff_SO2",
+      "target": "9107b1ff292a3c861674890367b687f60cfc7a1238267c6f7ae38fdcb5c7d3f6",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "9107b1ff292a3c861674890367b687f60cfc7a1238267c6f7ae38fdcb5c7d3f6",
+      "target": "calc_9107b1ff_10",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_9107b1ff_10",
+      "target": "res_calc_9107b1ff_10",
       "relation": "yields",
       "metadata": {}
     }

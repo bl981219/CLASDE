@@ -55,16 +55,18 @@ class HypothesisAgent:
             model.fit(X_arr, y_arr)
             importances = model.feature_importances_
             
-            feature_names = [
-                "La_content", "Sr_content", "Mn_content", "O_content",
-                "Miller_h", "Miller_h2", "Miller_k", "Miller_k2", "Miller_l", "Miller_l2",
-                "Adsorbate_Identity", "Coverage", "Temperature", "Pressure", "Electrochemical_Potential",
-                "Vacancy_Density", "Substitution_Density"
-            ]
+            # Dynamically determine feature names based on SurfaceState.feature_vector structure
+            from ase.data import chemical_symbols
+            bulk_feats = [f"{chemical_symbols[i]}_content" for i in range(1, 101)]
+            miller_feats = ["Miller_h", "Miller_h2", "Miller_k", "Miller_k2", "Miller_l", "Miller_l2"]
+            env_feats = ["Adsorbate_Identity", "Coverage", "Temperature", "Pressure", "Electrochemical_Potential"]
+            defect_feats = ["Vacancy_Density", "Substitution_Density"]
+            
+            feature_names = bulk_feats + miller_feats + env_feats + defect_feats
             
             top_indices = np.argsort(importances)[-3:][::-1]
             for idx in top_indices:
-                if importances[idx] > 0.15:
+                if importances[idx] > 0.1: # Sensitivity threshold
                     feature_name = feature_names[idx] if idx < len(feature_names) else f"Feature_{idx}"
                     correlation = np.corrcoef(X_arr[:, idx], y_arr)[0, 1]
                     patterns.append({
