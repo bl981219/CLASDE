@@ -200,32 +200,46 @@ class OptimizationStrategist(BaseAgent):
         action, next_state = best_action_tuple
         self.iteration += 1
         
-        # 1. Dynamic Workflow Generation: Ask the Planner what to do with this state
+        # 1. Dynamic Workflow Generation
         workflow_sequence = self.planner.plan_next_steps(next_state)
         
-        # 2. Uncertainty Reasoning: Decide fidelity based on model confidence
+        # 2. Fidelity Decision Logic
         mu, sigma = self.belief_state.predict(next_state)
         
-        # Check if mode is forced in global config
-        force_mode = self.config.get("mode") 
-        if force_mode == "local_emt":
+        # Extract mode from the global config
+        compute_config = self.config.get("compute", {})
+        force_mode = compute_config.get("mode", "mixed")
+        
+        if force_mode in ["vasp", "dft", "DFT"]:
+            use_vasp = True
+        elif force_mode == "chgnet":
+            use_vasp = False
+        elif force_mode == "local_emt":
             use_vasp = False
         else:
-            sigma_threshold = self.config.get("sigma_threshold", 0.5)
+            # Multi-fidelity 'mixed' mode: use VASP for high uncertainty
+            sigma_threshold = self.config.get("acquisition", {}).get("sigma_threshold", 0.5)
             use_vasp = (sigma > sigma_threshold) or (self.iteration % 5 == 0)
         
-        # Map compute mode to SimulationType
-        sim_type = SimulationType.DFT if use_vasp else SimulationType.MLIP
+        if use_vasp:
+            sim_type = SimulationType.DFT
+        else:
+            # Map all local potentials to MLIP category; dispatcher handles engine choice
+            sim_type = SimulationType.MLIP
         
-        # 3. Execution of the Sequence (Simplified for demo)
-        logger.info(f"Iteration {self.iteration}: {action.action_type}")
-        logger.info(f"  [Planner] Sequence: {' -> '.join([t.value for t in workflow_sequence])}")
+        # 3. Execution
+        logger.info(f"Iteration {self.iteration}: {action.action_type} (Fidelity: {sim_type.value})")
         
         structure = self.builder.build_structure(next_state)
+        # Preserve structure in state for fine-tuning/MLIP training
+        next_state.slab_atoms = structure
+        
         job_id = self.compute.submit_job(structure, next_state, sim_type=sim_type, iteration=self.iteration)
         results_path = self.compute.fetch_results(job_id)
         
-        observables, reward = self.evaluator.evaluate_calculation(results_path, {})
+        # Pass state in context for layer/species analysis
+        eval_context = {"state": next_state}
+        observables, reward = self.evaluator.evaluate_calculation(results_path, eval_context)
         
         return {
             "state": next_state,

@@ -27,9 +27,6 @@ logger = logging.getLogger(__name__)
 class ReproducibilityLayer:
     """
     Ensures that every scientific campaign is fully traceable and reproducible.
-    
-    Captures software versions, environment state, and exact random seeds used 
-    during the execution of the autonomous loop.
     """
     def capture_environment(self) -> Dict[str, Any]:
         import sys
@@ -38,7 +35,7 @@ class ReproducibilityLayer:
             "python_version": sys.version,
             "platform": platform.platform(),
             "timestamp": time.ctime(),
-            "random_seed": 42 # Fixed seed for reproducibility
+            "random_seed": 42
         }
 
 def run_adsorption_campaign(config: Dict[str, Any]) -> None:
@@ -72,13 +69,11 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
     os.makedirs(results_dir, exist_ok=True)
     log_file: str = os.path.join(results_dir, "research_log.md")
     
-    # Initialize Research Log
-    with open(log_file, "a") as f:
+    # Initialize Research Log (Overwrite for fresh start per campaign)
+    with open(log_file, "w") as f:
         f.write(f"\n# Research Campaign: {config.get('name', 'Unnamed')}\n")
         f.write(f"**Timestamp:** {env_metadata['timestamp']}\n")
-        f.write(f"**Reproducibility:** Python {env_metadata['python_version'].split()[0]} on {env_metadata['platform']}\n")
         f.write(f"**Original User Intent:** *\"{config.get('original_prompt', 'N/A')}\"*\n")
-        f.write(f"**Scientific Interpretation:** {config.get('description', 'N/A')}\n")
         f.write(f"**Objective Config:** `{config.get('objective')}`\n")
         f.write(f"**Chemistry Constraints:** `{config.get('constraints')}`\n\n")
         f.write("## 1. Exploration Phase\n")
@@ -93,7 +88,7 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
     # Initialize the fully autonomous Strategist Agent
     strategist = OptimizationStrategist(
         surrogate=surrogate, 
-        config=config.get("acquisition", {}),
+        config=config, 
         experiment_db=experiment_db,
         compute_manager=compute,
         builder=builder,
@@ -122,11 +117,9 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
     
     # 3. Main Agentic Optimization Loop
     while governor.has_budget():
-        # The Strategist Agent autonomously handles: observe -> update -> propose -> score -> execute -> memory
         result = strategist.run_step()
         governor.consume_budget()
         
-        # Log to Research Log
         iteration: int = result["metadata"]["iteration"]
         action_type: str = result["action"].action_type.value
         compute_mode: str = result["metadata"]["fidelity"]
@@ -146,16 +139,14 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
         for p in patterns:
             theory = theory_builder.build_theory(p)
             theory_builder.discovered_laws.append({"type": "custom", "statement": theory})
-            logger.info(f"Theory Found: {theory}")
             with open(log_file, "a") as f:
                 f.write(f"- **Discovered Theory:** {theory}\n")
-        
         new_hypotheses = pi_agent.propose_experiments(patterns)
-        with open(log_file, "a") as f:
-            f.write(f"\n**PI Agent Recommendation:** Formulated {len(new_hypotheses)} new hypotheses for next-gen campaigns.\n")
-    else:
-        with open(log_file, "a") as f:
-            f.write("- *No statistically significant patterns detected in this budget cycle.*\n")
+    
+    # 5. Final Fine-tuning (MLIP training)
+    if config.get("finetune_mlip", False):
+        logger.info("--- MLIP FINE-TUNING PHASE ---")
+        compute.train_chgnet(experiment_db)
 
     # Final Report
     report = theory_builder.generate_report()
@@ -168,5 +159,3 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
     hypothesis_db.save()
     literature_db.save()
     kg_memory.save(knowledge_graph)
-    logger.info("Databases and Knowledge Graph saved to data/results/")
-    logger.info(f"Research log updated at {log_file}")

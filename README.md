@@ -117,40 +117,23 @@ Finally, the **Evaluation Agent** parses the raw output files. Results are not j
 The following scheme illustrates how agents interact and pass messages within the discovery loop:
 
 ```text
-================================================================================================
-                            CLASDE AGENTIC MESSAGE-PASSING SCHEME
-================================================================================================
-
-[ USER ] --------------------( Research Question )--------------------> [ COLLABORATOR AGENT ]
-                                                                                 |
-                                                                         ( Campaign Config )
-                                                                                 |
-                                                                                 v
-+----------------------------------------------------------------------- [ RESEARCH GOVERNOR ]
-|                                                                                |
-|                                                                        ( Constraints/Budget )
-|                                                                                |
-v                                                                                v
-[ HYPOTHESIS AGENT ] <-------( Scientific Provenance )---------+-------> [ STRATEGIST AGENT ]
-         |                                                     |                 |
-  ( Physical Laws )                                     [ KNOWLEDGE GRAPH ]      ( Optimal State )
-         |                                              ( Central Memory )       |
-         v                                                     ^                 v
-[ PLANNER AGENT ] <--------------------------------------------+---------- ( Observe Beliefs )
-         |
-  ( Dynamic Task Sequence: e.g., MD -> Relax -> NEB )
-         |
-         v
-[ BUILDER AGENT ] ---------( POSCAR )--------> [ COMPUTE MANAGER ] --------( Raw Output )------>
-         |                                             |                                       |
-         +---------------------------------------------+---------------------------------------+
-                                                       |
-                                               [ EVALUATION AGENT ]
-                                                       |
-                                               ( Semantic Result )
-                                                       |
-                                                       v
-                                              [ KNOWLEDGE GRAPH ]
+=====================================================================================
+                        CLASDE AGENTIC MESSAGE-PASSING SCHEME
+=====================================================================================
+[ USER ] --(Question)--> [ COLLABORATOR AGENT ] --(Config)--> [ RESEARCH GOVERNOR ]
+                                                                       |
+      +----------------------------------------------------------------+
+      v                                                                v
+[ HYPOTHESIS AGENT ] <--(Provenance)--+-- [ KNOWLEDGE GRAPH ] --+--> [ STRATEGIST ]
+      |                               |   ( Central Memory )    |        |
+(Physical Laws)                       ^           |             ^    (Optimal)
+      v                               |           v             |        v
+[ PLANNER AGENT ] <-------------------+----(Observe Beliefs)----+--- [ BUILDER ]
+      |                                                                  |
+(Task Sequence)                                                       (POSCAR)
+      v                                                                  v
+[ COMPUTE MANAGER ] --(Raw Output)--> [ EVALUATION AGENT ] --(Result)--> [ KG ]
+=====================================================================================
 ```
 
 ---

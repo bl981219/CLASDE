@@ -15,10 +15,19 @@
           1
         ],
         "termination": "default",
-        "slab_atoms": null,
         "available_sites": [],
-        "adsorbates": [],
-        "coverage": 0.0,
+        "adsorbates": [
+          {
+            "identity": "SO2",
+            "site_type": "top",
+            "site_coordination": null,
+            "site_neighbor_atoms": [],
+            "coverage": 0.25,
+            "orientation": {},
+            "geometry": {}
+          }
+        ],
+        "coverage": 0.25,
         "defects": [],
         "strain": [
           0.0,
@@ -54,21 +63,26 @@
           1
         ],
         "termination": "default",
-        "slab_atoms": null,
         "available_sites": [],
         "adsorbates": [
           {
-            "identity": "O",
+            "identity": "SO2",
             "site_type": "top",
             "site_coordination": null,
             "site_neighbor_atoms": [],
-            "coverage": 1.0,
+            "coverage": 0.25,
             "orientation": {},
             "geometry": {}
           }
         ],
-        "coverage": 1.0,
-        "defects": [],
+        "coverage": 0.25,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
         "strain": [
           0.0,
           0.0,
@@ -81,21 +95,32 @@
         },
         "metadata": {}
       },
-      "reward": -1.6466558883586782,
+      "reward": -0.040000000000000036,
       "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
+        "total_energy": -151.46,
+        "adsorption_energy": -1.46,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.1,
         "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
+        "fidelity": "DFT",
+        "convergence": true,
+        "p_band_center": -2.0,
+        "charge_transfer_energy": 0.6,
+        "work_function": 4.8,
+        "species_counts": {
+          "Co": 3,
+          "Fe": 3,
+          "O": 9
+        },
+        "reward": -0.040000000000000036,
         "iteration": 1,
-        "sigma": 0.005998897302888161,
+        "sigma": 0.0020605446697851823,
         "workflow": [
           "relax",
           "adsorption_energy"
         ]
       },
-      "method": "MLIP",
+      "method": "DFT",
       "convergence": true
     },
     {
@@ -113,11 +138,10 @@
           1
         ],
         "termination": "default",
-        "slab_atoms": null,
         "available_sites": [],
         "adsorbates": [
           {
-            "identity": "O",
+            "identity": "SO2",
             "site_type": "top",
             "site_coordination": null,
             "site_neighbor_atoms": [],
@@ -127,7 +151,19 @@
           }
         ],
         "coverage": 0.25,
-        "defects": [],
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
         "strain": [
           0.0,
           0.0,
@@ -140,21 +176,32 @@
         },
         "metadata": {}
       },
-      "reward": -1.6466558883586782,
+      "reward": -0.07299999999999995,
       "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
+        "total_energy": -151.573,
+        "adsorption_energy": -1.573,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.1,
         "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
+        "fidelity": "DFT",
+        "convergence": true,
+        "p_band_center": -2.0,
+        "charge_transfer_energy": 0.6,
+        "work_function": 4.8,
+        "species_counts": {
+          "Co": 3,
+          "Fe": 3,
+          "O": 9
+        },
+        "reward": -0.07299999999999995,
         "iteration": 2,
-        "sigma": 1.6766720393725438,
+        "sigma": 0.4160809635537226,
         "workflow": [
           "relax",
           "adsorption_energy"
         ]
       },
-      "method": "MLIP",
+      "method": "DFT",
       "convergence": true
     },
     {
@@ -172,21 +219,38 @@
           1
         ],
         "termination": "default",
-        "slab_atoms": null,
         "available_sites": [],
         "adsorbates": [
           {
-            "identity": "O",
+            "identity": "SO2",
             "site_type": "top",
             "site_coordination": null,
             "site_neighbor_atoms": [],
-            "coverage": 0.5,
+            "coverage": 0.25,
             "orientation": {},
             "geometry": {}
           }
         ],
-        "coverage": 0.5,
-        "defects": [],
+        "coverage": 0.25,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
         "strain": [
           0.0,
           0.0,
@@ -199,21 +263,32 @@
         },
         "metadata": {}
       },
-      "reward": -1.6466558883586782,
+      "reward": -0.48,
       "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
+        "total_energy": -151.02,
+        "adsorption_energy": -1.02,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.1,
         "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
+        "fidelity": "DFT",
+        "convergence": true,
+        "p_band_center": -2.0,
+        "charge_transfer_energy": 0.6,
+        "work_function": 4.8,
+        "species_counts": {
+          "Co": 3,
+          "Fe": 3,
+          "O": 9
+        },
+        "reward": -0.48,
         "iteration": 3,
-        "sigma": 0.006678497609636287,
+        "sigma": 0.028578979610663507,
         "workflow": [
           "relax",
           "adsorption_energy"
         ]
       },
-      "method": "MLIP",
+      "method": "DFT",
       "convergence": true
     },
     {
@@ -231,21 +306,44 @@
           1
         ],
         "termination": "default",
-        "slab_atoms": null,
         "available_sites": [],
         "adsorbates": [
           {
-            "identity": "O",
+            "identity": "SO2",
             "site_type": "top",
             "site_coordination": null,
             "site_neighbor_atoms": [],
-            "coverage": 0.75,
+            "coverage": 0.25,
             "orientation": {},
             "geometry": {}
           }
         ],
-        "coverage": 0.75,
-        "defects": [],
+        "coverage": 0.25,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
         "strain": [
           0.0,
           0.0,
@@ -258,21 +356,32 @@
         },
         "metadata": {}
       },
-      "reward": -1.6466558883586782,
+      "reward": -0.4570000000000001,
       "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
+        "total_energy": -151.043,
+        "adsorption_energy": -1.043,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.1,
         "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
+        "fidelity": "DFT",
+        "convergence": true,
+        "p_band_center": -2.0,
+        "charge_transfer_energy": 0.6,
+        "work_function": 4.8,
+        "species_counts": {
+          "Co": 3,
+          "Fe": 3,
+          "O": 9
+        },
+        "reward": -0.4570000000000001,
         "iteration": 4,
-        "sigma": 2.688855839943169e-05,
+        "sigma": 0.2831935013602726,
         "workflow": [
           "relax",
           "adsorption_energy"
         ]
       },
-      "method": "MLIP",
+      "method": "DFT",
       "convergence": true
     },
     {
@@ -290,21 +399,50 @@
           1
         ],
         "termination": "default",
-        "slab_atoms": null,
         "available_sites": [],
         "adsorbates": [
           {
-            "identity": "O",
+            "identity": "SO2",
             "site_type": "top",
             "site_coordination": null,
             "site_neighbor_atoms": [],
-            "coverage": 1.0,
+            "coverage": 0.25,
             "orientation": {},
             "geometry": {}
           }
         ],
-        "coverage": 1.0,
-        "defects": [],
+        "coverage": 0.25,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
         "strain": [
           0.0,
           0.0,
@@ -317,21 +455,32 @@
         },
         "metadata": {}
       },
-      "reward": -1.6466558883586782,
+      "reward": -0.4019999999999999,
       "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
+        "total_energy": -151.098,
+        "adsorption_energy": -1.098,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.1,
         "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
+        "fidelity": "DFT",
+        "convergence": true,
+        "p_band_center": -2.0,
+        "charge_transfer_energy": 0.6,
+        "work_function": 4.8,
+        "species_counts": {
+          "Co": 3,
+          "Fe": 3,
+          "O": 9
+        },
+        "reward": -0.4019999999999999,
         "iteration": 5,
-        "sigma": 2.2823716483873792e-05,
+        "sigma": 0.2667488554788854,
         "workflow": [
           "relax",
           "adsorption_energy"
         ]
       },
-      "method": "MLIP",
+      "method": "DFT",
       "convergence": true
     },
     {
@@ -349,11 +498,10 @@
           1
         ],
         "termination": "default",
-        "slab_atoms": null,
         "available_sites": [],
         "adsorbates": [
           {
-            "identity": "O",
+            "identity": "SO2",
             "site_type": "top",
             "site_coordination": null,
             "site_neighbor_atoms": [],
@@ -363,7 +511,43 @@
           }
         ],
         "coverage": 0.25,
-        "defects": [],
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
         "strain": [
           0.0,
           0.0,
@@ -376,21 +560,32 @@
         },
         "metadata": {}
       },
-      "reward": -1.6466558883586782,
+      "reward": -0.20599999999999996,
       "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
+        "total_energy": -151.294,
+        "adsorption_energy": -1.294,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.1,
         "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
+        "fidelity": "DFT",
+        "convergence": true,
+        "p_band_center": -2.0,
+        "charge_transfer_energy": 0.6,
+        "work_function": 4.8,
+        "species_counts": {
+          "Co": 3,
+          "Fe": 3,
+          "O": 9
+        },
+        "reward": -0.20599999999999996,
         "iteration": 6,
-        "sigma": 2.1255346763776868e-05,
+        "sigma": 0.23640184460009372,
         "workflow": [
           "relax",
           "adsorption_energy"
         ]
       },
-      "method": "MLIP",
+      "method": "DFT",
       "convergence": true
     },
     {
@@ -408,21 +603,62 @@
           1
         ],
         "termination": "default",
-        "slab_atoms": null,
         "available_sites": [],
         "adsorbates": [
           {
-            "identity": "O",
+            "identity": "SO2",
             "site_type": "top",
             "site_coordination": null,
             "site_neighbor_atoms": [],
-            "coverage": 0.75,
+            "coverage": 0.25,
             "orientation": {},
             "geometry": {}
           }
         ],
-        "coverage": 0.75,
-        "defects": [],
+        "coverage": 0.25,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
         "strain": [
           0.0,
           0.0,
@@ -435,21 +671,32 @@
         },
         "metadata": {}
       },
-      "reward": -1.6466558883586782,
+      "reward": -0.18100000000000005,
       "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
+        "total_energy": -151.681,
+        "adsorption_energy": -1.681,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.1,
         "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
+        "fidelity": "DFT",
+        "convergence": true,
+        "p_band_center": -2.0,
+        "charge_transfer_energy": 0.6,
+        "work_function": 4.8,
+        "species_counts": {
+          "Co": 3,
+          "Fe": 3,
+          "O": 9
+        },
+        "reward": -0.18100000000000005,
         "iteration": 7,
-        "sigma": 1.679531655026452e-05,
+        "sigma": 0.21175670945612068,
         "workflow": [
           "relax",
           "adsorption_energy"
         ]
       },
-      "method": "MLIP",
+      "method": "DFT",
       "convergence": true
     },
     {
@@ -467,11 +714,10 @@
           1
         ],
         "termination": "default",
-        "slab_atoms": null,
         "available_sites": [],
         "adsorbates": [
           {
-            "identity": "O",
+            "identity": "SO2",
             "site_type": "top",
             "site_coordination": null,
             "site_neighbor_atoms": [],
@@ -481,7 +727,55 @@
           }
         ],
         "coverage": 0.25,
-        "defects": [],
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
         "strain": [
           0.0,
           0.0,
@@ -494,21 +788,32 @@
         },
         "metadata": {}
       },
-      "reward": -1.6466558883586782,
+      "reward": -0.31999999999999984,
       "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
+        "total_energy": -151.82,
+        "adsorption_energy": -1.8199999999999998,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.1,
         "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
+        "fidelity": "DFT",
+        "convergence": true,
+        "p_band_center": -2.0,
+        "charge_transfer_energy": 0.6,
+        "work_function": 4.8,
+        "species_counts": {
+          "Co": 3,
+          "Fe": 3,
+          "O": 9
+        },
+        "reward": -0.31999999999999984,
         "iteration": 8,
-        "sigma": 1.5546296276183444e-05,
+        "sigma": 0.1951500096959933,
         "workflow": [
           "relax",
           "adsorption_energy"
         ]
       },
-      "method": "MLIP",
+      "method": "DFT",
       "convergence": true
     },
     {
@@ -526,21 +831,74 @@
           1
         ],
         "termination": "default",
-        "slab_atoms": null,
         "available_sites": [],
         "adsorbates": [
           {
-            "identity": "O",
+            "identity": "SO2",
             "site_type": "top",
             "site_coordination": null,
             "site_neighbor_atoms": [],
-            "coverage": 1.0,
+            "coverage": 0.25,
             "orientation": {},
             "geometry": {}
           }
         ],
-        "coverage": 1.0,
-        "defects": [],
+        "coverage": 0.25,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
         "strain": [
           0.0,
           0.0,
@@ -553,21 +911,32 @@
         },
         "metadata": {}
       },
-      "reward": -1.6466558883586782,
+      "reward": -0.3839999999999999,
       "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
+        "total_energy": -151.116,
+        "adsorption_energy": -1.116,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.1,
         "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
+        "fidelity": "DFT",
+        "convergence": true,
+        "p_band_center": -2.0,
+        "charge_transfer_energy": 0.6,
+        "work_function": 4.8,
+        "species_counts": {
+          "Co": 3,
+          "Fe": 3,
+          "O": 9
+        },
+        "reward": -0.3839999999999999,
         "iteration": 9,
-        "sigma": 1.4768783606365066e-05,
+        "sigma": 0.18053018299649434,
         "workflow": [
           "relax",
           "adsorption_energy"
         ]
       },
-      "method": "MLIP",
+      "method": "DFT",
       "convergence": true
     },
     {
@@ -585,21 +954,80 @@
           1
         ],
         "termination": "default",
-        "slab_atoms": null,
         "available_sites": [],
         "adsorbates": [
           {
-            "identity": "O",
+            "identity": "SO2",
             "site_type": "top",
             "site_coordination": null,
             "site_neighbor_atoms": [],
-            "coverage": 0.5,
+            "coverage": 0.25,
             "orientation": {},
             "geometry": {}
           }
         ],
-        "coverage": 0.5,
-        "defects": [],
+        "coverage": 0.25,
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
         "strain": [
           0.0,
           0.0,
@@ -612,2453 +1040,51 @@
         },
         "metadata": {}
       },
-      "reward": -1.6466558883586782,
+      "reward": -0.09899999999999998,
       "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
+        "total_energy": -151.599,
+        "adsorption_energy": -1.599,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.1,
         "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
+        "fidelity": "DFT",
+        "convergence": true,
+        "p_band_center": -2.0,
+        "charge_transfer_energy": 0.6,
+        "work_function": 4.8,
+        "species_counts": {
+          "Co": 3,
+          "Fe": 3,
+          "O": 9
+        },
+        "reward": -0.09899999999999998,
         "iteration": 10,
-        "sigma": 1.3222233490311891e-05,
+        "sigma": 0.17254536130244152,
         "workflow": [
           "relax",
           "adsorption_energy"
         ]
       },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.25,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.25,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 11,
-        "sigma": 1.2358039470513867e-05,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 1.0,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 1.0,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 12,
-        "sigma": 1.1879064357127308e-05,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.75,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.75,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 13,
-        "sigma": 1.1035088598026002e-05,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.25,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.25,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 14,
-        "sigma": 1.0521200421591903e-05,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 1.0,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 1.0,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 15,
-        "sigma": 1.0190474627333731e-05,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.5,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.5,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 16,
-        "sigma": 9.709245265466582e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.25,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.25,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 17,
-        "sigma": 9.294224893805574e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 1.0,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 1.0,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 18,
-        "sigma": 9.048030639887402e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.75,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.75,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 19,
-        "sigma": 8.703931405779264e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 1.0,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 1.0,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 20,
-        "sigma": 8.414518995287164e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.25,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.25,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 21,
-        "sigma": 8.214959153814986e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.5,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.5,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 22,
-        "sigma": 7.9832585727196e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.25,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.25,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 23,
-        "sigma": 7.737237263875868e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 1.0,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 1.0,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 24,
-        "sigma": 7.57813177097435e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.75,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.75,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 25,
-        "sigma": 7.385091096554175e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.25,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.25,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 26,
-        "sigma": 7.195101603683208e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 1.0,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 1.0,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 27,
-        "sigma": 7.06260286009893e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.5,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.5,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 28,
-        "sigma": 6.9210424591232554e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.25,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.25,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 29,
-        "sigma": 6.751635193639115e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 1.0,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 1.0,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 30,
-        "sigma": 6.639002744914748e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.5,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.5,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 31,
-        "sigma": 6.528565640290844e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.25,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.25,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 32,
-        "sigma": 6.383785255384759e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.75,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.75,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 33,
-        "sigma": 6.286401778366698e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 1.0,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 1.0,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 34,
-        "sigma": 6.190217626443402e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.75,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.75,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 35,
-        "sigma": 6.065882695600673e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 1.0,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 1.0,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 36,
-        "sigma": 5.980598041064931e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.25,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.25,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 37,
-        "sigma": 5.895803639123666e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.75,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.75,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 38,
-        "sigma": 5.794452582181497e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.25,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.25,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 39,
-        "sigma": 5.718872111613622e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 1.0,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 1.0,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 40,
-        "sigma": 5.646032115817167e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.5,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.5,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 41,
-        "sigma": 5.5703109577369946e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 1.0,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 1.0,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 42,
-        "sigma": 5.480894352802722e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.25,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.25,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 43,
-        "sigma": 5.4210031670821965e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.5,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.5,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 44,
-        "sigma": 5.349892217135159e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.25,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.25,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 45,
-        "sigma": 5.278341757445025e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.75,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.75,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 46,
-        "sigma": 5.216733836202904e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 1.0,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 1.0,
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 47,
-        "sigma": 5.167312650891397e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 1.0,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 1.0,
-        "defects": [
-          {
-            "type": "swap",
-            "element_a": "La",
-            "element_b": "Sr",
-            "direction": "surface_to_bulk"
-          }
-        ],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 48,
-        "sigma": 5.093923835591267e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.25,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.25,
-        "defects": [
-          {
-            "type": "swap",
-            "element_a": "La",
-            "element_b": "Sr",
-            "direction": "surface_to_bulk"
-          }
-        ],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 49,
-        "sigma": 5.045304971703021e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
-      "convergence": true
-    },
-    {
-      "state": {
-        "bulk_composition": {
-          "La": 0.6,
-          "Sr": 0.4,
-          "Fe": 0.8,
-          "Co": 0.2,
-          "O": 3.0
-        },
-        "miller_index": [
-          0,
-          0,
-          1
-        ],
-        "termination": "default",
-        "slab_atoms": null,
-        "available_sites": [],
-        "adsorbates": [
-          {
-            "identity": "O",
-            "site_type": "top",
-            "site_coordination": null,
-            "site_neighbor_atoms": [],
-            "coverage": 0.5,
-            "orientation": {},
-            "geometry": {}
-          }
-        ],
-        "coverage": 0.5,
-        "defects": [
-          {
-            "type": "swap",
-            "element_a": "La",
-            "element_b": "Sr",
-            "direction": "surface_to_bulk"
-          }
-        ],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "temperature": 298.15,
-        "pressure": 1.0,
-        "external_conditions": {
-          "Phi": 0.0
-        },
-        "metadata": {}
-      },
-      "reward": -1.6466558883586782,
-      "observables": {
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "MLIP",
-        "reward": -1.6466558883586782,
-        "iteration": 50,
-        "sigma": 4.990619314010181e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      },
-      "method": "MLIP",
+      "method": "DFT",
       "convergence": true
     }
   ],
   "provenance": [
     {
-      "source": "238925fb1c55c5c83ff7399ce132e5cd6eda7611e99848c96558d54c3a320b4c",
-      "target": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "source": "a843944d58a6d6cef80b3964324d6bcf38a94b60b5c018375be6fb660dc50d76",
+      "target": "5a544e50f51fa7590223522ca56c7756d1c100884c111dff2d0158a39a1134be",
       "action": {
-        "action_type": "modify_coverage",
+        "action_type": "introduce_vacancy",
         "parameters": {
-          "coverage": 1.0
+          "site": "La",
+          "index": 0
         },
         "reasoning": null
       }
     },
     {
-      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
-      "target": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
-      "action": {
-        "action_type": "modify_coverage",
-        "parameters": {
-          "coverage": 0.25
-        },
-        "reasoning": null
-      }
-    },
-    {
-      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
-      "target": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
-      "action": {
-        "action_type": "modify_coverage",
-        "parameters": {
-          "coverage": 0.5
-        },
-        "reasoning": null
-      }
-    },
-    {
-      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
-      "target": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
-      "action": {
-        "action_type": "modify_coverage",
-        "parameters": {
-          "coverage": 0.75
-        },
-        "reasoning": null
-      }
-    },
-    {
-      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
-      "target": "bdddf82c510485b1bc4eae6bb6cbbbfe159331c3ebc65959fa4fc3951e17d348",
+      "source": "5a544e50f51fa7590223522ca56c7756d1c100884c111dff2d0158a39a1134be",
+      "target": "759b24113b17953d2c318a0ad623908e9efd97f584d76f5ab2bdf87a1bce21c6",
       "action": {
         "action_type": "swap_atoms",
         "parameters": {
@@ -3070,111 +1096,105 @@
       }
     },
     {
-      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
-      "target": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
+      "source": "759b24113b17953d2c318a0ad623908e9efd97f584d76f5ab2bdf87a1bce21c6",
+      "target": "b7eb405f4d7d4edaa6a4071d7273dbb1e3f65d2412553f2a120f1c704a11cb7f",
       "action": {
-        "action_type": "modify_coverage",
+        "action_type": "swap_atoms",
         "parameters": {
-          "coverage": 0.5
+          "element_a": "La",
+          "element_b": "Sr",
+          "direction": "surface_to_bulk"
         },
         "reasoning": null
       }
     },
     {
-      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
-      "target": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
+      "source": "b7eb405f4d7d4edaa6a4071d7273dbb1e3f65d2412553f2a120f1c704a11cb7f",
+      "target": "907574b14880188501baabe1ee6a537a52d926e147655806c32a987056fb9e88",
       "action": {
-        "action_type": "modify_coverage",
+        "action_type": "swap_atoms",
         "parameters": {
-          "coverage": 0.75
+          "element_a": "La",
+          "element_b": "Sr",
+          "direction": "surface_to_bulk"
         },
         "reasoning": null
       }
     },
     {
-      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
-      "target": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "source": "907574b14880188501baabe1ee6a537a52d926e147655806c32a987056fb9e88",
+      "target": "3244a4702d27ae273d376f88a1d95d22d43f95d2c2e76026ff3dd8ba33c0e1ed",
       "action": {
-        "action_type": "modify_coverage",
+        "action_type": "swap_atoms",
         "parameters": {
-          "coverage": 1.0
+          "element_a": "La",
+          "element_b": "Sr",
+          "direction": "surface_to_bulk"
         },
         "reasoning": null
       }
     },
     {
-      "source": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
-      "target": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
+      "source": "3244a4702d27ae273d376f88a1d95d22d43f95d2c2e76026ff3dd8ba33c0e1ed",
+      "target": "897f71027af24c751dc78bfa9ff621adb4594ad693cfbf160b683f0ea5c567f8",
       "action": {
-        "action_type": "modify_coverage",
+        "action_type": "swap_atoms",
         "parameters": {
-          "coverage": 0.75
+          "element_a": "La",
+          "element_b": "Sr",
+          "direction": "surface_to_bulk"
         },
         "reasoning": null
       }
     },
     {
-      "source": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
-      "target": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
+      "source": "897f71027af24c751dc78bfa9ff621adb4594ad693cfbf160b683f0ea5c567f8",
+      "target": "040ae88fdb011489d77b236b6f9819987c65b92186b0365c112bcae5033f4d12",
       "action": {
-        "action_type": "modify_coverage",
+        "action_type": "swap_atoms",
         "parameters": {
-          "coverage": 0.25
+          "element_a": "La",
+          "element_b": "Sr",
+          "direction": "surface_to_bulk"
         },
         "reasoning": null
       }
     },
     {
-      "source": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
-      "target": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "source": "040ae88fdb011489d77b236b6f9819987c65b92186b0365c112bcae5033f4d12",
+      "target": "2a431e7df3ed5a4582bba7ec29a4f276d5e0443c74da0f20d411edec347a21d8",
       "action": {
-        "action_type": "modify_coverage",
+        "action_type": "swap_atoms",
         "parameters": {
-          "coverage": 1.0
+          "element_a": "La",
+          "element_b": "Sr",
+          "direction": "surface_to_bulk"
         },
         "reasoning": null
       }
     },
     {
-      "source": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
-      "target": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "source": "2a431e7df3ed5a4582bba7ec29a4f276d5e0443c74da0f20d411edec347a21d8",
+      "target": "aa6da2e32d7d0ded746720485b3a66ad16f96aab674bd427a88c5a432e15b5dd",
       "action": {
-        "action_type": "modify_coverage",
+        "action_type": "swap_atoms",
         "parameters": {
-          "coverage": 1.0
+          "element_a": "La",
+          "element_b": "Sr",
+          "direction": "surface_to_bulk"
         },
         "reasoning": null
       }
     },
     {
-      "source": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
-      "target": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
+      "source": "aa6da2e32d7d0ded746720485b3a66ad16f96aab674bd427a88c5a432e15b5dd",
+      "target": "c297be3489ff987b0b27e62734399bb2fa20114ac74f6003b1253d08059aef2d",
       "action": {
-        "action_type": "modify_coverage",
+        "action_type": "swap_atoms",
         "parameters": {
-          "coverage": 0.25
-        },
-        "reasoning": null
-      }
-    },
-    {
-      "source": "bdddf82c510485b1bc4eae6bb6cbbbfe159331c3ebc65959fa4fc3951e17d348",
-      "target": "24c8d318f8f69d0f0817d0beec79bf5407f103c89d8ed9269f67ac4a5c066483",
-      "action": {
-        "action_type": "modify_coverage",
-        "parameters": {
-          "coverage": 0.25
-        },
-        "reasoning": null
-      }
-    },
-    {
-      "source": "24c8d318f8f69d0f0817d0beec79bf5407f103c89d8ed9269f67ac4a5c066483",
-      "target": "2e92de6111a50c3a97700460033fed2878a8ccc3fc2e7f06278c1c9cb5b43b33",
-      "action": {
-        "action_type": "modify_coverage",
-        "parameters": {
-          "coverage": 0.5
+          "element_a": "La",
+          "element_b": "Sr",
+          "direction": "surface_to_bulk"
         },
         "reasoning": null
       }

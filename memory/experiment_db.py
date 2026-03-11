@@ -56,7 +56,7 @@ class ExperimentDatabase:
         data = {
             "experiments": [
                 {
-                    "state": d["state"].model_dump(),
+                    "state": d["state"].model_dump(exclude={"slab_atoms"}),
                     "reward": d["reward"],
                     "observables": d["observables"],
                     "method": d.get("method"),

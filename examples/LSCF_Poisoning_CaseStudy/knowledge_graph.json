@@ -1,7 +1,7 @@
 {
   "nodes": [
     {
-      "id": "mat_1440655973489291345",
+      "id": "mat_5365264156001086698",
       "type": "material",
       "properties": {
         "composition": {
@@ -35,27 +35,33 @@
       }
     },
     {
-      "id": "config_8bfdb9ac_O",
+      "id": "config_5a544e50_SO2",
       "type": "adsorption_configuration",
       "properties": {
-        "identity": "O",
-        "coverage": 1.0,
+        "identity": "SO2",
+        "coverage": 0.25,
         "orientation": {},
         "geometry": {}
       }
     },
     {
-      "id": "ads_O",
+      "id": "ads_SO2",
       "type": "adsorbate",
       "properties": {
-        "identity": "O"
+        "identity": "SO2"
       }
     },
     {
-      "id": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "id": "5a544e50f51fa7590223522ca56c7756d1c100884c111dff2d0158a39a1134be",
       "type": "structure",
       "properties": {
-        "defects": [],
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          }
+        ],
         "strain": [
           0.0,
           0.0,
@@ -83,17 +89,23 @@
           "available_sites": [],
           "adsorbates": [
             {
-              "identity": "O",
+              "identity": "SO2",
               "site_type": "top",
               "site_coordination": null,
               "site_neighbor_atoms": [],
-              "coverage": 1.0,
+              "coverage": 0.25,
               "orientation": {},
               "geometry": {}
             }
           ],
-          "coverage": 1.0,
-          "defects": [],
+          "coverage": 0.25,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            }
+          ],
           "strain": [
             0.0,
             0.0,
@@ -109,12 +121,12 @@
       }
     },
     {
-      "id": "calc_8bfdb9ac_1",
+      "id": "calc_5a544e50_1",
       "type": "calculation",
       "properties": {
         "iteration": 1,
-        "fidelity": "MLIP",
-        "sigma": 0.005998897302888161,
+        "fidelity": "DFT",
+        "sigma": 0.0020605446697851823,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -122,31 +134,54 @@
       }
     },
     {
-      "id": "res_calc_8bfdb9ac_1",
+      "id": "res_calc_5a544e50_1",
       "type": "result",
       "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
+        "reward": -0.040000000000000036,
+        "total_energy": -151.46,
+        "adsorption_energy": -1.46,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.1,
         "status": "completed",
-        "fidelity": "local_emt"
+        "fidelity": "DFT",
+        "convergence": true,
+        "p_band_center": -2.0,
+        "charge_transfer_energy": 0.6,
+        "work_function": 4.8,
+        "species_counts": {
+          "Co": 3,
+          "Fe": 3,
+          "O": 9
+        }
       }
     },
     {
-      "id": "config_a50700b2_O",
+      "id": "config_759b2411_SO2",
       "type": "adsorption_configuration",
       "properties": {
-        "identity": "O",
+        "identity": "SO2",
         "coverage": 0.25,
         "orientation": {},
         "geometry": {}
       }
     },
     {
-      "id": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
+      "id": "759b24113b17953d2c318a0ad623908e9efd97f584d76f5ab2bdf87a1bce21c6",
       "type": "structure",
       "properties": {
-        "defects": [],
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
         "strain": [
           0.0,
           0.0,
@@ -174,7 +209,7 @@
           "available_sites": [],
           "adsorbates": [
             {
-              "identity": "O",
+              "identity": "SO2",
               "site_type": "top",
               "site_coordination": null,
               "site_neighbor_atoms": [],
@@ -184,7 +219,19 @@
             }
           ],
           "coverage": 0.25,
-          "defects": [],
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            }
+          ],
           "strain": [
             0.0,
             0.0,
@@ -200,12 +247,12 @@
       }
     },
     {
-      "id": "calc_a50700b2_2",
+      "id": "calc_759b2411_2",
       "type": "calculation",
       "properties": {
         "iteration": 2,
-        "fidelity": "MLIP",
-        "sigma": 1.6766720393725438,
+        "fidelity": "DFT",
+        "sigma": 0.4160809635537226,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -213,1350 +260,53 @@
       }
     },
     {
-      "id": "res_calc_a50700b2_2",
+      "id": "res_calc_759b2411_2",
       "type": "result",
       "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
+        "reward": -0.07299999999999995,
+        "total_energy": -151.573,
+        "adsorption_energy": -1.573,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.1,
         "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "config_d6e4a885_O",
-      "type": "adsorption_configuration",
-      "properties": {
-        "identity": "O",
-        "coverage": 0.5,
-        "orientation": {},
-        "geometry": {}
-      }
-    },
-    {
-      "id": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
-      "type": "structure",
-      "properties": {
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "conditions": {
-          "T": 298.15,
-          "p": 1.0,
-          "Phi": 0.0
-        },
-        "state_dict": {
-          "bulk_composition": {
-            "La": 0.6,
-            "Sr": 0.4,
-            "Fe": 0.8,
-            "Co": 0.2,
-            "O": 3.0
-          },
-          "miller_index": [
-            0,
-            0,
-            1
-          ],
-          "termination": "default",
-          "available_sites": [],
-          "adsorbates": [
-            {
-              "identity": "O",
-              "site_type": "top",
-              "site_coordination": null,
-              "site_neighbor_atoms": [],
-              "coverage": 0.5,
-              "orientation": {},
-              "geometry": {}
-            }
-          ],
-          "coverage": 0.5,
-          "defects": [],
-          "strain": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "temperature": 298.15,
-          "pressure": 1.0,
-          "external_conditions": {
-            "Phi": 0.0
-          },
-          "metadata": {}
+        "fidelity": "DFT",
+        "convergence": true,
+        "p_band_center": -2.0,
+        "charge_transfer_energy": 0.6,
+        "work_function": 4.8,
+        "species_counts": {
+          "Co": 3,
+          "Fe": 3,
+          "O": 9
         }
       }
     },
     {
-      "id": "calc_d6e4a885_3",
-      "type": "calculation",
-      "properties": {
-        "iteration": 3,
-        "fidelity": "MLIP",
-        "sigma": 0.006678497609636287,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_d6e4a885_3",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "config_aeae18b6_O",
+      "id": "config_b7eb405f_SO2",
       "type": "adsorption_configuration",
       "properties": {
-        "identity": "O",
-        "coverage": 0.75,
-        "orientation": {},
-        "geometry": {}
-      }
-    },
-    {
-      "id": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
-      "type": "structure",
-      "properties": {
-        "defects": [],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "conditions": {
-          "T": 298.15,
-          "p": 1.0,
-          "Phi": 0.0
-        },
-        "state_dict": {
-          "bulk_composition": {
-            "La": 0.6,
-            "Sr": 0.4,
-            "Fe": 0.8,
-            "Co": 0.2,
-            "O": 3.0
-          },
-          "miller_index": [
-            0,
-            0,
-            1
-          ],
-          "termination": "default",
-          "available_sites": [],
-          "adsorbates": [
-            {
-              "identity": "O",
-              "site_type": "top",
-              "site_coordination": null,
-              "site_neighbor_atoms": [],
-              "coverage": 0.75,
-              "orientation": {},
-              "geometry": {}
-            }
-          ],
-          "coverage": 0.75,
-          "defects": [],
-          "strain": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "temperature": 298.15,
-          "pressure": 1.0,
-          "external_conditions": {
-            "Phi": 0.0
-          },
-          "metadata": {}
-        }
-      }
-    },
-    {
-      "id": "calc_aeae18b6_4",
-      "type": "calculation",
-      "properties": {
-        "iteration": 4,
-        "fidelity": "MLIP",
-        "sigma": 2.688855839943169e-05,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_aeae18b6_4",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_8bfdb9ac_5",
-      "type": "calculation",
-      "properties": {
-        "iteration": 5,
-        "fidelity": "MLIP",
-        "sigma": 2.2823716483873792e-05,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_8bfdb9ac_5",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_a50700b2_6",
-      "type": "calculation",
-      "properties": {
-        "iteration": 6,
-        "fidelity": "MLIP",
-        "sigma": 2.1255346763776868e-05,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_a50700b2_6",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_aeae18b6_7",
-      "type": "calculation",
-      "properties": {
-        "iteration": 7,
-        "fidelity": "MLIP",
-        "sigma": 1.679531655026452e-05,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_aeae18b6_7",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_a50700b2_8",
-      "type": "calculation",
-      "properties": {
-        "iteration": 8,
-        "fidelity": "MLIP",
-        "sigma": 1.5546296276183444e-05,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_a50700b2_8",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_8bfdb9ac_9",
-      "type": "calculation",
-      "properties": {
-        "iteration": 9,
-        "fidelity": "MLIP",
-        "sigma": 1.4768783606365066e-05,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_8bfdb9ac_9",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_d6e4a885_10",
-      "type": "calculation",
-      "properties": {
-        "iteration": 10,
-        "fidelity": "MLIP",
-        "sigma": 1.3222233490311891e-05,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_d6e4a885_10",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_a50700b2_11",
-      "type": "calculation",
-      "properties": {
-        "iteration": 11,
-        "fidelity": "MLIP",
-        "sigma": 1.2358039470513867e-05,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_a50700b2_11",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_8bfdb9ac_12",
-      "type": "calculation",
-      "properties": {
-        "iteration": 12,
-        "fidelity": "MLIP",
-        "sigma": 1.1879064357127308e-05,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_8bfdb9ac_12",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_aeae18b6_13",
-      "type": "calculation",
-      "properties": {
-        "iteration": 13,
-        "fidelity": "MLIP",
-        "sigma": 1.1035088598026002e-05,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_aeae18b6_13",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_a50700b2_14",
-      "type": "calculation",
-      "properties": {
-        "iteration": 14,
-        "fidelity": "MLIP",
-        "sigma": 1.0521200421591903e-05,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_a50700b2_14",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_8bfdb9ac_15",
-      "type": "calculation",
-      "properties": {
-        "iteration": 15,
-        "fidelity": "MLIP",
-        "sigma": 1.0190474627333731e-05,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_8bfdb9ac_15",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_d6e4a885_16",
-      "type": "calculation",
-      "properties": {
-        "iteration": 16,
-        "fidelity": "MLIP",
-        "sigma": 9.709245265466582e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_d6e4a885_16",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_a50700b2_17",
-      "type": "calculation",
-      "properties": {
-        "iteration": 17,
-        "fidelity": "MLIP",
-        "sigma": 9.294224893805574e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_a50700b2_17",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_8bfdb9ac_18",
-      "type": "calculation",
-      "properties": {
-        "iteration": 18,
-        "fidelity": "MLIP",
-        "sigma": 9.048030639887402e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_8bfdb9ac_18",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_aeae18b6_19",
-      "type": "calculation",
-      "properties": {
-        "iteration": 19,
-        "fidelity": "MLIP",
-        "sigma": 8.703931405779264e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_aeae18b6_19",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_8bfdb9ac_20",
-      "type": "calculation",
-      "properties": {
-        "iteration": 20,
-        "fidelity": "MLIP",
-        "sigma": 8.414518995287164e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_8bfdb9ac_20",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_a50700b2_21",
-      "type": "calculation",
-      "properties": {
-        "iteration": 21,
-        "fidelity": "MLIP",
-        "sigma": 8.214959153814986e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_a50700b2_21",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_d6e4a885_22",
-      "type": "calculation",
-      "properties": {
-        "iteration": 22,
-        "fidelity": "MLIP",
-        "sigma": 7.9832585727196e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_d6e4a885_22",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_a50700b2_23",
-      "type": "calculation",
-      "properties": {
-        "iteration": 23,
-        "fidelity": "MLIP",
-        "sigma": 7.737237263875868e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_a50700b2_23",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_8bfdb9ac_24",
-      "type": "calculation",
-      "properties": {
-        "iteration": 24,
-        "fidelity": "MLIP",
-        "sigma": 7.57813177097435e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_8bfdb9ac_24",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_aeae18b6_25",
-      "type": "calculation",
-      "properties": {
-        "iteration": 25,
-        "fidelity": "MLIP",
-        "sigma": 7.385091096554175e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_aeae18b6_25",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_a50700b2_26",
-      "type": "calculation",
-      "properties": {
-        "iteration": 26,
-        "fidelity": "MLIP",
-        "sigma": 7.195101603683208e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_a50700b2_26",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_8bfdb9ac_27",
-      "type": "calculation",
-      "properties": {
-        "iteration": 27,
-        "fidelity": "MLIP",
-        "sigma": 7.06260286009893e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_8bfdb9ac_27",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_d6e4a885_28",
-      "type": "calculation",
-      "properties": {
-        "iteration": 28,
-        "fidelity": "MLIP",
-        "sigma": 6.9210424591232554e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_d6e4a885_28",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_a50700b2_29",
-      "type": "calculation",
-      "properties": {
-        "iteration": 29,
-        "fidelity": "MLIP",
-        "sigma": 6.751635193639115e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_a50700b2_29",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_8bfdb9ac_30",
-      "type": "calculation",
-      "properties": {
-        "iteration": 30,
-        "fidelity": "MLIP",
-        "sigma": 6.639002744914748e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_8bfdb9ac_30",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_d6e4a885_31",
-      "type": "calculation",
-      "properties": {
-        "iteration": 31,
-        "fidelity": "MLIP",
-        "sigma": 6.528565640290844e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_d6e4a885_31",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_a50700b2_32",
-      "type": "calculation",
-      "properties": {
-        "iteration": 32,
-        "fidelity": "MLIP",
-        "sigma": 6.383785255384759e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_a50700b2_32",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_aeae18b6_33",
-      "type": "calculation",
-      "properties": {
-        "iteration": 33,
-        "fidelity": "MLIP",
-        "sigma": 6.286401778366698e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_aeae18b6_33",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_8bfdb9ac_34",
-      "type": "calculation",
-      "properties": {
-        "iteration": 34,
-        "fidelity": "MLIP",
-        "sigma": 6.190217626443402e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_8bfdb9ac_34",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_aeae18b6_35",
-      "type": "calculation",
-      "properties": {
-        "iteration": 35,
-        "fidelity": "MLIP",
-        "sigma": 6.065882695600673e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_aeae18b6_35",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_8bfdb9ac_36",
-      "type": "calculation",
-      "properties": {
-        "iteration": 36,
-        "fidelity": "MLIP",
-        "sigma": 5.980598041064931e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_8bfdb9ac_36",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_a50700b2_37",
-      "type": "calculation",
-      "properties": {
-        "iteration": 37,
-        "fidelity": "MLIP",
-        "sigma": 5.895803639123666e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_a50700b2_37",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_aeae18b6_38",
-      "type": "calculation",
-      "properties": {
-        "iteration": 38,
-        "fidelity": "MLIP",
-        "sigma": 5.794452582181497e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_aeae18b6_38",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_a50700b2_39",
-      "type": "calculation",
-      "properties": {
-        "iteration": 39,
-        "fidelity": "MLIP",
-        "sigma": 5.718872111613622e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_a50700b2_39",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_8bfdb9ac_40",
-      "type": "calculation",
-      "properties": {
-        "iteration": 40,
-        "fidelity": "MLIP",
-        "sigma": 5.646032115817167e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_8bfdb9ac_40",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_d6e4a885_41",
-      "type": "calculation",
-      "properties": {
-        "iteration": 41,
-        "fidelity": "MLIP",
-        "sigma": 5.5703109577369946e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_d6e4a885_41",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_8bfdb9ac_42",
-      "type": "calculation",
-      "properties": {
-        "iteration": 42,
-        "fidelity": "MLIP",
-        "sigma": 5.480894352802722e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_8bfdb9ac_42",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_a50700b2_43",
-      "type": "calculation",
-      "properties": {
-        "iteration": 43,
-        "fidelity": "MLIP",
-        "sigma": 5.4210031670821965e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_a50700b2_43",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_d6e4a885_44",
-      "type": "calculation",
-      "properties": {
-        "iteration": 44,
-        "fidelity": "MLIP",
-        "sigma": 5.349892217135159e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_d6e4a885_44",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_a50700b2_45",
-      "type": "calculation",
-      "properties": {
-        "iteration": 45,
-        "fidelity": "MLIP",
-        "sigma": 5.278341757445025e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_a50700b2_45",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_aeae18b6_46",
-      "type": "calculation",
-      "properties": {
-        "iteration": 46,
-        "fidelity": "MLIP",
-        "sigma": 5.216733836202904e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_aeae18b6_46",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "calc_8bfdb9ac_47",
-      "type": "calculation",
-      "properties": {
-        "iteration": 47,
-        "fidelity": "MLIP",
-        "sigma": 5.167312650891397e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_8bfdb9ac_47",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "config_bdddf82c_O",
-      "type": "adsorption_configuration",
-      "properties": {
-        "identity": "O",
-        "coverage": 1.0,
-        "orientation": {},
-        "geometry": {}
-      }
-    },
-    {
-      "id": "bdddf82c510485b1bc4eae6bb6cbbbfe159331c3ebc65959fa4fc3951e17d348",
-      "type": "structure",
-      "properties": {
-        "defects": [
-          {
-            "type": "swap",
-            "element_a": "La",
-            "element_b": "Sr",
-            "direction": "surface_to_bulk"
-          }
-        ],
-        "strain": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "conditions": {
-          "T": 298.15,
-          "p": 1.0,
-          "Phi": 0.0
-        },
-        "state_dict": {
-          "bulk_composition": {
-            "La": 0.6,
-            "Sr": 0.4,
-            "Fe": 0.8,
-            "Co": 0.2,
-            "O": 3.0
-          },
-          "miller_index": [
-            0,
-            0,
-            1
-          ],
-          "termination": "default",
-          "available_sites": [],
-          "adsorbates": [
-            {
-              "identity": "O",
-              "site_type": "top",
-              "site_coordination": null,
-              "site_neighbor_atoms": [],
-              "coverage": 1.0,
-              "orientation": {},
-              "geometry": {}
-            }
-          ],
-          "coverage": 1.0,
-          "defects": [
-            {
-              "type": "swap",
-              "element_a": "La",
-              "element_b": "Sr",
-              "direction": "surface_to_bulk"
-            }
-          ],
-          "strain": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "temperature": 298.15,
-          "pressure": 1.0,
-          "external_conditions": {
-            "Phi": 0.0
-          },
-          "metadata": {}
-        }
-      }
-    },
-    {
-      "id": "calc_bdddf82c_48",
-      "type": "calculation",
-      "properties": {
-        "iteration": 48,
-        "fidelity": "MLIP",
-        "sigma": 5.093923835591267e-06,
-        "workflow": [
-          "relax",
-          "adsorption_energy"
-        ]
-      }
-    },
-    {
-      "id": "res_calc_bdddf82c_48",
-      "type": "result",
-      "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
-        "status": "completed",
-        "fidelity": "local_emt"
-      }
-    },
-    {
-      "id": "config_24c8d318_O",
-      "type": "adsorption_configuration",
-      "properties": {
-        "identity": "O",
+        "identity": "SO2",
         "coverage": 0.25,
         "orientation": {},
         "geometry": {}
       }
     },
     {
-      "id": "24c8d318f8f69d0f0817d0beec79bf5407f103c89d8ed9269f67ac4a5c066483",
+      "id": "b7eb405f4d7d4edaa6a4071d7273dbb1e3f65d2412553f2a120f1c704a11cb7f",
       "type": "structure",
       "properties": {
         "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
           {
             "type": "swap",
             "element_a": "La",
@@ -1591,7 +341,7 @@
           "available_sites": [],
           "adsorbates": [
             {
-              "identity": "O",
+              "identity": "SO2",
               "site_type": "top",
               "site_coordination": null,
               "site_neighbor_atoms": [],
@@ -1603,6 +353,17 @@
           "coverage": 0.25,
           "defects": [
             {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
               "type": "swap",
               "element_a": "La",
               "element_b": "Sr",
@@ -1624,12 +385,12 @@
       }
     },
     {
-      "id": "calc_24c8d318_49",
+      "id": "calc_b7eb405f_3",
       "type": "calculation",
       "properties": {
-        "iteration": 49,
-        "fidelity": "MLIP",
-        "sigma": 5.045304971703021e-06,
+        "iteration": 3,
+        "fidelity": "DFT",
+        "sigma": 0.028578979610663507,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -1637,31 +398,59 @@
       }
     },
     {
-      "id": "res_calc_24c8d318_49",
+      "id": "res_calc_b7eb405f_3",
       "type": "result",
       "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
+        "reward": -0.48,
+        "total_energy": -151.02,
+        "adsorption_energy": -1.02,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.1,
         "status": "completed",
-        "fidelity": "local_emt"
+        "fidelity": "DFT",
+        "convergence": true,
+        "p_band_center": -2.0,
+        "charge_transfer_energy": 0.6,
+        "work_function": 4.8,
+        "species_counts": {
+          "Co": 3,
+          "Fe": 3,
+          "O": 9
+        }
       }
     },
     {
-      "id": "config_2e92de61_O",
+      "id": "config_907574b1_SO2",
       "type": "adsorption_configuration",
       "properties": {
-        "identity": "O",
-        "coverage": 0.5,
+        "identity": "SO2",
+        "coverage": 0.25,
         "orientation": {},
         "geometry": {}
       }
     },
     {
-      "id": "2e92de6111a50c3a97700460033fed2878a8ccc3fc2e7f06278c1c9cb5b43b33",
+      "id": "907574b14880188501baabe1ee6a537a52d926e147655806c32a987056fb9e88",
       "type": "structure",
       "properties": {
         "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
           {
             "type": "swap",
             "element_a": "La",
@@ -1696,17 +485,34 @@
           "available_sites": [],
           "adsorbates": [
             {
-              "identity": "O",
+              "identity": "SO2",
               "site_type": "top",
               "site_coordination": null,
               "site_neighbor_atoms": [],
-              "coverage": 0.5,
+              "coverage": 0.25,
               "orientation": {},
               "geometry": {}
             }
           ],
-          "coverage": 0.5,
+          "coverage": 0.25,
           "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
             {
               "type": "swap",
               "element_a": "La",
@@ -1729,12 +535,12 @@
       }
     },
     {
-      "id": "calc_2e92de61_50",
+      "id": "calc_907574b1_4",
       "type": "calculation",
       "properties": {
-        "iteration": 50,
-        "fidelity": "MLIP",
-        "sigma": 4.990619314010181e-06,
+        "iteration": 4,
+        "fidelity": "DFT",
+        "sigma": 0.2831935013602726,
         "workflow": [
           "relax",
           "adsorption_energy"
@@ -1742,20 +548,1183 @@
       }
     },
     {
-      "id": "res_calc_2e92de61_50",
+      "id": "res_calc_907574b1_4",
       "type": "result",
       "properties": {
-        "reward": -1.6466558883586782,
-        "total_energy": 32.93311776717356,
-        "adsorption_energy": 1.6466558883586782,
+        "reward": -0.4570000000000001,
+        "total_energy": -151.043,
+        "adsorption_energy": -1.043,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.1,
         "status": "completed",
-        "fidelity": "local_emt"
+        "fidelity": "DFT",
+        "convergence": true,
+        "p_band_center": -2.0,
+        "charge_transfer_energy": 0.6,
+        "work_function": 4.8,
+        "species_counts": {
+          "Co": 3,
+          "Fe": 3,
+          "O": 9
+        }
+      }
+    },
+    {
+      "id": "config_3244a470_SO2",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "SO2",
+        "coverage": 0.25,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "3244a4702d27ae273d376f88a1d95d22d43f95d2c2e76026ff3dd8ba33c0e1ed",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "SO2",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 0.25,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 0.25,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_3244a470_5",
+      "type": "calculation",
+      "properties": {
+        "iteration": 5,
+        "fidelity": "DFT",
+        "sigma": 0.2667488554788854,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_3244a470_5",
+      "type": "result",
+      "properties": {
+        "reward": -0.4019999999999999,
+        "total_energy": -151.098,
+        "adsorption_energy": -1.098,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.1,
+        "status": "completed",
+        "fidelity": "DFT",
+        "convergence": true,
+        "p_band_center": -2.0,
+        "charge_transfer_energy": 0.6,
+        "work_function": 4.8,
+        "species_counts": {
+          "Co": 3,
+          "Fe": 3,
+          "O": 9
+        }
+      }
+    },
+    {
+      "id": "config_897f7102_SO2",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "SO2",
+        "coverage": 0.25,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "897f71027af24c751dc78bfa9ff621adb4594ad693cfbf160b683f0ea5c567f8",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "SO2",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 0.25,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 0.25,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_897f7102_6",
+      "type": "calculation",
+      "properties": {
+        "iteration": 6,
+        "fidelity": "DFT",
+        "sigma": 0.23640184460009372,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_897f7102_6",
+      "type": "result",
+      "properties": {
+        "reward": -0.20599999999999996,
+        "total_energy": -151.294,
+        "adsorption_energy": -1.294,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.1,
+        "status": "completed",
+        "fidelity": "DFT",
+        "convergence": true,
+        "p_band_center": -2.0,
+        "charge_transfer_energy": 0.6,
+        "work_function": 4.8,
+        "species_counts": {
+          "Co": 3,
+          "Fe": 3,
+          "O": 9
+        }
+      }
+    },
+    {
+      "id": "config_040ae88f_SO2",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "SO2",
+        "coverage": 0.25,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "040ae88fdb011489d77b236b6f9819987c65b92186b0365c112bcae5033f4d12",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "SO2",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 0.25,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 0.25,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_040ae88f_7",
+      "type": "calculation",
+      "properties": {
+        "iteration": 7,
+        "fidelity": "DFT",
+        "sigma": 0.21175670945612068,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_040ae88f_7",
+      "type": "result",
+      "properties": {
+        "reward": -0.18100000000000005,
+        "total_energy": -151.681,
+        "adsorption_energy": -1.681,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.1,
+        "status": "completed",
+        "fidelity": "DFT",
+        "convergence": true,
+        "p_band_center": -2.0,
+        "charge_transfer_energy": 0.6,
+        "work_function": 4.8,
+        "species_counts": {
+          "Co": 3,
+          "Fe": 3,
+          "O": 9
+        }
+      }
+    },
+    {
+      "id": "config_2a431e7d_SO2",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "SO2",
+        "coverage": 0.25,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "2a431e7df3ed5a4582bba7ec29a4f276d5e0443c74da0f20d411edec347a21d8",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "SO2",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 0.25,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 0.25,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_2a431e7d_8",
+      "type": "calculation",
+      "properties": {
+        "iteration": 8,
+        "fidelity": "DFT",
+        "sigma": 0.1951500096959933,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_2a431e7d_8",
+      "type": "result",
+      "properties": {
+        "reward": -0.31999999999999984,
+        "total_energy": -151.82,
+        "adsorption_energy": -1.8199999999999998,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.1,
+        "status": "completed",
+        "fidelity": "DFT",
+        "convergence": true,
+        "p_band_center": -2.0,
+        "charge_transfer_energy": 0.6,
+        "work_function": 4.8,
+        "species_counts": {
+          "Co": 3,
+          "Fe": 3,
+          "O": 9
+        }
+      }
+    },
+    {
+      "id": "config_aa6da2e3_SO2",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "SO2",
+        "coverage": 0.25,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "aa6da2e32d7d0ded746720485b3a66ad16f96aab674bd427a88c5a432e15b5dd",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "SO2",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 0.25,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 0.25,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_aa6da2e3_9",
+      "type": "calculation",
+      "properties": {
+        "iteration": 9,
+        "fidelity": "DFT",
+        "sigma": 0.18053018299649434,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_aa6da2e3_9",
+      "type": "result",
+      "properties": {
+        "reward": -0.3839999999999999,
+        "total_energy": -151.116,
+        "adsorption_energy": -1.116,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.1,
+        "status": "completed",
+        "fidelity": "DFT",
+        "convergence": true,
+        "p_band_center": -2.0,
+        "charge_transfer_energy": 0.6,
+        "work_function": 4.8,
+        "species_counts": {
+          "Co": 3,
+          "Fe": 3,
+          "O": 9
+        }
+      }
+    },
+    {
+      "id": "config_c297be34_SO2",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "SO2",
+        "coverage": 0.25,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "c297be3489ff987b0b27e62734399bb2fa20114ac74f6003b1253d08059aef2d",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "La",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "La",
+            "element_b": "Sr",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "La": 0.6,
+            "Sr": 0.4,
+            "Fe": 0.8,
+            "Co": 0.2,
+            "O": 3.0
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "SO2",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 0.25,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 0.25,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "La",
+              "index": 0
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "La",
+              "element_b": "Sr",
+              "direction": "surface_to_bulk"
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_c297be34_10",
+      "type": "calculation",
+      "properties": {
+        "iteration": 10,
+        "fidelity": "DFT",
+        "sigma": 0.17254536130244152,
+        "workflow": [
+          "relax",
+          "adsorption_energy"
+        ]
+      }
+    },
+    {
+      "id": "res_calc_c297be34_10",
+      "type": "result",
+      "properties": {
+        "reward": -0.09899999999999998,
+        "total_energy": -151.599,
+        "adsorption_energy": -1.599,
+        "d_band_center": -1.5,
+        "o2p_band_center": -2.1,
+        "status": "completed",
+        "fidelity": "DFT",
+        "convergence": true,
+        "p_band_center": -2.0,
+        "charge_transfer_energy": 0.6,
+        "work_function": 4.8,
+        "species_counts": {
+          "Co": 3,
+          "Fe": 3,
+          "O": 9
+        }
       }
     }
   ],
   "edges": [
     {
-      "source": "mat_1440655973489291345",
+      "source": "mat_5365264156001086698",
       "target": "surf_(0, 0, 1)_default",
       "relation": "has_surface",
       "metadata": {}
@@ -1768,727 +1737,301 @@
     },
     {
       "source": "site_surf_(0, 0, 1)_default_top_None",
-      "target": "config_8bfdb9ac_O",
+      "target": "config_5a544e50_SO2",
       "relation": "has_structure",
       "metadata": {}
     },
     {
       "source": "site_surf_(0, 0, 1)_default_top_None",
-      "target": "config_a50700b2_O",
+      "target": "config_759b2411_SO2",
       "relation": "has_structure",
       "metadata": {}
     },
     {
       "source": "site_surf_(0, 0, 1)_default_top_None",
-      "target": "config_d6e4a885_O",
+      "target": "config_b7eb405f_SO2",
       "relation": "has_structure",
       "metadata": {}
     },
     {
       "source": "site_surf_(0, 0, 1)_default_top_None",
-      "target": "config_aeae18b6_O",
+      "target": "config_907574b1_SO2",
       "relation": "has_structure",
       "metadata": {}
     },
     {
       "source": "site_surf_(0, 0, 1)_default_top_None",
-      "target": "config_bdddf82c_O",
+      "target": "config_3244a470_SO2",
       "relation": "has_structure",
       "metadata": {}
     },
     {
       "source": "site_surf_(0, 0, 1)_default_top_None",
-      "target": "config_24c8d318_O",
+      "target": "config_897f7102_SO2",
       "relation": "has_structure",
       "metadata": {}
     },
     {
       "source": "site_surf_(0, 0, 1)_default_top_None",
-      "target": "config_2e92de61_O",
+      "target": "config_040ae88f_SO2",
       "relation": "has_structure",
       "metadata": {}
     },
     {
-      "source": "config_8bfdb9ac_O",
-      "target": "ads_O",
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_2a431e7d_SO2",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_aa6da2e3_SO2",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_c297be34_SO2",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "config_5a544e50_SO2",
+      "target": "ads_SO2",
       "relation": "adsorbs",
       "metadata": {}
     },
     {
-      "source": "config_8bfdb9ac_O",
-      "target": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
+      "source": "config_5a544e50_SO2",
+      "target": "5a544e50f51fa7590223522ca56c7756d1c100884c111dff2d0158a39a1134be",
       "relation": "has_structure",
       "metadata": {}
     },
     {
-      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
-      "target": "calc_8bfdb9ac_1",
+      "source": "5a544e50f51fa7590223522ca56c7756d1c100884c111dff2d0158a39a1134be",
+      "target": "calc_5a544e50_1",
       "relation": "calculated_by",
       "metadata": {}
     },
     {
-      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
-      "target": "calc_8bfdb9ac_5",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
-      "target": "calc_8bfdb9ac_9",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
-      "target": "calc_8bfdb9ac_12",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
-      "target": "calc_8bfdb9ac_15",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
-      "target": "calc_8bfdb9ac_18",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
-      "target": "calc_8bfdb9ac_20",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
-      "target": "calc_8bfdb9ac_24",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
-      "target": "calc_8bfdb9ac_27",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
-      "target": "calc_8bfdb9ac_30",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
-      "target": "calc_8bfdb9ac_34",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
-      "target": "calc_8bfdb9ac_36",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
-      "target": "calc_8bfdb9ac_40",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
-      "target": "calc_8bfdb9ac_42",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "8bfdb9ac0f9b5c5e69314bf971e85587a7b37e73f4c8dd7812a233e881f8f4a2",
-      "target": "calc_8bfdb9ac_47",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "calc_8bfdb9ac_1",
-      "target": "res_calc_8bfdb9ac_1",
+      "source": "calc_5a544e50_1",
+      "target": "res_calc_5a544e50_1",
       "relation": "yields",
       "metadata": {}
     },
     {
-      "source": "config_a50700b2_O",
-      "target": "ads_O",
+      "source": "config_759b2411_SO2",
+      "target": "ads_SO2",
       "relation": "adsorbs",
       "metadata": {}
     },
     {
-      "source": "config_a50700b2_O",
-      "target": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
+      "source": "config_759b2411_SO2",
+      "target": "759b24113b17953d2c318a0ad623908e9efd97f584d76f5ab2bdf87a1bce21c6",
       "relation": "has_structure",
       "metadata": {}
     },
     {
-      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
-      "target": "calc_a50700b2_2",
+      "source": "759b24113b17953d2c318a0ad623908e9efd97f584d76f5ab2bdf87a1bce21c6",
+      "target": "calc_759b2411_2",
       "relation": "calculated_by",
       "metadata": {}
     },
     {
-      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
-      "target": "calc_a50700b2_6",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
-      "target": "calc_a50700b2_8",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
-      "target": "calc_a50700b2_11",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
-      "target": "calc_a50700b2_14",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
-      "target": "calc_a50700b2_17",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
-      "target": "calc_a50700b2_21",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
-      "target": "calc_a50700b2_23",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
-      "target": "calc_a50700b2_26",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
-      "target": "calc_a50700b2_29",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
-      "target": "calc_a50700b2_32",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
-      "target": "calc_a50700b2_37",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
-      "target": "calc_a50700b2_39",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
-      "target": "calc_a50700b2_43",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "a50700b2e6a75c20776ba12a638c7f755bea4c89c26a3f6faf1ce0e174df3bb0",
-      "target": "calc_a50700b2_45",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "calc_a50700b2_2",
-      "target": "res_calc_a50700b2_2",
+      "source": "calc_759b2411_2",
+      "target": "res_calc_759b2411_2",
       "relation": "yields",
       "metadata": {}
     },
     {
-      "source": "config_d6e4a885_O",
-      "target": "ads_O",
+      "source": "config_b7eb405f_SO2",
+      "target": "ads_SO2",
       "relation": "adsorbs",
       "metadata": {}
     },
     {
-      "source": "config_d6e4a885_O",
-      "target": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
+      "source": "config_b7eb405f_SO2",
+      "target": "b7eb405f4d7d4edaa6a4071d7273dbb1e3f65d2412553f2a120f1c704a11cb7f",
       "relation": "has_structure",
       "metadata": {}
     },
     {
-      "source": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
-      "target": "calc_d6e4a885_3",
+      "source": "b7eb405f4d7d4edaa6a4071d7273dbb1e3f65d2412553f2a120f1c704a11cb7f",
+      "target": "calc_b7eb405f_3",
       "relation": "calculated_by",
       "metadata": {}
     },
     {
-      "source": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
-      "target": "calc_d6e4a885_10",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
-      "target": "calc_d6e4a885_16",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
-      "target": "calc_d6e4a885_22",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
-      "target": "calc_d6e4a885_28",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
-      "target": "calc_d6e4a885_31",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
-      "target": "calc_d6e4a885_41",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "d6e4a885d2962583fff1323d0b744a3a26c68851ff88c634cfead3c357048db8",
-      "target": "calc_d6e4a885_44",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "calc_d6e4a885_3",
-      "target": "res_calc_d6e4a885_3",
+      "source": "calc_b7eb405f_3",
+      "target": "res_calc_b7eb405f_3",
       "relation": "yields",
       "metadata": {}
     },
     {
-      "source": "config_aeae18b6_O",
-      "target": "ads_O",
+      "source": "config_907574b1_SO2",
+      "target": "ads_SO2",
       "relation": "adsorbs",
       "metadata": {}
     },
     {
-      "source": "config_aeae18b6_O",
-      "target": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
+      "source": "config_907574b1_SO2",
+      "target": "907574b14880188501baabe1ee6a537a52d926e147655806c32a987056fb9e88",
       "relation": "has_structure",
       "metadata": {}
     },
     {
-      "source": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
-      "target": "calc_aeae18b6_4",
+      "source": "907574b14880188501baabe1ee6a537a52d926e147655806c32a987056fb9e88",
+      "target": "calc_907574b1_4",
       "relation": "calculated_by",
       "metadata": {}
     },
     {
-      "source": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
-      "target": "calc_aeae18b6_7",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
-      "target": "calc_aeae18b6_13",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
-      "target": "calc_aeae18b6_19",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
-      "target": "calc_aeae18b6_25",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
-      "target": "calc_aeae18b6_33",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
-      "target": "calc_aeae18b6_35",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
-      "target": "calc_aeae18b6_38",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "aeae18b6554e16e0d56ca5a1f349391b79600000d0942fb17bcc83d9b8a6cb8b",
-      "target": "calc_aeae18b6_46",
-      "relation": "calculated_by",
-      "metadata": {}
-    },
-    {
-      "source": "calc_aeae18b6_4",
-      "target": "res_calc_aeae18b6_4",
+      "source": "calc_907574b1_4",
+      "target": "res_calc_907574b1_4",
       "relation": "yields",
       "metadata": {}
     },
     {
-      "source": "calc_8bfdb9ac_5",
-      "target": "res_calc_8bfdb9ac_5",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_a50700b2_6",
-      "target": "res_calc_a50700b2_6",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_aeae18b6_7",
-      "target": "res_calc_aeae18b6_7",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_a50700b2_8",
-      "target": "res_calc_a50700b2_8",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_8bfdb9ac_9",
-      "target": "res_calc_8bfdb9ac_9",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_d6e4a885_10",
-      "target": "res_calc_d6e4a885_10",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_a50700b2_11",
-      "target": "res_calc_a50700b2_11",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_8bfdb9ac_12",
-      "target": "res_calc_8bfdb9ac_12",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_aeae18b6_13",
-      "target": "res_calc_aeae18b6_13",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_a50700b2_14",
-      "target": "res_calc_a50700b2_14",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_8bfdb9ac_15",
-      "target": "res_calc_8bfdb9ac_15",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_d6e4a885_16",
-      "target": "res_calc_d6e4a885_16",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_a50700b2_17",
-      "target": "res_calc_a50700b2_17",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_8bfdb9ac_18",
-      "target": "res_calc_8bfdb9ac_18",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_aeae18b6_19",
-      "target": "res_calc_aeae18b6_19",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_8bfdb9ac_20",
-      "target": "res_calc_8bfdb9ac_20",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_a50700b2_21",
-      "target": "res_calc_a50700b2_21",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_d6e4a885_22",
-      "target": "res_calc_d6e4a885_22",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_a50700b2_23",
-      "target": "res_calc_a50700b2_23",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_8bfdb9ac_24",
-      "target": "res_calc_8bfdb9ac_24",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_aeae18b6_25",
-      "target": "res_calc_aeae18b6_25",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_a50700b2_26",
-      "target": "res_calc_a50700b2_26",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_8bfdb9ac_27",
-      "target": "res_calc_8bfdb9ac_27",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_d6e4a885_28",
-      "target": "res_calc_d6e4a885_28",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_a50700b2_29",
-      "target": "res_calc_a50700b2_29",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_8bfdb9ac_30",
-      "target": "res_calc_8bfdb9ac_30",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_d6e4a885_31",
-      "target": "res_calc_d6e4a885_31",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_a50700b2_32",
-      "target": "res_calc_a50700b2_32",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_aeae18b6_33",
-      "target": "res_calc_aeae18b6_33",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_8bfdb9ac_34",
-      "target": "res_calc_8bfdb9ac_34",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_aeae18b6_35",
-      "target": "res_calc_aeae18b6_35",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_8bfdb9ac_36",
-      "target": "res_calc_8bfdb9ac_36",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_a50700b2_37",
-      "target": "res_calc_a50700b2_37",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_aeae18b6_38",
-      "target": "res_calc_aeae18b6_38",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_a50700b2_39",
-      "target": "res_calc_a50700b2_39",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_8bfdb9ac_40",
-      "target": "res_calc_8bfdb9ac_40",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_d6e4a885_41",
-      "target": "res_calc_d6e4a885_41",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_8bfdb9ac_42",
-      "target": "res_calc_8bfdb9ac_42",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_a50700b2_43",
-      "target": "res_calc_a50700b2_43",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_d6e4a885_44",
-      "target": "res_calc_d6e4a885_44",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_a50700b2_45",
-      "target": "res_calc_a50700b2_45",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_aeae18b6_46",
-      "target": "res_calc_aeae18b6_46",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "calc_8bfdb9ac_47",
-      "target": "res_calc_8bfdb9ac_47",
-      "relation": "yields",
-      "metadata": {}
-    },
-    {
-      "source": "config_bdddf82c_O",
-      "target": "ads_O",
+      "source": "config_3244a470_SO2",
+      "target": "ads_SO2",
       "relation": "adsorbs",
       "metadata": {}
     },
     {
-      "source": "config_bdddf82c_O",
-      "target": "bdddf82c510485b1bc4eae6bb6cbbbfe159331c3ebc65959fa4fc3951e17d348",
+      "source": "config_3244a470_SO2",
+      "target": "3244a4702d27ae273d376f88a1d95d22d43f95d2c2e76026ff3dd8ba33c0e1ed",
       "relation": "has_structure",
       "metadata": {}
     },
     {
-      "source": "bdddf82c510485b1bc4eae6bb6cbbbfe159331c3ebc65959fa4fc3951e17d348",
-      "target": "calc_bdddf82c_48",
+      "source": "3244a4702d27ae273d376f88a1d95d22d43f95d2c2e76026ff3dd8ba33c0e1ed",
+      "target": "calc_3244a470_5",
       "relation": "calculated_by",
       "metadata": {}
     },
     {
-      "source": "calc_bdddf82c_48",
-      "target": "res_calc_bdddf82c_48",
+      "source": "calc_3244a470_5",
+      "target": "res_calc_3244a470_5",
       "relation": "yields",
       "metadata": {}
     },
     {
-      "source": "config_24c8d318_O",
-      "target": "ads_O",
+      "source": "config_897f7102_SO2",
+      "target": "ads_SO2",
       "relation": "adsorbs",
       "metadata": {}
     },
     {
-      "source": "config_24c8d318_O",
-      "target": "24c8d318f8f69d0f0817d0beec79bf5407f103c89d8ed9269f67ac4a5c066483",
+      "source": "config_897f7102_SO2",
+      "target": "897f71027af24c751dc78bfa9ff621adb4594ad693cfbf160b683f0ea5c567f8",
       "relation": "has_structure",
       "metadata": {}
     },
     {
-      "source": "24c8d318f8f69d0f0817d0beec79bf5407f103c89d8ed9269f67ac4a5c066483",
-      "target": "calc_24c8d318_49",
+      "source": "897f71027af24c751dc78bfa9ff621adb4594ad693cfbf160b683f0ea5c567f8",
+      "target": "calc_897f7102_6",
       "relation": "calculated_by",
       "metadata": {}
     },
     {
-      "source": "calc_24c8d318_49",
-      "target": "res_calc_24c8d318_49",
+      "source": "calc_897f7102_6",
+      "target": "res_calc_897f7102_6",
       "relation": "yields",
       "metadata": {}
     },
     {
-      "source": "config_2e92de61_O",
-      "target": "ads_O",
+      "source": "config_040ae88f_SO2",
+      "target": "ads_SO2",
       "relation": "adsorbs",
       "metadata": {}
     },
     {
-      "source": "config_2e92de61_O",
-      "target": "2e92de6111a50c3a97700460033fed2878a8ccc3fc2e7f06278c1c9cb5b43b33",
+      "source": "config_040ae88f_SO2",
+      "target": "040ae88fdb011489d77b236b6f9819987c65b92186b0365c112bcae5033f4d12",
       "relation": "has_structure",
       "metadata": {}
     },
     {
-      "source": "2e92de6111a50c3a97700460033fed2878a8ccc3fc2e7f06278c1c9cb5b43b33",
-      "target": "calc_2e92de61_50",
+      "source": "040ae88fdb011489d77b236b6f9819987c65b92186b0365c112bcae5033f4d12",
+      "target": "calc_040ae88f_7",
       "relation": "calculated_by",
       "metadata": {}
     },
     {
-      "source": "calc_2e92de61_50",
-      "target": "res_calc_2e92de61_50",
+      "source": "calc_040ae88f_7",
+      "target": "res_calc_040ae88f_7",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "config_2a431e7d_SO2",
+      "target": "ads_SO2",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_2a431e7d_SO2",
+      "target": "2a431e7df3ed5a4582bba7ec29a4f276d5e0443c74da0f20d411edec347a21d8",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "2a431e7df3ed5a4582bba7ec29a4f276d5e0443c74da0f20d411edec347a21d8",
+      "target": "calc_2a431e7d_8",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_2a431e7d_8",
+      "target": "res_calc_2a431e7d_8",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "config_aa6da2e3_SO2",
+      "target": "ads_SO2",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_aa6da2e3_SO2",
+      "target": "aa6da2e32d7d0ded746720485b3a66ad16f96aab674bd427a88c5a432e15b5dd",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "aa6da2e32d7d0ded746720485b3a66ad16f96aab674bd427a88c5a432e15b5dd",
+      "target": "calc_aa6da2e3_9",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_aa6da2e3_9",
+      "target": "res_calc_aa6da2e3_9",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "config_c297be34_SO2",
+      "target": "ads_SO2",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_c297be34_SO2",
+      "target": "c297be3489ff987b0b27e62734399bb2fa20114ac74f6003b1253d08059aef2d",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "c297be3489ff987b0b27e62734399bb2fa20114ac74f6003b1253d08059aef2d",
+      "target": "calc_c297be34_10",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_c297be34_10",
+      "target": "res_calc_c297be34_10",
       "relation": "yields",
       "metadata": {}
     }
