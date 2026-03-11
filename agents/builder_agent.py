@@ -38,12 +38,14 @@ class StructureBuilder:
             # 2. Cleave and create Slab
             h, k, l = state.miller_index
             from pymatgen.core.surface import SlabGenerator
-            sg = SlabGenerator(bulk_struct, (h, k, l), 10.0, 10.0)
+            # Use 10 A minimum slab thickness and 15 A vacuum
+            sg = SlabGenerator(bulk_struct, (h, k, l), 10.0, 15.0)
             slabs = sg.get_slabs()
             if not slabs:
                 raise ValueError(f"No slabs generated for facet {state.miller_index}")
             
-            # Select termination matching the state or first available
+            # Selection logic for termination
+            # TODO: Match with state.termination
             slab_pmg = slabs[0]
             
             # 3. Convert to ASE for adsorbate/defect handling
@@ -57,37 +59,47 @@ class StructureBuilder:
             
             return slab_ase
         except Exception as e:
-            logger.error(f"High-fidelity building failed: {e}. Using Cu fallback.")
-            return Atoms('Cu', cell=(3.6, 3.6, 3.6), pbc=True)
+            logger.error(f"High-fidelity building failed: {e}. Using elemental fallback.")
+            elements = list(state.bulk_composition.keys())
+            fallback_el = elements[0] if elements else 'Cu'
+            return bulk(fallback_el, cubic=True) * (2,2,2)
 
     def _generate_realistic_bulk(self, state: SurfaceState) -> Structure:
-        """Creates a randomized perovskite supercell matching stoichiometry."""
+        """
+        Creates a randomized perovskite supercell matching stoichiometry.
+        Determines site preference (A vs B) using Shannon ionic radii.
+        """
+        from pymatgen.core import Element
         comp_dict = state.bulk_composition
         comp = Composition(comp_dict)
-        elements = [el.symbol for el in comp.elements]
+        elements = [el.symbol for el in comp.elements if el.symbol != "O"]
+        
         a = state.metadata.get("lattice_constant", 3.905)
+        lattice = Lattice.cubic(a)
+        
+        # 1. Physical Sorting: A-site (Large) vs B-site (Small)
+        radii = {sym: Element(sym).average_ionic_radius for sym in elements}
+        sorted_elements = sorted(elements, key=lambda x: radii[x], reverse=True)
         
         # Identification logic for Perovskites
-        if len(elements) >= 3 and "O" in elements:
-            # Categorize elements based on ionic radii/common knowledge
-            # A-sites: large cations; B-sites: transition metals
-            a_site_cands = [el for el in elements if el in ['La', 'Sr', 'Ba', 'Ca', 'Y', 'Pr', 'Nd', 'Sm']]
-            b_site_cands = [el for el in elements if el in ['Fe', 'Co', 'Ni', 'Mn', 'Ti', 'Cr', 'Cu', 'Zr', 'Sc']]
+        if len(elements) >= 2 and "O" in comp_dict:
+            # Largest goes to A, smallest to B
+            a_site_element = sorted_elements[0]
+            b_site_element = sorted_elements[-1]
             
-            if a_site_cands and b_site_cands:
-                lattice = Lattice.cubic(a)
-                # Template unit cell based on first found A and B sites
-                symbols = [a_site_cands[0], b_site_cands[0], 'O', 'O', 'O']
-                coords = [[0,0,0], [0.5,0.5,0.5], [0.5,0.5,0], [0.5,0,0.5], [0,0.5,0.5]]
-                unit_cell = Structure(lattice, symbols, coords)
-                
-                # Expand to supercell to accommodate fractional stoichiometry
-                trans = SupercellTransformation(((2,0,0), (0,2,0), (0,0,2)))
-                supercell = trans.apply_transformation(unit_cell)
-                
-                # TODO: Implement randomized site occupation for multi-element A/B sites
-                # For now, we return the base template to avoid hardcoding specific La/Fe
-                return supercell
+            # Use Pymatgen's built-in perovskite generator logic if possible or manual
+            # Standard perovskite positions (fractional)
+            symbols = [a_site_element, b_site_element, 'O', 'O', 'O']
+            coords = [[0,0,0], [0.5,0.5,0.5], [0.5,0.5,0], [0.5,0,0.5], [0,0.5,0.5]]
+            unit_cell = Structure(lattice, symbols, coords)
+            
+            # Scaling supercell to approximate stoichiometry
+            # For demo, use 2x2x2 to allow for some mixing
+            trans = SupercellTransformation(((2,0,0), (0,2,0), (0,0,2)))
+            supercell = trans.apply_transformation(unit_cell)
+            
+            # TODO: Implement site-replacement based on actual fractional weights
+            return supercell
 
         # Elemental/Simple bulk fallback
         return AseAtomsAdaptor.get_structure(bulk(elements[0] if elements else 'Cu', cubic=True))
@@ -105,10 +117,17 @@ class StructureBuilder:
         return atoms
 
     def _place_adsorbates(self, atoms: Atoms, state: SurfaceState) -> Atoms:
+        # Use our refined AdsorptionSiteFinder instead of hardcoded 'ontop'
+        from execution.adsorption_site_finder import AdsorptionSiteFinder
+        finder = AdsorptionSiteFinder()
+        
         for ads in state.adsorbates:
             if ads.coverage > 0.0:
-                try:
-                    # Place at reasonable surface height
-                    add_adsorbate(atoms, ads.identity, 1.8, 'ontop')
-                except: pass
+                sites = finder.find_sites(atoms)
+                if sites:
+                    # Select first site for now
+                    site = sites[0]
+                    try:
+                        add_adsorbate(atoms, ads.identity, 1.8, position=(site['position'][0], site['position'][1]))
+                    except: pass
         return atoms

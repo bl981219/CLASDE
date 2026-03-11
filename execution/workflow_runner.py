@@ -25,9 +25,6 @@ from science.theory_builder import TheoryBuilder
 logger = logging.getLogger(__name__)
 
 class ReproducibilityLayer:
-    """
-    Ensures that every scientific campaign is fully traceable and reproducible.
-    """
     def capture_environment(self) -> Dict[str, Any]:
         import sys
         import platform
@@ -39,14 +36,10 @@ class ReproducibilityLayer:
         }
 
 def run_adsorption_campaign(config: Dict[str, Any]) -> None:
-    """
-    Orchestrate the high-level CLASDE Bayesian Optimization loop.
-    Enhanced with Autonomous Reasoning and Detailed Research Logging.
-    """
+    """Orchestrate the high-level CLASDE BO loop."""
     repro = ReproducibilityLayer()
     env_metadata = repro.capture_environment()
     
-    # Normalize facet to tuple if loaded from YAML
     if "constraints" in config and "facet" in config["constraints"]:
         config["constraints"]["facet"] = tuple(config["constraints"]["facet"])
 
@@ -69,13 +62,8 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
     os.makedirs(results_dir, exist_ok=True)
     log_file: str = os.path.join(results_dir, "research_log.md")
     
-    # Initialize Research Log (Overwrite for fresh start per campaign)
     with open(log_file, "w") as f:
         f.write(f"\n# Research Campaign: {config.get('name', 'Unnamed')}\n")
-        f.write(f"**Timestamp:** {env_metadata['timestamp']}\n")
-        f.write(f"**Original User Intent:** *\"{config.get('original_prompt', 'N/A')}\"*\n")
-        f.write(f"**Objective Config:** `{config.get('objective')}`\n")
-        f.write(f"**Chemistry Constraints:** `{config.get('constraints')}`\n\n")
         f.write("## 1. Exploration Phase\n")
         f.write("| Iteration | Action | Fidelity | Reward | Best Reward |\n")
         f.write("| :--- | :--- | :--- | :--- | :--- |\n")
@@ -83,9 +71,8 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
     surrogate = SurrogateModel()
     builder = StructureBuilder()
     compute = ComputeManager(config["compute"] if "compute" in config else config)
-    evaluator = EvaluationAgent(governor.get_reward_function())
+    evaluator = EvaluationAgent(governor.get_reward_function(), knowledge_graph)
     
-    # Initialize the fully autonomous Strategist Agent
     strategist = OptimizationStrategist(
         surrogate=surrogate, 
         config=config, 
@@ -97,63 +84,58 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
         hypothesis_db=hypothesis_db
     )
 
-    # 2. Initial State Setup
+    # 2. Initial State Setup (Baseline)
     if not experiment_db.dataset:
-        obj = config.get("objective", {})
-        initial_adsorbates = []
-        if obj.get("adsorbate"):
-            initial_adsorbates.append(AdsorbateInstance(identity=obj["adsorbate"], coverage=0.25))
-            
+        logger.info("Initializing campaign with a pristine baseline calculation...")
+        # Establish a baseline pristine slab
         current_state = SurfaceState(
             bulk_composition=config["constraints"]["bulk"],
             miller_index=config["constraints"]["facet"],
             termination="default",
-            adsorbates=initial_adsorbates,
-            coverage=sum(a.coverage for a in initial_adsorbates)
+            adsorbates=[],
+            coverage=0.0
         )
-        experiment_db.add_experiment(current_state, {"reward": -5.0}) 
+        slab = builder.build_structure(current_state)
+        current_state.slab_atoms = slab
+        
+        # Actually execute the first job to get a real baseline energy
+        # Use MLIP (CHGNet) for the baseline unless forced otherwise
+        job_id = compute.submit_job(slab, current_state, sim_type=SimulationType.MLIP, iteration=0)
+        results_dir = compute.fetch_results(job_id)
+        observables, reward = evaluator.evaluate_calculation(results_dir, {"state": current_state})
+        
+        init_data = {
+            "reward": reward, 
+            "total_energy": observables.get("total_energy", 0.0), 
+            "coverage": 0.0,
+            "method": observables.get("fidelity", "MLIP")
+        }
+        experiment_db.add_experiment(current_state, init_data)
+        knowledge_graph.record_experiment(current_state, None, init_data)
     
     logger.info("--- CLASDE ENGINE STARTED ---")
     
-    # 3. Main Agentic Optimization Loop
+    # 3. Optimization Loop
     while governor.has_budget():
         result = strategist.run_step()
         governor.consume_budget()
         
-        iteration: int = result["metadata"]["iteration"]
-        action_type: str = result["action"].action_type.value
-        compute_mode: str = result["metadata"]["fidelity"]
-        reward: float = result["reward"]
-        best_reward: float = experiment_db.get_best_reward()
-        
+        metadata = result["metadata"]
         with open(log_file, "a") as f:
-            f.write(f"| {iteration} | {action_type} | {compute_mode.upper()} | {reward:.4f} | {best_reward:.4f} |\n")
+            f.write(f"| {metadata['iteration']} | {result['action'].action_type.value} | {metadata['fidelity'].upper()} | {result['reward']:.4f} | {experiment_db.get_best_reward():.4f} |\n")
 
-    # 4. Autonomous Reasoning & Hypothesis Evolution
-    logger.info("--- PI AGENT REASONING PHASE ---")
-    with open(log_file, "a") as f:
-        f.write("\n## 2. Scientific Reasoning Phase\n")
-        
+    # 4. Reasoning
     patterns = pi_agent.analyze_graph()
     if patterns:
         for p in patterns:
             theory = theory_builder.build_theory(p)
             theory_builder.discovered_laws.append({"type": "custom", "statement": theory})
-            with open(log_file, "a") as f:
-                f.write(f"- **Discovered Theory:** {theory}\n")
-        new_hypotheses = pi_agent.propose_experiments(patterns)
     
-    # 5. Final Fine-tuning (MLIP training)
     if config.get("finetune_mlip", False):
-        logger.info("--- MLIP FINE-TUNING PHASE ---")
         compute.train_chgnet(experiment_db)
 
-    # Final Report
     report = theory_builder.generate_report()
     logger.info(f"\n{report}")
-    with open(log_file, "a") as f:
-        f.write(f"\n### Final Summary\n```text\n{report}\n```\n")
-        f.write("-" * 80 + "\n")
 
     experiment_db.save()
     hypothesis_db.save()

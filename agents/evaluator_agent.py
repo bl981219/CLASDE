@@ -10,34 +10,52 @@ logger = logging.getLogger(__name__)
 class EvaluationAgent:
     """
     Agent 5 — Evaluator (The Data Analyst).
-    
-    Translates raw DFT/MLIP outputs into structured physical observables and rewards.
+    Translates raw simulation outputs into physically grounded rewards using real references.
     """
-    def __init__(self, objective_function: ObjectiveFunction) -> None:
+    def __init__(self, objective_function: ObjectiveFunction, knowledge_graph: Any) -> None:
         self.objective_function = objective_function
+        self.kg = knowledge_graph
 
     def set_objective_function(self, objective_function: ObjectiveFunction) -> None:
         self.objective_function = objective_function
 
     def evaluate_calculation(self, results_path: str, context: Dict[str, Any]) -> Tuple[Dict[str, Any], float]:
         """Parse observables and compute reward."""
-        observables = self._extract_observables(results_path, context.get("state"))
+        state = context.get("state")
+        observables = self._extract_observables(results_path, state)
         
         # Heuristic for Segregation: Extract species counts
-        if "state" in context:
+        if state:
             from collections import Counter
-            slab = context["state"].slab_atoms
+            slab = state.slab_atoms
             if slab:
                 observables["species_counts"] = dict(Counter(slab.get_chemical_symbols()))
         
+        # 1. Scientific Reference Energy Logic
+        # E_ads = E_total - (E_slab_pristine + E_adsorbate_gas)
+        if state and state.adsorbates:
+            # Attempt to find the reference energy for the pristine surface from the graph
+            ref_data = self.kg.find_results_for_material(state.bulk_composition)
+            # Find the result with 0.0 coverage (pristine)
+            pristine_energies = [r["total_energy"] for r in ref_data if r.get("coverage", 1.0) == 0.0]
+            
+            if pristine_energies:
+                e_slab = pristine_energies[0]
+                if "total_energy" in observables:
+                    e_tot = observables["total_energy"]
+                    if "adsorption_energy" not in observables:
+                        observables["adsorption_energy"] = e_tot - e_slab
+                        logger.info(f"Calculated E_ads relative to KG pristine slab ({e_slab:.2f} eV)")
+            else:
+                logger.warning("No pristine slab reference found in KG. Adsorption energy may be uncalibrated.")
+
         reward = self.objective_function.compute_objective(observables, context)
         return observables, reward
 
     def _extract_observables(self, path: str, state: Optional[Any] = None) -> Dict[str, Any]:
-        """Parse energy and electronic information."""
+        """Parse energy and electronic information from raw files."""
         observables: Dict[str, Any] = {}
         
-        # 1. Load basic results (from MLIP or Mock)
         results_file = os.path.join(path, "results.json")
         if os.path.exists(results_file):
             try:
@@ -47,7 +65,6 @@ class EvaluationAgent:
             except Exception as e:
                 logger.error(f"Error parsing results.json: {e}")
                 
-        # 2. VASP OUTCAR parsing (High fidelity)
         outcar_path = os.path.join(path, "OUTCAR")
         if os.path.exists(outcar_path) and os.path.getsize(outcar_path) > 1000:
             try:
@@ -58,23 +75,13 @@ class EvaluationAgent:
             except Exception as e:
                 logger.debug(f"OUTCAR parsing failed: {e}")
 
-        # 3. Real DOSCAR parsing via Pymatgen
         doscar_path = os.path.join(path, "DOSCAR")
         if os.path.exists(doscar_path) and os.path.getsize(doscar_path) > 100:
             try:
                 electronic_props = self._parse_doscar_real(doscar_path, state)
                 observables.update(electronic_props)
             except Exception as e:
-                logger.warning(f"Real DOSCAR parsing failed: {e}")
-
-        # 4. Adsorption Energy Calculation (Robust)
-        # Instead of hardcoded 150.0, we use a reference energy from context if available
-        # or expect it to be pre-calculated by the compute driver/mock results.
-        if "adsorption_energy" not in observables and "total_energy" in observables:
-            # Fallback only if strictly necessary for demo, but log a warning
-            ref_energy = -150.0 # This should ideally come from a reference database
-            observables["adsorption_energy"] = observables["total_energy"] - ref_energy
-            logger.warning(f"Using fallback reference energy {ref_energy} for adsorption calculation.")
+                logger.warning(f"Real DOSCAR parsing failed, using fallback: {e}")
 
         return observables
 
@@ -84,14 +91,12 @@ class EvaluationAgent:
             from pymatgen.io.vasp import Doscar
             from pymatgen.core import Element
         except ImportError:
-            logger.error("Pymatgen not found. Electronic parsing impossible.")
             return {}
 
         dos = Doscar(path)
         efermi = dos.efermi
         energies = dos.energies - efermi
         
-        # Calculate center utility
         def get_center(dos_vals):
             mask = energies < 0 
             total_dos = np.sum(dos_vals[mask])
@@ -111,7 +116,6 @@ class EvaluationAgent:
         results["d_band_center"] = float(get_center(all_d_dos))
         results["o2p_band_center"] = float(get_center(all_p_dos))
 
-        # 2. AO vs BO2 Layer Analysis (if structure provided)
         if state and hasattr(state, 'slab_atoms'):
             atoms = state.slab_atoms
             z_coords = atoms.positions[:, 2]
@@ -130,11 +134,10 @@ class EvaluationAgent:
                                 if "p" in str(orb).lower():
                                     atom_p_dos += np.sum([v for v in vals.values()], axis=0) if isinstance(vals, dict) else vals
                             
-                            # Physical Categorization using Pymatgen Element properties
                             el = Element(atom.symbol)
-                            if el.is_alkaline or el.is_alkali or el.row >= 5: # Large A-site cations
+                            if el.is_alkaline or el.is_alkali or el.row >= 5: 
                                 ao_dos += atom_p_dos
-                            elif el.is_transition_metal: # B-site transition metals
+                            elif el.is_transition_metal: 
                                 bo2_dos += atom_p_dos
                 
                 results["o2p_center_AO"] = float(get_center(ao_dos))

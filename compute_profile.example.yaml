@@ -1,0 +1,23 @@
+# CLASDE Compute Profile Example
+# Use this file to define your local or cluster environment settings.
+# Rename to 'compute_profile.yaml' in your project root or ~/.clasde/profile.yaml
+
+# Set to "hpc" for Slurm clusters, or "local" for your workstation
+platform: "local"
+
+# Execution template. {ntasks} and {executable} are automatically filled by the engine.
+run_command: "mpirun -np {ntasks} {executable}"
+
+# Binary name (if in PATH) or absolute path
+executable: "vasp_std"
+
+# Path to your pseudopotential library (required for POTCAR generation)
+potcar_path: "/path/to/your/potentials/PBE"
+
+# Slurm-specific settings (only used if platform is "hpc")
+slurm:
+  partition: "normal"
+  extra_header: |
+    #SBATCH --nodes=1
+    #SBATCH --time=24:00:00
+    module load vasp/6.4.2

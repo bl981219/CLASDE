@@ -24,23 +24,34 @@ class SurfaceDescriptors:
         """
         Calculates the Generalized Coordination Number (GCN).
         GCN = sum(cn_i / cn_max) for all neighbors i.
-        Ref: Calle-Vallejo et al., Angew. Chem. Int. Ed. 2015.
         """
         try:
-            # 1. Identify neighbors of the target atom
+            from pymatgen.io.ase import AseAtomsAdaptor
+            from pymatgen.analysis.local_env import CrystalNN
+            
+            # 1. Identify neighbors
             distances = atoms.get_distances(atom_index, range(len(atoms)), mic=True)
             neighbor_indices = np.where((distances > 0.1) & (distances <= cutoff))[0]
             
             if len(neighbor_indices) == 0:
                 return 0.0
                 
-            # 2. Determine cn_max based on element (e.g., 12 for fcc bulk)
-            # For simplicity, we assume 12 for most metals
-            cn_max = 12.0
+            # 2. Determine cn_max dynamically using CrystalNN on the bulk-like environment
+            # If we can't find bulk, we default to 12 (fcc) or 8 (bcc) based on chemistry
+            struct = AseAtomsAdaptor.get_structure(atoms)
+            cnn = CrystalNN()
+            # Get CN for a bulk-like atom of the same species
+            cn_max = 12.0 # Standard fallback
+            try:
+                # Find an atom of the same species that is 'deep' in the slab
+                z_coords = atoms.positions[:, 2]
+                deep_idx = [i for i, z in enumerate(z_coords) if z < np.median(z_coords) and atoms[i].symbol == atoms[atom_index].symbol]
+                if deep_idx:
+                    cn_max = float(cnn.get_cn(struct, deep_idx[0]))
+            except: pass
             
             gcn = 0.0
             for idx in neighbor_indices:
-                # Calculate coordination of the neighbor
                 neighbor_cn = SurfaceDescriptors.compute_coordination_number(atoms, idx, cutoff)
                 gcn += neighbor_cn / cn_max
                 

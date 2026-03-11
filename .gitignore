@@ -34,6 +34,7 @@ slurm-*.out
 # Simulation Specifics
 Potential/
 workflows/templates/slurm_vasp.sh
+compute_profile.yaml
 
 # Agent System
 .gemini/
