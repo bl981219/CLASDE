@@ -232,28 +232,24 @@ class OptimizationStrategist(BaseAgent):
         logger.info(f"Iteration {self.iteration}: {action.action_type} (Fidelity: {sim_type.value})")
         
         structure = self.builder.build_structure(next_state)
-        # Preserve structure in state for fine-tuning/MLIP training
-        next_state.slab_atoms = structure
+        # Fix Smell #4: Standardize on slab_structure (Pymatgen)
+        next_state.slab_structure = structure
         
         job_id = self.compute.submit_job(structure, next_state, sim_type=sim_type, iteration=self.iteration)
         
-        # 4. Polling for Completion (Required for HPC/Local async)
-        logger.info(f"Waiting for simulation results (Job ID: {job_id})...")
-        import time
-        while True:
-            status = self.compute.get_job_status(job_id)
-            if status == JobStatus.COMPLETED:
-                # One final check: results.json or OUTCAR must be valid
-                results_path = self.compute.fetch_results(job_id)
-                if os.path.exists(os.path.join(results_path, "results.json")) or \
-                   (os.path.exists(os.path.join(results_path, "OUTCAR")) and os.path.getsize(os.path.join(results_path, "OUTCAR")) > 1000):
-                    break
-            if status == JobStatus.FAILED:
-                logger.error(f"Job {job_id} failed on the compute platform.")
-                break
-            time.sleep(15) # Poll every 15 seconds for production stability
+        # Smell #2 Fix: Asynchronous Polling
+        # Check status once. If not done, return a 'pending' result.
+        # This allows the caller (WorkflowRunner) to handle the sleep/exit logic.
+        status = self.compute.get_job_status(job_id)
         
-        # Pass state in context for layer/species analysis
+        if status not in [JobStatus.COMPLETED, JobStatus.FAILED]:
+            logger.info(f"Job {job_id} is {status.value}. Yielding execution.")
+            return {
+                "state": next_state, "action": action, "job_id": job_id, "status": "pending",
+                "metadata": {"iteration": self.iteration, "fidelity": sim_type.value, "sigma": float(sigma)}
+            }
+
+        # If already done (e.g. re-attached to finished job), proceed to eval
         results_path = self.compute.fetch_results(job_id)
         eval_context = {"state": next_state}
         observables, reward = self.evaluator.evaluate_calculation(results_path, eval_context)

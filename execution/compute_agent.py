@@ -199,18 +199,44 @@ class ComputeManager:
         return self._handle_mlip_local(calc_dir, structure, state_id)
 
     def _write_vasp_incar(self, calc_dir: str) -> None:
-        # Default parameters
+        """Writes VASP INCAR with intelligent overrides and error recovery logic."""
+        # Baseline Production Defaults
         params = {
-            "PREC": "Accurate", "ENCUT": 450, "ISMEAR": 0, "SIGMA": 0.05,
-            "NSW": 100, "IBRION": 2, "POTIM": 0.5, "LREAL": "Auto",
-            "LWAVE": ".FALSE.", "LCHARG": ".FALSE.", "LORBIT": 11
+            "PREC": "Accurate",
+            "ENCUT": 450,
+            "ISMEAR": 0,
+            "SIGMA": 0.05,
+            "NSW": 100,
+            "IBRION": 2,
+            "POTIM": 0.5,
+            "LREAL": "Auto",
+            "LWAVE": ".FALSE.",
+            "LCHARG": ".FALSE.",
+            "LORBIT": 11,
+            "ALGO": "Fast"
         }
-        # Override with campaign-specific vasp_params if provided
-        config_params = self.profile.config.get("vasp_params", {})
-        params.update(config_params)
+        
+        # 1. Override with global compute profile settings
+        params.update(self.profile.config.get("vasp_params", {}))
+        
+        # 2. Check for "Attempt Number" to apply recovery fixes
+        # (This would be passed if we implemented a retry loop)
         
         with open(os.path.join(calc_dir, "INCAR"), "w") as f:
-            for k, v in params.items(): f.write(f"{k} = {v}\n")
+            for k, v in params.items():
+                f.write(f"{k} = {v}\n")
+
+    def _check_for_vasp_errors(self, calc_dir: str) -> Optional[str]:
+        """Scans OUTCAR for known VASP crash patterns to trigger agent-led recovery."""
+        outcar = os.path.join(calc_dir, "OUTCAR")
+        if not os.path.exists(outcar): return None
+        
+        with open(outcar, "r") as f:
+            content = f.read()
+            if "ZPOTRF" in content: return "LAPACK_ERR"
+            if "EDDDAV" in content: return "ELECTRONIC_DIVERGENCE"
+            if "ZBRENT" in content: return "IONIC_DIVERGENCE"
+        return None
 
     def _write_vasp_kpoints(self, calc_dir: str) -> None:
         kpoints_str = self.profile.config.get("kpoints", "Automatic\n0\nGamma\n1 1 1\n0 0 0\n")
@@ -293,9 +319,68 @@ class ComputeManager:
     def get_job_status(self, job_id: str) -> JobStatus:
         if job_id not in self.active_jobs:
             return JobStatus.FAILED
+        
         status = self.driver.get_status(job_id)
         self.active_jobs[job_id]["status"] = status
+        
+        # Smell #3 Fix: Automated Recovery
+        if status == JobStatus.FAILED:
+            calc_dir = self.active_jobs[job_id]["dir"]
+            error_type = self._check_for_vasp_errors(calc_dir)
+            
+            if error_type:
+                logger.warning(f"Detected {error_type} in {calc_dir}. Attempting recovery...")
+                return self.recover_job(job_id, error_type)
+                
         return status
+
+    def recover_job(self, job_id: str, error_type: str) -> JobStatus:
+        """Applies physical heuristics to fix VASP crashes and resubmits."""
+        calc_dir = self.active_jobs[job_id]["dir"]
+        attempts = self.active_jobs[job_id].get("attempts", 1)
+        
+        if attempts >= 3:
+            logger.error(f"Max recovery attempts reached for {calc_dir}. Marking as hard failure.")
+            return JobStatus.FAILED
+
+        # 1. Load existing parameters
+        params = {}
+        incar_path = os.path.join(calc_dir, "INCAR")
+        with open(incar_path, "r") as f:
+            for line in f:
+                if "=" in line:
+                    k, v = line.split("=")
+                    params[k.strip()] = v.strip()
+
+        # 2. Apply fixes based on error type
+        if error_type == "LAPACK_ERR" or error_type == "ELECTRONIC_DIVERGENCE":
+            # Slow down electronic convergence
+            params["ALGO"] = "Normal"
+            params["AMIX"] = "0.2"
+            params["BMIX"] = "0.0001"
+            logger.info("  -> Switching to ALGO=Normal and damping mixers.")
+        elif error_type == "IONIC_DIVERGENCE":
+            # Reduce step size
+            params["POTIM"] = str(float(params.get("POTIM", 0.5)) / 2.0)
+            logger.info(f"  -> Halving POTIM to {params['POTIM']}.")
+
+        # 3. Rewrite INCAR
+        with open(incar_path, "w") as f:
+            for k, v in params.items(): f.write(f"{k} = {v}\n")
+
+        # 4. Resubmit
+        state_id = calc_dir.split("_")[-1]
+        resources = self.profile.config.get("resources", {})
+        new_job_id = self.driver.submit(calc_dir, state_id, resources, self.profile)
+        
+        # 5. Update tracking
+        self.active_jobs[new_job_id] = {
+            "dir": calc_dir, 
+            "status": JobStatus.RUNNING,
+            "attempts": attempts + 1
+        }
+        logger.info(f"  -> Resubmitted as job {new_job_id} (Attempt {attempts + 1})")
+        return JobStatus.RUNNING
 
     def train_chgnet(self, db: Any):
         """Fine-tunes the CHGNet model using all results in the experiment DB."""

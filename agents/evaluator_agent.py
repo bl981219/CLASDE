@@ -27,9 +27,9 @@ class EvaluationAgent:
         # Heuristic for Segregation: Extract species counts
         if state:
             from collections import Counter
-            slab = state.slab_atoms
+            slab = state.slab_structure
             if slab:
-                observables["species_counts"] = dict(Counter(slab.get_chemical_symbols()))
+                observables["species_counts"] = dict(Counter([s.specie.symbol for s in slab]))
         
         # 1. Scientific Reference Energy Logic
         # E_ads = E_total - (E_slab_pristine + E_adsorbate_gas)
@@ -115,9 +115,10 @@ class EvaluationAgent:
         results["d_band_center"] = 0.0 # Placeholder for total d
         results["o2p_band_center"] = 0.0 # Placeholder for total p
 
-        if state and hasattr(state, 'slab_atoms') and state.slab_atoms:
-            atoms = state.slab_atoms
-            z_coords = atoms.positions[:, 2]
+        if state and hasattr(state, 'slab_structure') and state.slab_structure:
+            from science.chemistry import ChemistryPhysicist
+            struct = state.slab_structure
+            z_coords = struct.cart_coords[:, 2]
             unique_z = np.unique(np.round(z_coords, 2))
             
             if len(unique_z) >= 2:
@@ -125,21 +126,20 @@ class EvaluationAgent:
                 ao_dos_list = []
                 bo2_dos_list = []
                 
-                for i, atom in enumerate(atoms):
-                    if np.round(atom.position[2], 2) >= sub_z:
+                for i, site in enumerate(struct):
+                    if np.round(site.coords[2], 2) >= sub_z:
                         # Use get_site_orbital_dos from CompleteDos
                         # It returns a Dict[Orbital, Dos]
-                        orb_dos = dos.get_site_orbital_dos(v.final_structure[i])
+                        orb_dos = dos.get_site_orbital_dos(site)
                         p_vals = np.zeros_like(dos.energies)
                         for orb, pdos_obj in orb_dos.items():
                             if "p" in str(orb).lower():
                                 p_vals += pdos_obj.get_densities()
                         
-                        el = Element(atom.symbol)
-                        if el.is_alkaline or el.is_alkali or el.row >= 5: 
+                        symbol = site.specie.symbol
+                        if ChemistryPhysicist.get_layer_type([symbol]) == "AO":
                             ao_dos_list.append(p_vals)
-                        elif el.is_transition_metal or (atom.symbol == "O" and np.round(atom.position[2], 2) > sub_z + 0.5):
-                            # Heuristic: link O to BO2 if it's in top layer near B
+                        else:
                             bo2_dos_list.append(p_vals)
                 
                 if ao_dos_list:

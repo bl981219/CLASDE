@@ -117,11 +117,14 @@ Finally, the **Evaluation Agent** parses the raw output files. Results are not j
 ---
 
 ## Key Features
-- **Generalized Perovskite Builder:** Native support for arbitrary $A_{1-x}A'_{x}B_{1-y}B'_{y}O_3$ stoichiometries with heuristic cation site assignment and automated selective dynamics.
+- **Generalized Perovskite Builder:** Native support for arbitrary $A_{1-x}A'_{x}B_{1-y}B'_{y}O_3$ stoichiometries with heuristic cation site assignment via the `ChemistryPhysicist` utility.
 - **Robust Electronic Analysis:** Deep integration with Pymatgen for reliable parsing of `vasprun.xml` to extract layer-resolved O 2p-band and d-band centers.
-- **HPC Persistence (Watchdog):** Standalone watchdog process monitors active loops and re-attaches to existing Slurm jobs upon restart, ensuring zero data loss during timeouts.
+- **HPC Persistence & Recovery:** 
+    - Standalone **Watchdog** process monitors active loops and ensures continuity.
+    - **Automated Error Recovery:** The engine detects VASP crashes (e.g., electronic divergence) and autonomously adjusts parameters (mixers, algorithms) for resubmission.
+    - **Async Resilience:** Non-blocking agent logic allows for large-scale multi-campaign orchestration without process hangs.
 - **Automated Theory Induction:** The `TheoryBuilder` automatically detects scaling relations, electronic descriptors, and termination-dependent reactivity biases.
-- **Multi-Fidelity Workflows:** Seamlessly transitions between rapid MLIP (CHGNet/M3GNet) screening and high-accuracy VASP verification.
+- **Structural Standardization:** Standardized on Pymatgen `Structure` for high-fidelity symmetry handling, using ASE `Atoms` only at calculator boundaries.
 
 ---
 

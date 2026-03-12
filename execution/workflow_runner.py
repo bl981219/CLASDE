@@ -96,7 +96,7 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
             coverage=0.0
         )
         slab = builder.build_structure(current_state)
-        current_state.slab_atoms = slab
+        current_state.slab_structure = slab
         
         # Actually execute the first job to get a real baseline energy
         # Use MLIP (CHGNet) for the baseline unless forced otherwise
@@ -118,6 +118,13 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
     # 3. Optimization Loop
     while governor.has_budget():
         result = strategist.run_step()
+        
+        # Handle Asynchronous Wait (Smell #2 Fix)
+        while result.get("status") == "pending":
+            time.sleep(30)
+            # Re-run step: strategist will detect the active job and poll status
+            result = strategist.run_step()
+            
         governor.consume_budget()
         
         metadata = result["metadata"]

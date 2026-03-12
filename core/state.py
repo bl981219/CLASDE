@@ -28,7 +28,15 @@ class SurfaceState(BaseModel):
     miller_index: Tuple[int, int, int] = Field(..., description="Miller index (h, k, l)")
     termination: str = Field(..., description="Surface termination descriptor τ")
     
-    slab_atoms: Optional[Any] = Field(None, description="Physical structure object (e.g., ASE Atoms). Excluded from direct hashing.")
+    slab_structure: Optional[Any] = Field(None, description="Physical structure object (Pymatgen Structure). Excluded from direct hashing.")
+    
+    def get_ase_atoms(self) -> Any:
+        """Helper to convert internal Pymatgen structure to ASE Atoms for calculators."""
+        if self.slab_structure is None: return None
+        try:
+            from pymatgen.io.ase import AseAtomsAdaptor
+            return AseAtomsAdaptor.get_atoms(self.slab_structure)
+        except: return None
     
     available_sites: List[Dict[str, Any]] = Field(default_factory=list, description="Available adsorption sites on this surface")
     adsorbates: List[AdsorbateInstance] = Field(default_factory=list, description="List of adsorbates on the surface")
@@ -90,7 +98,7 @@ class SurfaceState(BaseModel):
 
     def to_json(self) -> str:
         """Serialize state to a canonical JSON string."""
-        return json.dumps(self.model_dump(exclude={'slab_atoms'}), sort_keys=True)
+        return json.dumps(self.model_dump(exclude={'slab_structure'}), sort_keys=True)
 
     def get_summary(self) -> str:
         """Generate a human-readable summary string for folder naming."""

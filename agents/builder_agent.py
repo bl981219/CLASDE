@@ -16,18 +16,21 @@ try:
 except ImportError:
     HAS_SIM_TOOLS = False
 
+from science.chemistry import ChemistryPhysicist
+
 class StructureBuilder:
     """
     Agent 3 — Structure Builder (High Fidelity Perovskite Engine).
-    Constructs stoichiometric LSCF slabs with AO and BO2 termination control.
+    Constructs stoichiometric perovskite slabs with adaptive termination control.
     """
     def __init__(self) -> None:
         if not HAS_SIM_TOOLS:
             logger.warning("ase/pymatgen not found.")
 
-    def build_structure(self, state: SurfaceState) -> Any:
+    def build_structure(self, state: SurfaceState) -> Structure:
+        """Returns a Pymatgen Structure representation of the surface state."""
         if not HAS_SIM_TOOLS:
-            return Atoms('Cu', cell=(3.6, 3.6, 3.6), pbc=True)
+            return None
 
         try:
             # 1. Create stoichiometric Bulk Perovskite (Generalized)
@@ -45,15 +48,14 @@ class StructureBuilder:
             # 3. Select termination
             slab_pmg = self._select_termination(slabs, state.termination)
             
-            # 4. Convert to ASE
+            # 4. Mutations & Adsorbates (Using ASE for convenience)
             slab_ase = AseAtomsAdaptor.get_atoms(slab_pmg)
             slab_ase.set_pbc(True)
             
-            # 5. Mutations & Adsorbates
             slab_ase = self._apply_mutations(slab_ase, state)
             slab_ase = self._place_adsorbates(slab_ase, state)
             
-            # 6. Selective Dynamics (Configurable fraction)
+            # 5. Selective Dynamics (Configurable fraction)
             from ase.constraints import FixAtoms
             z_coords = slab_ase.positions[:, 2]
             z_min, z_max = np.min(z_coords), np.max(z_coords)
@@ -62,14 +64,14 @@ class StructureBuilder:
             frozen_indices = [i for i, z in enumerate(z_coords) if z < freeze_thresh]
             slab_ase.set_constraint(FixAtoms(indices=frozen_indices))
             
-            # 7. Canonical sorting
+            # 6. Canonical sorting & Convert back to Pymatgen
             indices = np.argsort(slab_ase.get_chemical_symbols())
             slab_ase = slab_ase[indices]
             
-            return slab_ase
+            return AseAtomsAdaptor.get_structure(slab_ase)
         except Exception as e:
-            logger.error(f"Structural building failed: {e}. Using elemental fallback.")
-            return bulk('Fe', crystalstructure='fcc', a=3.6) * (3,3,3)
+            logger.error(f"Structural building failed: {e}.")
+            return None
 
     def _generate_perovskite(self, state: SurfaceState) -> Structure:
         """
@@ -79,17 +81,8 @@ class StructureBuilder:
         a = state.metadata.get("lattice_constant", 3.905)
         lattice = Lattice.cubic(a)
         
-        # Categorize elements into A, B, and O sites
-        a_elements = []
-        b_elements = []
-        for sym, count in comp.items():
-            if sym == "O": continue
-            el = Element(sym)
-            # Simple heuristic: A-sites are larger cations (Alkali, Alkaline Earth, Lanthanides)
-            if el.is_alkaline or el.is_alkali or el.is_lanthanoid or el.row >= 5:
-                a_elements.append(sym)
-            else:
-                b_elements.append(sym)
+        # Categorize elements into A, B, and O sites using Physics Utility
+        a_elements, b_elements = ChemistryPhysicist.categorize_perovskite_sites(comp)
         
         # Template: Start with primary A and B
         base_a = a_elements[0] if a_elements else "La"
@@ -130,18 +123,18 @@ class StructureBuilder:
             
         return supercell
 
-    def _select_termination(self, slabs: List, requested: str) -> Any:
+    def _select_termination(self, slabs: List, requested: str) -> Structure:
         """Categorizes slabs by surface layer composition using chemical heuristics."""
         for s in slabs:
             z_coords = [site.coords[2] for site in s]
             z_max = np.max(z_coords)
             top_sites = [site for site in s if site.coords[2] > z_max - 1.0]
+            top_species = [site.specie.symbol for site in top_sites]
             
-            # Detect if top layer is B-site dominated (Transition Metals)
-            has_b_site = any(Element(site.specie.symbol).is_transition_metal for site in top_sites)
+            # Detect layer type dynamically
+            layer_type = ChemistryPhysicist.get_layer_type(top_species)
             
-            if requested == "BO2" and has_b_site: return s
-            if requested == "AO" and not has_b_site: return s
+            if requested == layer_type: return s
             
         return slabs[0]
 
