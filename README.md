@@ -173,6 +173,7 @@ clasde-explore LaSrFeO3 001 O
 ### 1. Cr and S Poisoning on LSCF
 - **Location:** `examples/LSCF_Poisoning_CaseStudy/`
 - **Scientific Goal:** Map the competition between SO2 and O adsorption on LSCF (001).
+- **Scientific Context:** This campaign serves as an autonomous validation of research themes explored in [DOI: 10.1021/acs.chemmater.4c01936](https://pubs.acs.org/doi/10.1021/acs.chemmater.4c01936), specifically focusing on how poisoning affects surface stability and electronic band centers.
 
 ### 2. Sr Surface Segregation in LSF
 - **Location:** `examples/LSF_Segregation_CaseStudy/`
