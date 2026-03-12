@@ -1,4 +1,5 @@
 import logging
+import os
 from typing import List, Tuple, Dict, Any, Optional
 import numpy as np
 from optimization.surrogate_models import SurrogateModel
@@ -15,7 +16,7 @@ from core.action import MutationAction, ActionType
 from core.transition import TransitionEngine
 from agents.base_agent import BaseAgent
 from core.campaign import ResearchMode
-from execution.compute_agent import SimulationType
+from execution.compute_agent import SimulationType, JobStatus
 from agents.planner_agent import ResearchPlanner, WorkflowTask
 
 logger = logging.getLogger(__name__)
@@ -235,9 +236,25 @@ class OptimizationStrategist(BaseAgent):
         next_state.slab_atoms = structure
         
         job_id = self.compute.submit_job(structure, next_state, sim_type=sim_type, iteration=self.iteration)
-        results_path = self.compute.fetch_results(job_id)
+        
+        # 4. Polling for Completion (Required for HPC/Local async)
+        logger.info(f"Waiting for simulation results (Job ID: {job_id})...")
+        import time
+        while True:
+            status = self.compute.get_job_status(job_id)
+            if status == JobStatus.COMPLETED:
+                # One final check: results.json or OUTCAR must be valid
+                results_path = self.compute.fetch_results(job_id)
+                if os.path.exists(os.path.join(results_path, "results.json")) or \
+                   (os.path.exists(os.path.join(results_path, "OUTCAR")) and os.path.getsize(os.path.join(results_path, "OUTCAR")) > 1000):
+                    break
+            if status == JobStatus.FAILED:
+                logger.error(f"Job {job_id} failed on the compute platform.")
+                break
+            time.sleep(15) # Poll every 15 seconds for production stability
         
         # Pass state in context for layer/species analysis
+        results_path = self.compute.fetch_results(job_id)
         eval_context = {"state": next_state}
         observables, reward = self.evaluator.evaluate_calculation(results_path, eval_context)
         

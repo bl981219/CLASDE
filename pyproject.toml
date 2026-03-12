@@ -27,6 +27,8 @@ clasde-builder = "cli.builder_cli:main"
 clasde-visualize = "cli.visualize_cli:main"
 clasde-collaborator = "cli.collaborator_cli:main"
 clasde-explore = "cli.explore_cli:main"
+clasde-watchdog = "autonomous_watchdog:main"
+clasde-demo = "examples.teaching_demo:main"
 
 [build-system]
 requires = ["setuptools", "wheel"]

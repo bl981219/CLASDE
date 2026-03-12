@@ -11,7 +11,7 @@ from optimization.surrogate_models import GaussianProcessModel as SurrogateModel
 from agents.governor_agent import ResearchGovernor
 from agents.strategist_agent import OptimizationStrategist
 from agents.builder_agent import StructureBuilder
-from execution.compute_agent import ComputeManager
+from execution.compute_agent import ComputeManager, SimulationType
 from agents.evaluator_agent import EvaluationAgent
 from memory.experiment_db import ExperimentDatabase
 from memory.hypothesis_db import HypothesisDatabase
@@ -123,6 +123,11 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
         metadata = result["metadata"]
         with open(log_file, "a") as f:
             f.write(f"| {metadata['iteration']} | {result['action'].action_type.value} | {metadata['fidelity'].upper()} | {result['reward']:.4f} | {experiment_db.get_best_reward():.4f} |\n")
+        
+        # Save after each step
+        experiment_db.save()
+        knowledge_graph.record_experiment(result["state"], result["action"], result["observables"])
+        kg_memory.save(knowledge_graph)
 
     # 4. Reasoning
     patterns = pi_agent.analyze_graph()
@@ -130,6 +135,10 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
         for p in patterns:
             theory = theory_builder.build_theory(p)
             theory_builder.discovered_laws.append({"type": "custom", "statement": theory})
+    
+    # Automated physical law discovery
+    theory_builder.identify_electronic_descriptors()
+    theory_builder.identify_termination_bias()
     
     if config.get("finetune_mlip", False):
         compute.train_chgnet(experiment_db)

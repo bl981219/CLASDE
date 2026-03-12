@@ -122,6 +122,47 @@ class TheoryBuilder:
         theory = f"Theory: {feature} consistently leads to {effect} (Confidence: {confidence:.2f})"
         return theory
 
+    def identify_termination_bias(self) -> Dict[str, Any]:
+        """
+        Detects if specific terminations (AO vs BO2) lead to significantly different rewards.
+        """
+        terminations = {}
+        
+        # Traverse graph: Result -> Calculation -> Structure -> Termination
+        for node_id, node in self.kg.nodes.items():
+            if node.node_type == NodeType.RESULT:
+                # Find the structure node for this result
+                calc_nodes = list(self.kg.graph.predecessors(node_id))
+                if not calc_nodes: continue
+                struct_nodes = list(self.kg.graph.predecessors(calc_nodes[0]))
+                if not struct_nodes: continue
+                
+                struct_node = self.kg.nodes[struct_nodes[0]]
+                term = struct_node.properties.get("state_dict", {}).get("termination", "Unknown")
+                reward = node.properties.get("reward", 0.0)
+                
+                if term not in terminations: terminations[term] = []
+                terminations[term].append(reward)
+        
+        if len(terminations) < 2: return {}
+        
+        results = {}
+        for term, rewards in terminations.items():
+            results[term] = {"mean": float(np.mean(rewards)), "std": float(np.std(rewards)), "count": len(rewards)}
+            
+        # If we have enough data, perform a t-test
+        term_names = list(terminations.keys())
+        if len(terminations[term_names[0]]) > 2 and len(terminations[term_names[1]]) > 2:
+            t_stat, p_val = stats.ttest_ind(terminations[term_names[0]], terminations[term_names[1]])
+            if p_val < 0.05:
+                law = {
+                    "type": "custom",
+                    "statement": f"Significant Termination Bias: {term_names[0]} (mean {results[term_names[0]]['mean']:.2f}) vs {term_names[1]} (mean {results[term_names[1]]['mean']:.2f}) with p={p_val:.4f}"
+                }
+                self.discovered_laws.append(law)
+                
+        return results
+
     def generate_report(self) -> str:
         """Outputs a high-level scientific summary including laws and descriptors."""
         report = "\n" + "="*50 + "\n"

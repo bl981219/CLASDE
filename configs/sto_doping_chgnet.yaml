@@ -3,11 +3,12 @@ description: "Optimization of transition metal dopants on SrTiO3 (001) using the
 original_prompt: "whats the doping effect on SrTiO3 B-site? suggest element for doping and show the change effect on Oxygen adsorption. use chgnet."
 
 research_mode: "tuning"
+finetune_mlip: true
 
 objective:
   type: "adsorption_tuning"
   adsorbate: "O"
-  target_e_ads: -1.5
+  target_e_ads: -1.2
 
 constraints:
   bulk:
@@ -17,10 +18,9 @@ constraints:
   facet: [0, 0, 1]
 
 budget:
-  max_evaluations: 15
+  max_evaluations: 20
 
 compute:
   platform: "local"
   mode: "chgnet"
-  resources:
     ntasks: 1

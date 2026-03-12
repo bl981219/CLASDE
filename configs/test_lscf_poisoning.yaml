@@ -1,0 +1,34 @@
+name: "LSCF_SO2_Poisoning_Study"
+description: "Mapping SO2 vs O adsorption on LSCF(001) using DFT."
+original_prompt: "How does sulfur dioxide (SO2) poisoning compete with oxygen adsorption on the (001) surface of La0.6Sr0.4Co0.2Fe0.8O3 (LSCF)? Set up a campaign to map the adsorption energy of SO2 and O at various high-symmetry sites (top, bridge, hollow) on both AO and BO2 terminated surfaces. Use VASP DFT for all evaluations with a resource allocation of 2 nodes per job. Specifically, analyze the O 2p-band center from the DOSCAR for each state and determine if there is a correlation between the band center and the SO2 binding strength."
+
+research_mode: "mapping"
+finetune_mlip: false
+
+objective:
+  type: "adsorption_tuning"
+  adsorbate: "SO2"
+  target_e_ads: -1.5
+
+constraints:
+  bulk:
+    La: 0.6
+    Sr: 0.4
+    Co: 0.2
+    Fe: 0.8
+    O: 3.0
+  facet: [0, 0, 1]
+
+budget:
+  max_evaluations: 6 # Covering AO/BO2 and different sites
+
+compute:
+  platform: "hpc" 
+  mode: "vasp"
+  resources:
+    nodes: 2
+    ntasks: 48
+  vasp_params:
+    LORBIT: 11 # Required for band center analysis
+    NSW: 100
+    IBRION: 2

@@ -28,10 +28,16 @@ class KnowledgeGraphMemory:
         
         # Serialize Nodes
         for node_id, node in kg.nodes.items():
+            # Clean properties of non-serializable objects
+            clean_props = {}
+            for k, v in node.properties.items():
+                if k == "structure": continue # Skip Atoms object
+                clean_props[k] = v
+                
             data["nodes"].append({
                 "id": node_id,
                 "type": node.node_type.value,
-                "properties": node.properties
+                "properties": clean_props
             })
             
         # Serialize Edges

@@ -35,6 +35,8 @@ slurm-*.out
 Potential/
 workflows/templates/slurm_vasp.sh
 compute_profile.yaml
+hpc_monitor.py
+billrun.sh
 
 # Agent System
 .gemini/

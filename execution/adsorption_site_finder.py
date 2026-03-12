@@ -23,7 +23,7 @@ class AdsorptionSiteFinder:
             asf = AdsorbateSiteFinder(struct)
             
             # Find sites (default distance 2.0 A from surface)
-            sites = asf.find_adsorption_sites(distance=2.0, put_view=False)
+            sites = asf.find_adsorption_sites(distance=2.0)
             
             found_sites = []
             # Categorize sites

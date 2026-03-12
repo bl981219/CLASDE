@@ -53,16 +53,24 @@ class ExperimentDatabase:
 
     def save(self) -> None:
         """Serialize DB to disk."""
+        serialized_experiments = []
+        for d in self.dataset:
+            # Clean observables of non-serializable objects (like ASE Atoms)
+            clean_obs = {}
+            for k, v in d["observables"].items():
+                if k == "structure": continue # Skip Atoms object
+                clean_obs[k] = v
+                
+            serialized_experiments.append({
+                "state": d["state"].model_dump(exclude={"slab_atoms"}),
+                "reward": d["reward"],
+                "observables": clean_obs,
+                "method": d.get("method"),
+                "convergence": d.get("convergence")
+            })
+
         data = {
-            "experiments": [
-                {
-                    "state": d["state"].model_dump(exclude={"slab_atoms"}),
-                    "reward": d["reward"],
-                    "observables": d["observables"],
-                    "method": d.get("method"),
-                    "convergence": d.get("convergence")
-                } for d in self.dataset
-            ],
+            "experiments": serialized_experiments,
             "provenance": []
         }
         for u, v, attr in self.graph.edges(data=True):

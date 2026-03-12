@@ -71,76 +71,87 @@ class EvaluationAgent:
                 from ase.io import read
                 atoms = read(outcar_path, index="-1", format="vasp-out")
                 observables["total_energy"] = float(atoms.get_potential_energy())
+                observables["structure"] = atoms
                 observables["status"] = "completed"
             except Exception as e:
                 logger.debug(f"OUTCAR parsing failed: {e}")
 
-        doscar_path = os.path.join(path, "DOSCAR")
-        if os.path.exists(doscar_path) and os.path.getsize(doscar_path) > 100:
+        # Use Vasprun for electronic properties (more robust than DOSCAR)
+        vasprun_path = os.path.join(path, "vasprun.xml")
+        if os.path.exists(vasprun_path) and os.path.getsize(vasprun_path) > 1000:
             try:
-                electronic_props = self._parse_doscar_real(doscar_path, state)
+                electronic_props = self._parse_vasprun_electronic(vasprun_path, state)
                 observables.update(electronic_props)
             except Exception as e:
-                logger.warning(f"Real DOSCAR parsing failed, using fallback: {e}")
+                logger.warning(f"Vasprun parsing failed: {e}")
 
         return observables
 
-    def _parse_doscar_real(self, path: str, state: Optional[Any] = None) -> Dict[str, Any]:
-        """Uses Pymatgen to calculate band centers from DOSCAR."""
+    def _parse_vasprun_electronic(self, path: str, state: Optional[Any] = None) -> Dict[str, Any]:
+        """Uses Pymatgen Vasprun to calculate band centers."""
         try:
-            from pymatgen.io.vasp import Doscar
+            from pymatgen.io.vasp import Vasprun
             from pymatgen.core import Element
         except ImportError:
             return {}
 
-        dos = Doscar(path)
+        v = Vasprun(path, parse_dos=True, parse_eigen=False)
+        dos = v.complete_dos
+        if not dos:
+            return {}
+            
         efermi = dos.efermi
-        energies = dos.energies - efermi
         
-        def get_center(dos_vals):
+        def get_center(dos_obj):
+            energies = dos_obj.energies - efermi
+            dos_vals = dos_obj.get_densities()
+            # Only consider states below Fermi level
             mask = energies < 0 
             total_dos = np.sum(dos_vals[mask])
             if total_dos == 0: return 0.0
             return np.sum(energies[mask] * dos_vals[mask]) / total_dos
 
         results = {}
-        all_d_dos = np.zeros_like(energies)
-        all_p_dos = np.zeros_like(energies)
-        
-        for site_idx, site_dos in dos.pdos.items():
-            for orbital, dos_vals in site_dos.items():
-                spin_dos = np.sum([v for v in dos_vals.values()], axis=0) if isinstance(dos_vals, dict) else dos_vals
-                if "p" in str(orbital).lower(): all_p_dos += spin_dos
-                if "d" in str(orbital).lower(): all_d_dos += spin_dos
+        results["d_band_center"] = 0.0 # Placeholder for total d
+        results["o2p_band_center"] = 0.0 # Placeholder for total p
 
-        results["d_band_center"] = float(get_center(all_d_dos))
-        results["o2p_band_center"] = float(get_center(all_p_dos))
-
-        if state and hasattr(state, 'slab_atoms'):
+        if state and hasattr(state, 'slab_atoms') and state.slab_atoms:
             atoms = state.slab_atoms
             z_coords = atoms.positions[:, 2]
             unique_z = np.unique(np.round(z_coords, 2))
             
             if len(unique_z) >= 2:
                 sub_z = unique_z[-2]
-                ao_dos = np.zeros_like(energies)
-                bo2_dos = np.zeros_like(energies)
+                ao_dos_list = []
+                bo2_dos_list = []
                 
                 for i, atom in enumerate(atoms):
                     if np.round(atom.position[2], 2) >= sub_z:
-                        if i in dos.pdos:
-                            atom_p_dos = np.zeros_like(energies)
-                            for orb, vals in dos.pdos[i].items():
-                                if "p" in str(orb).lower():
-                                    atom_p_dos += np.sum([v for v in vals.values()], axis=0) if isinstance(vals, dict) else vals
-                            
-                            el = Element(atom.symbol)
-                            if el.is_alkaline or el.is_alkali or el.row >= 5: 
-                                ao_dos += atom_p_dos
-                            elif el.is_transition_metal: 
-                                bo2_dos += atom_p_dos
+                        # Use get_site_orbital_dos from CompleteDos
+                        # It returns a Dict[Orbital, Dos]
+                        orb_dos = dos.get_site_orbital_dos(v.final_structure[i])
+                        p_vals = np.zeros_like(dos.energies)
+                        for orb, pdos_obj in orb_dos.items():
+                            if "p" in str(orb).lower():
+                                p_vals += pdos_obj.get_densities()
+                        
+                        el = Element(atom.symbol)
+                        if el.is_alkaline or el.is_alkali or el.row >= 5: 
+                            ao_dos_list.append(p_vals)
+                        elif el.is_transition_metal or (atom.symbol == "O" and np.round(atom.position[2], 2) > sub_z + 0.5):
+                            # Heuristic: link O to BO2 if it's in top layer near B
+                            bo2_dos_list.append(p_vals)
                 
-                results["o2p_center_AO"] = float(get_center(ao_dos))
-                results["o2p_center_BO2"] = float(get_center(bo2_dos))
+                if ao_dos_list:
+                    ao_sum = np.sum(ao_dos_list, axis=0)
+                    energies = dos.energies - efermi
+                    mask = energies < 0
+                    results["o2p_center_AO"] = float(np.sum(energies[mask] * ao_sum[mask]) / np.sum(ao_sum[mask]))
+                
+                if bo2_dos_list:
+                    bo2_sum = np.sum(bo2_dos_list, axis=0)
+                    energies = dos.energies - efermi
+                    mask = energies < 0
+                    results["o2p_center_BO2"] = float(np.sum(energies[mask] * bo2_sum[mask]) / np.sum(bo2_sum[mask]))
 
         return results

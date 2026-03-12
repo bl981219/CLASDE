@@ -8,9 +8,18 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from execution.workflow_runner import run_adsorption_campaign
 
-def run_teaching_demo():
+import argparse
+
+def main():
+    parser = argparse.ArgumentParser(description="CLASDE Teaching Demo")
+    parser.add_argument("--iterations", type=int, default=2, help="Number of iterations for the demo.")
+    args = parser.parse_args()
+    
+    run_teaching_demo(args.iterations)
+
+def run_teaching_demo(max_evals=2):
     """
-    Runs a minimal 2-iteration campaign and preserves logs for teaching.
+    Runs a minimal campaign and preserves logs for teaching.
     """
     print("\n" + "="*60)
     print("   CLASDE TEACHING DEMO: SYSTEM WALKTHROUGH")
@@ -19,7 +28,7 @@ def run_teaching_demo():
     # 1. Define a minimal teaching configuration
     teaching_config = {
         "name": "Teaching_Demo_Cu111",
-        "description": "Minimal 2-iteration test for teaching user about discovery logs.",
+        "description": "Minimal test for teaching user about discovery logs.",
         "original_prompt": "teach me about oxygen on copper 111",
         "objective": {
             "type": "adsorption_tuning",
@@ -30,7 +39,7 @@ def run_teaching_demo():
             "bulk": {"Cu": 1.0},
             "facet": [1, 1, 1]
         },
-        "budget": {"max_evaluations": 2},
+        "budget": {"max_evaluations": max_evals},
         "acquisition": {"acquisition_type": "EI", "kappa": 2.576},
         "compute": {"mode": "local_emt"}
     }
