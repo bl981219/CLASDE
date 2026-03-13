@@ -58,5 +58,12 @@ class BaseAgent(ABC):
         best_action = candidates[best_idx]
         
         result = self.execute_best(best_action)
-        self.update_memory(result)
+        
+        # Only update memory if the result is complete (not pending)
+        # Check if result is a dict before calling .get()
+        is_pending = isinstance(result, dict) and result.get("status") == "pending"
+        
+        if not is_pending:
+            self.update_memory(result)
+            
         return result

@@ -22,33 +22,44 @@ class StructureBuilder:
     """
     Agent 3 — Structure Builder (High Fidelity Perovskite Engine).
     Constructs stoichiometric perovskite slabs with adaptive termination control.
-    """
-    def __init__(self) -> None:
-        if not HAS_SIM_TOOLS:
-            logger.warning("ase/pymatgen not found.")
+    from science.chemistry import ChemistryPhysicist
+    from science.validator import DomainValidator
 
-    def build_structure(self, state: SurfaceState) -> Structure:
-        """Returns a Pymatgen Structure representation of the surface state."""
-        if not HAS_SIM_TOOLS:
-            return None
+    class StructureBuilder:
+    ...
+        def build_structure(self, state: SurfaceState) -> Structure:
+            """Returns a Pymatgen Structure representation of the surface state."""
+            if not HAS_SIM_TOOLS:
+                return None
 
-        try:
-            # 1. Create stoichiometric Bulk Perovskite (Generalized)
-            bulk_struct = self._generate_perovskite(state)
-            
-            # 2. Cleave and create Slab
-            from pymatgen.core.surface import SlabGenerator
-            h, k, l = state.miller_index
-            thickness = state.metadata.get("min_slab_size", 10.0)
-            vacuum = state.metadata.get("min_vacuum_size", 15.0)
-            
-            sg = SlabGenerator(bulk_struct, (h, k, l), min_slab_size=thickness, min_vacuum_size=vacuum)
-            slabs = sg.get_slabs()
-            
-            # 3. Select termination
-            slab_pmg = self._select_termination(slabs, state.termination)
-            
-            # 4. Mutations & Adsorbates (Using ASE for convenience)
+            try:
+                # 1. Create stoichiometric Bulk Perovskite (Generalized)
+                bulk_struct = self._generate_perovskite(state)
+
+                # 2. Cleave and create Slab
+                from pymatgen.core.surface import SlabGenerator
+                h, k, l = state.miller_index
+                thickness = state.metadata.get("min_slab_size", 10.0)
+                vacuum = state.metadata.get("min_vacuum_size", 15.0)
+
+                sg = SlabGenerator(bulk_struct, (h, k, l), min_slab_size=thickness, min_vacuum_size=vacuum)
+                slabs = sg.get_slabs()
+
+                # 3. Select termination
+                slab_pmg = self._select_termination(slabs, state.termination)
+
+                # --- Domain Validation Step ---
+                is_valid, msg = DomainValidator.validate_slab(
+                    slab_pmg, 
+                    min_layers=state.metadata.get("min_layers", 4),
+                    min_vacuum=vacuum
+                )
+                if not is_valid:
+                    logger.error(f"Slab Validation Failed: {msg}")
+                    # We return it but log the error; in future could trigger a rebuild
+
+                # 4. Mutations & Adsorbates (Using ASE for convenience)
+    ...
             slab_ase = AseAtomsAdaptor.get_atoms(slab_pmg)
             slab_ase.set_pbc(True)
             
@@ -150,7 +161,7 @@ class StructureBuilder:
         return atoms
 
     def _place_adsorbates(self, atoms: Atoms, state: SurfaceState) -> Atoms:
-        from execution.adsorption_site_finder import AdsorptionSiteFinder
+        from science.adsorption_site_finder import AdsorptionSiteFinder
         finder = AdsorptionSiteFinder()
         for ads in state.adsorbates:
             if ads.coverage > 0.0:

@@ -69,9 +69,11 @@ class EvaluationAgent:
         if os.path.exists(outcar_path) and os.path.getsize(outcar_path) > 1000:
             try:
                 from ase.io import read
+                from pymatgen.io.ase import AseAtomsAdaptor
                 atoms = read(outcar_path, index="-1", format="vasp-out")
                 observables["total_energy"] = float(atoms.get_potential_energy())
-                observables["structure"] = atoms
+                # Fix: Always return Pymatgen Structure in observables
+                observables["structure"] = AseAtomsAdaptor.get_structure(atoms)
                 observables["status"] = "completed"
             except Exception as e:
                 logger.debug(f"OUTCAR parsing failed: {e}")
@@ -92,6 +94,7 @@ class EvaluationAgent:
         try:
             from pymatgen.io.vasp import Vasprun
             from pymatgen.core import Element
+            from science.descriptors import SurfaceDescriptors
         except ImportError:
             return {}
 
@@ -101,20 +104,10 @@ class EvaluationAgent:
             return {}
             
         efermi = dos.efermi
+        energies = dos.energies - efermi
         
-        def get_center(dos_obj):
-            energies = dos_obj.energies - efermi
-            dos_vals = dos_obj.get_densities()
-            # Only consider states below Fermi level
-            mask = energies < 0 
-            total_dos = np.sum(dos_vals[mask])
-            if total_dos == 0: return 0.0
-            return np.sum(energies[mask] * dos_vals[mask]) / total_dos
-
         results = {}
-        results["d_band_center"] = 0.0 # Placeholder for total d
-        results["o2p_band_center"] = 0.0 # Placeholder for total p
-
+        
         if state and hasattr(state, 'slab_structure') and state.slab_structure:
             from science.chemistry import ChemistryPhysicist
             struct = state.slab_structure
@@ -129,7 +122,6 @@ class EvaluationAgent:
                 for i, site in enumerate(struct):
                     if np.round(site.coords[2], 2) >= sub_z:
                         # Use get_site_orbital_dos from CompleteDos
-                        # It returns a Dict[Orbital, Dos]
                         orb_dos = dos.get_site_orbital_dos(site)
                         p_vals = np.zeros_like(dos.energies)
                         for orb, pdos_obj in orb_dos.items():
@@ -144,14 +136,10 @@ class EvaluationAgent:
                 
                 if ao_dos_list:
                     ao_sum = np.sum(ao_dos_list, axis=0)
-                    energies = dos.energies - efermi
-                    mask = energies < 0
-                    results["o2p_center_AO"] = float(np.sum(energies[mask] * ao_sum[mask]) / np.sum(ao_sum[mask]))
+                    results["o2p_center_AO"] = SurfaceDescriptors.calculate_o2p_band_center(energies, ao_sum)
                 
                 if bo2_dos_list:
                     bo2_sum = np.sum(bo2_dos_list, axis=0)
-                    energies = dos.energies - efermi
-                    mask = energies < 0
-                    results["o2p_center_BO2"] = float(np.sum(energies[mask] * bo2_sum[mask]) / np.sum(bo2_sum[mask]))
+                    results["o2p_center_BO2"] = SurfaceDescriptors.calculate_o2p_band_center(energies, bo2_sum)
 
         return results

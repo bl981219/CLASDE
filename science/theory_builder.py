@@ -4,6 +4,7 @@ import numpy as np
 from scipy import stats
 from science.experiment_graph import KnowledgeGraph, NodeType, RelationType
 from science.chemistry import ChemistryPhysicist
+from science.descriptors import SurfaceDescriptors
 
 logger = logging.getLogger(__name__)
 
