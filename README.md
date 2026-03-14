@@ -6,16 +6,20 @@ The system is designed to mimic the roles of a world-class computational researc
 
 ---
 
-## Repository Structure
+## 🏗️ Repository Structure
+
+The framework separates physical ground truths, optimization mathematics, execution agents, and autonomous reasoning.
 
 ```text
 CLASDE/
 ├── agents/             # DECISION MAKERS (The "Who")
-│   ├── collaborator_agent.py # LLM interface for campaign formulation
-│   ├── planner_agent.py      # Dynamic DAG generation (Workflow sequences)
-│   ├── strategist_agent.py   # Bayesian candidate selection (BO)
-│   ├── builder_agent.py      # Symmetry-aware structural construction
-│   └── evaluator_agent.py    # Result interpretation & NIST-anchoring
+│   ├── collaborator_agent.py # Human-Machine Interface (LLM)
+│   ├── hypothesis_agent.py   # Scientific Theory Induction (PI)
+│   ├── planner_agent.py      # Dynamic Workflow Formulation
+│   ├── governor_agent.py     # Budget & Constraint Enforcement (Lab Manager)
+│   ├── strategist_agent.py   # Experiment Selection (BO / Senior Postdoc)
+│   ├── builder_agent.py      # Generalized Perovskite Construction
+│   └── evaluator_agent.py    # Result Interpretation (Data Analyst)
 │
 ├── science/            # DOMAIN OBJECTS (The "What")
 │   ├── workflow_graph.py     # DAG execution engine (WorkflowExecutor)
@@ -32,6 +36,11 @@ CLASDE/
 │   ├── compute_agent.py      # Backend abstraction (VASP, ASE, MLIP)
 │   └── workflow_executor.py  # Orchestration of task dependencies
 │
+├── core/               # SCIENTIFIC PRIMITIVES
+│   ├── state.py              # SurfaceState representation
+│   ├── action.py             # Mutation operators
+│   └── transition.py         # Physics rules
+│
 ├── configs/            # CONFIGURATION & DATA
 │   ├── default.yaml          # System-wide defaults
 │   └── reference_data.yaml   # NIST-anchored thermochemical references
@@ -40,43 +49,80 @@ CLASDE/
 
 ---
 
-## New High-Impact Features
+## 🎓 The Lab Metaphor: Roles & Responsibilities
 
-### 1. **DAG-Based Workflow Execution**
-CLASDE no longer relies on linear pipelines. The **Research Planner** generates a formal **Directed Acyclic Graph (DAG)** of tasks for each candidate. The **WorkflowExecutor** traverses this graph in topological order, ensuring that dependencies (e.g., `Build` $\to$ `Relax` $\to$ `Enumerate Sites`) are met and data is passed correctly between compute nodes.
+To understand how CLASDE operates, imagine a high-performance computational chemistry research group. Each software component maps to a specific role in the lab.
 
-### 2. **NIST-Anchored Adsorption Energies**
-Adsorption energy calculations are now rigorously grounded. CLASDE utilizes a centralized `reference_data.yaml` derived from **NIST Gas-Phase Thermochemistry**. The **Evaluation Agent** prioritizes locally computed reference energies but falls back to these standard baseline values, ensuring that "Rewards" are physically meaningful and academically publishable.
-
-### 3. **Generalized Perovskite Builder (Symmetry-Aware)**
-The `StructureBuilder` has been upgraded to support distorted perovskites. It can now generate **Orthorhombic ($Pbnm$)** and **Tetragonal ($I4/mcm$)** slabs in addition to standard cubic systems, enabling accurate modeling of realistic functional oxides like $La_{1-x}Sr_xCo_{1-y}Fe_yO_3$ (LSCF).
-
-### 4. **Data-Driven Chemistry Heuristics**
-Hardcoded element checks have been removed. The `ChemistryPhysicist` now uses Pymatgen-integrated data (atomic radii, electronegativity, common oxidation states) to dynamically categorize cation sites and surface layer types for any arbitrary stoichiometry.
+| Role | METAPHOR | Responsibility |
+| :--- | :--- | :--- |
+| **Strategic Collaborator** | **The Investor/Expert** | Translates natural language intent into formal scientific campaigns via LLMs. |
+| **Principal Investigator** | **The PI Agent** | Induces physical laws (e.g., d-band center correlations, scaling relations) from the Knowledge Graph. |
+| **Research Planner** | **The Research Scientist** | Dynamically constructs task sequences based on a **Directed Acyclic Graph (DAG)** of scientific necessity. |
+| **Research Governor** | **The Lab Manager** | Enforces objectives, hard budget safety ceilings, and chemical constraints (e.g. charge neutrality). |
+| **Optimization Strategist** | **The Senior Postdoc** | Operates the **Surrogate Model** and selects the optimal next experiment via Bayesian Acquisition Functions. |
+| **Structure Builder** | **The PhD Student** | Builds 3D atomic structures, enforcing symmetry-aware distortions (Orthorhombic/Tetragonal) and charge compensation. |
+| **Compute Manager** | **The Lab Technician** | Orchestrates HPC execution (VASP, MLIP) with autonomous re-attachment, recovery, and backend abstraction. |
+| **Evaluation Agent** | **The Data Analyst** | Parses raw DFT outputs and anchors rewards to **NIST Gas-Phase Reference Data**. |
+| **Knowledge Graph** | **The Lab Notebook** | A digital archive recording the full scientific provenance of states, transitions, and empirical results. |
 
 ---
 
-## Usage
+## 🧬 How CLASDE Works: The Discovery Loop
+
+CLASDE operates through a self-correcting feedback loop where specialized agents interact via a shared **Scientific Knowledge Graph**. This loop elevates the system from simple "search" to "autonomous discovery."
+
+### 1. Conceptualization (Natural Language to Formal Goal)
+The discovery starts when a user provides a research question. The **Collaborator Agent** translates this intent into a formal **Campaign**. For example:
+- **Question:** *"How does oxygen adsorption change across all facets of LSF?"* -> **MAPPING Mode** (Builds a global electronic property map).
+- **Question:** *"Which dopant minimizes the oxygen vacancy formation energy on LSF?"* -> **TUNING Mode** (Finds the optimal chemistry).
+
+### 2. Strategic Observation (Memory to Belief)
+The **Optimization Strategist** observes all prior experiments stored in the **Knowledge Graph**. It updates its internal **Belief State**—a probabilistic surrogate model (Gaussian Process)—that maps structural descriptors to physical performance.
+
+### 3. Hypothesis Generation (PI Reasoning)
+Simultaneously, the **Principal Investigator (PI)** agent analyzes the graph for emergent trends. It calculates statistical support for physical laws. These induced theories are used to bias the search toward scientifically interesting regions.
+
+### 4. Dynamic Planning (Workflow DAGs)
+Unlike static pipelines, the **Research Planner** generates a formal **Directed Acyclic Graph (DAG)** of tasks for each candidate. The **WorkflowExecutor** ensures that dependencies (e.g., `Build` $\to$ `Relax` $\to$ `Analyze`) are met and data is passed correctly between tasks.
+
+### 5. Physical Execution (HPC Orchestration)
+The **Compute Manager** translates these plans into HPC job scripts. It handles the "How" of running calculations, whether on **VASP (HPC)** or **ASE (Local)**, and autonomously recovers from common DFT failures (e.g. electronic divergence).
+
+### 6. Knowledge Integration (The Digital Lab Notebook)
+Finally, the **Evaluation Agent** parses the raw outputs and anchors them to **NIST thermochemistry**. Results are integrated back into the **Knowledge Graph**, completing the cycle and informing the PI's next round of theories.
+
+---
+
+## 🔁 Usage
 
 ### Natural Language Collaboration
-Initiate a research project by describing your goal in plain English.
+Initiate a project by describing your goal in plain English.
 ```bash
 clasde-collaborator --prompt "I want to optimize the ORR activity on SrTiO3 by doping the B-site with transition metals."
 ```
 
-### Direct Loop Execution
+### Direct Campaign Execution
 ```bash
-clasde-loop --config configs/test_sto_doping.yaml
+clasde-loop --config configs/your_campaign.yaml
+```
+
+### Domain-Specific Surface Exploration
+```bash
+# Syntax: clasde-explore <Material> <Facet> <Adsorbate>
+clasde-explore LaSrFeO3 001 O
 ```
 
 ---
 
-## Installation & Configuration
+## 📦 Installation & Configuration
 
 1. **Install dependencies:**
    ```bash
    pip install .
    ```
 
-2. **Compute Profile:**
+2. **Configure API Access:**
+   Copy `.env_example` to `.env` and add your Google Gemini API key.
+
+3. **Compute Profile:**
    Configure `compute_profile.yaml` with your Slurm partition and VASP executable paths. Standard NIST references are provided in `configs/reference_data.yaml`.
