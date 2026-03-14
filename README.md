@@ -1,5 +1,9 @@
 # CLASDE: Closed-Loop Autonomous Surface Discovery Engine
 
+<p align="center">
+  <img src="docs/assets/CLASDE.png" width="800" title="CLASDE Workflow">
+</p>
+
 CLASDE is a multi-agent, autonomous optimization framework designed for the discovery of stable and high-performing surface configurations in complex functional materials and electrocatalysts.
 
 The system is designed to mimic the roles of a world-class computational research group, automating the entire cycle from natural language conceptualization to high-fidelity HPC execution and physical law induction.
