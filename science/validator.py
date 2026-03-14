@@ -1,6 +1,6 @@
 import logging
 import numpy as np
-from typing import Dict, Any, Optional, Tuple
+from typing import Dict, Tuple
 from pymatgen.core import Structure, Element
 from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
 
@@ -18,6 +18,18 @@ class DomainValidator:
                       min_vacuum: float = 15.0) -> Tuple[bool, str]:
         """
         Enforces physical constraints on surface slabs.
+
+        Checks if the slab has sufficient vacuum to avoid spurious interactions
+        between periodic images and ensures the slab is thick enough to represent
+        bulk-like interior properties. Also warns about asymmetric slabs.
+
+        Args:
+            structure (Structure): The Pymatgen Structure object representing the slab.
+            min_layers (int, optional): Minimum number of unique atomic layers required. Defaults to 4.
+            min_vacuum (float, optional): Minimum vacuum size in Angstroms. Defaults to 15.0.
+
+        Returns:
+            Tuple[bool, str]: A tuple containing a boolean indicating validity and a message string.
         """
         # 1. Vacuum check
         lattice = structure.lattice
@@ -48,6 +60,15 @@ class DomainValidator:
     def validate_charge_neutrality(composition: Dict[str, float]) -> Tuple[bool, str]:
         """
         Heuristic check for charge neutrality using common oxidation states.
+
+        This prevents the system from exploring highly charged, unphysical states
+        (e.g., massive oxygen deficiency without cation reduction).
+
+        Args:
+            composition (Dict[str, float]): A dictionary mapping element symbols to their stoichiometric amounts.
+
+        Returns:
+            Tuple[bool, str]: A tuple containing a boolean indicating charge neutrality (within a tolerance) and a message.
         """
         total_charge = 0.0
         for sym, amt in composition.items():
@@ -66,7 +87,16 @@ class DomainValidator:
 
     @staticmethod
     def validate_adsorption_site(structure: Structure, site_idx: int) -> bool:
-        """Ensures the adsorption site is on the surface and not buried."""
+        """
+        Ensures the adsorption site is on the surface and not buried in the bulk.
+
+        Args:
+            structure (Structure): The Pymatgen Structure object.
+            site_idx (int): The index of the atom representing the adsorption site.
+
+        Returns:
+            bool: True if the site is on the surface (within 2.5 A of the highest Z-coordinate), False otherwise.
+        """
         z_coords = structure.cart_coords[:, 2]
         z_max = np.max(z_coords)
         if structure[site_idx].coords[2] < z_max - 2.5:

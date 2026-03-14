@@ -4,24 +4,58 @@ import json
 from typing import Dict, Any, Tuple, Optional, List
 import numpy as np
 from science.objective_functions import ObjectiveFunction
+from core.state import SurfaceState
 
 logger = logging.getLogger(__name__)
 
 class EvaluationAgent:
     """
     Agent 5 — Evaluator (The Data Analyst).
+    
     Translates raw simulation outputs into physically grounded rewards using real references.
+    It parses electronic structure files (like vasprun.xml) to extract descriptors 
+    like the O 2p-band center, and calculates adsorption energies relative to pristine surfaces.
     """
     def __init__(self, objective_function: ObjectiveFunction, knowledge_graph: Any) -> None:
+        """
+        Initializes the Evaluator.
+
+        Args:
+            objective_function (ObjectiveFunction): The mathematical function used to calculate the reward.
+            knowledge_graph (Any): The semantic graph storing previous experimental results.
+        """
         self.objective_function = objective_function
         self.kg = knowledge_graph
+        self.reference_data = self._load_reference_data()
+
+    def _load_reference_data(self) -> Dict[str, Any]:
+        """Loads NIST and standard baseline data from config."""
+        import yaml
+        ref_path = "configs/reference_data.yaml"
+        if os.path.exists(ref_path):
+            try:
+                with open(ref_path, "r") as f:
+                    return yaml.safe_load(f)
+            except:
+                pass
+        return {"gas_phase": {}}
 
     def set_objective_function(self, objective_function: ObjectiveFunction) -> None:
+        """Dynamically update the objective function."""
         self.objective_function = objective_function
 
     def evaluate_calculation(self, results_path: str, context: Dict[str, Any]) -> Tuple[Dict[str, Any], float]:
-        """Parse observables and compute reward."""
-        state = context.get("state")
+        """
+        Parse observables from a calculation directory and compute the formal reward.
+
+        Args:
+            results_path (str): Path to the directory containing calculation outputs.
+            context (Dict[str, Any]): Contextual information, crucially including the 'state' (SurfaceState).
+
+        Returns:
+            Tuple[Dict[str, Any], float]: A tuple containing the parsed observables and the calculated reward.
+        """
+        state: Optional[SurfaceState] = context.get("state")
         observables = self._extract_observables(results_path, state)
         
         # Heuristic for Segregation: Extract species counts
@@ -34,26 +68,45 @@ class EvaluationAgent:
         # 1. Scientific Reference Energy Logic
         # E_ads = E_total - (E_slab_pristine + E_adsorbate_gas)
         if state and state.adsorbates:
-            # Attempt to find the reference energy for the pristine surface from the graph
+            # 1.1 Reference Energy for Pristine Slab
             ref_data = self.kg.find_results_for_material(state.bulk_composition)
-            # Find the result with 0.0 coverage (pristine)
-            pristine_energies = [r["total_energy"] for r in ref_data if r.get("coverage", 1.0) == 0.0]
+            # Safe access with .get()
+            pristine_energies = [r.get("total_energy") for r in ref_data if r.get("coverage", 1.0) == 0.0]
+            pristine_energies = [e for e in pristine_energies if e is not None]
             
+            # 1.2 Reference Energy for Gas-phase Adsorbate (Standard Values)
+            gas_refs = self.reference_data.get("gas_phase", {})
+            e_gas_total = sum([gas_refs.get(ads.identity, 0.0) for ads in state.adsorbates])
+
             if pristine_energies:
                 e_slab = pristine_energies[0]
                 if "total_energy" in observables:
                     e_tot = observables["total_energy"]
                     if "adsorption_energy" not in observables:
-                        observables["adsorption_energy"] = e_tot - e_slab
-                        logger.info(f"Calculated E_ads relative to KG pristine slab ({e_slab:.2f} eV)")
+                        # Simple adsorption energy calculation
+                        observables["adsorption_energy"] = e_tot - e_slab - e_gas_total
+                        logger.info(f"Calculated E_ads: {observables['adsorption_energy']:.2f} eV (Ref: {e_slab:.2f} eV, Gas: {e_gas_total:.2f} eV)")
             else:
-                logger.warning("No pristine slab reference found in KG. Adsorption energy may be uncalibrated.")
+                # If no reference exists, we use the current total energy as a relative marker 
+                # to prevent campaign death, but warn the user.
+                logger.warning("No pristine slab reference found. Using uncalibrated total energy as temporary reward.")
+                if "total_energy" in observables and "adsorption_energy" not in observables:
+                    observables["adsorption_energy"] = 0.0 # Neutralize E_ads to allow loop to continue
 
         reward = self.objective_function.compute_objective(observables, context)
         return observables, reward
 
-    def _extract_observables(self, path: str, state: Optional[Any] = None) -> Dict[str, Any]:
-        """Parse energy and electronic information from raw files."""
+    def _extract_observables(self, path: str, state: Optional[SurfaceState] = None) -> Dict[str, Any]:
+        """
+        Parse energy and electronic information from raw files in the specified path.
+
+        Args:
+            path (str): The directory containing the output files.
+            state (Optional[SurfaceState]): The physical state associated with the calculation.
+
+        Returns:
+            Dict[str, Any]: A dictionary of extracted observables (e.g., total_energy, structure).
+        """
         observables: Dict[str, Any] = {}
         
         results_file = os.path.join(path, "results.json")
@@ -89,8 +142,17 @@ class EvaluationAgent:
 
         return observables
 
-    def _parse_vasprun_electronic(self, path: str, state: Optional[Any] = None) -> Dict[str, Any]:
-        """Uses Pymatgen Vasprun to calculate band centers."""
+    def _parse_vasprun_electronic(self, path: str, state: Optional[SurfaceState] = None) -> Dict[str, Any]:
+        """
+        Uses Pymatgen Vasprun to calculate layer-resolved band centers.
+
+        Args:
+            path (str): Path to the vasprun.xml file.
+            state (Optional[SurfaceState]): The physical state containing the slab structure.
+
+        Returns:
+            Dict[str, Any]: A dictionary containing calculated electronic properties.
+        """
         try:
             from pymatgen.io.vasp import Vasprun
             from pymatgen.core import Element

@@ -35,6 +35,9 @@ class SurfaceState(BaseModel):
         if self.slab_structure is None: return None
         try:
             from pymatgen.io.ase import AseAtomsAdaptor
+            # Check if slab_structure is ASE Atoms or Pymatgen Structure
+            if hasattr(self.slab_structure, "get_potential_energy"):
+                return self.slab_structure
             return AseAtomsAdaptor.get_atoms(self.slab_structure)
         except: return None
     
@@ -52,60 +55,64 @@ class SurfaceState(BaseModel):
         description="Other external conditions (e.g., Electrochemical Potential Φ)"
     )
     
-    # Metadata for tracking origin, lineage, or physical file paths
     metadata: Dict = Field(default_factory=dict)
 
     class Config:
         arbitrary_types_allowed = True
 
-    def is_physically_equivalent(self, other: Any) -> bool:
-        """
-        Check if two states represent the same physical structure using Pymatgen StructureMatcher.
-        Useful for identifying symmetry-equivalent surfaces or redundant mutations.
-        """
-        if not isinstance(other, SurfaceState):
-            return False
-            
-        # Quick check for identical hashes
-        if self.get_id() == other.get_id():
-            return True
-            
-        # Detailed check using Pymatgen
-        try:
-            from pymatgen.analysis.structure_matcher import StructureMatcher
-            from agents.builder_agent import StructureBuilder
-            
-            builder = StructureBuilder()
-            s1 = builder.build_structure(self)
-            s2 = builder.build_structure(other)
-            
-            if s1 is None or s2 is None:
-                return False
-                
-            # Convert ASE to Pymatgen
-            from pymatgen.io.ase import AseAtomsAdaptor
-            pmg1 = AseAtomsAdaptor.get_structure(s1)
-            pmg2 = AseAtomsAdaptor.get_structure(s2)
-            
-            matcher = StructureMatcher(primitive_cell=True, attempt_supercell=True)
-            return matcher.fit(pmg1, pmg2)
-        except ImportError:
-            # Fallback to hash equality if tools are missing
-            return self.get_id() == other.get_id()
-        except Exception as e:
-            logger.error(f"Error checking physical equivalence: {e}")
-            return False
-
     def to_json(self) -> str:
         """Serialize state to a canonical JSON string."""
-        return json.dumps(self.model_dump(exclude={'slab_structure'}), sort_keys=True)
+        return json.dumps(self.model_dump(exclude={'slab_structure', 'available_sites'}), sort_keys=True)
+
+    def get_id(self) -> str:
+        """Generate a unique SHA-256 hash for this state."""
+        return hashlib.sha256(self.to_json().encode()).hexdigest()
+
+    def get_feature_vector(self) -> List[float]:
+        """
+        Convert the structured state into a numerical feature vector.
+        V3: Universal encoding using periodic table indices (1-100).
+        """
+        bulk_vector = [0.0] * 100
+        from ase.data import atomic_numbers
+        for el, fraction in self.bulk_composition.items():
+            z = atomic_numbers.get(el)
+            if z and z <= 100:
+                bulk_vector[z-1] = float(fraction)
+        
+        miller_feats = []
+        for i in self.miller_index:
+            miller_feats.extend([float(i), float(i)**2])
+            
+        ads_sum = 0.0
+        if self.adsorbates:
+            from ase import Atoms
+            try:
+                primary_ads = self.adsorbates[0].identity
+                temp_atoms = Atoms(primary_ads)
+                ads_sum = float(sum(temp_atoms.get_atomic_numbers()))
+            except:
+                ads_sum = -1.0
+        ads_feat = [ads_sum]
+        
+        cond_feats = [
+            self.coverage,
+            self.temperature / 1000.0,
+            self.pressure,
+            self.external_conditions.get("Phi", 0.0)
+        ]
+        
+        v_count = sum(1 for d in self.defects if d.get("type") == "vacancy")
+        s_count = sum(1 for d in self.defects if d.get("type") == "substitution")
+        defect_feats = [float(v_count), float(s_count)]
+        
+        return bulk_vector + miller_feats + ads_feat + cond_feats + defect_feats
 
     def get_summary(self) -> str:
         """Generate a human-readable summary string for folder naming."""
         comp = "".join([f"{k}{v}" for k, v in self.bulk_composition.items() if v > 0])
         facet = "".join([str(i) for i in self.miller_index])
         
-        # Identify the most recent defect or adsorbate
         defect_str = ""
         if self.defects:
             last = self.defects[-1]
@@ -115,12 +122,7 @@ class SurfaceState(BaseModel):
                 defect_str = f"_sub_{last.get('dopant')}"
         
         ads_str = f"_ads_{self.adsorbates[0].identity}" if self.adsorbates else ""
-        
-        return f"{comp}_{facet}{defect_str}{ads_str}"
-
-    def get_id(self) -> str:
-        """Generate a unique SHA-256 hash for this state."""
-        return hashlib.sha256(self.to_json().encode()).hexdigest()
+        return f"{comp}_{facet}_{self.termination}{defect_str}{ads_str}"
 
     def __hash__(self) -> int:
         return int(self.get_id(), 16)
@@ -129,52 +131,3 @@ class SurfaceState(BaseModel):
         if not isinstance(other, SurfaceState):
             return False
         return self.get_id() == other.get_id()
-
-    @property
-    def feature_vector(self) -> List[float]:
-        """
-        Convert the structured state into a numerical feature vector.
-        V3: Universal encoding using periodic table indices (1-100).
-        """
-        # 1. Stoichiometry of bulk (Universal 100-dimension vector)
-        # We use a fixed size to ensure compatibility with surrogate models across campaigns
-        bulk_vector = [0.0] * 100
-        from ase.data import atomic_numbers
-        for el, fraction in self.bulk_composition.items():
-            z = atomic_numbers.get(el)
-            if z and z <= 100:
-                bulk_vector[z-1] = float(fraction)
-        
-        # 2. Miller index encoding
-        miller_feats = []
-        for i in self.miller_index:
-            miller_feats.extend([float(i), float(i)**2])
-            
-        # 3. Adsorbate encoding (Universal sum of atomic numbers)
-        # Encodes the "size/identity" of the adsorbate without a hardcoded map
-        ads_sum = 0.0
-        if self.adsorbates:
-            from ase import Atoms
-            try:
-                # Sum Z for all atoms in the primary adsorbate identity
-                primary_ads = self.adsorbates[0].identity
-                temp_atoms = Atoms(primary_ads)
-                ads_sum = float(sum(temp_atoms.get_atomic_numbers()))
-            except:
-                ads_sum = -1.0 # Unknown or invalid
-        ads_feat = [ads_sum]
-        
-        # 4. Coverage and External conditions
-        cond_feats = [
-            self.coverage,
-            self.temperature / 1000.0,
-            self.pressure,
-            self.external_conditions.get("Phi", 0.0)
-        ]
-        
-        # 5. Defect fingerprint (Count by type)
-        v_count = sum(1 for d in self.defects if d.get("type") == "vacancy")
-        s_count = sum(1 for d in self.defects if d.get("type") == "substitution")
-        defect_feats = [float(v_count), float(s_count)]
-        
-        return bulk_vector + miller_feats + ads_feat + cond_feats + defect_feats

@@ -54,7 +54,7 @@ class GaussianProcessModel(SurrogateModel):
         for entry in dataset:
             state = entry['state']
             if isinstance(state, SurfaceState):
-                features = state.feature_vector
+                features = state.get_feature_vector()
             else:
                 features = state # Assume precomputed features
             
@@ -71,7 +71,7 @@ class GaussianProcessModel(SurrogateModel):
             # Prior mean and high uncertainty if not fitted
             return 0.0, 1.0
             
-        X = np.array([state.feature_vector])
+        X = np.array([state.get_feature_vector()])
         mu, sigma = self.model.predict(X, return_std=True)
         return float(mu[0]), float(sigma[0])
 
@@ -91,7 +91,7 @@ class RandomForestModel(SurrogateModel):
         for entry in dataset:
             state = entry['state']
             if isinstance(state, SurfaceState):
-                features = state.feature_vector
+                features = state.get_feature_vector()
             else:
                 features = state
             
@@ -107,7 +107,7 @@ class RandomForestModel(SurrogateModel):
         if not self.is_fitted:
             return 0.0, 1.0
             
-        X = np.array([state.feature_vector])
+        X = np.array([state.get_feature_vector()])
         
         # Mean prediction
         mu = self.model.predict(X)[0]

@@ -6,8 +6,7 @@ from science.objective_functions import (
     UncertaintyObjective,
     ReactionBarrierObjective,
     FunctionalObjective,
-    CompositeObjective,
-    SegregationObjective
+    CompositeObjective
 )
 from core.campaign import ResearchMode
 from typing import Dict, Any, List, Optional
@@ -73,9 +72,6 @@ class ResearchGovernor:
             return UncertaintyObjective()
         elif obj_type == "reaction_barrier":
             return ReactionBarrierObjective()
-        elif obj_type == "segregation":
-            species = obj.get("target_species", "Sr")
-            return SegregationObjective(target_species=species)
         elif obj_type == "functional":
             expr = obj.get("expression", "0.0")
             return FunctionalObjective(expression=expr)

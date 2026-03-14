@@ -55,7 +55,7 @@ class LLMCollaborator:
         Constraints for JSON Output:
         - name: Short string identifier.
         - objective: { 'type': str, 'target_species': Optional[str], 'target_e_ads': Optional[float] }
-          Types: 'adsorption_tuning', 'stability', 'segregation', 'functional'.
+          Types: 'adsorption_tuning', 'stability', 'functional'.
         - constraints: { 'bulk': Dict[str, float], 'facet': List[int, int, int] }
         - variables: List of strings (T, p, Phi).
         - budget: { 'max_evaluations': int }
@@ -89,8 +89,7 @@ class LLMCollaborator:
             return {
                 "name": "Sr_Segregation_Study",
                 "objective": {
-                    "type": "segregation",
-                    "target_species": "Sr"
+                    "type": "stability"
                 },
                 "constraints": {
                     "bulk": {"La": 0.5, "Sr": 0.5, "Fe": 1.0, "O": 3.0},
@@ -98,7 +97,7 @@ class LLMCollaborator:
                 },
                 "variables": ["T", "p", "Phi"],
                 "budget": {"max_evaluations": 20},
-                "description": "Rule-based mapping: Investigating Sr segregation at the LSF (001) surface."
+                "description": "Rule-based mapping: Investigating Sr segregation at the LSF (001) surface via stability minimization."
             }
         
         # Heuristic 2: Detect Cu 111 and Oxygen

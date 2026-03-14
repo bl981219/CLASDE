@@ -54,18 +54,32 @@ class KnowledgeGraph:
     
     This graph tracks the full scientific provenance of the discovery process, 
     linking materials to surfaces, structures, calculations, and empirical results.
+    It serves as the semantic memory for the PI Agent and Theory Builder.
     """
     def __init__(self) -> None:
         self.graph = nx.DiGraph()
         self.nodes: Dict[str, ScienceNode] = {}
 
     def add_node(self, node: ScienceNode) -> None:
-        """Add a scientific node to the graph."""
+        """
+        Add a scientific node to the graph.
+
+        Args:
+            node (ScienceNode): The node to add to the knowledge graph.
+        """
         self.nodes[node.node_id] = node
         self.graph.add_node(node.node_id, type=node.node_type, properties=node.properties)
 
     def add_relation(self, source_id: str, target_id: str, relation: RelationType, metadata: Optional[Dict[str, Any]] = None) -> None:
-        """Establish a directed relationship between two nodes."""
+        """
+        Establish a directed relationship between two nodes.
+
+        Args:
+            source_id (str): The ID of the source node.
+            target_id (str): The ID of the target node.
+            relation (RelationType): The semantic type of the relationship.
+            metadata (Optional[Dict[str, Any]]): Additional properties for the edge.
+        """
         if source_id not in self.nodes or target_id not in self.nodes:
             logger.error(f"Both source ({source_id}) and target ({target_id}) nodes must exist.")
             raise ValueError(f"Both source ({source_id}) and target ({target_id}) nodes must exist.")
@@ -141,7 +155,7 @@ class KnowledgeGraph:
                 "p": state.pressure,
                 **state.external_conditions
             },
-            "state_dict": state.model_dump(exclude={'slab_atoms'})
+            "state_dict": state.model_dump(exclude={'slab_structure'})
         }))
         self.add_relation(parent_id, struct_id, RelationType.HAS_STRUCTURE)
 
@@ -185,16 +199,33 @@ class KnowledgeGraph:
     def find_results_for_material(self, composition: Dict[str, float]) -> List[Dict[str, Any]]:
         """Query the graph for all empirical results associated with a specific bulk chemistry."""
         results: List[Dict[str, Any]] = []
+        
+        # 1. Try exact match first
         mat_id = f"mat_{hash(frozenset(composition.items()))}"
-        if mat_id not in self.nodes:
-            return results
+        if mat_id in self.nodes:
+            return self._extract_results_from_mat(mat_id)
+            
+        # 2. Try base cation composition match (ignoring Oxygen and small amounts)
+        base_comp = {k: v for k, v in composition.items() if k != "O" and v > 0.01}
+        for node_id, node in self.nodes.items():
+            if node.node_type == NodeType.MATERIAL:
+                node_comp = {k: v for k, v in node.properties.get("composition", {}).items() if k != "O" and v > 0.01}
+                if base_comp == node_comp:
+                    results.extend(self._extract_results_from_mat(node_id))
+                    
+        return results
 
-        # Traverse: Material -> Surface -> Structure -> Calculation -> Result
-        # Using a simple DFS or BFS here
+    def _extract_results_from_mat(self, mat_id: str) -> List[Dict[str, Any]]:
+        """Internal helper to traverse from material to results."""
+        results = []
         for surf in self.graph.successors(mat_id):
             for struct in self.graph.successors(surf):
                 for calc in self.graph.successors(struct):
                     for res in self.graph.successors(calc):
                         if self.nodes[res].node_type == NodeType.RESULT:
-                            results.append(self.nodes[res].properties)
+                            # Include some metadata from parents
+                            props = self.nodes[res].properties.copy()
+                            struct_node = self.nodes[struct]
+                            props["coverage"] = struct_node.properties.get("state_dict", {}).get("coverage", 1.0)
+                            results.append(props)
         return results

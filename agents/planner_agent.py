@@ -25,8 +25,8 @@ class ResearchPlanner(BaseAgent):
 
     def observe_state(self) -> Dict[str, Any]:
         """Observe current system state and recent failures/successes."""
-        recent_experiments = self.exp_db.dataset[-5:] if self.exp_db.dataset else []
-        top_hypotheses = self.hyp_db.get_top_hypotheses(limit=3)
+        recent_experiments = self.exp_db.get_training_data()[-5:] if self.exp_db.get_training_data() else []
+        top_hypotheses = self.hyp_db.hypotheses[:3] # Simplified access
         return {
             "recent": recent_experiments,
             "top_theories": top_hypotheses
@@ -38,14 +38,14 @@ class ResearchPlanner(BaseAgent):
         high_uncertainty = False
         
         for exp in observations.get("recent", []):
-            if not exp.get("convergence", True):
+            if exp.get("status") == "failed":
                 recent_failed = True
             if exp.get("metadata", {}).get("sigma", 0) > 0.5:
                 high_uncertainty = True
                 
         self.belief_state["needs_md"] = recent_failed
         self.belief_state["needs_dos"] = True # We almost always want DOS for analysis
-        self.belief_state["needs_neb"] = len(self.hyp_db.hypotheses) > 0
+        self.belief_state["needs_neb"] = len(observations.get("top_theories", [])) > 0
 
     def propose_actions(self) -> List[WorkflowGraph]:
         """Propose candidate workflow DAGs."""

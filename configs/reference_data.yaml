@@ -1,0 +1,18 @@
+# NIST and Standard Academic Reference Data
+# Used as initial guesses or fallbacks for adsorption energy calculations.
+# Units: eV per molecule/atom.
+
+gas_phase:
+  O2: -9.85  # Total energy for O2 molecule
+  O: -4.92   # Atomic O reference
+  CO: -14.80
+  SO2: -15.50
+  H2: -6.75
+  H2O: -14.20
+  N2: -16.60
+
+bulk_lattice_constants:
+  SrTiO3: 3.905
+  LaSrFeO3: 3.92
+  LaSrCoFeO3: 3.91
+  BaTiO3: 4.00

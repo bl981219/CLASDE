@@ -1,0 +1,977 @@
+{
+  "nodes": [
+    {
+      "id": "mat_2766568657243671300",
+      "type": "material",
+      "properties": {
+        "composition": {
+          "Fe": 1.0,
+          "La": 0.5,
+          "O": 3.0,
+          "Sr": 0.5
+        }
+      }
+    },
+    {
+      "id": "surf_(0, 0, 1)_default",
+      "type": "surface",
+      "properties": {
+        "miller_index": [
+          0,
+          0,
+          1
+        ],
+        "termination": "default"
+      }
+    },
+    {
+      "id": "1824ae4488e18cb9d0a4719f99a3e735bc99644df2d7a368c4d557a68e99ca76",
+      "type": "structure",
+      "properties": {
+        "defects": [],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "Fe": 1.0,
+            "La": 0.5,
+            "O": 3.0,
+            "Sr": 0.5
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [],
+          "coverage": 0.0,
+          "defects": [],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_1824ae44_raw",
+      "type": "calculation",
+      "properties": {}
+    },
+    {
+      "id": "res_calc_1824ae44_raw",
+      "type": "result",
+      "properties": {
+        "reward": 308.95151138305664,
+        "total_energy": -308.95151138305664,
+        "coverage": 0.0,
+        "method": "MLIP (chgnet)"
+      }
+    },
+    {
+      "id": "7814b54ecad310e550deeee126fe0046ba6652e400701d450bdf84d192d2dd6f",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "Fe",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "Fe": 1.0,
+            "La": 0.5,
+            "O": 3.0,
+            "Sr": 0.5
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [],
+          "coverage": 0.0,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "Fe",
+              "index": 0
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_7814b54e_1",
+      "type": "calculation",
+      "properties": {
+        "iteration": 1,
+        "fidelity": "MLIP",
+        "sigma": 0.03162277818282259,
+        "workflow": "Standard Adsorption"
+      }
+    },
+    {
+      "id": "res_calc_7814b54e_1",
+      "type": "result",
+      "properties": {
+        "reward": 294.4068818092346,
+        "total_energy": -294.4068818092346,
+        "status": "completed",
+        "fidelity": "MLIP (chgnet)",
+        "species_counts": {
+          "Fe": 7,
+          "La": 4,
+          "O": 24,
+          "Sr": 4
+        }
+      }
+    },
+    {
+      "id": "calc_7814b54e_raw",
+      "type": "calculation",
+      "properties": {}
+    },
+    {
+      "id": "res_calc_7814b54e_raw",
+      "type": "result",
+      "properties": {
+        "total_energy": -294.4068818092346,
+        "status": "completed",
+        "fidelity": "MLIP (chgnet)",
+        "species_counts": {
+          "Fe": 7,
+          "La": 4,
+          "O": 24,
+          "Sr": 4
+        }
+      }
+    },
+    {
+      "id": "391eb464e449f1653f26431601fb8776b90df31caf9c916f45e94f5a4d137749",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "Fe",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "Fe",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "Fe": 1.0,
+            "La": 0.5,
+            "O": 3.0,
+            "Sr": 0.5
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [],
+          "coverage": 0.0,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "Fe",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "Fe",
+              "index": 0
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_391eb464_2",
+      "type": "calculation",
+      "properties": {
+        "iteration": 2,
+        "fidelity": "MLIP",
+        "sigma": 7.2723147662414345,
+        "workflow": "Standard Adsorption"
+      }
+    },
+    {
+      "id": "res_calc_391eb464_2",
+      "type": "result",
+      "properties": {
+        "reward": 278.79490661621094,
+        "total_energy": -278.79490661621094,
+        "status": "completed",
+        "fidelity": "MLIP (chgnet)",
+        "species_counts": {
+          "Fe": 6,
+          "La": 4,
+          "O": 24,
+          "Sr": 4
+        }
+      }
+    },
+    {
+      "id": "calc_391eb464_raw",
+      "type": "calculation",
+      "properties": {}
+    },
+    {
+      "id": "res_calc_391eb464_raw",
+      "type": "result",
+      "properties": {
+        "total_energy": -278.79490661621094,
+        "status": "completed",
+        "fidelity": "MLIP (chgnet)",
+        "species_counts": {
+          "Fe": 6,
+          "La": 4,
+          "O": 24,
+          "Sr": 4
+        }
+      }
+    },
+    {
+      "id": "site_surf_(0, 0, 1)_default_top_None",
+      "type": "site",
+      "properties": {
+        "type": "top",
+        "coordination": null,
+        "neighbors": []
+      }
+    },
+    {
+      "id": "config_288a1de9_O",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "O",
+        "coverage": 1.0,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "ads_O",
+      "type": "adsorbate",
+      "properties": {
+        "identity": "O"
+      }
+    },
+    {
+      "id": "288a1de9d9f1d15f0d9d426a2cbfd823ff8d069706d6504c75e7b0410f630f69",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "Fe",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "Fe",
+            "index": 0
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "Fe": 1.0,
+            "La": 0.5,
+            "O": 3.0,
+            "Sr": 0.5
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "O",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 1.0,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 1.0,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "Fe",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "Fe",
+              "index": 0
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_288a1de9_3",
+      "type": "calculation",
+      "properties": {
+        "iteration": 3,
+        "fidelity": "MLIP",
+        "sigma": 31.120333482679364,
+        "workflow": "Standard Adsorption"
+      }
+    },
+    {
+      "id": "res_calc_288a1de9_3",
+      "type": "result",
+      "properties": {
+        "reward": -25.236642837524414,
+        "total_energy": -283.7148685455322,
+        "status": "completed",
+        "fidelity": "MLIP (chgnet)",
+        "species_counts": {
+          "Fe": 6,
+          "La": 4,
+          "O": 25,
+          "Sr": 4
+        },
+        "adsorption_energy": 25.236642837524414
+      }
+    },
+    {
+      "id": "calc_288a1de9_raw",
+      "type": "calculation",
+      "properties": {}
+    },
+    {
+      "id": "res_calc_288a1de9_raw",
+      "type": "result",
+      "properties": {
+        "total_energy": -283.7148685455322,
+        "status": "completed",
+        "fidelity": "MLIP (chgnet)",
+        "species_counts": {
+          "Fe": 6,
+          "La": 4,
+          "O": 25,
+          "Sr": 4
+        },
+        "adsorption_energy": 25.236642837524414
+      }
+    },
+    {
+      "id": "config_bb3f6c1c_O",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "O",
+        "coverage": 1.0,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "bb3f6c1c4d80ec550fa27df958459e3be41b683733ed83b9ec9d45abf42d8672",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "Fe",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "Fe",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "Fe",
+            "element_b": "La",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "Fe": 1.0,
+            "La": 0.5,
+            "O": 3.0,
+            "Sr": 0.5
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "O",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 1.0,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 1.0,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "Fe",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "Fe",
+              "index": 0
+            },
+            {
+              "type": "swap",
+              "element_a": "Fe",
+              "element_b": "La",
+              "direction": "surface_to_bulk"
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_bb3f6c1c_4",
+      "type": "calculation",
+      "properties": {
+        "iteration": 4,
+        "fidelity": "MLIP",
+        "sigma": 13934.851723217615,
+        "workflow": "Standard Adsorption"
+      }
+    },
+    {
+      "id": "res_calc_bb3f6c1c_4",
+      "type": "result",
+      "properties": {
+        "reward": -1000000000.0,
+        "species_counts": {
+          "Fe": 6,
+          "La": 4,
+          "O": 25,
+          "Sr": 4
+        }
+      }
+    },
+    {
+      "id": "calc_bb3f6c1c_raw",
+      "type": "calculation",
+      "properties": {}
+    },
+    {
+      "id": "res_calc_bb3f6c1c_raw",
+      "type": "result",
+      "properties": {
+        "species_counts": {
+          "Fe": 6,
+          "La": 4,
+          "O": 25,
+          "Sr": 4
+        }
+      }
+    },
+    {
+      "id": "config_b20417d0_O",
+      "type": "adsorption_configuration",
+      "properties": {
+        "identity": "O",
+        "coverage": 1.0,
+        "orientation": {},
+        "geometry": {}
+      }
+    },
+    {
+      "id": "b20417d0b9ba4ceda2a5ecb1e50f6771cb5551148ec0733ef57b4e064303f68c",
+      "type": "structure",
+      "properties": {
+        "defects": [
+          {
+            "type": "vacancy",
+            "site": "Fe",
+            "index": 0
+          },
+          {
+            "type": "vacancy",
+            "site": "Fe",
+            "index": 0
+          },
+          {
+            "type": "swap",
+            "element_a": "Fe",
+            "element_b": "La",
+            "direction": "surface_to_bulk"
+          },
+          {
+            "type": "swap",
+            "element_a": "Fe",
+            "element_b": "La",
+            "direction": "surface_to_bulk"
+          }
+        ],
+        "strain": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditions": {
+          "T": 298.15,
+          "p": 1.0,
+          "Phi": 0.0
+        },
+        "state_dict": {
+          "bulk_composition": {
+            "Fe": 1.0,
+            "La": 0.5,
+            "O": 3.0,
+            "Sr": 0.5
+          },
+          "miller_index": [
+            0,
+            0,
+            1
+          ],
+          "termination": "default",
+          "available_sites": [],
+          "adsorbates": [
+            {
+              "identity": "O",
+              "site_type": "top",
+              "site_coordination": null,
+              "site_neighbor_atoms": [],
+              "coverage": 1.0,
+              "orientation": {},
+              "geometry": {}
+            }
+          ],
+          "coverage": 1.0,
+          "defects": [
+            {
+              "type": "vacancy",
+              "site": "Fe",
+              "index": 0
+            },
+            {
+              "type": "vacancy",
+              "site": "Fe",
+              "index": 0
+            },
+            {
+              "type": "swap",
+              "element_a": "Fe",
+              "element_b": "La",
+              "direction": "surface_to_bulk"
+            },
+            {
+              "type": "swap",
+              "element_a": "Fe",
+              "element_b": "La",
+              "direction": "surface_to_bulk"
+            }
+          ],
+          "strain": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temperature": 298.15,
+          "pressure": 1.0,
+          "external_conditions": {
+            "Phi": 0.0
+          },
+          "metadata": {}
+        }
+      }
+    },
+    {
+      "id": "calc_b20417d0_5",
+      "type": "calculation",
+      "properties": {
+        "iteration": 5,
+        "fidelity": "MLIP",
+        "sigma": 149784970.36345384,
+        "workflow": "Standard Adsorption"
+      }
+    },
+    {
+      "id": "res_calc_b20417d0_5",
+      "type": "result",
+      "properties": {
+        "reward": -25.236642837524414,
+        "total_energy": -283.7148685455322,
+        "status": "completed",
+        "fidelity": "MLIP (chgnet)",
+        "species_counts": {
+          "Fe": 6,
+          "La": 4,
+          "O": 25,
+          "Sr": 4
+        },
+        "adsorption_energy": 25.236642837524414
+      }
+    },
+    {
+      "id": "calc_b20417d0_raw",
+      "type": "calculation",
+      "properties": {}
+    },
+    {
+      "id": "res_calc_b20417d0_raw",
+      "type": "result",
+      "properties": {
+        "total_energy": -283.7148685455322,
+        "status": "completed",
+        "fidelity": "MLIP (chgnet)",
+        "species_counts": {
+          "Fe": 6,
+          "La": 4,
+          "O": 25,
+          "Sr": 4
+        },
+        "adsorption_energy": 25.236642837524414
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "mat_2766568657243671300",
+      "target": "surf_(0, 0, 1)_default",
+      "relation": "has_surface",
+      "metadata": {}
+    },
+    {
+      "source": "surf_(0, 0, 1)_default",
+      "target": "1824ae4488e18cb9d0a4719f99a3e735bc99644df2d7a368c4d557a68e99ca76",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "surf_(0, 0, 1)_default",
+      "target": "7814b54ecad310e550deeee126fe0046ba6652e400701d450bdf84d192d2dd6f",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "surf_(0, 0, 1)_default",
+      "target": "391eb464e449f1653f26431601fb8776b90df31caf9c916f45e94f5a4d137749",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "surf_(0, 0, 1)_default",
+      "target": "site_surf_(0, 0, 1)_default_top_None",
+      "relation": "has_site",
+      "metadata": {}
+    },
+    {
+      "source": "1824ae4488e18cb9d0a4719f99a3e735bc99644df2d7a368c4d557a68e99ca76",
+      "target": "calc_1824ae44_raw",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_1824ae44_raw",
+      "target": "res_calc_1824ae44_raw",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "7814b54ecad310e550deeee126fe0046ba6652e400701d450bdf84d192d2dd6f",
+      "target": "calc_7814b54e_1",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "7814b54ecad310e550deeee126fe0046ba6652e400701d450bdf84d192d2dd6f",
+      "target": "calc_7814b54e_raw",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_7814b54e_1",
+      "target": "res_calc_7814b54e_1",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_7814b54e_raw",
+      "target": "res_calc_7814b54e_raw",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "391eb464e449f1653f26431601fb8776b90df31caf9c916f45e94f5a4d137749",
+      "target": "calc_391eb464_2",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "391eb464e449f1653f26431601fb8776b90df31caf9c916f45e94f5a4d137749",
+      "target": "calc_391eb464_raw",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_391eb464_2",
+      "target": "res_calc_391eb464_2",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_391eb464_raw",
+      "target": "res_calc_391eb464_raw",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_288a1de9_O",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_bb3f6c1c_O",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "site_surf_(0, 0, 1)_default_top_None",
+      "target": "config_b20417d0_O",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "config_288a1de9_O",
+      "target": "ads_O",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_288a1de9_O",
+      "target": "288a1de9d9f1d15f0d9d426a2cbfd823ff8d069706d6504c75e7b0410f630f69",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "288a1de9d9f1d15f0d9d426a2cbfd823ff8d069706d6504c75e7b0410f630f69",
+      "target": "calc_288a1de9_3",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "288a1de9d9f1d15f0d9d426a2cbfd823ff8d069706d6504c75e7b0410f630f69",
+      "target": "calc_288a1de9_raw",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_288a1de9_3",
+      "target": "res_calc_288a1de9_3",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_288a1de9_raw",
+      "target": "res_calc_288a1de9_raw",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "config_bb3f6c1c_O",
+      "target": "ads_O",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_bb3f6c1c_O",
+      "target": "bb3f6c1c4d80ec550fa27df958459e3be41b683733ed83b9ec9d45abf42d8672",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "bb3f6c1c4d80ec550fa27df958459e3be41b683733ed83b9ec9d45abf42d8672",
+      "target": "calc_bb3f6c1c_4",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "bb3f6c1c4d80ec550fa27df958459e3be41b683733ed83b9ec9d45abf42d8672",
+      "target": "calc_bb3f6c1c_raw",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_bb3f6c1c_4",
+      "target": "res_calc_bb3f6c1c_4",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_bb3f6c1c_raw",
+      "target": "res_calc_bb3f6c1c_raw",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "config_b20417d0_O",
+      "target": "ads_O",
+      "relation": "adsorbs",
+      "metadata": {}
+    },
+    {
+      "source": "config_b20417d0_O",
+      "target": "b20417d0b9ba4ceda2a5ecb1e50f6771cb5551148ec0733ef57b4e064303f68c",
+      "relation": "has_structure",
+      "metadata": {}
+    },
+    {
+      "source": "b20417d0b9ba4ceda2a5ecb1e50f6771cb5551148ec0733ef57b4e064303f68c",
+      "target": "calc_b20417d0_5",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "b20417d0b9ba4ceda2a5ecb1e50f6771cb5551148ec0733ef57b4e064303f68c",
+      "target": "calc_b20417d0_raw",
+      "relation": "calculated_by",
+      "metadata": {}
+    },
+    {
+      "source": "calc_b20417d0_5",
+      "target": "res_calc_b20417d0_5",
+      "relation": "yields",
+      "metadata": {}
+    },
+    {
+      "source": "calc_b20417d0_raw",
+      "target": "res_calc_b20417d0_raw",
+      "relation": "yields",
+      "metadata": {}
+    }
+  ]
+}

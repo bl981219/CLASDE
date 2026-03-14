@@ -1,6 +1,6 @@
 import argparse
 import logging
-from execution.workflow_runner import run_adsorption_campaign
+from workflows.adsorption_workflow import run_adsorption_campaign
 
 logger = logging.getLogger(__name__)
 

@@ -1,8 +1,8 @@
 import logging
-from typing import List, Dict, Any, Tuple, Optional
+import sqlite3
 import json
 import os
-import networkx as nx
+from typing import List, Dict, Any, Tuple, Optional
 from core.state import SurfaceState
 from core.action import MutationAction
 
@@ -10,96 +10,90 @@ logger = logging.getLogger(__name__)
 
 class ExperimentDatabase:
     """
-    Centralized repository for all atomistic experiments.
-    
-    Stores detailed physical and computational metadata:
-    - structure: Atomic configurations (SurfaceState)
-    - adsorption energy: Calculated energetic properties
-    - method: DFT (VASP/PBE), MLFF (MACE/EMT)
-    - convergence: SCF/Ionic steps, force thresholds
+    SQL-backed repository for all atomistic experiments.
+    Ensures data integrity and enables complex scientific queries.
     """
-    def __init__(self, storage_path: str = "data/results/experiment_db.json") -> None:
-        self.storage_path = storage_path
-        self.graph = nx.DiGraph()
-        self.dataset: List[Dict[str, Any]] = []
+    def __init__(self, db_path: str = "data/results/experiments.db") -> None:
+        self.db_path = db_path
+        os.makedirs(os.path.dirname(self.db_path), exist_ok=True)
+        self._init_db()
+
+    def _init_db(self):
+        """Initialize SQLite schema."""
+        with sqlite3.connect(self.db_path) as conn:
+            conn.execute("""
+                CREATE TABLE IF NOT EXISTS experiments (
+                    state_id TEXT PRIMARY KEY,
+                    state_json TEXT,
+                    reward REAL,
+                    fidelity TEXT,
+                    observables_json TEXT,
+                    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+                )
+            """)
+            conn.execute("""
+                CREATE TABLE IF NOT EXISTS provenance (
+                    parent_id TEXT,
+                    child_id TEXT,
+                    action_json TEXT,
+                    FOREIGN KEY(parent_id) REFERENCES experiments(state_id),
+                    FOREIGN KEY(child_id) REFERENCES experiments(state_id)
+                )
+            """)
 
     def add_experiment(self, state: SurfaceState, results: Dict[str, Any], 
                        action: Optional[MutationAction] = None, 
                        parent_state: Optional[SurfaceState] = None) -> None:
-        """Add a complete experiment record to the database."""
+        """Saves a complete experiment record to SQL."""
         state_id = state.get_id()
+        # Clean observables for JSON storage
+        clean_obs = {k: v for k, v in results.items() if k != "structure"}
         
-        # 1. Store in flat dataset for BO training
-        record = {
-            "state": state,
-            "reward": results.get("reward"),
-            "observables": results,
-            "method": results.get("fidelity", "unknown"),
-            "convergence": results.get("convergence", True)
-        }
-        self.dataset.append(record)
-        
-        # 2. Store in provenance graph
-        self.graph.add_node(state_id, **record)
-        if parent_state and action:
-            self.graph.add_edge(parent_state.get_id(), state_id, action=action)
+        with sqlite3.connect(self.db_path) as conn:
+            conn.execute("""
+                INSERT OR REPLACE INTO experiments 
+                (state_id, state_json, reward, fidelity, observables_json)
+                VALUES (?, ?, ?, ?, ?)
+            """, (
+                state_id, 
+                state.model_dump_json(exclude={'slab_structure'}),
+                results.get("reward"),
+                results.get("fidelity", "unknown"),
+                json.dumps(clean_obs)
+            ))
+            
+            if parent_state and action:
+                conn.execute("""
+                    INSERT INTO provenance (parent_id, child_id, action_json)
+                    VALUES (?, ?, ?)
+                """, (parent_state.get_id(), state_id, action.model_dump_json()))
 
     def get_training_data(self) -> List[Dict[str, Any]]:
-        return self.dataset
+        """Retrieves all experiments for surrogate model training with full state hydration."""
+        dataset = []
+        with sqlite3.connect(self.db_path) as conn:
+            conn.row_factory = sqlite3.Row
+            rows = conn.execute("SELECT * FROM experiments").fetchall()
+            for row in rows:
+                state = SurfaceState(**json.loads(row["state_json"]))
+                dataset.append({
+                    "state": state,
+                    "reward": row["reward"],
+                    "fidelity": row["fidelity"],
+                    "observables": json.loads(row["observables_json"])
+                })
+        return dataset
 
     def get_best_reward(self) -> float:
-        rewards = [d['reward'] for d in self.dataset if d['reward'] is not None]
-        return float(max(rewards)) if rewards else -1e9
+        """Quickly query the current best reward across all experiments."""
+        with sqlite3.connect(self.db_path) as conn:
+            res = conn.execute("SELECT MAX(reward) FROM experiments").fetchone()
+            return float(res[0]) if res and res[0] is not None else -1e9
 
-    def save(self) -> None:
-        """Serialize DB to disk."""
-        serialized_experiments = []
-        for d in self.dataset:
-            # Clean observables of non-serializable objects (like ASE Atoms)
-            clean_obs = {}
-            for k, v in d["observables"].items():
-                if k == "structure": continue # Skip Atoms object
-                clean_obs[k] = v
-                
-            serialized_experiments.append({
-                "state": d["state"].model_dump(exclude={"slab_atoms"}),
-                "reward": d["reward"],
-                "observables": clean_obs,
-                "method": d.get("method"),
-                "convergence": d.get("convergence")
-            })
+    def save(self):
+        """No-op for SQL as it is persistent by default."""
+        pass
 
-        data = {
-            "experiments": serialized_experiments,
-            "provenance": []
-        }
-        for u, v, attr in self.graph.edges(data=True):
-            data["provenance"].append({
-                "source": u, "target": v, 
-                "action": attr["action"].model_dump() if attr.get("action") else None
-            })
-            
-        os.makedirs(os.path.dirname(self.storage_path), exist_ok=True)
-        with open(self.storage_path, "w") as f:
-            json.dump(data, f, indent=2)
-
-    def load(self) -> None:
-        """Load DB from disk."""
-        if not os.path.exists(self.storage_path):
-            return
-        with open(self.storage_path, "r") as f:
-            data = json.load(f)
-        
-        self.dataset = []
-        self.graph = nx.DiGraph()
-        
-        for e in data.get("experiments", []):
-            state = SurfaceState(**e["state"])
-            res = {**e["observables"], "reward": e["reward"], "fidelity": e["method"], "convergence": e["convergence"]}
-            # We don't have parent info here easily, so we add nodes first
-            self.add_experiment(state, res)
-            
-        for p in data.get("provenance", []):
-            if p["action"]:
-                action = MutationAction(**p["action"])
-                self.graph.add_edge(p["source"], p["target"], action=action)
+    def load(self):
+        """No-op for SQL."""
+        pass

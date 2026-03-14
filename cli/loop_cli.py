@@ -1,7 +1,7 @@
 import os
 import yaml
 import argparse
-from execution.workflow_runner import run_adsorption_campaign
+from workflows.adsorption_workflow import run_adsorption_campaign
 
 def main():
     parser = argparse.ArgumentParser(description="CLASDE: Closed-Loop Atomistic Surface Design Engine")

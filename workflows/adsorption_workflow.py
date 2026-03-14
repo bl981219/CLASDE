@@ -36,7 +36,18 @@ class ReproducibilityLayer:
         }
 
 def run_adsorption_campaign(config: Dict[str, Any]) -> None:
-    """Orchestrate the high-level CLASDE BO loop."""
+    """
+    Orchestrate the high-level CLASDE Bayesian Optimization (BO) loop.
+
+    Initializes all agents, databases, and HPC managers based on the provided configuration.
+    Executes a continuous loop of Observe -> Update Belief -> Propose -> Execute -> Evaluate 
+    until the defined computational budget is exhausted. Also triggers autonomous scientific 
+    reasoning at the end of the campaign.
+
+    Args:
+        config (Dict[str, Any]): A dictionary containing the campaign parameters 
+                                 (objective, budget, constraints, compute environment).
+    """
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', force=True)
     repro = ReproducibilityLayer()
     env_metadata = repro.capture_environment()
@@ -86,7 +97,7 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
     )
 
     # 2. Initial State Setup (Baseline)
-    if not experiment_db.dataset:
+    if not experiment_db.get_training_data():
         logger.info("Initializing campaign with a pristine baseline calculation...")
         # Establish a baseline pristine slab
         current_state = SurfaceState(
@@ -109,7 +120,7 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
             "reward": reward, 
             "total_energy": observables.get("total_energy", 0.0), 
             "coverage": 0.0,
-            "method": observables.get("fidelity", "MLIP")
+            "fidelity": observables.get("fidelity", "MLIP")
         }
         experiment_db.add_experiment(current_state, init_data)
         knowledge_graph.record_experiment(current_state, None, init_data)

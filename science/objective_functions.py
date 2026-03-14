@@ -45,8 +45,10 @@ class SabatierObjective(ObjectiveFunction):
     def compute_objective(self, observables: Dict[str, Any], context: Dict[str, Any]) -> float:
         e_ads = observables.get("adsorption_energy")
         if e_ads is None:
+            logger.warning("Objective Penalty: 'adsorption_energy' missing from observables.")
             return -1e9
-        return -abs(float(e_ads) - self.target_e_ads)
+        return float(-abs(e_ads - self.target_e_ads))
+
 
 class ReactionBarrierObjective(ObjectiveFunction):
     """
@@ -70,27 +72,6 @@ class SelectivityObjective(ObjectiveFunction):
         if ea_des is None or ea_undes is None:
             return -1e9
         return float(ea_undes - ea_des)
-
-class SegregationObjective(ObjectiveFunction):
-    """
-    Objective based on surface segregation: O = concentration - 0.1 * surface_energy.
-    Focuses on enriching a target species at the surface layer.
-    """
-    def __init__(self, target_species: str) -> None:
-        self.target_species = target_species
-
-    def compute_objective(self, observables: Dict[str, Any], context: Dict[str, Any]) -> float:
-        counts = observables.get("species_counts", {})
-        if not counts:
-            return -1e9 # Penalty if no structural data available
-            
-        target_n = counts.get(self.target_species, 0)
-        total_n = sum(counts.values())
-        
-        concentration = target_n / total_n
-        surface_energy = observables.get("surface_energy", 0.0)
-        
-        return float(concentration - 0.1 * surface_energy)
 
 class CompositeObjective(ObjectiveFunction):
     """
