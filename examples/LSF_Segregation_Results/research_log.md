@@ -1,13 +1,10 @@
 
-# Research Campaign: LSCF_SO2_Poisoning_Study
+# Research Campaign: LSF_Sr_Segregation_Study
 ## 1. Exploration Phase
 | Iteration | Action | Fidelity | Reward | Best Reward |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | swap_atoms | DFT | -1000000000.0000 | 308.9515 |
-| 2 | introduce_vacancy | DFT | -1000000000.0000 | 308.9515 |
-| 3 | modify_environment | DFT | -1000000000.0000 | 308.9515 |
-| 4 | modify_environment | DFT | -1000000000.0000 | 308.9515 |
-| 5 | swap_atoms | DFT | -1000000000.0000 | 308.9515 |
-| 4 | swap_atoms | MLIP | -1000000000.0000 | 308.9515 |
-| 6 | modify_environment | DFT | -1000000000.0000 | 308.9515 |
-| 5 | swap_atoms | MLIP | -25.2366 | 308.9515 |
+| 1 | introduce_vacancy | MLIP | 50.2804 | 50.2804 |
+| 2 | introduce_vacancy | MLIP | 50.2804 | 50.2804 |
+| 3 | introduce_vacancy | MLIP | 50.2804 | 50.2804 |
+| 4 | introduce_vacancy | MLIP | 50.2804 | 50.2804 |
+| 5 | introduce_vacancy | MLIP | 50.2804 | 50.2804 |

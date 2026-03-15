@@ -183,6 +183,8 @@ class ComputeProfile:
 
 class ComputeManager:
     def __init__(self, config: Dict[str, Any]):
+        from agents.builder_agent import StructureBuilder
+        self.builder = StructureBuilder()
         self.profile = ComputeProfile(config.get("profile_path"))
         self.base_dir = "data/outputs"
         os.makedirs(self.base_dir, exist_ok=True)

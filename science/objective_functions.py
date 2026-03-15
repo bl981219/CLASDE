@@ -21,18 +21,45 @@ class ObjectiveFunction(ABC):
 RewardFunction = ObjectiveFunction
 
 class StabilityObjective(ObjectiveFunction):
-    """Objective based on energy minimization: O = -E."""
+    """
+    Finds the thermodynamic global minimum.
+    
+    V2: Calculates the Grand Potential (Omega) for open systems:
+    Omega = E_total - sum(n_i * mu_i)
+    Focuses on Oxygen chemical potential mu_O(T, P) for oxides.
+    """
     def compute_objective(self, observables: Dict[str, Any], context: Dict[str, Any]) -> float:
-        # Prioritize surface energy or adsorption energy
-        energy = observables.get("surface_energy")
-        if energy is None:
-            energy = observables.get("adsorption_energy")
-        if energy is None:
-            energy = observables.get("total_energy")
+        e_tot = observables.get("total_energy")
+        if e_tot is None:
+            return -1e9
             
-        if energy is None:
-            return -1e9 # Penalty for failed calculation
-        return -float(energy)
+        state = context.get("state")
+        if not state:
+            return -float(e_tot) # Fallback to total energy
+
+        # 1. Calculate mu_O(T, P)
+        # mu_O(T, P) = 0.5 * [E_O2 + mu_O2_corr(T, P)]
+        temp = state.temperature
+        press = state.pressure
+        
+        # Standard O2 correction (linear approximation for T > 300K)
+        # Heuristic: -0.001 * T (eV/atom)
+        mu_O_corr = -0.001 * temp + (8.617e-5 * temp * np.log(press))
+        
+        # Get gas reference (Common PBE O2 reference ~ -9.85 eV / 2)
+        mu_O_ref = -4.925 
+        mu_O = mu_O_ref + mu_O_corr
+        
+        # 2. Extract Oxygen Count
+        counts = observables.get("species_counts", {})
+        n_o = counts.get("O", 0)
+        
+        # 3. Calculate Grand Potential
+        # Omega = E_total - n_O * mu_O
+        omega = e_tot - (n_o * mu_O)
+        
+        # Reward is negative Omega (minimization)
+        return -float(omega)
 
 class SabatierObjective(ObjectiveFunction):
     """
