@@ -149,5 +149,11 @@ clasde-explore LaSrFeO3 001 O
 2. **Configure API Access:**
    Copy `.env_example` to `.env` and add your Google Gemini API key.
 
-3. **Compute Profile:**
-   Configure `compute_profile.yaml` with your Slurm partition and VASP executable paths. Standard NIST references are provided in `configs/reference_data.yaml`.
+## Finalized Case Studies
+
+The `examples/` directory contains complete research campaign data for two high-impact studies:
+
+1. **Sr Surface Segregation in LSF** (`examples/LSF_Segregation_Results/`): A multi-fidelity study investigating thermodynamic drivers for Sr enrichment using the Grand Potential ($\Omega$) objective.
+2. **B-site Doping in SrTiO3** (`examples/STO_Doping_Results/`): A closed-loop tuning campaign that screens transition metal dopants to optimize ORR activity based on target adsorption energies.
+
+Each case study includes a SQLite `experiments.db` with full provenance and a complete set of iteration output directories.
