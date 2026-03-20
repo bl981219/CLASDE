@@ -20,40 +20,57 @@ class ResearchGovernor:
     """
     The Research Governor Agent (Agent 1).
 
-    Acting as the "Lab Manager," this agent enforces the high-level boundaries 
-    and directives of a scientific campaign. It is responsible for translating 
-    categorical goals into mathematical reward functions and ensuring that 
-    computational resources are used within safe limits.
-
-    Responsibilities:
-    1. Instantiating the appropriate ObjectiveFunction (the BO objective).
-    2. Enforcing computational budget ceilings (e.g., maximum evaluations).
-    3. Maintaining global system constraints (e.g., allowed facets or elements).
-    4. Governing the research mode (Mapping, Tuning, Stability).
+    In the Perpetual Discovery model, this agent monitors campaign health 
+    and determines if scientific goals have been met. It ensures the 
+    discovery loop continues 24/7 until manual intervention or 
+    convergence is detected.
     """
     def __init__(self, config: Dict[str, Any]) -> None:
         """
-        Initialize the governor with a campaign configuration.
-
-        Args:
-            config: A dictionary defining the objective, budget, and constraints.
+        Initialize the governor.
         """
         self.config = config
-        # Use Tuning as the default mode if not specified
         mode_val = config.get("research_mode", "tuning")
         self.research_mode = ResearchMode(mode_val)
         self.reward_function = self._initialize_reward()
 
-        # Enforce Hard Budget Ceiling
-        requested_budget = config.get("budget", {}).get("max_evaluations", 20)
-        if requested_budget > HARD_MAX_BUDGET:
-            logger.warning(f"Requested budget {requested_budget} exceeds the safety ceiling. "
-                           f"Capping at {HARD_MAX_BUDGET} evaluations.")
-            self.max_evaluations = HARD_MAX_BUDGET
-        else:
-            self.max_evaluations = requested_budget
-            
+        # Optional constraints (No default hard budget)
+        self.max_evaluations = config.get("budget", {}).get("max_evaluations", float('inf'))
+        self.target_reward = config.get("objective", {}).get("target_reward")
+        self.min_uncertainty = config.get("objective", {}).get("min_uncertainty", 0.05)
+        
         self.current_evaluations = 0
+
+    def should_continue(self, latest_reward: Optional[float] = None, current_uncertainty: float = 1.0) -> bool:
+        """
+        Determines if the research campaign should continue.
+        Defaults to True for investigative research (Perpetual Mode).
+        """
+        # 1. Check optional safety ceiling
+        if self.current_evaluations >= self.max_evaluations:
+            logger.info("[Governor] Optional evaluation limit reached.")
+            return False
+            
+        # 2. Check if specific scientific target reached
+        if self.target_reward and latest_reward:
+            if latest_reward >= self.target_reward:
+                logger.info(f"[Governor] Scientific target reached (Reward: {latest_reward:.4f}).")
+                return False
+                
+        # 3. Check for knowledge convergence
+        if current_uncertainty < self.min_uncertainty and self.current_evaluations > 10:
+            logger.info("[Governor] Model uncertainty below threshold. Knowledge converged.")
+            return False
+
+        return True
+
+    def consume_budget(self) -> None:
+        """Registers the completion of one iteration."""
+        self.current_evaluations += 1
+
+    def get_constraints(self) -> Dict[str, Any]:
+        """Returns the physical and chemical constraints of the material space."""
+        return self.config.get("constraints", {})
 
     def _initialize_reward(self) -> ObjectiveFunction:
         """
@@ -89,18 +106,6 @@ class ResearchGovernor:
     def get_reward_function(self) -> ObjectiveFunction:
         """Returns the active reward function for the BO loop."""
         return self.reward_function
-
-    def has_budget(self) -> bool:
-        """Checks if the evaluation budget is still available."""
-        return self.current_evaluations < self.max_evaluations
-
-    def consume_budget(self) -> None:
-        """Registers the completion of one evaluation/experiment."""
-        self.current_evaluations += 1
-
-    def get_constraints(self) -> Dict[str, Any]:
-        """Returns the physical and chemical constraints of the material space."""
-        return self.config.get("constraints", {})
 
     def get_research_mode(self) -> ResearchMode:
         """Returns the active research mode."""

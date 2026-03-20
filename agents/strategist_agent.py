@@ -30,30 +30,47 @@ class ActionProposer:
         self.allowed_actions = allowed_actions
 
     def propose_actions(self, state: SurfaceState) -> List[MutationAction]:
-        """Suggest mutation operators for the current state."""
+        """Suggest mutation operators for the current state with high diversity."""
         all_possible: List[MutationAction] = []
-        bulk_elements = list(state.bulk_composition.keys())
+        bulk_elements = [el for el in state.bulk_composition.keys() if el != "O"]
         
-        # 1. Vacancies
-        for el in bulk_elements:
-            all_possible.append(MutationAction(
-                action_type=ActionType.INTRODUCE_VACANCY,
-                parameters={"site": el, "index": 0}
-            ))
-            
-        # 2. Coverage
-        for new_cov in [0.25, 0.5, 0.75, 1.0]:
-            if abs(new_cov - state.coverage) > 0.01:
+        # 1. Surface Vacancies (Iterate through surface layers)
+        for el in bulk_elements + ["O"]:
+            # Propose vacancies at multiple depths/sites
+            for depth in [0, 1, 2]:
                 all_possible.append(MutationAction(
-                    action_type=ActionType.MODIFY_COVERAGE,
-                    parameters={"coverage": new_cov}
+                    action_type=ActionType.INTRODUCE_VACANCY,
+                    parameters={"site": el, "index": depth}
                 ))
-                
-        # 3. Substitutions
+            
+        # 2. Cation Swapping (Surface <-> Subsurface)
+        if len(bulk_elements) > 1:
+            # Swap primary cations (e.g. La and Sr)
+            for i in range(len(bulk_elements)):
+                for j in range(i + 1, len(bulk_elements)):
+                    all_possible.append(MutationAction(
+                        action_type=ActionType.SWAP_ATOMS,
+                        parameters={
+                            "element_a": bulk_elements[i], 
+                            "element_b": bulk_elements[j],
+                            "depth_a": 0, "depth_b": 1
+                        }
+                    ))
+                    all_possible.append(MutationAction(
+                        action_type=ActionType.SWAP_ATOMS,
+                        parameters={
+                            "element_a": bulk_elements[i], 
+                            "element_b": bulk_elements[j],
+                            "depth_a": 0, "depth_b": 2
+                        }
+                    ))
+
+        # 3. Substitutional Doping (Explore chemical neighbors)
         from ase.data import atomic_numbers
         for el in bulk_elements:
             z = atomic_numbers.get(el)
             if z:
+                # Try neighbor elements in periodic table
                 for shift in [-1, 1]:
                     dopant = next((s for s, n in atomic_numbers.items() if n == z + shift), None)
                     if dopant:
@@ -61,20 +78,7 @@ class ActionProposer:
                             action_type=ActionType.SUBSTITUTIONAL_DOPANT,
                             parameters={"original_element": el, "dopant": dopant}
                         ))
-
-        # 4. Swapping
-        if len(bulk_elements) > 1:
-            for i in range(len(bulk_elements)):
-                for j in range(i + 1, len(bulk_elements)):
-                    el_a, el_b = bulk_elements[i], bulk_elements[j]
-                    if el_a == "O" or el_b == "O": continue
-                    all_possible.append(MutationAction(
-                        action_type=ActionType.SWAP_ATOMS,
-                        parameters={"element_a": el_a, "element_b": el_b, "direction": "surface_to_bulk"}
-                    ))
-            
-        if self.allowed_actions:
-            return [a for a in all_possible if a.action_type.value in self.allowed_actions]
+        
         return all_possible
 
 class OptimizationStrategist(BaseAgent):

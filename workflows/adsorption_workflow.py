@@ -41,12 +41,7 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
 
     Initializes all agents, databases, and HPC managers based on the provided configuration.
     Executes a continuous loop of Observe -> Update Belief -> Propose -> Execute -> Evaluate 
-    until the defined computational budget is exhausted. Also triggers autonomous scientific 
-    reasoning at the end of the campaign.
-
-    Args:
-        config (Dict[str, Any]): A dictionary containing the campaign parameters 
-                                 (objective, budget, constraints, compute environment).
+    until the defined computational budget is exhausted.
     """
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', force=True)
     repro = ReproducibilityLayer()
@@ -68,7 +63,11 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
     knowledge_graph = kg_memory.load()
     
     pi_agent = HypothesisAgent(knowledge_graph, hypothesis_db)
-    theory_builder = TheoryBuilder(knowledge_graph, original_prompt=config.get("original_prompt", ""))
+    theory_builder = TheoryBuilder(
+        knowledge_graph, 
+        original_prompt=config.get("original_prompt", ""),
+        budget=governor.max_evaluations
+    )
     
     results_dir: str = "data/results"
     os.makedirs(results_dir, exist_ok=True)
@@ -97,11 +96,15 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
     )
 
     # 2. Initial Hypothesis Formulation (PI Step)
-    bulk = config.get("constraints", {}).get("bulk", {})
-    keywords = list(bulk.keys())
-    claims = literature_db.find_claims(keywords)
+    claims = []
+    if config.get("literature_check", False):
+        bulk = config.get("constraints", {}).get("bulk", {})
+        keywords = list(bulk.keys())
+        claims = literature_db.find_claims(keywords)
+        
     current_hypothesis = pi_agent.formulate_initial_hypothesis(claims, config.get("original_prompt", ""))
     logger.info(f"--- Initial PI Hypothesis: {current_hypothesis.theory_statement} ---")
+    theory_builder.add_hypothesis_record(current_hypothesis, "Initial Formulation")
 
     # 3. Initial State Setup (Baseline)
     if not experiment_db.get_training_data():
@@ -128,21 +131,21 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
         knowledge_graph.record_experiment(current_state, None, init_data)
     
     logger.info("--- CLASDE DISCOVERY LOOP STARTED ---")
-    
+
     # 4. Optimization Loop with Hypothesis Testing
-    while governor.has_budget():
+    reward = -1e9
+    sigma = 1.0
+    while governor.should_continue(latest_reward=reward, current_uncertainty=sigma):
         # A. Strategic Observation
         obs = strategist.observe_state()
         strategist.update_belief(obs)
         
-        # B. Propose actions influenced by Hypothesis
         candidates = strategist.propose_actions()
         scores = strategist.score_actions(candidates)
         
         import numpy as np
         best_idx = int(np.argmax(scores))
         
-        # C. Execute Workflow Graph (influenced by Hypothesis)
         result = strategist.execute_best(candidates[best_idx], hypothesis=current_hypothesis)
         
         while result.get("status") == "pending":
@@ -152,7 +155,10 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
             
         governor.consume_budget()
         
-        # D. Memory Update
+        # Capture for loop governance (Smell Fix: Knowledge-Driven Stopping)
+        reward = result.get("reward", -1e9)
+        sigma = result.get("metadata", {}).get("sigma", 1.0)
+        
         strategist.update_memory(result)
         metadata = result["metadata"]
         with open(log_file, "a") as f:
@@ -161,21 +167,17 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
         experiment_db.save()
         knowledge_graph.record_experiment(result["state"], result["action"], result["observables"], metadata)
         
-        # E. Hypothesis Verification & Evolution (The Feedback Loop)
+        # E. Hypothesis Verification & Evolution
         verification_msg = pi_agent.verify_current_hypothesis(current_hypothesis, experiment_db.get_training_data())
         logger.info(f"[PI Verification] {verification_msg}")
+        
+        # Record the verification in theory_builder
+        theory_builder.add_hypothesis_record(current_hypothesis, verification_msg)
         
         current_hypothesis = pi_agent.evolve_hypothesis(current_hypothesis, experiment_db.get_training_data())
         logger.info(f"--- New Hypothesis for Next Iteration: {current_hypothesis.theory_statement} ---")
 
-    # 5. Reasoning & Final Reporting
-    patterns = pi_agent.analyze_graph()
-    if patterns:
-        for p in patterns:
-            theory = theory_builder.build_theory(p)
-            theory_builder.discovered_laws.append({"type": "custom", "statement": theory})
-    
-    # Automated physical law discovery
+    # 5. Final Reporting
     theory_builder.identify_electronic_descriptors()
     theory_builder.identify_termination_bias()
     
@@ -185,7 +187,6 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
     report = theory_builder.generate_report()
     logger.info(f"\n{report}")
     
-    # Save the readable Discovery Report to disk
     report_path = os.path.join("data/results", "discovery_report.md")
     with open(report_path, "w") as f:
         f.write(report)
