@@ -1,5 +1,9 @@
 # CLASDE: Closed-Loop Autonomous Surface Discovery Engine
 
+<p align="center">
+  <img src="docs/assets/CLASDE.png" width="800" title="CLASDE Architecture">
+</p>
+
 CLASDE is a multi-agent framework designed to automate the discovery of stable and high-performing surface configurations in complex functional materials. The engine mimics the hierarchy of a computational research group, integrating Large Language Models (LLMs) for conceptualization with high-performance computing (HPC) for physical execution.
 
 ---
@@ -8,26 +12,51 @@ CLASDE is a multi-agent framework designed to automate the discovery of stable a
 
 The system is organized into distinct layers to separate scientific reasoning from computational execution.
 
-### Decision Makers (Agents)
-- **Collaborator Agent**: Interfacing layer that translates natural language research intents into structured campaign configurations.
-- **Principal Investigator (PI)**: The logic lead. Formulates testable hypotheses from literature and verifies them against empirical data.
-- **Research Planner**: Translates hypotheses into executable Directed Acyclic Graphs (DAGs), ensuring logical task sequencing.
-- **Optimization Strategist**: Executes Bayesian Optimization using surrogate models (Gaussian Processes) to select the next experiment.
-- **Structure Builder**: Constructs 3D atomic slabs, enforcing symmetry-aware distortions (orthorhombic/tetragonal) and stoichiometric constraints.
-- **Evaluation Agent**: Parses raw outputs and anchors calculated rewards to NIST-benchmarked thermochemical data.
+### The Lab Metaphor: Roles and Responsibilities
 
-### Scientific Primitives
-- **Workflow Executor**: The DAG engine that traverses task dependencies and manages data passing between compute nodes.
-- **Chemistry Physicist**: Dynamic utility for cation site categorization and layer identification using data-driven heuristics.
-- **Domain Validator**: Enforcement layer for physical plausibility, checking for charge neutrality, slab thickness, and vacuum size.
-- **Theory Builder**: Scientific reasoner that induces scaling relations and electronic descriptors from the Knowledge Graph.
+To understand how CLASDE operates, each agent is mapped to a specific role within a traditional computational surface science research group.
+
+| Role | Metaphor | Responsibility |
+| :--- | :--- | :--- |
+| **Strategic Collaborator** | **The Investor/Expert** | Translates natural language intent into formal scientific campaigns via LLMs. |
+| **Principal Investigator** | **The PI Agent** | The logic lead. Formulates testable hypotheses from literature and verifies them against empirical data. |
+| **Research Planner** | **The Research Scientist** | Translates hypotheses into executable Directed Acyclic Graphs (DAGs), ensuring logical task sequencing. |
+| **Research Governor** | **The Lab Manager** | Enforces objectives, hard budget safety ceilings, and chemical constraints (e.g. charge neutrality). |
+| **Optimization Strategist** | **The Senior Postdoc** | Executes Bayesian Optimization using surrogate models (Gaussian Processes) to select the next experiment. |
+| **Structure Builder** | **The PhD Student** | Constructs 3D atomic slabs, enforcing symmetry-aware distortions (orthorhombic/tetragonal) and stoichiometric constraints. |
+| **Compute Manager** | **The Lab Technician** | Orchestrates HPC execution (VASP, MLIP) with autonomous re-attachment, recovery, and backend abstraction. |
+| **Evaluation Agent** | **The Data Analyst** | Parses raw outputs and anchors calculated rewards to NIST-benchmarked thermochemical data. |
+| **Knowledge Graph** | **The Lab Notebook** | A digital archive recording the full scientific provenance of states, transitions, and empirical results. |
 
 ---
 
-## Implementation Logic: The Hypothesis-Driven Loop
+## How CLASDE Works: The Discovery Loop
 
-CLASDE operates through a continuous feedback loop centered on the Principal Investigator (PI).
+CLASDE operates through a self-correcting feedback loop where specialized agents interact via a shared Scientific Knowledge Graph. This loop elevates the system from simple optimization to autonomous scientific discovery.
 
+```mermaid
+graph TD
+    User((User Intent)) -->|Natural Language| Agent1[Strategic Collaborator]
+    Agent1 -->|Campaign Config| Agent2[Research Governor]
+    
+    subgraph Autonomous_Loop [The Hypothesis-Driven Loop]
+        Agent2 -->|Budget & Constraints| Agent3[Principal Investigator]
+        Agent3 -->|Hypothesis| Agent4[Research Planner]
+        Agent4 -->|Workflow DAG| Agent5[Optimization Strategist]
+        Agent5 -->|Observation| Memory[(Knowledge Graph)]
+        Memory -->|Prior Data| Agent5
+        Agent5 -->|Selected Action| Agent6[Compute Manager]
+        Agent6 -->|HPC Execution| VASP[VASP/ASE Backend]
+        VASP -->|Raw Outputs| Agent7[Evaluation Agent]
+        Agent7 -->|Physical Observables| Memory
+        Memory -->|Trends & Patterns| Agent3
+        Agent3 -->|Verification| Memory
+    end
+    
+    Memory -->|Discovery Report| Output((Scientific Insights))
+```
+
+### Implementation Logic
 1. **Literature Ingestion**: The engine identifies relevant scientific claims from the local Literature Database.
 2. **Hypothesis Formulation**: The PI Agent synthesizes these claims into a formal Scientific Hypothesis (e.g. predicting a specific stability trend).
 3. **DAG Planning**: The Research Planner generates a Task Node graph (Build -> Relax -> Analyze) optimized to test the PI's theory.
@@ -94,13 +123,6 @@ vasp_params:
 ### 3. Reference Data (reference_data.yaml)
 Adsorption energies are calculated relative to gas-phase species. This file contains standard NIST-anchored baselines used if computed references are not yet available in the local database.
 
-```yaml
-gas_phase:
-  O2: -9.85
-  SO2: -15.50
-  CO: -14.80
-```
-
 ---
 
 ## Operational Commands
@@ -120,5 +142,5 @@ python3 autonomous_watchdog.py --configs configs/test_lscf_poisoning.yaml
 ### Direct Execution
 Launch a pre-configured YAML campaign directly.
 ```bash
-clasde-loop --config configs/test_lsf_segregation.yaml
+clasde-loop --config configs/your_campaign.yaml
 ```
