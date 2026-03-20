@@ -122,8 +122,32 @@ class OptimizationStrategist(BaseAgent):
         self.optimizer.update(observations)
 
     def propose_actions(self) -> List[Tuple[MutationAction, SurfaceState]]:
+        """
+        Generate candidate mutations and project them into new states.
+        Ensures candidates are unique and haven't been evaluated yet.
+        """
+        if self.current_state is None:
+            raise ValueError("Current state is not set.")
+            
         actions = self.proposer.propose_actions(self.current_state)
-        return [(a, self.transition_engine.apply(self.current_state, a)) for a in actions]
+        candidates: List[Tuple[MutationAction, SurfaceState]] = []
+        
+        # Track seen IDs to ensure diversity
+        seen_ids = {self.current_state.get_id()}
+        for entry in self.experiment_db.get_training_data():
+            seen_ids.add(entry['state'].get_id())
+
+        for action in actions:
+            try:
+                next_state = self.transition_engine.apply(self.current_state, action)
+                next_id = next_state.get_id()
+                if next_id not in seen_ids:
+                    candidates.append((action, next_state))
+                    seen_ids.add(next_id)
+            except:
+                continue
+                
+        return candidates
 
     def score_actions(self, candidates: List[Tuple[MutationAction, SurfaceState]]) -> List[float]:
         from science.validator import DomainValidator
@@ -136,12 +160,12 @@ class OptimizationStrategist(BaseAgent):
             scores.append(score)
         return scores
 
-    def execute_best(self, best_action_tuple: Tuple[MutationAction, SurfaceState]) -> Dict[str, Any]:
+    def execute_best(self, best_action_tuple: Tuple[MutationAction, SurfaceState], hypothesis: Optional[Any] = None) -> Dict[str, Any]:
         action, next_state = best_action_tuple
         self.pending_state = next_state
         self.iteration += 1
         
-        workflow_graph = self.planner.plan_next_steps(next_state)
+        workflow_graph = self.planner.plan_next_steps(next_state, hypothesis=hypothesis)
         mu, sigma = self.belief_state.predict(next_state)
         
         compute_config = self.config.get("compute", {})

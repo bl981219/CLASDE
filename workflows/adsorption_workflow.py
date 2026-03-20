@@ -68,7 +68,7 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
     knowledge_graph = kg_memory.load()
     
     pi_agent = HypothesisAgent(knowledge_graph, hypothesis_db)
-    theory_builder = TheoryBuilder(knowledge_graph)
+    theory_builder = TheoryBuilder(knowledge_graph, original_prompt=config.get("original_prompt", ""))
     
     results_dir: str = "data/results"
     os.makedirs(results_dir, exist_ok=True)
@@ -96,10 +96,16 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
         hypothesis_db=hypothesis_db
     )
 
-    # 2. Initial State Setup (Baseline)
+    # 2. Initial Hypothesis Formulation (PI Step)
+    bulk = config.get("constraints", {}).get("bulk", {})
+    keywords = list(bulk.keys())
+    claims = literature_db.find_claims(keywords)
+    current_hypothesis = pi_agent.formulate_initial_hypothesis(claims, config.get("original_prompt", ""))
+    logger.info(f"--- Initial PI Hypothesis: {current_hypothesis.theory_statement} ---")
+
+    # 3. Initial State Setup (Baseline)
     if not experiment_db.get_training_data():
-        logger.info("Initializing campaign with a pristine baseline calculation...")
-        # Establish a baseline pristine slab
+        logger.info("Establishing pristine baseline...")
         current_state = SurfaceState(
             bulk_composition=config["constraints"]["bulk"],
             miller_index=config["constraints"]["facet"],
@@ -110,47 +116,59 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
         slab = builder.build_structure(current_state)
         current_state.slab_structure = slab
         
-        # Actually execute the first job to get a real baseline energy
-        # Use MLIP (CHGNet) for the baseline unless forced otherwise
         job_id = compute.submit_job(slab, current_state, sim_type=SimulationType.MLIP, iteration=0)
         results_dir = compute.fetch_results(job_id)
         observables, reward = evaluator.evaluate_calculation(results_dir, {"state": current_state})
         
         init_data = {
-            "reward": reward, 
-            "total_energy": observables.get("total_energy", 0.0), 
-            "coverage": 0.0,
-            "fidelity": observables.get("fidelity", "MLIP")
+            "reward": reward, "total_energy": observables.get("total_energy", 0.0), 
+            "coverage": 0.0, "fidelity": observables.get("fidelity", "MLIP")
         }
         experiment_db.add_experiment(current_state, init_data)
         knowledge_graph.record_experiment(current_state, None, init_data)
     
-    logger.info("--- CLASDE ENGINE STARTED ---")
+    logger.info("--- CLASDE DISCOVERY LOOP STARTED ---")
     
-    # 3. Optimization Loop
+    # 4. Optimization Loop with Hypothesis Testing
     while governor.has_budget():
-        result = strategist.run_step()
+        # A. Strategic Observation
+        obs = strategist.observe_state()
+        strategist.update_belief(obs)
         
-        # Handle Asynchronous Wait (Smell #2 Fix)
-        # If the job is pending, we wait. Once it's done, strategist.run_step() 
-        # will return the full result including 'reward'.
+        # B. Propose actions influenced by Hypothesis
+        candidates = strategist.propose_actions()
+        scores = strategist.score_actions(candidates)
+        
+        import numpy as np
+        best_idx = int(np.argmax(scores))
+        
+        # C. Execute Workflow Graph (influenced by Hypothesis)
+        result = strategist.execute_best(candidates[best_idx], hypothesis=current_hypothesis)
+        
         while result.get("status") == "pending":
-            logger.info(f"Campaign {config.get('name')}: Job {result.get('job_id')} is still pending. Sleeping 60s...")
-            time.sleep(60) # Poll every minute
-            result = strategist.run_step()
+            logger.info(f"Job {result.get('job_id')} pending. Sleeping 60s...")
+            time.sleep(60)
+            result = strategist.execute_best(candidates[best_idx], hypothesis=current_hypothesis)
             
         governor.consume_budget()
         
+        # D. Memory Update
+        strategist.update_memory(result)
         metadata = result["metadata"]
         with open(log_file, "a") as f:
             f.write(f"| {metadata['iteration']} | {result['action'].action_type.value} | {metadata['fidelity'].upper()} | {result['reward']:.4f} | {experiment_db.get_best_reward():.4f} |\n")
         
-        # Save after each step
         experiment_db.save()
-        knowledge_graph.record_experiment(result["state"], result["action"], result["observables"])
-        kg_memory.save(knowledge_graph)
+        knowledge_graph.record_experiment(result["state"], result["action"], result["observables"], metadata)
+        
+        # E. Hypothesis Verification & Evolution (The Feedback Loop)
+        verification_msg = pi_agent.verify_current_hypothesis(current_hypothesis, experiment_db.get_training_data())
+        logger.info(f"[PI Verification] {verification_msg}")
+        
+        current_hypothesis = pi_agent.evolve_hypothesis(current_hypothesis, experiment_db.get_training_data())
+        logger.info(f"--- New Hypothesis for Next Iteration: {current_hypothesis.theory_statement} ---")
 
-    # 4. Reasoning
+    # 5. Reasoning & Final Reporting
     patterns = pi_agent.analyze_graph()
     if patterns:
         for p in patterns:
@@ -166,6 +184,12 @@ def run_adsorption_campaign(config: Dict[str, Any]) -> None:
 
     report = theory_builder.generate_report()
     logger.info(f"\n{report}")
+    
+    # Save the readable Discovery Report to disk
+    report_path = os.path.join("data/results", "discovery_report.md")
+    with open(report_path, "w") as f:
+        f.write(report)
+    logger.info(f"Final Discovery Report saved to {report_path}")
 
     experiment_db.save()
     hypothesis_db.save()

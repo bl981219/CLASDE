@@ -1,42 +1,28 @@
-budget:
-  max_evaluations: 5
-compute:
-  metadata:
-    bulk_supercell:
-    - 2
-    - 2
-    - 4
-  mode: chgnet
-  platform: local
-  resources:
-    nodes: 2
-    ntasks: 48
+name: "STO_B_Site_Doping_ORR"
+description: "Optimization of B-site dopants on STO for ORR activity."
+original_prompt: "I want to optimize the oxygen reduction reaction (ORR) activity on SrTiO3 (STO) by doping the B-site with transition metals (Ta, Mn, Fe, Co, Ni). Run a closed-loop tuning campaign using CHGNet to rapidly screen different dopant types and concentrations at the surface. Your goal is to find a dopant configuration that brings the Oxygen adsorption energy (E_ads) closest to -1.2 eV."
+
+research_mode: "tuning"
+finetune_mlip: true
+
+objective:
+  type: "adsorption_tuning"
+  adsorbate: "O"
+  target_e_ads: -1.2
+
 constraints:
-  allowed_dopants:
-  - Mn
-  - Fe
-  - Co
-  - Ni
   bulk:
-    O: 3.0
     Sr: 1.0
     Ti: 1.0
-  facet:
-  - 0
-  - 0
-  - 1
-description: Optimization of B-site dopants on STO for ORR activity.
-finetune_mlip: true
-name: STO_B_Site_Doping_ORR
-objective:
-  adsorbate: O
-  target_e_ads: -1.2
-  type: adsorption_tuning
-original_prompt: I want to optimize the oxygen reduction reaction (ORR) activity on
-  SrTiO3 (STO) by doping the B-site with transition metals (Mn, Fe, Co, Ni). Start
-  by creating a 2x2x4 STO (001) slab. Then, run a closed-loop tuning campaign using
-  CHGNet to rapidly screen different dopant types and concentrations at the surface.
-  Your goal is to find a dopant configuration that brings the Oxygen adsorption energy
-  (E_ads) closest to -1.2 eV. Once the best candidate is identified, perform one final
-  VASP verification on 2 nodes to confirm the result.
-research_mode: tuning
+    O: 3.0
+  facet: [0, 0, 1]
+  allowed_dopants: ["Ta", "Mn", "Fe", "Co", "Ni"]
+
+budget:
+  max_evaluations: 10
+
+compute:
+  platform: "local"
+  mode: "chgnet"
+  metadata:
+    bulk_supercell: [2, 2, 4]

@@ -49,24 +49,39 @@ def main():
     print(f"  Budget:      {req_budget} iterations")
     print("-"*50)
 
-    # Sanity Check & Confirmation
+    # --- Act as Research Governor (Lab Manager) ---
     if os.getenv("CLASDE_AUTO_CONFIRM", "false").lower() == "true":
-        confirm = "yes"
+        choice = "p"
     else:
+        print("\n[Lab Manager Action Required]")
+        print("Do you want to (P)roceed, (M)odify constraints, or (A)bort?")
         try:
-            print("\nCRITICAL: Starting this campaign will initiate autonomous structure")
-            print("generation and computational evaluations (DFT/MLFF).")
-            confirm = input("\nDo you want to proceed with this campaign? [Y/n]: ").strip().lower()
-            if confirm == "": confirm = "y" # Default to yes
+            choice = input("Choice [P/m/a]: ").strip().lower()
+            if choice == "": choice = "p"
         except EOFError:
-            confirm = "no"
-            print("\nNon-interactive mode detected. Use CLASDE_AUTO_CONFIRM=true to skip confirmation.")
+            choice = "a"
 
-    if confirm in ["y", "yes"]:
+    if choice == "m":
+        # Manual Budget Override
+        current_budget = config.get("budget", {}).get("max_evaluations", req_budget)
+        new_budget = input(f"Set max evaluations (current: {current_budget}): ").strip()
+        if new_budget.isdigit():
+            config["budget"] = {"max_evaluations": int(new_budget)}
+        
+        # Manual Facet Override
+        current_facet = config.get("constraints", {}).get("facet", [0,0,1])
+        new_facet = input(f"Set Miller index facet (current: {current_facet}): ").strip()
+        try:
+            if new_facet: config["constraints"]["facet"] = eval(new_facet)
+        except:
+            print("Invalid facet format. Keeping default.")
+        
+        choice = "p" # Proceed with updated config
+
+    if choice == "p":
         print("\n[System] Handing over to Research Governor. Starting loop...")
         
         # Merge defaults and include the original prompt for documentation
-        config["budget"] = config.get("budget", {"max_evaluations": req_budget})
         config["original_prompt"] = user_prompt
         
         if "acquisition" not in config:

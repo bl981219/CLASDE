@@ -197,7 +197,11 @@ class KnowledgeGraph:
                 self.add_relation(ts_id, net_node_id, RelationType.PART_OF_NETWORK)
 
     def find_results_for_material(self, composition: Dict[str, float]) -> List[Dict[str, Any]]:
-        """Query the graph for all empirical results associated with a specific bulk chemistry."""
+        """
+        Query the graph for all empirical results associated with a specific bulk chemistry.
+        Supports both exact matching and robust cation-ratio based matching to handle 
+        mutations like oxygen vacancies.
+        """
         results: List[Dict[str, Any]] = []
         
         # 1. Try exact match first
@@ -205,12 +209,33 @@ class KnowledgeGraph:
         if mat_id in self.nodes:
             return self._extract_results_from_mat(mat_id)
             
-        # 2. Try base cation composition match (ignoring Oxygen and small amounts)
-        base_comp = {k: v for k, v in composition.items() if k != "O" and v > 0.01}
+        # 2. Robust Cation-Ratio Match
+        # Identify non-oxygen cations and their relative ratios
+        cations = {k: v for k, v in composition.items() if k != "O" and v > 0.01}
+        total_cations = sum(cations.values())
+        if total_cations == 0: return []
+        cation_ratios = {k: v / total_cations for k, v in cations.items()}
+        
         for node_id, node in self.nodes.items():
             if node.node_type == NodeType.MATERIAL:
-                node_comp = {k: v for k, v in node.properties.get("composition", {}).items() if k != "O" and v > 0.01}
-                if base_comp == node_comp:
+                node_comp = node.properties.get("composition", {})
+                node_cations = {k: v for k, v in node_comp.items() if k != "O" and v > 0.01}
+                node_total = sum(node_cations.values())
+                if node_total == 0: continue
+                
+                node_ratios = {k: v / node_total for k, v in node_cations.items()}
+                
+                # Compare ratios with small tolerance
+                match = True
+                if set(cation_ratios.keys()) != set(node_ratios.keys()):
+                    match = False
+                else:
+                    for k, r in cation_ratios.items():
+                        if abs(r - node_ratios[k]) > 0.05:
+                            match = False
+                            break
+                
+                if match:
                     results.extend(self._extract_results_from_mat(node_id))
                     
         return results

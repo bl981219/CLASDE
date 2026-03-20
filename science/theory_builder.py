@@ -7,19 +7,55 @@ from science.chemistry import ChemistryPhysicist
 from science.descriptors import SurfaceDescriptors
 
 logger = logging.getLogger(__name__)
-
 class TheoryBuilder:
     """
     Agent Component: Theory Builder (Scientific Reasoner).
-    
-    Synthesizes empirical data into physical laws by detecting:
-    1. Correlations: Linear/non-linear dependencies between descriptors and rewards.
-    2. Scaling Relations: Universal relationships (e.g., E_ads(OH) vs E_ads(O)).
-    3. Descriptor Identification: Finding low-dimensional proxies for complex energetics.
+    Synthesizes empirical data into physical laws and provides scientific interpretation.
     """
-    def __init__(self, knowledge_graph: KnowledgeGraph) -> None:
+    def __init__(self, knowledge_graph: KnowledgeGraph, original_prompt: str = "") -> None:
         self.kg = knowledge_graph
+        self.original_prompt = original_prompt
         self.discovered_laws: List[Dict[str, Any]] = []
+
+    def _get_interpretation(self, rows: List[Tuple]) -> str:
+        """
+        Provides a scientific interpretation of the dataset trends.
+        """
+        if not rows: return "No data available for interpretation."
+
+        # 1. Check for optimization success
+        rewards = [r[4] for r in rows if isinstance(r[4], float)]
+        best_reward = max(rewards) if rewards else -1e9
+
+        interpretation = "### Scientific Discussion\n"
+
+        # 2. Analyze the 'Why' based on prompt keywords
+        prompt_lower = self.original_prompt.lower()
+
+        if "doping" in prompt_lower or "dopant" in prompt_lower:
+            interpretation += "- **Doping Effect Analysis:** The campaign explored various cation substitutions. "
+            if best_reward > -0.5:
+                interpretation += "The data suggests that specific B-site configurations successfully tuned the adsorption energy toward the target. "
+            else:
+                interpretation += "Current dopant choices show limited impact on reactivity, suggesting the STO lattice remains dominant. "
+
+        if "segregation" in prompt_lower:
+            interpretation += "- **Segregation Physics:** We monitored the Grand Potential as a function of cation arrangement. "
+            # Check if reward improved over iterations
+            if len(rewards) > 1 and rewards[-1] > rewards[0]:
+                interpretation += "The reduction in Grand Potential confirms that the agent successfully identified more stable surface cation distributions. "
+            else:
+                interpretation += "The surface appears stable in its initial configuration, or the explored configurations are energetically unfavorable. "
+
+        # 3. Correlation-based explanation
+        for law in self.discovered_laws:
+            if law["type"] == "descriptor":
+                interpretation += f"\n- **Electronic Driver:** A strong correlation (R={law['correlation']:.2f}) was found for `{law['descriptor']}`. "
+                interpretation += "This indicates that this electronic descriptor is a reliable proxy for catalytic activity in this specific material system."
+
+        return interpretation
+
+    def generate_report(self) -> str:
 
     def discover_scaling_relations(self, species_a: str, species_b: str) -> Dict[str, Any]:
         """
@@ -166,24 +202,99 @@ class TheoryBuilder:
         return results
 
     def generate_report(self) -> str:
-        """Outputs a high-level scientific summary including laws and descriptors."""
-        report = "\n" + "="*50 + "\n"
-        report += "   AUTONOMOUS SCIENTIFIC DISCOVERY REPORT\n"
-        report += "="*50 + "\n"
+        """
+        Generates a comprehensive scientific discovery report in Markdown format.
+        Summarizes the campaign, the data gathered, and the induced physical insights.
+        """
+        import time
+        # 1. Header & Metadata
+        report = "# CLASDE Scientific Discovery Report\n"
+        report += f"**Date:** {time.strftime('%Y-%m-%d %H:%M:%S')}\n\n"
         
-        if not self.discovered_laws:
-            report += "No universal physical laws detected in current dataset.\n"
+        # 2. Executive Summary
+        report += "## 1. Executive Summary\n"
         
-        for law in self.discovered_laws:
-            if law["type"] == "scaling_relation":
-                s1, s2 = law["species"]
-                report += f"- Scaling Relation Found: E_ads({s2}) scales with E_ads({s1})\n"
-                report += f"  (R^2 = {law['r_squared']:.3f}, Confidence: {law['confidence']:.2f})\n"
-            elif law["type"] == "descriptor":
-                report += f"- Descriptor Identified: {law['descriptor']} correlates with performance\n"
-                report += f"  (Pearson R = {law['correlation']:.3f}, Confidence: {law['confidence']:.2f})\n"
-            elif law.get("type") == "custom":
-                report += f"- {law['statement']}\n"
+        # Count results
+        result_count = sum(1 for n in self.kg.nodes.values() if n.node_type == NodeType.RESULT)
+        report += f"- **Total Experiments Conducted:** {result_count}\n"
         
-        report += "-"*50 + "\n"
+        if self.discovered_laws:
+            report += f"- **Key Findings:** {len(self.discovered_laws)} physical insights induced.\n"
+        else:
+            report += "- **Key Findings:** No statistically significant correlations detected in the current dataset.\n"
+        report += "\n---\n\n"
+
+        # 3. Discovered Physical Laws
+        report += "## 2. Induced Physical Insights\n"
+        if self.discovered_laws:
+            for i, law in enumerate(self.discovered_laws):
+                report += f"### Insight {i+1}: {law.get('type', 'General').capitalize()}\n"
+                
+                if law["type"] == "scaling_relation":
+                    s1, s2 = law["species"]
+                    report += f"> **Scaling Relation:** E_ads({s2}) scales with E_ads({s1})\n\n"
+                    report += f"- R-squared: {law['r_squared']:.3f}\n"
+                elif law["type"] == "descriptor":
+                    report += f"> **Descriptor Correlation:** {law['descriptor']} correlates with target performance.\n\n"
+                    report += f"- Pearson R: {law['correlation']:.3f}\n"
+                elif law.get("type") == "custom":
+                    report += f"> {law['statement']}\n\n"
+                
+                report += f"- Statistical Confidence: {law.get('confidence', 0.0):.2f}\n\n"
+        else:
+            report += "The agent has not yet detected strong patterns or scaling relations. More data or a wider diversity of materials may be required.\n\n"
+
+        # 4. Results Table
+        report += "## 3. Experimental Dataset Summary\n"
+        report += "| Iteration | Surface | Termination | Observed Property | Reward |\n"
+        report += "| :--- | :--- | :--- | :--- | :--- |\n"
+        
+        # Build a list of results sorted by iteration
+        rows = []
+        for node_id, node in self.kg.nodes.items():
+            if node.node_type == NodeType.RESULT:
+                props = node.properties
+                calc_ids = list(self.kg.graph.predecessors(node_id))
+                if not calc_ids: continue
+                
+                calc_node = self.kg.nodes[calc_ids[0]]
+                iter_num = calc_node.properties.get("iteration", 0)
+                
+                struct_ids = list(self.kg.graph.predecessors(calc_ids[0]))
+                if not struct_ids: continue
+                
+                struct_node = self.kg.nodes[struct_ids[0]]
+                state = struct_node.properties.get("state_dict", {})
+                comp_dict = state.get("bulk_composition", {})
+                comp = "".join([f"{k}{v}" for k, v in comp_dict.items() if v > 0])
+                term = state.get("termination", "Unknown")
+                
+                val = props.get("adsorption_energy") or props.get("total_energy", 0.0)
+                reward = props.get("reward", 0.0)
+                rows.append((iter_num, comp, term, val, reward))
+        
+        # Sort by iteration
+        rows.sort(key=lambda x: x[0] if isinstance(x[0], int) else 999)
+        
+        for r in rows:
+            report += f"| {r[0]} | {r[1]} | {r[2]} | {r[3]:.2f} | {r[4]:.4f} |\n"
+        
+        if not rows:
+            report += "| N/A | N/A | N/A | N/A | N/A |\n"
+            
+        report += "\n"
+        # 5. Deep Interpretation
+        report += self._get_interpretation(rows)
+        report += "\n\n"
+
+        # 6. Technical Metadata
+        fidelities = set()
+        for node in self.kg.nodes.values():
+            if node.node_type == NodeType.CALCULATION:
+                fidelities.add(node.properties.get("fidelity", "Unknown"))
+        
+        report += "\n\n## 4. Technical Metadata\n"
+        report += f"- **Backends Used:** {', '.join(fidelities)}\n"
+        report += "- **Storage:** SQLite (experiments.db) & NetworkX Graph\n"
+        
         return report

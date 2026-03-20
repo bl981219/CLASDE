@@ -116,6 +116,15 @@ class ResearchPlanner(BaseAgent):
         """Record the planned sequence in the knowledge graph."""
         pass
 
-    def plan_next_steps(self, state: SurfaceState) -> WorkflowGraph:
-        """Convenience method to get a sequence for a given state."""
+    def plan_next_steps(self, state: SurfaceState, hypothesis: Optional[Any] = None) -> WorkflowGraph:
+        """
+        Convenience method to get a sequence for a given state.
+        Now considers the active hypothesis to prioritize specific tasks.
+        """
+        if hypothesis:
+            logger.info(f"[Planner] Translating Hypothesis into tasks: {hypothesis.theory_statement}")
+            # Logic: If hypothesis mentions 'dynamic' or 'stability', increase weight for MD
+            if "stability" in hypothesis.theory_statement.lower():
+                self.belief_state["needs_md"] = True
+                
         return self.run_step()

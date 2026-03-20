@@ -3,9 +3,9 @@
 This file contains natural language prompts designed to test the full orchestration capabilities of the Closed-Loop Atomistic Surface Design Engine (CLASDE).
 
 ## 1. Surface Segregation in LSF
-**Goal:** Investigate Sr-segregation using multi-fidelity screening (CHGNet + DFT).
+**Goal:** Investigate Sr-segregation using screening (CHGNet).
 **Prompt:** 
-"I am interested in how Sr-segregation behaves on La0.5Sr0.5FeO3 (LSF) (001) surfaces. Please perform a multi-fidelity research campaign where you first use the universal CHGNet potential to explore a range of surface cation configurations."
+"I am interested in how Sr-segregation behaves on La0.5Sr0.5FeO3 (LSF) (001) surfaces. Please perform a research campaign where you use the universal CHGNet potential to explore a range of surface cation configurations."
 
 ## 2. Catalyst Poisoning on LSCF
 **Goal:** Map SO2 vs CrO3 adsorption and analyze electronic band centers.

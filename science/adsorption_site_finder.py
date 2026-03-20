@@ -26,8 +26,7 @@ class AdsorptionSiteFinder:
             asf = AdsorbateSiteFinder(struct)
             
             # 2. Find sites (default distance 2.0 A from surface)
-            # Use put_view=False to avoid interactive matplotlib backends in CLI
-            sites = asf.find_adsorption_sites(distance=2.0, put_view=False)
+            sites = asf.find_adsorption_sites(distance=2.0)
             
             found_sites = []
             # 3. Reduce and Categorize sites

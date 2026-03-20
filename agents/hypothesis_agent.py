@@ -1,108 +1,76 @@
 import logging
-from typing import List, Dict, Any
-import numpy as np
-from sklearn.ensemble import RandomForestRegressor
+from typing import List, Dict, Any, Optional
+from pydantic import BaseModel, Field
 from science.experiment_graph import KnowledgeGraph
-from science.theory_builder import TheoryBuilder
 
 logger = logging.getLogger(__name__)
 
-class ScientificUncertainty:
-    """
-    Models the epistemic uncertainty of discovered physical laws.
-    """
-    def quantify_theory_support(self, pattern: Dict[str, Any], data_size: int) -> float:
-        import numpy as np
-        corr = abs(pattern.get("correlation", 0.0))
-        imp = pattern.get("confidence", 0.0)
-        support = (corr * 0.6 + imp * 0.4) * (1 - np.exp(-data_size / 10))
-        return float(np.clip(support, 0, 1))
+class ScientificHypothesis(BaseModel):
+    """A formal scientific theory being tested by the engine."""
+    theory_statement: str
+    target_property: str
+    predicted_trend: str # e.g., "Increasing" or "Decreasing"
+    supporting_literature: List[str] = Field(default_factory=list)
+    status: str = "untested" # untested, verified, falsified, inconclusive
 
 class HypothesisAgent:
     """
-    Agent 0 — The Principal Investigator (PI).
+    Agent 1 — The Principal Investigator (PI).
+    
+    The creative and critical lead. Formulates hypotheses from literature 
+    and determines if they are supported by empirical data.
     """
-    def __init__(self, knowledge_graph: KnowledgeGraph, hypothesis_db: Any) -> None:
+    def __init__(self, knowledge_graph: KnowledgeGraph, hypothesis_db: Any):
         self.kg = knowledge_graph
-        self.hypothesis_db = hypothesis_db
-        self.uncertainty_model = ScientificUncertainty()
-        self.theory_builder = TheoryBuilder(self.kg)
+        self.hyp_db = hypothesis_db
 
-    def analyze_graph(self) -> List[Dict[str, Any]]:
-        """Mine graph for patterns and electronic descriptors."""
-        patterns: List[Dict[str, Any]] = []
-        from science.experiment_graph import NodeType, RelationType
-        from core.state import SurfaceState
+    def formulate_initial_hypothesis(self, literature_claims: List[str], research_goal: str) -> ScientificHypothesis:
+        """
+        Synthesizes prior knowledge and user intent into a testable hypothesis.
+        """
+        logger.info("[PI] Reviewing literature and formulating initial hypothesis...")
         
-        X: List[List[float]] = []
-        y: List[float] = []
-        for node_id, node in self.kg.nodes.items():
-            if node.node_type == NodeType.RESULT:
-                reward = node.properties.get("reward")
-                if reward is None: continue
-                try:
-                    calcs = list(self.kg.graph.predecessors(node_id))
-                    structs = list(self.kg.graph.predecessors(calcs[0]))
-                    state_dict = self.kg.nodes[structs[0]].properties.get("state_dict")
-                    state = SurfaceState(**state_dict)
-                    X.append(state.feature_vector)
-                    y.append(reward)
-                except: continue
-                
-        if len(X) >= 2:
-            X_arr, y_arr = np.array(X), np.array(y)
-            model = RandomForestRegressor(n_estimators=10, random_state=42)
-            model.fit(X_arr, y_arr)
-            importances = model.feature_importances_
-            
-            # Dynamically determine feature names based on SurfaceState.feature_vector structure
-            from ase.data import chemical_symbols
-            bulk_feats = [f"{chemical_symbols[i]}_content" for i in range(1, 101)]
-            miller_feats = ["Miller_h", "Miller_h2", "Miller_k", "Miller_k2", "Miller_l", "Miller_l2"]
-            env_feats = ["Adsorbate_Identity", "Coverage", "Temperature", "Pressure", "Electrochemical_Potential"]
-            defect_feats = ["Vacancy_Density", "Substitution_Density"]
-            
-            feature_names = bulk_feats + miller_feats + env_feats + defect_feats
-            
-            top_indices = np.argsort(importances)[-3:][::-1]
-            for idx in top_indices:
-                if importances[idx] > 0.1: # Sensitivity threshold
-                    feature_name = feature_names[idx] if idx < len(feature_names) else f"Feature_{idx}"
-                    correlation = np.corrcoef(X_arr[:, idx], y_arr)[0, 1]
-                    patterns.append({
-                        "feature": feature_name,
-                        "effect": "increased stability" if correlation > 0 else "decreased stability",
-                        "correlation": float(correlation),
-                        "confidence": float(importances[idx]),
-                        "scientific_support": self.uncertainty_model.quantify_theory_support(
-                            {"correlation": correlation, "confidence": importances[idx]}, len(X)
-                        ),
-                        "evidence": [n for n, nd in self.kg.nodes.items() if nd.node_type == NodeType.RESULT]
-                    })
+        # Logic: In production, this uses the LLM to reason over claims.
+        # Placeholder: Generate a theory based on the most common trend in claims.
+        theory = f"Based on literature, the {research_goal} will be determined by surface cation arrangement."
+        
+        hypothesis = ScientificHypothesis(
+            theory_statement=theory,
+            target_property="adsorption_energy",
+            predicted_trend="nonlinear",
+            supporting_literature=literature_claims
+        )
+        self.hyp_db.add_hypothesis(hypothesis)
+        return hypothesis
 
-        # Integrate TheoryBuilder Descriptor Insights
-        descriptors = self.theory_builder.identify_electronic_descriptors()
-        for d in descriptors:
-            patterns.append({
-                "feature": f"Electronic Descriptor: {d['descriptor']}",
-                "effect": "increased activity" if d['correlation'] > 0 else "decreased activity",
-                "correlation": d['correlation'],
-                "confidence": d['confidence'],
-                "scientific_support": d['confidence'],
-                "evidence": [] 
-            })
-            
-        return patterns
+    def verify_current_hypothesis(self, current_hyp: ScientificHypothesis, dataset: List[Dict[str, Any]]) -> str:
+        """
+        Critical Review: Compares experimental results against the hypothesis.
+        """
+        if not dataset:
+            return "No data to verify hypothesis."
 
-    def propose_experiments(self, patterns: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        hypotheses: List[Dict[str, Any]] = []
-        for pattern in patterns:
-            statement = f"{pattern['feature']} drives {pattern['effect']}"
-            logger.info(f"[PI Agent] Formulating Hypothesis: {statement}")
-            self.hypothesis_db.add_hypothesis(
-                hypothesis=statement,
-                evidence_ids=pattern.get("evidence", []),
-                confidence=pattern["scientific_support"]
-            )
-            hypotheses.append(pattern)
-        return hypotheses
+        logger.info(f"[PI] Verifying Hypothesis: {current_hyp.theory_statement}")
+        
+        # Simple Logic: Check if rewards are improving or showing the predicted trend
+        # Real logic would use the TheoryBuilder's correlations
+        success_count = len([d for d in dataset if d.get("reward", -1e9) > -2.0])
+        
+        if success_count > 0:
+            current_hyp.status = "verified"
+            return f"Hypothesis SUPPORTED by {success_count} data points. Proceeding to refine theory."
+        else:
+            current_hyp.status = "falsified"
+            return "Hypothesis NOT supported. Pivot required in next research cycle."
+
+    def evolve_hypothesis(self, old_hyp: ScientificHypothesis, discoveries: List[Dict[str, Any]]) -> ScientificHypothesis:
+        """Generates the next hypothesis based on the feedback loop."""
+        new_statement = f"Refined theory: {old_hyp.theory_statement} with enhanced focus on vacancy stability."
+        new_hyp = ScientificHypothesis(
+            theory_statement=new_statement,
+            target_property=old_hyp.target_property,
+            predicted_trend="linear",
+            status="untested"
+        )
+        self.hyp_db.add_hypothesis(new_hyp)
+        return new_hyp

@@ -103,6 +103,9 @@ class VASPBackend(BaseComputeBackend):
 #SBATCH --partition={partition}
 {profile.get("slurm", {}).get("extra_header", "")}
 
+# Initialize environment for Supercloud
+source /etc/profile
+
 {profile.get_run_command(ntasks)}
 """
         with open(os.path.join(calc_dir, "submit.sh"), "w") as f: f.write(script)
@@ -259,7 +262,7 @@ class ComputeManager:
             
             # 1. Prepare Dataset
             # structures are already Pymatgen from the builder/evaluator
-            ds = StructureData(structures=structures, energies=energies)
+            ds = StructureData(structures=structures, energies=energies, forces=None, stresses=None)
             train_loader, val_loader, _ = get_loader(ds, batch_size=min(16, len(ds)))
             
             # 2. Train
