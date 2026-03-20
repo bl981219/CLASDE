@@ -12,27 +12,66 @@ CLASDE is a multi-agent framework designed to automate the discovery of stable a
 
 The system is organized into distinct layers to separate scientific reasoning from computational execution.
 
-### The Lab Metaphor: Roles and Responsibilities
+```text
+CLASDE/
+├── agents/             # DECISION MAKERS (The "Who")
+│   ├── collaborator_agent.py # Human-Machine Interface (LLM)
+│   ├── hypothesis_agent.py   # Scientific Theory Induction (PI)
+│   ├── planner_agent.py      # Task Sequence Formulation
+│   ├── governor_agent.py     # Budget & Constraint Enforcement (Lab Manager)
+│   ├── strategist_agent.py   # Experiment Selection (BO / Senior Postdoc)
+│   ├── builder_agent.py      # Symmetry-aware structural construction
+│   └── evaluator_agent.py    # Result Interpretation (Data Analyst)
+│
+├── core/               # SCIENTIFIC PRIMITIVES
+│   ├── state.py              # SurfaceState (Source of Truth)
+│   ├── action.py             # Mutation operators
+│   ├── transition.py         # Physics rules
+│   └── workflow_graph.py     # DAG Engine & WorkflowExecutor
+│
+├── science/            # DOMAIN OBJECTS (The "What")
+│   ├── chemistry.py          # Data-driven cation site heuristics
+│   ├── validator.py          # Physical constraint enforcement
+│   ├── descriptors.py        # Band-center and GCN calculations
+│   ├── theory_builder.py     # Physical law discovery
+│   ├── adsorption_site_finder.py # Symmetry-unique site detection
+│   └── reaction_network.py   # Microkinetic modelling structures
+│
+├── memory/             # CENTRALIZED KNOWLEDGE
+│   ├── knowledge_graph.py    # Semantic scientific provenance
+│   ├── experiment_db.py      # SQLite-backed experiment repository
+│   ├── hypothesis_db.py      # Database of PI theories
+│   └── literature_db.py      # Prior knowledge storage
+│
+├── execution/          # INFRASTRUCTURE (The "Action")
+│   └── compute_agent.py      # Backend abstraction (VASP, ASE, MLIP)
+│
+├── workflows/          # ORCHESTRATION (The "Process")
+│   ├── adsorption_workflow.py # Main discovery loop
+│   └── neb_workflow.py        # Transition state sequences
+│
+├── configs/            # CONFIGURATION & DATA
+└── autonomous_watchdog.py # Persistence & recovery manager
+```
 
-To understand how CLASDE operates, each agent is mapped to a specific role within a traditional computational surface science research group.
+### The Lab Metaphor: Roles and Responsibilities
 
 | Role | Metaphor | Responsibility |
 | :--- | :--- | :--- |
-| **Strategic Collaborator** | **The Investor/Expert** | Translates natural language intent into formal scientific campaigns via LLMs. |
-| **Principal Investigator** | **The PI Agent** | The logic lead. Formulates testable hypotheses from literature and verifies them against empirical data. |
-| **Research Planner** | **The Research Scientist** | Translates hypotheses into executable Directed Acyclic Graphs (DAGs), ensuring logical task sequencing. |
+| **Strategic Collaborator** | **The Investor/Expert** | Translates natural language intent into formal scientific campaigns. |
+| **Principal Investigator** | **The PI Agent** | The logic lead. Formulates testable hypotheses and verifies them against empirical data. |
+| **Research Planner** | **The Architect** | Translates the PI's hypothesis into machine-runnable Directed Acyclic Graphs (DAGs). |
 | **Research Governor** | **The Lab Manager** | Enforces objectives, hard budget safety ceilings, and chemical constraints (e.g. charge neutrality). |
-| **Optimization Strategist** | **The Senior Postdoc** | Executes Bayesian Optimization using surrogate models (Gaussian Processes) to select the next experiment. |
-| **Structure Builder** | **The PhD Student** | Constructs 3D atomic slabs, enforcing symmetry-aware distortions (orthorhombic/tetragonal) and stoichiometric constraints. |
-| **Compute Manager** | **The Lab Technician** | Orchestrates HPC execution (VASP, MLIP) with autonomous re-attachment, recovery, and backend abstraction. |
+| **Optimization Strategist** | **The Senior Postdoc** | Operates the Surrogate Model and selects the optimal next experiment via Bayesian Optimization. |
+| **Structure Builder** | **The PhD Student** | Builds 3D atomic structures, enforcing symmetry-aware distortions and stoichiometric constraints. |
+| **Compute Manager** | **The Lab Technician** | Orchestrates HPC execution (VASP, MLIP) with backend abstraction and autonomous recovery. |
 | **Evaluation Agent** | **The Data Analyst** | Parses raw outputs and anchors calculated rewards to NIST-benchmarked thermochemical data. |
-| **Knowledge Graph** | **The Lab Notebook** | A digital archive recording the full scientific provenance of states, transitions, and empirical results. |
 
 ---
 
 ## How CLASDE Works: The Discovery Loop
 
-CLASDE operates through a self-correcting feedback loop where specialized agents interact via a shared Scientific Knowledge Graph. This loop elevates the system from simple optimization to autonomous scientific discovery.
+CLASDE operates through a self-correcting feedback loop centered on the Principal Investigator (PI). This loop elevates the system from simple optimization to autonomous scientific discovery.
 
 ```mermaid
 graph TD
@@ -40,29 +79,30 @@ graph TD
     Agent1 -->|Campaign Config| Agent2[Research Governor]
     
     subgraph Autonomous_Loop [The Hypothesis-Driven Loop]
-        Agent2 -->|Budget & Constraints| Agent3[Principal Investigator]
-        Agent3 -->|Hypothesis| Agent4[Research Planner]
-        Agent4 -->|Workflow DAG| Agent5[Optimization Strategist]
-        Agent5 -->|Observation| Memory[(Knowledge Graph)]
-        Memory -->|Prior Data| Agent5
-        Agent5 -->|Selected Action| Agent6[Compute Manager]
+        Agent2 -->|Budget & Constraints| Agent3[Optimization Strategist]
+        Agent3 -->|Observation| Memory[(Knowledge Graph)]
+        Memory -->|Prior Data| Agent3
+        Agent3 -->|Candidate Surface| Agent4[Research Planner]
+        Agent5[Principal Investigator] -->|Active Hypothesis| Agent4
+        Agent4 -->|Structured DAG| Agent6[Workflow Executor]
         Agent6 -->|HPC Execution| VASP[VASP/ASE Backend]
         VASP -->|Raw Outputs| Agent7[Evaluation Agent]
         Agent7 -->|Physical Observables| Memory
-        Memory -->|Trends & Patterns| Agent3
-        Agent3 -->|Verification| Memory
+        Memory -->|Trends & Patterns| Agent5
+        Agent5 -->|Verification| Memory
+        Agent5 -->|Evolved Hypothesis| Agent4
     end
     
     Memory -->|Discovery Report| Output((Scientific Insights))
 ```
 
 ### Implementation Logic
-1. **Literature Ingestion**: The engine identifies relevant scientific claims from the local Literature Database.
-2. **Hypothesis Formulation**: The PI Agent synthesizes these claims into a formal Scientific Hypothesis (e.g. predicting a specific stability trend).
-3. **DAG Planning**: The Research Planner generates a Task Node graph (Build -> Relax -> Analyze) optimized to test the PI's theory.
-4. **Autonomous Execution**: The Compute Manager dispatches tasks to backends (VASP or local MLIP) based on the required fidelity.
-5. **Verification**: The Evaluation Agent parses results, and the PI compares them against the original hypothesis to verify or falsify the theory.
-6. **Theory Evolution**: The loop restarts with a refined hypothesis, ensuring cumulative scientific learning.
+1. **Literature Ingestion**: The engine identifies relevant scientific claims from the local `LiteratureDatabase`.
+2. **Hypothesis Formulation**: The **Principal Investigator (PI)** Agent synthesizes these claims into a formal Scientific Hypothesis.
+3. **Strategic Selection**: The **Strategist** uses Bayesian Optimization to identify the next surface configuration that most effectively tests the current belief state.
+4. **DAG Planning**: The **Research Planner** translates the PI's hypothesis and the Strategist's selected action into a formal Directed Acyclic Graph (DAG) of tasks.
+5. **Autonomous Execution**: The **Workflow Executor** traverses the DAG, dispatching tasks to HPC backends while managing data dependencies.
+6. **Verification & Evolution**: The **PI** reviews the findings, verifies or falsifies the current theory, and evolves the hypothesis for the next cycle.
 
 ---
 
@@ -82,8 +122,8 @@ pip install -e .
 Core dependencies are managed via `pyproject.toml`. Key packages include:
 - **Pymatgen**: Primary library for structural analysis and symmetry detection.
 - **ASE (Atomic Simulation Environment)**: Interface for interatomic potentials and calculator management.
-- **CHGNet/MatGL**: Machine-learned interatomic potentials for rapid screening.
-- **Scikit-Learn**: Provides the Gaussian Process and Random Forest surrogates for the Strategist.
+- **CHGNet**: Machine-learned interatomic potential for rapid screening.
+- **Scikit-Learn**: Provides the Gaussian Process surrogates for the Strategist.
 
 ---
 
