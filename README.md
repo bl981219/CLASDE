@@ -42,10 +42,12 @@ CLASDE/
 │   ├── knowledge_graph.py    # Semantic scientific provenance
 │   ├── experiment_db.py      # SQLite-backed experiment repository
 │   ├── hypothesis_db.py      # Database of PI theories
-│   └── literature_db.py      # Prior knowledge storage
+│   ├── literature_db.py      # Prior knowledge storage
+│   └── storage_provider.py   # Backend-agnostic Storage Registry
 │
 ├── execution/          # INFRASTRUCTURE (The "Action")
-│   └── compute_agent.py      # Backend abstraction (VASP, ASE, MLIP)
+│   ├── compute_agent.py      # Backend abstraction (VASP, ASE, MLIP)
+│   └── auth_provider.py      # Modular credential management
 │
 ├── workflows/          # ORCHESTRATION (The "Process")
 │   ├── neb_workflow.py        # Transition state sequences
@@ -131,11 +133,16 @@ Core dependencies are managed via `pyproject.toml`. Key packages include:
 ## Configuration Guide
 
 ### 1. API Credentials (.env)
-The Collaborator Agent requires a Google Gemini API key for natural language translation and reasoning. Create a `.env` file in the root directory:
+The system requires a Google Gemini API key for natural language reasoning and optional HPC credentials for cluster execution. Create a `.env` file in the root directory:
 
 ```text
 GOOGLE_API_KEY=your_api_key_here
 CLASDE_MOCK_LLM=false
+
+# Optional HPC Credentials
+HPC_USER=your_username
+HPC_HOST=your_cluster_host
+HPC_KEY_PATH=/path/to/your/ssh/key
 ```
 
 ### 2. Compute Profile (compute_profile.yaml)

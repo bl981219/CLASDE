@@ -1,6 +1,6 @@
 [project]
 name = "clasde"
-version = "0.1.0"
+version = "0.2.0"
 description = "Formalized Closed-Loop Surface Optimization Engine"
 authors = [
     { name = "Mengren Bill Liu" }
