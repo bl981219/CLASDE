@@ -68,7 +68,9 @@ def test_parallel_polling_loop(mock_sleep, mock_compute, mock_config):
     assert len(results) == 2
     assert manager.strategist.execute_best.call_count == 4
 
-def test_abort_signal(mock_config):
+@patch('core.campaign_manager.ComputeManager')
+@patch('core.campaign_manager.time.sleep', return_value=None)
+def test_abort_signal(mock_sleep, mock_compute, mock_config):
     manager = CampaignManager(mock_config)
     abort_file = ".abort"
     with open(abort_file, "w") as f:

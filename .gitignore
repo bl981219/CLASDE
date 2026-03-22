@@ -40,5 +40,5 @@ billrun.sh
 
 # Agent System
 .gemini/
-GEMINI.mdexamples/teaching_results/
-.gemini/
+GEMINI.md
+examples/teaching_results/

@@ -9,7 +9,7 @@ from optimization.surrogate_models import GaussianProcessModel as SurrogateModel
 from agents.governor_agent import ResearchGovernor
 from agents.strategist_agent import OptimizationStrategist
 from agents.builder_agent import StructureBuilder
-from execution.compute_agent import ComputeManager
+from execution.compute_agent import ComputeManager, SimulationType
 from agents.evaluator_agent import EvaluationAgent
 from memory.experiment_db import ExperimentDatabase
 from memory.hypothesis_db import HypothesisDatabase
@@ -215,11 +215,11 @@ class CampaignManager:
         slab = self.builder.build_structure(current_state)
         current_state.slab_structure = slab
         
-        job_id = self.compute.submit_job(slab, current_state, sim_type="mlip", iteration=0)
+        job_id = self.compute.submit_job(slab, current_state, sim_type=SimulationType.MLIP, iteration=0)
         results_dir = self.compute.fetch_results(job_id)
         observables, reward = self.evaluator.evaluate_calculation(results_dir, {"state": current_state})
         
-        init_data = {"reward": reward, "fidelity": "mlip", **observables}
+        init_data = {"reward": reward, "fidelity": SimulationType.MLIP.value, **observables}
         self.experiment_db.add_experiment(current_state, init_data)
         self.knowledge_graph.record_experiment(current_state, None, init_data)
 

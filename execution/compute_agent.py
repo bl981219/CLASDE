@@ -201,6 +201,10 @@ class ComputeManager:
                    sim_type: SimulationType = SimulationType.DFT, 
                    iteration: int = 0) -> str:
         """Coordinates the setup and dispatch of a simulation task."""
+        # Ensure sim_type is the correct Enum type
+        if isinstance(sim_type, str):
+            sim_type = SimulationType(sim_type.upper())
+
         state_id = state.get_id()
         calc_dir = os.path.join(self.base_dir, f"iter{iteration:03d}_{sim_type.value}_{state_id[:8]}")
         

@@ -64,6 +64,10 @@ class ResearchGovernor:
 
         return True
 
+    def has_budget(self) -> bool:
+        """Legacy alias for should_continue()."""
+        return self.should_continue()
+
     def consume_budget(self) -> None:
         """Registers the completion of one iteration."""
         self.current_evaluations += 1
