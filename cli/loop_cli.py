@@ -1,7 +1,7 @@
 import os
 import yaml
 import argparse
-from workflows.adsorption_workflow import run_adsorption_campaign
+from core.campaign_manager import CampaignManager
 
 def main():
     parser = argparse.ArgumentParser(description="CLASDE: Closed-Loop Atomistic Surface Design Engine")
@@ -34,7 +34,8 @@ def main():
             }
         }
     
-    run_adsorption_campaign(config)
+    campaign = CampaignManager(config)
+    campaign.run()
 
 if __name__ == "__main__":
     main()

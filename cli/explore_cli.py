@@ -1,6 +1,6 @@
 import argparse
 import logging
-from workflows.adsorption_workflow import run_adsorption_campaign
+from core.campaign_manager import CampaignManager
 
 logger = logging.getLogger(__name__)
 
@@ -39,7 +39,8 @@ def main():
         "compute": {"mode": "local_emt"}
     }
     
-    run_adsorption_campaign(config)
+    campaign = CampaignManager(config)
+    campaign.run()
 
 if __name__ == "__main__":
     main()

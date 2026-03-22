@@ -200,30 +200,56 @@ class ComputeManager:
     def submit_job(self, structure: Any, state: SurfaceState, 
                    sim_type: SimulationType = SimulationType.DFT, 
                    iteration: int = 0) -> str:
+        """Coordinates the setup and dispatch of a simulation task."""
         state_id = state.get_id()
         calc_dir = os.path.join(self.base_dir, f"iter{iteration:03d}_{sim_type.value}_{state_id[:8]}")
         
+        # 1. Re-attachment & Completion Check
         if os.path.exists(os.path.join(calc_dir, "results.json")):
-            # Validate results.json content
             with open(os.path.join(calc_dir, "results.json"), "r") as f:
                 data = json.load(f)
-                if data.get("status") == "completed" and "total_energy" in data:
+                if data.get("status") == "completed":
                     return f"prev_{state_id[:8]}"
 
         os.makedirs(calc_dir, exist_ok=True)
-        self.backend.setup(calc_dir, state, self.profile)
         
-        job_id = self.backend.submit(calc_dir, state_id, self.profile.get("resources", {}), self.profile)
+        # 2. Identify and Configure Backend
+        # We override backend choice based on sim_type if needed
+        active_backend = self.backend
+        if sim_type == SimulationType.MLIP and not isinstance(self.backend, ASEBackend):
+            active_backend = ASEBackend()
+        elif sim_type == SimulationType.DFT and not isinstance(self.backend, VASPBackend):
+            # If DFT is requested but we aren't on HPC, we could either fail 
+            # or fallback. For now, we respect the initialization.
+            pass
+
+        # 3. Setup Files
+        active_backend.setup(calc_dir, state, self.profile)
         
-        if isinstance(self.backend, ASEBackend):
-            self.backend.run_sync(calc_dir, state, self.profile)
+        # 4. Dispatch
+        resources = self.profile.get("resources", {"nodes": 2, "ntasks": 48})
+        job_id = active_backend.submit(calc_dir, state_id, resources, self.profile)
+        
+        # 5. Handle Synchronous Execution (Local ASE)
+        if isinstance(active_backend, ASEBackend):
+            active_backend.run_sync(calc_dir, state, self.profile)
             
         self.active_jobs[job_id] = {"dir": calc_dir, "status": JobStatus.RUNNING}
         return job_id
 
     def get_job_status(self, job_id: str) -> JobStatus:
         if job_id.startswith("prev_"): return JobStatus.COMPLETED
-        return self.backend.get_status(job_id)
+        status = self.backend.get_status(job_id)
+        if status in [JobStatus.COMPLETED, JobStatus.FAILED]:
+            # Optional: Move to long-term storage or just clear from active_jobs
+            if job_id in self.active_jobs:
+                logger.debug(f"Job {job_id} finished. Clearing from active memory.")
+                # We keep the entry but mark it as finished if we need the dir later
+                self.active_jobs[job_id]["status"] = status
+        else:
+            if job_id in self.active_jobs:
+                self.active_jobs[job_id]["status"] = status
+        return status
 
     def fetch_results(self, job_id: str) -> str:
         if job_id in self.active_jobs: return self.active_jobs[job_id]["dir"]

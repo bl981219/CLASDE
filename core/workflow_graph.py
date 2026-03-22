@@ -78,55 +78,61 @@ class WorkflowGraph:
             summary += f"  {i+1}. [{task.task_type.value}] {task.task_id}{dep_str}\n"
         return summary
 
+class TaskResult(BaseModel):
+    """Structured result from a completed task."""
+    task_id: str
+    status: str # completed, failed
+    result_data: Dict[str, Any] = Field(default_factory=dict)
+    metadata: Dict[str, Any] = Field(default_factory=dict)
+
 class WorkflowExecutor:
     """
     Engine to orchestrate the execution of a WorkflowGraph.
-    Traverses the DAG and manages the passing of data between task nodes.
+    Uses a registry of handlers for different TaskTypes.
     """
     def __init__(self, strategist: Any):
         self.strategist = strategist
+        self.handlers = {
+            TaskType.BUILD_SLAB: self._handle_build_slab,
+            TaskType.RELAX_SLAB: self._handle_simulation,
+            TaskType.CALC_ADSORPTION: self._handle_simulation,
+            TaskType.RUN_MD: self._handle_simulation,
+            TaskType.ENUMERATE_SITES: self._handle_enumerate_sites,
+            TaskType.CALC_DOS: self._handle_simulation,
+            TaskType.RUN_NEB: self._handle_simulation
+        }
 
     def execute(self, graph: WorkflowGraph, sim_type: Any, iteration: int) -> Dict[str, Any]:
-        """
-        Executes the workflow graph in topological order.
-        """
+        """Executes the workflow graph in topological order."""
         logger.info(f"Executing Workflow DAG: {graph.name}")
         order = graph.get_execution_order()
         
         last_job_id = None
-        
         for task in order:
             if task.status == "completed": continue
-            logger.info(f"  -> [Task] {task.task_type.value} ({task.task_id})")
+            handler = self.handlers.get(task.task_type)
+            if not handler:
+                logger.error(f"No handler for task type: {task.task_type}")
+                return {
+                    "status": "failed",
+                    "error": f"Missing handler for {task.task_type}",
+                    "state": self.strategist.pending_state
+                }
             
-            # 1. Dispatch based on Type
-            if task.task_type == TaskType.BUILD_SLAB:
-                struct = self.strategist.builder.build_structure(self.strategist.pending_state)
-                self.strategist.pending_state.slab_structure = struct
-                task.status = "completed"
-                task.result = struct
-                
-            elif task.task_type in [TaskType.RELAX_SLAB, TaskType.CALC_ADSORPTION, TaskType.RUN_MD]:
-                state = self.strategist.pending_state
-                job_id = self.strategist.compute.submit_job(state.slab_structure, state, sim_type=sim_type, iteration=iteration)
-                
-                # Check status
-                from execution.compute_agent import JobStatus
-                status = self.strategist.compute.get_job_status(job_id)
-                
-                if status not in [JobStatus.COMPLETED, JobStatus.FAILED]:
-                    task.status = "running"
-                    task.result = job_id
-                    # Return early to allow for async polling
-                    return {"status": "pending", "job_id": job_id}
-                
-                task.status = "completed" if status == JobStatus.COMPLETED else "failed"
-                task.result = job_id
-                last_job_id = job_id
+            result = handler(task, sim_type, iteration)
+            if result and result.get("status") == "pending":
+                return result
+            
+            if task.status == "failed":
+                logger.error(f"Task {task.task_type} failed. Aborting workflow.")
+                return {
+                    "status": "failed",
+                    "error": f"Task {task.task_type} failed",
+                    "state": self.strategist.pending_state
+                }
 
-            elif task.task_type == TaskType.ENUMERATE_SITES:
-                # Placeholder for site finder integration
-                task.status = "completed"
+            if task.status == "completed":
+                last_job_id = task.result
 
         # 2. Collect Final Results
         if not last_job_id:
@@ -136,9 +142,41 @@ class WorkflowExecutor:
         eval_context = {"state": self.strategist.pending_state}
         observables, reward = self.strategist.evaluator.evaluate_calculation(results_path, eval_context)
         
-        return {
-            "state": self.strategist.pending_state,
-            "reward": reward,
-            "observables": observables,
-            "status": "completed"
-        }
+        return TaskResult(
+            task_id=last_job_id,
+            status="completed",
+            result_data={
+                "state": self.strategist.pending_state,
+                "reward": reward,
+                "observables": observables
+            },
+            metadata={"fidelity": sim_type.value, "iteration": iteration}
+        )
+
+    def _handle_build_slab(self, task: TaskNode, *args):
+        struct = self.strategist.builder.build_structure(self.strategist.pending_state)
+        self.strategist.pending_state.slab_structure = struct
+        task.status = "completed"
+        task.result = struct
+        return None
+
+    def _handle_simulation(self, task: TaskNode, sim_type: Any, iteration: int):
+        state = self.strategist.pending_state
+        job_id = self.strategist.compute.submit_job(state.slab_structure, state, sim_type=sim_type, iteration=iteration)
+        
+        from execution.compute_agent import JobStatus
+        status = self.strategist.compute.get_job_status(job_id)
+        
+        if status not in [JobStatus.COMPLETED, JobStatus.FAILED]:
+            task.status = "running"
+            task.result = job_id
+            return {"status": "pending", "job_id": job_id}
+        
+        task.status = "completed" if status == JobStatus.COMPLETED else "failed"
+        task.result = job_id
+        return None
+
+    def _handle_enumerate_sites(self, task: TaskNode, *args):
+        # Placeholder for site finder integration
+        task.status = "completed"
+        return None

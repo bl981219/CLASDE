@@ -58,14 +58,21 @@ class EvaluationAgent:
         state: Optional[SurfaceState] = context.get("state")
         observables = self._extract_observables(results_path, state)
         
-        # Heuristic for Segregation: Extract species counts
+        # 1. Scientific Sanity Check (New)
+        is_valid, reason = self.validate_results(observables, context)
+        if not is_valid:
+            logger.warning(f"[Evaluator] Result validation failed: {reason}")
+            # Penalty for unphysical results
+            return observables, -10.0 
+
+        # 2. Heuristic for Segregation: Extract species counts
         if state:
             from collections import Counter
             slab = state.slab_structure
             if slab:
                 observables["species_counts"] = dict(Counter([s.specie.symbol for s in slab]))
         
-        # 1. Scientific Reference Energy Logic
+        # 3. Scientific Reference Energy Logic
         # E_ads = E_total - (E_slab_pristine + E_adsorbate_gas)
         if state and state.adsorbates:
             # 1.1 Reference Energy for Pristine Slab
@@ -95,6 +102,36 @@ class EvaluationAgent:
 
         reward = self.objective_function.compute_objective(observables, context)
         return observables, reward
+
+    def validate_results(self, observables: Dict[str, Any], context: Dict[str, Any]) -> Tuple[bool, str]:
+        """
+        Performs physical sanity checks on the calculation results.
+        Checks for non-zero energy and reasonable structural features.
+        """
+        energy = observables.get("total_energy")
+        if energy is None or energy == 0.0:
+            return False, "Total energy is missing or exactly zero (likely convergence failure)."
+            
+        # Check for unphysical structure if it exists
+        struct = observables.get("structure")
+        if struct:
+            # Handle dictionary form if reloaded from JSON
+            if isinstance(struct, dict):
+                from pymatgen.core import Structure
+                try:
+                    struct = Structure.from_dict(struct)
+                except:
+                    return False, "Failed to reconstruct structure from data."
+
+            # Simple check for minimum bond distance
+            try:
+                min_dist = struct.get_all_distances().min()
+                if min_dist < 0.5: # Angstrom
+                    return False, f"Unphysically short bond detected: {min_dist:.2f} A"
+            except Exception as e:
+                logger.debug(f"Structure validation failed during distance check: {e}")
+
+        return True, "Success"
 
     def _extract_observables(self, path: str, state: Optional[SurfaceState] = None) -> Dict[str, Any]:
         """

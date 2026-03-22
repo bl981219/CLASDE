@@ -34,10 +34,9 @@ class ActionProposer:
         all_possible: List[MutationAction] = []
         bulk_elements = [el for el in state.bulk_composition.keys() if el != "O"]
         
-        # 1. Surface Vacancies (Iterate through surface layers)
+        # 1. Surface Vacancies
         for el in bulk_elements + ["O"]:
-            # Propose vacancies at multiple depths/sites
-            for depth in [0, 1, 2]:
+            for depth in [0, 1]:
                 all_possible.append(MutationAction(
                     action_type=ActionType.INTRODUCE_VACANCY,
                     parameters={"site": el, "index": depth}
@@ -45,32 +44,23 @@ class ActionProposer:
             
         # 2. Cation Swapping (Surface <-> Subsurface)
         if len(bulk_elements) > 1:
-            # Swap primary cations (e.g. La and Sr)
             for i in range(len(bulk_elements)):
                 for j in range(i + 1, len(bulk_elements)):
-                    all_possible.append(MutationAction(
-                        action_type=ActionType.SWAP_ATOMS,
-                        parameters={
-                            "element_a": bulk_elements[i], 
-                            "element_b": bulk_elements[j],
-                            "depth_a": 0, "depth_b": 1
-                        }
-                    ))
-                    all_possible.append(MutationAction(
-                        action_type=ActionType.SWAP_ATOMS,
-                        parameters={
-                            "element_a": bulk_elements[i], 
-                            "element_b": bulk_elements[j],
-                            "depth_a": 0, "depth_b": 2
-                        }
-                    ))
+                    for da, db in [(0, 1), (0, 2)]:
+                        all_possible.append(MutationAction(
+                            action_type=ActionType.SWAP_ATOMS,
+                            parameters={
+                                "element_a": bulk_elements[i], 
+                                "element_b": bulk_elements[j],
+                                "depth_a": da, "depth_b": db
+                            }
+                        ))
 
-        # 3. Substitutional Doping (Explore chemical neighbors)
+        # 3. Substitutional Doping
         from ase.data import atomic_numbers
         for el in bulk_elements:
             z = atomic_numbers.get(el)
             if z:
-                # Try neighbor elements in periodic table
                 for shift in [-1, 1]:
                     dopant = next((s for s, n in atomic_numbers.items() if n == z + shift), None)
                     if dopant:
@@ -78,6 +68,12 @@ class ActionProposer:
                             action_type=ActionType.SUBSTITUTIONAL_DOPANT,
                             parameters={"original_element": el, "dopant": dopant}
                         ))
+        
+        # 4. Environment/Condition Changes
+        all_possible.append(MutationAction(
+            action_type=ActionType.MODIFY_ENVIRONMENT,
+            parameters={"temperature": 800} # K
+        ))
         
         return all_possible
 
@@ -182,13 +178,22 @@ class OptimizationStrategist(BaseAgent):
             use_vasp = (sigma > sigma_thresh) or (self.iteration % 5 == 0)
 
         sim_type = SimulationType.DFT if use_vasp else SimulationType.MLIP
-        result = self.executor.execute(workflow_graph, sim_type, self.iteration)
+        task_result = self.executor.execute(workflow_graph, sim_type, self.iteration)
         
-        if "metadata" not in result:
-            result["metadata"] = {
-                "iteration": self.iteration, "fidelity": sim_type.value,
-                "workflow": workflow_graph.name, "sigma": float(sigma)
+        if isinstance(task_result, dict):
+            result = task_result
+        else:
+            # Unwrap TaskResult
+            result = {
+                "status": task_result.status,
+                **task_result.result_data,
+                "metadata": {
+                    "workflow": workflow_graph.name,
+                    "sigma": float(sigma),
+                    **task_result.metadata
+                }
             }
+
         result["action"] = action
         return result
 

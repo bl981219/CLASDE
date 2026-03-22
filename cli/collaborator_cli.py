@@ -2,7 +2,7 @@ import os
 import argparse
 import json
 from agents.collaborator_agent import LLMCollaborator
-from workflows.adsorption_workflow import run_adsorption_campaign
+from core.campaign_manager import CampaignManager
 
 def main():
     parser = argparse.ArgumentParser(description="CLASDE Collaborator: Natural Language Research Interface")
@@ -89,7 +89,8 @@ def main():
         if "compute" not in config:
             config["compute"] = {"mode": "local_emt"}
 
-        run_adsorption_campaign(config)
+        campaign = CampaignManager(config)
+        campaign.run()
     else:
         print("\n[System] Campaign aborted by user.")
 

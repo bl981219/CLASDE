@@ -47,8 +47,8 @@ CLASDE/
 │   └── compute_agent.py      # Backend abstraction (VASP, ASE, MLIP)
 │
 ├── workflows/          # ORCHESTRATION (The "Process")
-│   ├── adsorption_workflow.py # Main discovery loop
-│   └── neb_workflow.py        # Transition state sequences
+│   ├── neb_workflow.py        # Transition state sequences
+│   └── templates/             # Reusable task sequences
 │
 ├── configs/            # CONFIGURATION & DATA
 └── autonomous_watchdog.py # Persistence & recovery manager
@@ -101,7 +101,7 @@ graph TD
 2. **Hypothesis Formulation**: The **Principal Investigator (PI)** Agent synthesizes these claims into a formal Scientific Hypothesis.
 3. **Strategic Selection**: The **Strategist** uses Bayesian Optimization to identify the next surface configuration that most effectively tests the current belief state.
 4. **DAG Planning**: The **Research Planner** translates the PI's hypothesis and the Strategist's selected action into a formal Directed Acyclic Graph (DAG) of tasks.
-5. **Autonomous Execution**: The **Workflow Executor** traverses the DAG, dispatching tasks to HPC backends while managing data dependencies.
+5. **Autonomous Execution**: The **Campaign Manager** orchestrates the loop, delegating task sequencing to the Planner and execution to the Workflow Executor.
 6. **Verification & Evolution**: The **PI** reviews the findings, verifies or falsifies the current theory, and evolves the hypothesis for the next cycle.
 
 ---
