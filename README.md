@@ -24,6 +24,7 @@ CLASDE/
 │   └── evaluator_agent.py    # Result Interpretation (Data Analyst)
 │
 ├── core/               # SCIENTIFIC PRIMITIVES
+│   ├── campaign_manager.py   # Central Loop Orchestrator
 │   ├── state.py              # SurfaceState (Source of Truth)
 │   ├── action.py             # Mutation operators
 │   ├── transition.py         # Physics rules
