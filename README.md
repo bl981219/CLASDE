@@ -56,14 +56,14 @@ CLASDE operates through a strict hierarchical feedback loop. It enforces a "scie
 
 ```mermaid
 graph TD
-    User((User Intent)) -->|Goal| Agent1[PI Agent (The Visionary)]
+    User((User Intent)) -->|Goal| Agent1["PI Agent (The Visionary)"]
     
     subgraph Autonomous_Loop [The Lab Discovery Loop]
-        Agent1 -->|ResearchIdea| Agent2[Postdoc Agent (The Gatekeeper)]
+        Agent1 -->|ResearchIdea| Agent2["Postdoc Agent (The Gatekeeper)"]
         Agent2 -->|Mandatory Memory Check| Memory[(Storage)]
         Agent2 -->|Critique/Revision| Agent1
         Agent2 -->|Falsifiable Hypothesis| Agent2
-        Agent2 -->|Experiment Design| Agent3[Execution Agent (PhD Student)]
+        Agent2 -->|Experiment Design| Agent3["Execution Agent (PhD Student)"]
         Agent3 -->|Backend Dispatch| Backend[Slurm/Local]
         Backend -->|Raw Results| Agent3
         Agent3 -->|Experimental Data| Agent2
