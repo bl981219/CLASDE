@@ -6,19 +6,19 @@ authors = [
     { name = "Mengren Bill Liu" }
 ]
 dependencies = [
-    "ase",
-    "pymatgen",
-    "numpy",
-    "scipy",
-    "scikit-learn",
-    "pydantic",
-    "networkx",
-    "matplotlib",
-    "pyyaml",
-    "typing_extensions",
-    "google-genai",
-    "python-dotenv",
-    "chgnet"
+    "ase>=3.22.1",
+    "pymatgen>=2024.1.1",
+    "numpy>=1.24.0",
+    "scipy>=1.10.0",
+    "scikit-learn>=1.2.0",
+    "pydantic>=2.0.0",
+    "networkx>=3.0",
+    "matplotlib>=3.7.0",
+    "pyyaml>=6.0",
+    "typing_extensions>=4.5.0",
+    "google-genai>=0.3.0",
+    "python-dotenv>=1.0.0",
+    "chgnet>=0.3.0"
 ]
 
 [project.scripts]

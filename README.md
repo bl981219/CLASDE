@@ -92,7 +92,7 @@ The engine requires Python 3.9 or higher. It is recommended to use a virtual env
 ```bash
 # Development Installation
 git clone <repository-url>
-cd clasde_bill
+cd CLASDE
 pip install -e .
 ```
 

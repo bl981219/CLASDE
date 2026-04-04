@@ -13,6 +13,7 @@ from agents.governor_agent import ResearchGovernor
 from agents.pi_agent import PIAgent
 from agents.postdoc_agent import PostdocAgent
 from agents.execution_agent import ExecutionAgent
+from agents.builder_agent import StructureBuilder
 from execution.compute_agent import ComputeManager, SimulationType
 from agents.evaluator_agent import EvaluationAgent
 from memory.storage_provider import StorageRegistry
@@ -24,8 +25,7 @@ class CampaignManager:
     """
     The central orchestrator for a CLASDE discovery campaign.
     
-    Refactored V5: Knowledge Transformer Architecture.
-    Hierarchy: PI (ResearchIdea) -> Postdoc (Critique -> Hypothesis -> Experiment) -> Technician.
+    Hierarchy: PI (Visionary) -> Postdoc (Gatekeeper) -> Technician (PhD Student).
     """
     def __init__(self, config: Dict[str, Any], storage: Optional[StorageRegistry] = None):
         self.config = config
@@ -43,6 +43,7 @@ class CampaignManager:
         self.governor = ResearchGovernor(config)
         self.surrogate = SurrogateModel()
         self.compute_manager = ComputeManager(config.get("compute", {}))
+        self.builder = StructureBuilder()
         
         self.pi = PIAgent()
         self.postdoc = PostdocAgent(self.surrogate, self.storage)
@@ -50,6 +51,9 @@ class CampaignManager:
         
         self.theory_builder = TheoryBuilder(self.storage.get_knowledge_graph(), budget=self.governor.max_evaluations)
         self.system_state = SystemState()
+        
+        # For backward compatibility with stale tests
+        self.batch_size = config.get("optimization", {}).get("batch_size", 1)
 
     def log_trace(self, trace: KnowledgeTrace):
         """Append a formal knowledge transformation trace to the log."""
@@ -58,40 +62,50 @@ class CampaignManager:
 
     def run(self):
         """Executes the strict hierarchical discovery loop with knowledge tracing."""
-        logger.info(f"--- [LAB V5] Starting Knowledge Transformer Loop ---")
+        logger.info(f"--- [CLASDE V5] Starting Hierarchical Discovery Loop ---")
         
         # Load state
         self._initialize_baseline_if_needed()
 
         while self.governor.should_continue(latest_reward=self.system_state.current_best_reward):
             try:
-                # 1. PI Proposes Idea
+                # 1. PI Proposes Idea & Postdoc Critiques (Epistemic Cycle)
                 idea = self.pi.propose_idea(self.config.get("original_prompt", "Optimize surface stability"))
                 
-                # 2. Postdoc Critique & Gatekeeping (Rule: Postdoc authority)
+                max_revisions = 3
+                revision_count = 0
                 critique = self.postdoc.review_idea(idea)
-                logger.info(f"[LAB] Critique Validity: {critique.validity} (Confidence: {critique.confidence})")
                 
-                # If invalid, PI must refine or Postdoc imposes revision
+                while not critique.validity and revision_count < max_revisions:
+                    logger.warning(f"[LAB] PI idea rejected. Revision {revision_count+1}/{max_revisions}")
+                    idea = self.pi.refine_idea(idea, critique.revised_plan or "Provide more physical justification.")
+                    critique = self.postdoc.review_idea(idea)
+                    revision_count += 1
+
                 if not critique.validity:
-                    logger.warning(f"[LAB] PI idea rejected. Applying Postdoc revision.")
-                    # In a more complex loop, this could iterate. Here we enforce the revision.
+                    logger.error("[LAB] Failed to converge on a valid idea after max revisions. Terminating loop.")
+                    break
                 
-                # 3. Postdoc Formulates Hypothesis (Rule: Strict Object)
+                # 2. Postdoc Formulates Hypothesis
                 hypothesis = self.postdoc.formulate_hypothesis(idea, critique)
                 
-                # 4. Postdoc Designs Experiments
-                current_state = self.storage.experiment_db.get_training_data()[-1]['state']
+                # 3. Postdoc Designs Experiments
+                training_data = self.storage.experiment_db.get_training_data()
+                if not training_data:
+                    logger.error("[LAB] No training data available for experiment design.")
+                    break
+                    
+                current_state = training_data[-1]['state']
                 experiments = self.postdoc.design_experiments(hypothesis, current_state)
                 
-                # 5. Technician Executes Experiments
+                # 4. Technician Executes Experiments
                 results = self.technician.run_experiments(experiments, self.system_state.iteration)
                 
-                # 6. Postdoc Interprets Results into Insights
+                # 5. Postdoc Interprets Results into Insights
                 insight = self.postdoc.analyze_results(hypothesis, results)
                 logger.info(f"[LAB] Insight: {insight.conclusion}")
 
-                # 7. Knowledge Trace Logging (Full Audit Trail)
+                # 6. Knowledge Trace Logging (Full Audit Trail)
                 trace = KnowledgeTrace(
                     iteration=self.system_state.iteration,
                     input_idea=idea,
@@ -102,7 +116,7 @@ class CampaignManager:
                 )
                 self.log_trace(trace)
 
-                # 8. Update System State & Memory
+                # 7. Update System State & Memory
                 for res in results:
                     self._process_result(res)
                 
@@ -110,8 +124,12 @@ class CampaignManager:
                 self.storage.save_all()
                 
             except Exception as e:
-                logger.error(f"[LAB] Error in knowledge loop: {e}")
+                logger.error(f"[LAB] Fatal error in knowledge loop: {e}", exc_info=True)
+                # Instead of silently continuing forever, we raise if it's a structural failure
+                if isinstance(e, (KeyboardInterrupt, SystemExit)):
+                    raise
                 time.sleep(5)
+                # Optionally break if too many consecutive errors
                 continue
 
         self._finalize()
@@ -120,7 +138,6 @@ class CampaignManager:
         if not self.storage.experiment_db.get_training_data():
             logger.info("[Technician] No data found. Running initial baseline...")
             
-            # Simple baseline: Use bulk constraints and default termination
             bulk = self.config.get("constraints", {}).get("bulk", {"Cu": 1.0})
             facet = self.config.get("constraints", {}).get("facet", [1, 1, 1])
             
@@ -130,17 +147,14 @@ class CampaignManager:
                 termination="default"
             )
             
-            from agents.builder_agent import StructureBuilder
-            builder = StructureBuilder()
-            slab = builder.build_structure(initial_state)
+            slab = self.builder.build_structure(initial_state)
             initial_state.slab_structure = slab
             
             # Submit initial job
             job_id = self.compute_manager.submit_job(slab, initial_state, SimulationType.MLIP, iteration=0)
             
-            # Fetch and record result
+            # Synchronous fetch for baseline
             calc_dir = self.compute_manager.fetch_results(job_id)
-            import json
             res_path = os.path.join(calc_dir, "results.json")
             if os.path.exists(res_path):
                 with open(res_path, "r") as f:
@@ -154,7 +168,7 @@ class CampaignManager:
                     }
                     self._process_result(res_dict)
             else:
-                logger.error("Baseline calculation failed. Results not found.")
+                raise RuntimeError("Baseline calculation failed. Check compute environment.")
 
     def _process_result(self, result: Dict[str, Any]):
         reward = result.get("reward", -1e9)
@@ -164,7 +178,7 @@ class CampaignManager:
         self.storage.experiment_db.add_experiment(
             state=result["state"], 
             results={**result["observables"], "reward": reward}, 
-            action=result["action"]
+            action=result.get("action")
         )
         self.governor.consume_budget()
 

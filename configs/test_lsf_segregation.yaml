@@ -1,0 +1,18 @@
+name: "LSF_Segregation_Study"
+description: "Investigating Sr segregation at the LSF (001) surface via stability minimization."
+objective:
+  type: "stability"
+constraints:
+  bulk:
+    La: 0.5
+    Sr: 0.5
+    Fe: 1.0
+    O: 3.0
+  facet: [0, 0, 1]
+optimization:
+  batch_size: 1
+budget:
+  max_evaluations: 5
+compute:
+  platform: "local"
+  mode: "chgnet"

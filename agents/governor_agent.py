@@ -46,9 +46,14 @@ class ResearchGovernor:
         Determines if the research campaign should continue.
         Defaults to True for investigative research (Perpetual Mode).
         """
-        # 1. Check optional safety ceiling
+        # 1. Enforce Safety Ceiling (Hard Limit)
+        if self.current_evaluations >= HARD_MAX_BUDGET:
+            logger.warning(f"[Governor] HARD_MAX_BUDGET of {HARD_MAX_BUDGET} reached. Forcing termination.")
+            return False
+
+        # 2. Check user-defined budget
         if self.current_evaluations >= self.max_evaluations:
-            logger.info("[Governor] Optional evaluation limit reached.")
+            logger.info("[Governor] User-defined evaluation limit reached.")
             return False
             
         # 2. Check if specific scientific target reached

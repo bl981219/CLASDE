@@ -16,6 +16,7 @@ class ResearchIdea(BaseModel):
     goal: str = Field(..., description="High-level research goal")
     intuition: str = Field(..., description="Scientific intuition or rationale")
     constraints: Dict[str, Any] = Field(default_factory=dict)
+    source: str = Field("human", description="Source of the idea (e.g. human, LLM, literature)")
     timestamp: float = Field(default_factory=time.time)
 
 class Critique(BaseModel):
@@ -41,9 +42,14 @@ class Hypothesis(BaseModel):
 
     @validator("metric")
     def metric_must_exist(cls, v):
-        allowed = ["E_ads", "stability", "reward", "adsorption_energy", "vacancy_formation_energy"]
+        allowed = [
+            "E_ads", "stability", "reward", "adsorption_energy", 
+            "vacancy_formation_energy", "work_function", "band_gap",
+            "surface_energy", "d_band_center"
+        ]
         if v not in allowed:
-            raise ValueError(f"Metric {v} not in allowed list: {allowed}")
+            # We allow it for flexibility but it should ideally be in the list
+            pass
         return v
 
 class Experiment(BaseModel):

@@ -1,10 +1,10 @@
 import pytest
 from unittest.mock import MagicMock, patch
+import os
+import json
 from core.campaign_manager import CampaignManager
 from core.state import SurfaceState
-from core.action import MutationAction, ActionType
-from core.workflow_graph import WorkflowGraph, TaskNode, TaskType
-import os
+from core.lab_objects import ResearchIdea, Critique, Hypothesis, Experiment, Insight
 
 @pytest.fixture
 def mock_config():
@@ -12,70 +12,81 @@ def mock_config():
         "name": "Test_Campaign",
         "objective": {"type": "stability"},
         "constraints": {"bulk": {"Cu": 1.0}, "facet": [1, 1, 1]},
-        "optimization": {"batch_size": 2},
+        "optimization": {"batch_size": 1},
         "compute": {"platform": "local", "mode": "mock"},
-        "budget": {"max_evaluations": 2}
+        "budget": {"max_evaluations": 1}
     }
 
-@patch('core.campaign_manager.LLMCollaborator')
 @patch('core.campaign_manager.ComputeManager')
-def test_campaign_manager_init(mock_compute, mock_collab, mock_config):
+@patch('memory.storage_provider.StorageRegistry')
+def test_campaign_manager_init(mock_storage, mock_compute, mock_config):
     manager = CampaignManager(mock_config)
-    assert manager.batch_size == 2
-    assert manager.storage.is_loaded is True
+    assert manager.batch_size == 1
+    assert manager.pi is not None
+    assert manager.postdoc is not None
+    assert manager.technician is not None
+
+@patch('agents.postdoc_agent.genai.Client')
+def test_postdoc_gatekeeping(mock_genai, mock_config):
+    from agents.postdoc_agent import PostdocAgent
+    from optimization.surrogate_models import GaussianProcessModel
+    from memory.storage_provider import StorageRegistry
+    
+    storage = StorageRegistry(use_memory=False)
+    # Ensure databases are initialized
+    storage.experiment_db.load()
+    
+    postdoc = PostdocAgent(GaussianProcessModel(), storage)
+    idea = ResearchIdea(goal="test", intuition="random search")
+    
+    # Test heuristic critique (since api_key is None in mock mode)
+    critique = postdoc.review_idea(idea)
+    assert critique.validity is False
+    assert any("random" in issue.lower() for issue in critique.issues)
 
 @patch('core.campaign_manager.ComputeManager')
-@patch('core.campaign_manager.HypothesisAgent')
-def test_dynamic_planning_logic(mock_pi, mock_compute, mock_config):
-    # Mock hypothesis that should trigger MD
-    mock_hyp = MagicMock()
-    mock_hyp.theory_statement = "The surface is unstable."
-    mock_pi.return_value.formulate_initial_hypothesis.return_value = mock_hyp
+@patch('core.campaign_manager.PIAgent')
+@patch('core.campaign_manager.PostdocAgent')
+@patch('core.campaign_manager.ExecutionAgent')
+def test_hierarchical_loop_v5(mock_exec, mock_postdoc, mock_pi, mock_compute, mock_config):
+    # Mock PI Propose
+    mock_pi.return_value.propose_idea.return_value = ResearchIdea(goal="G", intuition="I")
     
-    manager = CampaignManager(mock_config)
-    state = SurfaceState(bulk_composition={"Cu": 1.0}, miller_index=(1, 1, 1), termination="default")
+    # Mock Postdoc Critique (Valid)
+    mock_postdoc.return_value.review_idea.return_value = Critique(
+        idea_id="1", validity=True, issues=[], revised_plan=None, confidence=0.9
+    )
     
-    # Test planner directly
-    graph = manager.strategist.planner.plan_next_steps(state, hypothesis=mock_hyp)
-    task_types = [t.task_type for t in graph.nodes.values()]
-    assert TaskType.RUN_MD in task_types
-    assert TaskType.BUILD_SLAB in task_types
-
-@patch('core.campaign_manager.ComputeManager')
-@patch('core.campaign_manager.time.sleep', return_value=None)
-def test_parallel_polling_loop(mock_sleep, mock_compute, mock_config):
-    manager = CampaignManager(mock_config)
+    # Mock Postdoc Hypothesis
+    mock_postdoc.return_value.formulate_hypothesis.return_value = Hypothesis(
+        idea_id="1", variable="v", manipulation="m", expected_effect="e", 
+        metric="stability", falsification_condition="f"
+    )
     
-    # Mock strategist and its proposer
-    manager.strategist.propose_actions = MagicMock(return_value=[
-        (MagicMock(spec=MutationAction), MagicMock(spec=SurfaceState)),
-        (MagicMock(spec=MutationAction), MagicMock(spec=SurfaceState))
-    ])
-    manager.strategist.score_actions = MagicMock(return_value=[0.9, 0.8])
-    
-    # Mock execute_best to return pending then completed
-    manager.strategist.execute_best = MagicMock()
-    manager.strategist.execute_best.side_effect = [
-        {"status": "pending", "job_id": "j1"},
-        {"status": "pending", "job_id": "j2"},
-        {"status": "completed", "reward": 1.0, "observables": {}, "metadata": {"fidelity": "mock", "iteration": 1}, "state": MagicMock(), "action": MagicMock()},
-        {"status": "completed", "reward": 0.8, "observables": {}, "metadata": {"fidelity": "mock", "iteration": 1}, "state": MagicMock(), "action": MagicMock()}
+    # Mock Postdoc Design
+    mock_postdoc.return_value.design_experiments.return_value = [
+        Experiment(hypothesis_id="h1", parameters={}, method="MLIP", expected_output=[])
     ]
     
-    batch = manager.strategist.propose_actions()
-    results = manager._execute_batch_and_poll(batch, ".abort_test")
+    # Mock Technician Execution
+    real_state = SurfaceState(bulk_composition={"Cu": 1.0}, miller_index=(1, 1, 1), termination="default")
+    mock_exec.return_value.run_experiments.return_value = [{
+        "reward": 1.0, "state": real_state, "action": MagicMock(),
+        "observables": {}, "metadata": {}, "status": "completed"
+    }]
     
-    assert len(results) == 2
-    assert manager.strategist.execute_best.call_count == 4
+    # Mock Postdoc Analysis
+    mock_postdoc.return_value.analyze_results.return_value = Insight(
+        hypothesis_id="h1", conclusion="C", confidence=0.9
+    )
 
-@patch('core.campaign_manager.ComputeManager')
-@patch('core.campaign_manager.time.sleep', return_value=None)
-def test_abort_signal(mock_sleep, mock_compute, mock_config):
     manager = CampaignManager(mock_config)
-    abort_file = ".abort"
-    with open(abort_file, "w") as f:
-        f.write("abort")
-        
-    # Should stop early
+    
+    # Add some initial data to avoid baseline run
+    manager.storage.experiment_db.add_experiment(real_state, {"reward": 0.0}, MagicMock())
+    
     manager.run()
-    assert not os.path.exists(abort_file)
+    
+    assert mock_pi.return_value.propose_idea.called
+    assert mock_postdoc.return_value.review_idea.called
+    assert mock_exec.return_value.run_experiments.called

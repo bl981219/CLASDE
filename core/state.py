@@ -3,6 +3,16 @@ from pydantic import BaseModel, Field
 from typing import List, Dict, Optional, Tuple, Any
 import hashlib
 import json
+import numpy as np
+
+# Move imports to top to avoid inline import issues and enable caching
+try:
+    from ase import Atoms
+    from ase.data import atomic_numbers
+    from pymatgen.io.ase import AseAtomsAdaptor
+    HAS_ASE = True
+except ImportError:
+    HAS_ASE = False
 
 logger = logging.getLogger(__name__)
 
@@ -19,27 +29,24 @@ class AdsorbateInstance(BaseModel):
 class SurfaceState(BaseModel):
     """
     Formal canonical representation of the atomistic surface configuration space.
-    
-    This object acts as the universal "Source of Truth" across all agents. 
-    It is designed to be physically expressive for surface science, containing 
-    bulk properties, surface specifics, and detailed adsorbate configurations.
     """
     bulk_composition: Dict[str, float] = Field(..., description="Bulk composition vector c")
     miller_index: Tuple[int, int, int] = Field(..., description="Miller index (h, k, l)")
     termination: str = Field(..., description="Surface termination descriptor τ")
     
-    slab_structure: Optional[Any] = Field(None, description="Physical structure object (Pymatgen Structure). Excluded from direct hashing.")
+    slab_structure: Optional[Any] = Field(None, description="Physical structure object (Pymatgen Structure).")
     
     def get_ase_atoms(self) -> Any:
         """Helper to convert internal Pymatgen structure to ASE Atoms for calculators."""
-        if self.slab_structure is None: return None
+        if self.slab_structure is None or not HAS_ASE: 
+            return None
         try:
-            from pymatgen.io.ase import AseAtomsAdaptor
-            # Check if slab_structure is ASE Atoms or Pymatgen Structure
             if hasattr(self.slab_structure, "get_potential_energy"):
                 return self.slab_structure
             return AseAtomsAdaptor.get_atoms(self.slab_structure)
-        except: return None
+        except Exception as e:
+            logger.error(f"Failed to convert structure to ASE Atoms: {e}")
+            return None
     
     available_sites: List[Dict[str, Any]] = Field(default_factory=list, description="Available adsorption sites on this surface")
     adsorbates: List[AdsorbateInstance] = Field(default_factory=list, description="List of adsorbates on the surface")
@@ -74,24 +81,24 @@ class SurfaceState(BaseModel):
         V3: Universal encoding using periodic table indices (1-100).
         """
         bulk_vector = [0.0] * 100
-        from ase.data import atomic_numbers
-        for el, fraction in self.bulk_composition.items():
-            z = atomic_numbers.get(el)
-            if z and z <= 100:
-                bulk_vector[z-1] = float(fraction)
+        if HAS_ASE:
+            for el, fraction in self.bulk_composition.items():
+                z = atomic_numbers.get(el)
+                if z and z <= 100:
+                    bulk_vector[z-1] = float(fraction)
         
         miller_feats = []
         for i in self.miller_index:
             miller_feats.extend([float(i), float(i)**2])
             
         ads_sum = 0.0
-        if self.adsorbates:
-            from ase import Atoms
+        if self.adsorbates and HAS_ASE:
             try:
                 primary_ads = self.adsorbates[0].identity
                 temp_atoms = Atoms(primary_ads)
                 ads_sum = float(sum(temp_atoms.get_atomic_numbers()))
-            except:
+            except Exception as e:
+                logger.warning(f"Failed to calculate adsorbate features: {e}")
                 ads_sum = -1.0
         ads_feat = [ads_sum]
         

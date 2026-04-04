@@ -126,6 +126,25 @@ class TheoryBuilder:
 
     def discover_scaling_relations(self, species_a: str, species_b: str) -> Dict[str, Any]:
         """Detect if adsorption energies of two species follow a linear scaling relation."""
+        results = [n.properties for n in self.kg.nodes.values() if n.node_type == NodeType.RESULT]
+        if len(results) < 5: return {}
+        
+        e_a = [r.get(f"adsorption_energy_{species_a}") for r in results]
+        e_b = [r.get(f"adsorption_energy_{species_b}") for r in results]
+        
+        pairs = [(xa, xb) for xa, xb in zip(e_a, e_b) if xa is not None and xb is not None]
+        if len(pairs) < 5: return {}
+        
+        xa, xb = zip(*pairs)
+        slope, intercept, r_value, p_value, _ = stats.linregress(xa, xb)
+        
+        if abs(r_value) > 0.8:
+            return {
+                "species": (species_a, species_b),
+                "r_squared": float(r_value**2),
+                "equation": f"E_{species_b} = {slope:.2f}*E_{species_a} + {intercept:.2f}",
+                "confidence": float(1-p_value)
+            }
         return {}
 
     def identify_electronic_descriptors(self, target_property: str = "reward") -> List[Dict[str, Any]]:
@@ -156,4 +175,26 @@ class TheoryBuilder:
 
     def identify_termination_bias(self) -> Dict[str, Any]:
         """Detects if specific terminations lead to significantly different rewards."""
-        return {}
+        results = []
+        for node_id, node in self.kg.nodes.items():
+            if node.node_type == NodeType.RESULT:
+                calc_ids = list(self.kg.graph.predecessors(node_id))
+                if not calc_ids: continue
+                struct_ids = list(self.kg.graph.predecessors(calc_ids[0]))
+                if not struct_ids: continue
+                state = self.kg.nodes[struct_ids[0]].properties.get("state_dict", {})
+                results.append({"termination": state.get("termination"), "reward": node.properties.get("reward", 0.0)})
+        
+        if len(results) < 10: return {}
+        
+        by_term = {}
+        for r in results:
+            term = r["termination"]
+            if term not in by_term: by_term[term] = []
+            by_term[term].append(r["reward"])
+            
+        bias = {}
+        for term, rewards in by_term.items():
+            if len(rewards) >= 3:
+                bias[term] = {"mean": float(np.mean(rewards)), "std": float(np.std(rewards))}
+        return bias

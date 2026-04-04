@@ -60,7 +60,7 @@ class ScientificDiscoveryAcquisition(AcquisitionFunction):
         novelty = 0.0
         existing_feats = context.get("existing_features", [])
         if existing_feats:
-            current_feat = np.array(state.feature_vector)
+            current_feat = np.array(state.get_feature_vector())
             # Min distance to any existing state
             distances = [np.linalg.norm(current_feat - np.array(f)) for f in existing_feats]
             novelty = float(np.min(distances))
