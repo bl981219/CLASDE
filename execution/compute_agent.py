@@ -59,6 +59,8 @@ class ExecutionBackend(ABC):
         """Fetch results from the job directory."""
         pass
 
+from core.telemetry import telemetry
+
 class SlurmBackend(ExecutionBackend):
     """Backend for VASP calculations on Slurm clusters."""
     
@@ -80,25 +82,27 @@ source /etc/profile
 """
         with open(os.path.join(job_spec.calc_dir, "submit.sh"), "w") as f: f.write(script)
         res = subprocess.run(["sbatch", "submit.sh"], cwd=job_spec.calc_dir, capture_output=True, text=True)
-        return res.stdout.strip().split()[-1] if res.returncode == 0 else "failed"
+        job_id = res.stdout.strip().split()[-1] if res.returncode == 0 else "failed"
+        
+        telemetry.log_event("job_submitted", {"job_id": job_id, "backend": "slurm", "dir": job_spec.calc_dir})
+        return job_id
 
     def monitor_job(self, job_id: str) -> JobStatus:
         if job_id == "failed": return JobStatus.FAILED
         res = subprocess.run(["squeue", "-j", job_id], capture_output=True, text=True)
-        if job_id not in res.stdout: return JobStatus.COMPLETED
-        return JobStatus.RUNNING if " R " in res.stdout else JobStatus.PENDING
+        status = JobStatus.COMPLETED if job_id not in res.stdout else (JobStatus.RUNNING if " R " in res.stdout else JobStatus.PENDING)
+        return status
 
     def retrieve_results(self, job_id: str) -> Dict[str, Any]:
-        # Implementation to parse VASP results from calc_dir
         return {}
 
 class ASEBackend(ExecutionBackend):
     """Local backend for relaxations using ASE potentials."""
     
     def submit_job(self, job_spec: JobSpec) -> str:
-        # Local synchronous execution for simplicity in this version
-        # In a real system, this would use a task queue
-        return f"local_{job_spec.state_id[:8]}"
+        job_id = f"local_{job_spec.state_id[:8]}"
+        telemetry.log_event("job_submitted", {"job_id": job_id, "backend": "ase"})
+        return job_id
 
     def monitor_job(self, job_id: str) -> JobStatus:
         return JobStatus.COMPLETED

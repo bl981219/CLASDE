@@ -15,93 +15,72 @@ The system is organized into distinct layers to separate scientific reasoning fr
 ```text
 CLASDE/
 ├── agents/             # DECISION MAKERS (The "Who")
-│   ├── collaborator_agent.py # Human-Machine Interface (LLM)
 │   ├── pi_agent.py           # Strategic Vision (PI Agent)
 │   ├── postdoc_agent.py      # Knowledge Transformer (Postdoc Agent)
-│   ├── execution_agent.py    # Experimentalist (Technician Agent)
-│   ├── governor_agent.py     # Budget & Constraint Enforcement (Lab Manager)
-│   ├── builder_agent.py      # Symmetry-aware structural construction
-│   └── evaluator_agent.py    # Result Interpretation (Data Analyst)
+│   └── execution_agent.py    # Experimentalist (Technician Agent)
 │
 ├── core/               # SCIENTIFIC PRIMITIVES
 │   ├── campaign_manager.py   # Central Loop Orchestrator
 │   ├── lab_objects.py        # Formal Knowledge Layers (Idea, Hypothesis, Exp)
-│   ├── state.py              # SurfaceState (Source of Truth)
-│   ├── action.py             # Mutation operators
-│   ├── transition.py         # Physics rules
-│   └── workflow_graph.py     # DAG Engine & WorkflowExecutor
+│   ├── telemetry.py          # System Observability & Metrics
+│   └── schemas.py            # Data Contracts & Type Safety
 │
 ├── science/            # DOMAIN OBJECTS (The "What")
+│   ├── objective_functions.py # Synthetic Lab (Validation Layer)
 │   ├── chemistry.py          # Data-driven cation site heuristics
-│   ├── validator.py          # Physical constraint enforcement
-│   ├── descriptors.py        # Band-center and GCN calculations
-│   ├── theory_builder.py     # Physical law discovery
-│   ├── adsorption_site_finder.py # Symmetry-unique site detection
-│   └── reaction_network.py   # Microkinetic modelling structures
-│
-├── memory/             # CENTRALIZED KNOWLEDGE
-│   ├── knowledge_graph.py    # Semantic scientific provenance
-│   ├── experiment_db.py      # SQLite-backed experiment repository
-│   ├── hypothesis_db.py      # Database of PI theories
-│   ├── literature_db.py      # Prior knowledge storage
-│   └── storage_provider.py   # Backend-agnostic Storage Registry
+│   └── theory_builder.py     # Physical law discovery
 │
 ├── execution/          # INFRASTRUCTURE (The "Action")
 │   ├── compute_agent.py      # Backend abstraction (VASP, ASE, MLIP)
-│   └── auth_provider.py      # Modular credential management
+│   └── backends/             # Platform-specific drivers (Slurm, Local)
 │
-├── workflows/          # ORCHESTRATION (The "Process")
-│   ├── neb_workflow.py        # Transition state sequences
-│   └── templates/             # Reusable task sequences
-│
-├── configs/            # CONFIGURATION & DATA
-└── autonomous_watchdog.py # Persistence & recovery manager
+├── memory/             # CENTRALIZED KNOWLEDGE
+│   ├── experiment_db.py      # SQLite-backed experiment repository
+│   └── storage_provider.py   # Mandatory Retrieval API
 ```
 
 ### The Lab Metaphor: Roles and Responsibilities
 
 | Role | Metaphor | Responsibility |
 | :--- | :--- | :--- |
-| **Principal Investigator** | **The PI Agent** | Formulates high-level **ResearchIdeas** and intuition. Provides the "What" and "Why". |
-| **Senior Postdoc** | **The Postdoc Agent** | The intellectual bridge. Critiques PI ideas, formalizes testable **Hypotheses**, designs **Experiments**, and interprets **Insights**. |
-| **Lab Technician** | **The Execution Agent** | Strictly executes Level 3 **Experiments**. Manages the interface with HPC resources (VASP, MLIP). |
-| **Strategic Collaborator** | **The Expert Consultant** | Translates natural language intent into structured research goals for the PI. |
-| **Research Governor** | **The Lab Manager** | Enforces objectives, hard budget safety ceilings, and chemical constraints (e.g. charge neutrality). |
-| **Structure Builder** | **The PhD Student** | Builds 3D atomic structures, enforcing symmetry-aware distortions and stoichiometric constraints. |
-| **Evaluation Agent** | **The Data Analyst** | Parses raw outputs and anchors calculated rewards to NIST-benchmarked thermochemical data. |
+| **Principal Investigator** | **The PI Agent** | Formulates high-level **ResearchIdeas**. Provides the "What" and "Why". |
+| **Senior Postdoc** | **The Postdoc Agent** | **The Intellectual Gatekeeper.** Critiques PI ideas, performs mandatory memory reasoning, formalizes **Hypotheses**, and designs **Experiments**. |
+| **Lab Technician** | **The Execution Agent** | Strictly executes Level 3 **Experiments** via decoupled backends. |
+| **Telemetry System** | **The Lab Notebook** | Automatically records every decision, job submission, and scientific insight in structured JSONL. |
 
 ---
 
 ## How CLASDE Works: The Knowledge Transformation Loop
 
-CLASDE operates through a self-correcting hierarchical feedback loop. Unlike simple optimization, it enforces a "scientific compiler" approach where ideas must be formalised into testable objects before execution.
+CLASDE operates through a strict hierarchical feedback loop. It enforces a "scientific compiler" approach where ideas must be formalised and critiqued before execution.
 
 ```mermaid
 graph TD
-    User((User Intent)) -->|Natural Language| Agent1[Strategic Collaborator]
-    Agent1 -->|Goal| Agent2[PI Agent]
+    User((User Intent)) -->|Goal| Agent1[PI Agent]
     
     subgraph Autonomous_Loop [The Lab Discovery Loop]
-        Agent2 -->|ResearchIdea| Agent3[Postdoc Agent]
-        Agent3 -->|Critique/Revision| Agent2
-        Agent3 -->|Hypothesis| Agent3
-        Agent3 -->|Experiment Design| Agent4[Execution Agent]
-        Agent4 -->|HPC Execution| VASP[VASP/ASE Backend]
-        VASP -->|Raw Results| Agent4
-        Agent4 -->|Experimental Data| Agent3
-        Agent3 -->|Analysis & Insight| Agent3
-        Agent3 -->|Update Memory| Memory[(Knowledge Graph)]
+        Agent1 -->|ResearchIdea| Agent2[Postdoc Agent]
+        Agent2 -->|Mandatory Memory Check| Memory[(Storage)]
+        Agent2 -->|Critique/Revision| Agent1
+        Agent2 -->|Falsifiable Hypothesis| Agent2
+        Agent2 -->|Experiment Design| Agent3[Execution Agent]
+        Agent3 -->|Backend Dispatch| Backend[Slurm/Local]
+        Backend -->|Raw Results| Agent3
+        Agent3 -->|Experimental Data| Agent2
+        Agent2 -->|Insight & Falsification| Agent2
+        Agent2 -->|Update Memory| Memory
     end
     
     Memory -->|Discovery Report| Output((Scientific Insights))
+    Autonomous_Loop -->|Telemetry| Logs[(Structured JSONL)]
 ```
 
 ### Transformation Rules
-1. **Rule 1: Hierarchical Flow**: PI cannot talk to execution directly. Knowledge must be transformed by the Postdoc.
-2. **Rule 2: Postdoc Critique**: Every **ResearchIdea** from the PI is critiqued for combinatorial sanity and physical validity before formalization.
-3. **Rule 3: Testable Hypothesis**: Postdoc converts ideas into a **Hypothesis** with a controllable variable and a measurable metric (e.g., E_ads).
-4. **Rule 4: Design to Execution**: The Postdoc designs a batch of **Experiments** (Level 3 objects) which are handed to the Technician for execution.
-5. **Rule 5: Insight Extraction**: After execution, the Postdoc interprets the raw data into an **Insight**, updating the lab's collective memory.
+1. **Rule 1: Postdoc Authority**: The Postdoc MUST critique the PI's idea. It has the power to reject or revise plans based on physical validity and memory.
+2. **Rule 2: Mandatory Memory Reasoning**: Before designing experiments, the Postdoc MUST analyze trends from the `ExperimentDatabase`.
+3. **Rule 3: Falsifiable Hypothesis**: Knowledge is passed as strict `Hypothesis` objects containing a variable, manipulation, and a clear `falsification_condition`.
+4. **Rule 4: Decoupled Execution**: The `ExecutionAgent` interacts with hardware through an `ExecutionBackend` interface, ensuring portability and reliability.
+5. **Rule 5: Knowledge Tracing**: Every step of the transformation (Idea -> Critique -> Hypothesis -> Result) is logged as a `KnowledgeTrace` for full auditability.
 
 ---
 
