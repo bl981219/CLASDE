@@ -2,6 +2,7 @@ from pydantic import BaseModel, Field, validator
 from typing import List, Dict, Optional, Any, Union
 from enum import Enum
 import uuid
+import time
 
 class KnowledgeLevel(int, Enum):
     THEORY = 1
@@ -14,27 +15,28 @@ class ResearchIdea(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     goal: str = Field(..., description="High-level research goal")
     intuition: str = Field(..., description="Scientific intuition or rationale")
-    constraints: Dict[str, Any] = Field(default_factory=dict, description="Physical or budget constraints")
-    source: str = "human"
+    constraints: Dict[str, Any] = Field(default_factory=dict)
+    timestamp: float = Field(default_factory=time.time)
 
 class Critique(BaseModel):
-    """Debate step for ResearchIdea"""
+    """Scientific Gatekeeping (Postdoc)"""
     idea_id: str
-    validity: bool
-    issues: List[str]
-    suggested_revision: str
+    validity: bool = Field(..., description="Whether the PI's idea is scientifically sound/feasible")
+    issues: List[str] = Field(default_factory=list)
+    revised_plan: Optional[str] = Field(None, description="Postdoc's suggested correction if validity is False")
     confidence: float = Field(..., ge=0.0, le=1.0)
 
 class Hypothesis(BaseModel):
-    """Level 2: Hypothesis (Postdoc)"""
+    """Level 2: Strict Scientific Hypothesis (Postdoc)"""
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     idea_id: str
-    variable: str = Field(..., description="The controllable variable (e.g. 'Co concentration')")
-    change: str = Field(..., description="The proposed mutation (e.g. 'increase')")
-    expected_effect: str = Field(..., description="The predicted outcome")
+    variable: str = Field(..., description="Controllable physical variable (e.g. 'dopant concentration')")
+    manipulation: str = Field(..., description="Proposed change (e.g. 'increase x from 0 to 0.2')")
+    expected_effect: str = Field(..., description="Predicted physical outcome")
     metric: str = Field(..., description="Measurable metric (e.g. 'E_ads')")
-    test_plan: Dict[str, Any] = Field(..., description="High-level plan for testing")
-    status: str = "untested" # untested | verified | falsified
+    falsification_condition: str = Field(..., description="Condition that would disprove this hypothesis")
+    test_plan: Dict[str, Any] = Field(default_factory=dict)
+    status: str = "untested"
     confidence: float = 0.5
 
     @validator("metric")
@@ -45,18 +47,26 @@ class Hypothesis(BaseModel):
         return v
 
 class Experiment(BaseModel):
-    """Level 3: Experiment (Execution)"""
+    """Level 3: Concrete Simulation (Execution)"""
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     hypothesis_id: str
-    parameters: Dict[str, Any] = Field(..., description="Concrete simulation parameters")
-    method: str = Field(..., description="Simulation method (DFT, MLIP, etc.)")
-    expected_output: List[str] = Field(default_factory=list, description="List of expected observables")
+    parameters: Dict[str, Any]
+    method: str # DFT, MLIP, etc.
+    expected_output: List[str]
 
 class Insight(BaseModel):
     """Level 4: Result Analysis (Postdoc)"""
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     hypothesis_id: str
-    experiment_ids: List[str]
     conclusion: str
-    confidence: float = Field(..., ge=0.0, le=1.0)
+    confidence: float
     data_summary: Dict[str, Any] = Field(default_factory=dict)
+
+class KnowledgeTrace(BaseModel):
+    """Audit Trail of the Scientific Transformation"""
+    iteration: int
+    input_idea: ResearchIdea
+    critique: Critique
+    final_hypothesis: Hypothesis
+    experiments: List[Experiment]
+    insight: Optional[Insight] = None

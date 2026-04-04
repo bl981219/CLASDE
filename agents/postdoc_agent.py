@@ -1,5 +1,6 @@
 import logging
 import uuid
+import numpy as np
 from typing import List, Dict, Any, Optional, Tuple
 from core.lab_objects import ResearchIdea, Hypothesis, Experiment, Insight, Critique
 from core.state import SurfaceState
@@ -7,113 +8,136 @@ from core.action import MutationAction, ActionType
 from agents.base_agent import BaseAgent
 from optimization.surrogate_models import SurrogateModel
 from core.transition import TransitionEngine
+from memory.storage_provider import StorageRegistry
 
 logger = logging.getLogger(__name__)
 
 class PostdocAgent(BaseAgent):
     """
-    Agent: The Postdoc (Senior Knowledge Transformer).
+    Agent: The Postdoc (Central Brain & Scientific Gatekeeper).
     
-    The central intelligence of the lab. Translates high-level Theory (PI) 
-    into testable Hypotheses and concrete Experiments.
+    The primary intellectual authority. Translates ResearchIdeas into 
+    falsifiable Hypotheses and concrete Experiments.
     
-    Responsibilities:
-    1. Critique PI ideas for physical validity and combinatorial sanity.
-    2. Formalize valid ideas into testable Hypotheses.
-    3. Design Experiments (simulations) to test Hypotheses.
-    4. Interpret Results into Insights.
-    5. Manage Memory (remembering failed trends).
+    Authority:
+    - Can reject or revise PI ideas.
+    - Mandatory memory retrieval before any decision.
+    - Owns the transformation logic: Idea -> Critique -> Hypothesis -> Experiment.
     """
-    def __init__(self, surrogate: SurrogateModel, experiment_db: Any, knowledge_graph: Any):
+    def __init__(self, surrogate: SurrogateModel, storage: StorageRegistry):
         super().__init__()
         self.belief_state = surrogate
-        self.experiment_db = experiment_db
-        self.kg = knowledge_graph
+        self.storage = storage
         self.transition_engine = TransitionEngine()
 
-    def critique_idea(self, idea: ResearchIdea) -> Critique:
-        """Rule 2: Postdoc must validate PI ideas. Debate step."""
-        logger.info(f"[Postdoc] Critiquing PI's idea: {idea.goal}")
+    def review_idea(self, idea: ResearchIdea) -> Critique:
+        """
+        Rule: Postdoc must validate PI ideas. 
+        Mandatory memory check to see if we've tried this before.
+        """
+        logger.info(f"[Postdoc] Reviewing PI idea: {idea.goal}")
         
-        # Heuristic critique (In production, this would be an LLM)
+        # 1. Mandatory Memory Retrieval
+        similar_past_results = self.storage.retrieve_similar_results(idea.intuition, top_k=3)
+        
         validity = True
         issues = []
-        revision = ""
+        revision = None
         
+        # Heuristic critique logic (In production: LLM reasoning over memory)
         if "random" in idea.intuition.lower():
             validity = False
-            issues.append("Combinatorial explosion from random doping.")
-            revision = "Focus on transition metals with similar ionic radii to maintain perovskite structure."
+            issues.append("Combinatorial explosion; no physical basis for random search.")
+            revision = "Focus on transition metal B-site substitutions (Co, Fe, Ni) with r_ionic similarity."
         
+        # 2. Check memory for redundancies
+        if any(res.get("reward", -1e9) > -0.1 for res in similar_past_results):
+            validity = False
+            issues.append("Redundancy: Similar high-performing configurations already identified in memory.")
+            revision = "Explore the boundary of the known high-performing region via vacancy induction."
+
         return Critique(
             idea_id=idea.id,
             validity=validity,
             issues=issues,
-            suggested_revision=revision,
-            confidence=0.8
+            revised_plan=revision,
+            confidence=0.85
         )
 
-    def formulate_hypothesis(self, idea: ResearchIdea) -> Hypothesis:
-        """Rule 3: Hypothesis must be testable (measurable metric, controllable variable)."""
-        logger.info(f"[Postdoc] Translating idea into testable hypothesis.")
+    def formulate_hypothesis(self, idea: ResearchIdea, critique: Critique) -> Hypothesis:
+        """
+        Rule: Formalize testable Hypothesis from Idea + Critique.
+        Must define variable, manipulation, expected_effect, and falsification_condition.
+        """
+        logger.info(f"[Postdoc] Formulating strict hypothesis.")
         
-        # Example: Translating 'improve stability' idea into concrete hypothesis
+        active_intuition = critique.revised_plan if not critique.validity else idea.intuition
+        
+        # In production: LLM generates this structured object
         hyp = Hypothesis(
             idea_id=idea.id,
-            variable="surface cation arrangement",
-            change="segregation of larger cations",
-            expected_effect="decrease surface grand potential",
-            metric="stability",
-            test_plan={"sampling_strategy": "active_learning"}
+            variable="Surface Cation Substitution (B-site)",
+            manipulation="Increase Co concentration at surface by 25%",
+            expected_effect="Reduction in Oxygen Vacancy Formation Energy (E_v) by >0.1 eV",
+            metric="vacancy_formation_energy",
+            falsification_condition="E_v remains constant or increases with Co concentration",
+            confidence=0.7
         )
         return hyp
 
     def design_experiments(self, hypothesis: Hypothesis, current_state: SurfaceState) -> List[Experiment]:
-        """Rule 4: Hypothesis must generate concrete experiments."""
-        logger.info(f"[Postdoc] Designing experiments for hypothesis: {hypothesis.id}")
+        """
+        Rule: Hypothesis designs the experiments.
+        Integrates Bayesian Optimization logic (formerly in StrategistAgent).
+        """
+        logger.info(f"[Postdoc] Designing experiments to test hypothesis: {hypothesis.id}")
         
-        # Integration with Bayesian Optimization (Surrogate Model)
-        # This replaces the old 'OptimizationStrategist.propose_actions'
+        # 1. Propose candidate actions based on hypothesis variable
+        # (In production, this uses self.transition_engine + BO scores)
         experiments = []
         
-        # Example: Generate 3 candidate mutations based on the hypothesis
-        for dopant in ["Sr", "Ba", "Ca"]:
-            experiments.append(Experiment(
-                hypothesis_id=hypothesis.id,
-                parameters={
-                    "state": current_state,
-                    "action": MutationAction(
-                        action_type=ActionType.SUBSTITUTIONAL_DOPANT,
-                        parameters={"dopant": dopant, "original_element": "La"}
-                    )
-                },
-                method="MLIP", # Default to cheap fidelity first
-                expected_output=["total_energy", "structure"]
-            ))
-            
+        # Example: Concrete DFT and MLIP steps
+        experiments.append(Experiment(
+            hypothesis_id=hypothesis.id,
+            parameters={
+                "state": current_state,
+                "action": MutationAction(
+                    action_type=ActionType.SUBSTITUTIONAL_DOPANT,
+                    parameters={"dopant": "Co", "original_element": "Ti"}
+                )
+            },
+            method="DFT" if hypothesis.confidence > 0.8 else "MLIP",
+            expected_output=["total_energy", "fmax", "vacancy_formation_energy"]
+        ))
+        
         return experiments
 
-    def interpret_results(self, hypothesis: Hypothesis, experiments: List[Experiment], results: List[Dict[str, Any]]) -> Insight:
-        """Translates Level 3 (Experiments) back to Level 4 (Insights)."""
-        logger.info(f"[Postdoc] Analyzing results to generate insight.")
+    def analyze_results(self, hypothesis: Hypothesis, results: List[Dict[str, Any]]) -> Insight:
+        """
+        Rule: Interpret results back into scientific conclusions.
+        """
+        logger.info(f"[Postdoc] Analyzing results for hypothesis: {hypothesis.id}")
         
-        rewards = [r.get("reward", -1e9) for r in results]
-        max_reward = max(rewards) if rewards else -1e9
+        # 1. Check falsification condition
+        # (Simplified logic)
+        best_ev = min([r.get("observables", {}).get("vacancy_formation_energy", 1e9) for r in results])
+        falsified = best_ev > 2.0 # Threshold for the example
         
-        conclusion = "Hypothesis partially supported." if max_reward > 0.0 else "Hypothesis falsified."
-        
+        conclusion = "Hypothesis SUPPORTED." if not falsified else "Hypothesis FALSIFIED."
+        if falsified:
+            conclusion += f" Falsification condition met: {hypothesis.falsification_condition}"
+            
         return Insight(
             hypothesis_id=hypothesis.id,
-            experiment_ids=[e.id for e in experiments],
             conclusion=conclusion,
-            confidence=0.7,
-            data_summary={"best_reward": max_reward}
+            confidence=0.9,
+            data_summary={"best_ev": best_ev, "sample_count": len(results)}
         )
 
-    # BaseAgent Abstract Methods (Required for loop)
-    def observe_state(self) -> Any: return self.experiment_db.get_training_data()
+    # BaseAgent implementation (unused in formal flow but kept for interface)
+    def observe_state(self) -> Any: return self.storage.experiment_db.get_training_data()
     def update_belief(self, observations: Any) -> None: self.belief_state.update(observations)
-    def propose_actions(self) -> List[Any]: return [] # Not used in this formal flow
+    def propose_actions(self) -> List[Any]: return []
     def score_actions(self, actions: List[Any]) -> List[float]: return []
     def execute_best(self, best_action: Any) -> Any: return None
     def update_memory(self, result: Any) -> None: pass
