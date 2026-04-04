@@ -45,7 +45,7 @@ CLASDE/
 | :--- | :--- | :--- |
 | **Principal Investigator** | **The PI Agent** | Formulates high-level **ResearchIdeas**. Provides the "What" and "Why". |
 | **Senior Postdoc** | **The Postdoc Agent** | **The Intellectual Gatekeeper.** Critiques PI ideas, performs mandatory memory reasoning, formalizes **Hypotheses**, and designs **Experiments**. |
-| **Lab Technician** | **The Execution Agent** | Strictly executes Level 3 **Experiments** via decoupled backends. |
+| **Lab Technician** | **The Execution Agent** | Strictly executes Level 3 **Experiments** via decoupled backends as PhD student. |
 | **Telemetry System** | **The Lab Notebook** | Automatically records every decision, job submission, and scientific insight in structured JSONL. |
 
 ---

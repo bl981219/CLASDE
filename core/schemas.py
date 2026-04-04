@@ -2,7 +2,7 @@ from pydantic import BaseModel, Field
 from typing import List, Dict, Optional, Any, Union
 from core.state import SurfaceState
 from core.action import MutationAction
-from core.hypothesis import Hypothesis
+from core.lab_objects import Hypothesis
 
 class SystemState(BaseModel):
     version: str = "v1"

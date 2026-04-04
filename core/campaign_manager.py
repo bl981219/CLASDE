@@ -119,8 +119,42 @@ class CampaignManager:
     def _initialize_baseline_if_needed(self):
         if not self.storage.experiment_db.get_training_data():
             logger.info("[Technician] No data found. Running initial baseline...")
-            # (Baseline logic...)
-            pass
+            
+            # Simple baseline: Use bulk constraints and default termination
+            bulk = self.config.get("constraints", {}).get("bulk", {"Cu": 1.0})
+            facet = self.config.get("constraints", {}).get("facet", [1, 1, 1])
+            
+            initial_state = SurfaceState(
+                bulk_composition=bulk,
+                miller_index=tuple(facet),
+                termination="default"
+            )
+            
+            from agents.builder_agent import StructureBuilder
+            builder = StructureBuilder()
+            slab = builder.build_structure(initial_state)
+            initial_state.slab_structure = slab
+            
+            # Submit initial job
+            job_id = self.compute_manager.submit_job(slab, initial_state, SimulationType.MLIP, iteration=0)
+            
+            # Fetch and record result
+            calc_dir = self.compute_manager.fetch_results(job_id)
+            import json
+            res_path = os.path.join(calc_dir, "results.json")
+            if os.path.exists(res_path):
+                with open(res_path, "r") as f:
+                    raw_data = json.load(f)
+                    res_dict = {
+                        "state": initial_state,
+                        "action": None,
+                        "reward": raw_data.get("reward", 0.0),
+                        "observables": raw_data,
+                        "metadata": {"job_id": job_id, "fidelity": "baseline"}
+                    }
+                    self._process_result(res_dict)
+            else:
+                logger.error("Baseline calculation failed. Results not found.")
 
     def _process_result(self, result: Dict[str, Any]):
         reward = result.get("reward", -1e9)
