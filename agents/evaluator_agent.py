@@ -101,6 +101,14 @@ class EvaluationAgent:
                     observables["adsorption_energy"] = 0.0 # Neutralize E_ads to allow loop to continue
 
         reward = self.objective_function.compute_objective(observables, context)
+        
+        # 4. Convergence Penalty (Scientific Rigor)
+        # If the structure didn't reach fmax, we still use the data but penalize 
+        # the reward to reflect the uncertainty/incomplete physics.
+        if observables.get("converged") is False:
+            logger.info(f"[Evaluator] Applying non-convergence penalty to reward (fmax: {observables.get('fmax', 'N/A')})")
+            reward -= 0.5 # eV (Small penalty to bias away from difficult-to-relax states)
+
         return observables, reward
 
     def validate_results(self, observables: Dict[str, Any], context: Dict[str, Any]) -> Tuple[bool, str]:

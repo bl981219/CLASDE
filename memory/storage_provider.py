@@ -1,5 +1,5 @@
 import logging
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
 from memory.experiment_db import ExperimentDatabase
 from memory.hypothesis_db import HypothesisDatabase
 from memory.literature_db import LiteratureDatabase
@@ -10,16 +10,14 @@ logger = logging.getLogger(__name__)
 class StorageRegistry:
     """
     Centralized registry for all database and memory components.
-    
-    This abstraction allows the CampaignManager to be backend-agnostic,
-    facilitating future migrations to SQL or Redis-based storage.
     """
-    def __init__(self):
+    def __init__(self, use_memory: bool = True):
         self.experiment_db = ExperimentDatabase()
         self.hypothesis_db = HypothesisDatabase()
         self.literature_db = LiteratureDatabase()
         self.kg_memory = KnowledgeGraphMemory()
         
+        self.use_memory = use_memory
         self.is_loaded = False
 
     def load_all(self):
@@ -29,7 +27,7 @@ class StorageRegistry:
         self.literature_db.load()
         self.knowledge_graph = self.kg_memory.load()
         self.is_loaded = True
-        logger.info("All scientific databases loaded into StorageRegistry.")
+        logger.info(f"All scientific databases loaded. Memory enabled: {self.use_memory}")
 
     def save_all(self):
         """Persists all databases to disk."""
@@ -43,3 +41,12 @@ class StorageRegistry:
         """Returns the active KnowledgeGraph instance."""
         if not self.is_loaded: self.load_all()
         return self.knowledge_graph
+
+    def retrieve_similar_results(self, query_state: Any, top_k: int = 5) -> List[Dict[str, Any]]:
+        """Retrieval API for agents to find similar historical experiments."""
+        if not self.use_memory:
+            return []
+        
+        # Placeholder: In production, use vector search on state embeddings
+        # For now, return empty or top results from ExperimentDB
+        return self.experiment_db.get_training_data()[:top_k]

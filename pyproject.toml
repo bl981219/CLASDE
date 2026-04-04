@@ -30,6 +30,9 @@ clasde-explore = "cli.explore_cli:main"
 clasde-watchdog = "autonomous_watchdog:main"
 clasde-demo = "examples.teaching_demo:main"
 
+[tool.setuptools]
+packages = ["agents", "cli", "core", "execution", "memory", "optimization", "science", "workflows"]
+
 [build-system]
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"

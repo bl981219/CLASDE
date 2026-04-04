@@ -24,8 +24,8 @@ class TheoryBuilder:
     def add_hypothesis_record(self, hypothesis: Any, verification: str):
         """Records a snapshot of a hypothesis and its verification result."""
         self.hypothesis_history.append({
-            "theory": hypothesis.theory_statement,
-            "status": hypothesis.status,
+            "theory": getattr(hypothesis, "description", str(hypothesis)),
+            "status": getattr(hypothesis, "status", "untested"),
             "verification": verification
         })
 

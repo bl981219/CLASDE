@@ -16,15 +16,16 @@ The system is organized into distinct layers to separate scientific reasoning fr
 CLASDE/
 ├── agents/             # DECISION MAKERS (The "Who")
 │   ├── collaborator_agent.py # Human-Machine Interface (LLM)
-│   ├── hypothesis_agent.py   # Scientific Theory Induction (PI)
-│   ├── planner_agent.py      # Task Sequence Formulation
+│   ├── pi_agent.py           # Strategic Vision (PI Agent)
+│   ├── postdoc_agent.py      # Knowledge Transformer (Postdoc Agent)
+│   ├── execution_agent.py    # Experimentalist (Technician Agent)
 │   ├── governor_agent.py     # Budget & Constraint Enforcement (Lab Manager)
-│   ├── strategist_agent.py   # Experiment Selection (BO / Senior Postdoc)
 │   ├── builder_agent.py      # Symmetry-aware structural construction
 │   └── evaluator_agent.py    # Result Interpretation (Data Analyst)
 │
 ├── core/               # SCIENTIFIC PRIMITIVES
 │   ├── campaign_manager.py   # Central Loop Orchestrator
+│   ├── lab_objects.py        # Formal Knowledge Layers (Idea, Hypothesis, Exp)
 │   ├── state.py              # SurfaceState (Source of Truth)
 │   ├── action.py             # Mutation operators
 │   ├── transition.py         # Physics rules
@@ -61,51 +62,46 @@ CLASDE/
 
 | Role | Metaphor | Responsibility |
 | :--- | :--- | :--- |
-| **Strategic Collaborator** | **The Investor/Expert** | Translates natural language intent into formal scientific campaigns. |
-| **Principal Investigator** | **The PI Agent** | The logic lead. Formulates testable hypotheses and verifies them against empirical data. |
-| **Research Planner** | **The Architect** | Translates the PI's hypothesis into machine-runnable Directed Acyclic Graphs (DAGs). |
+| **Principal Investigator** | **The PI Agent** | Formulates high-level **ResearchIdeas** and intuition. Provides the "What" and "Why". |
+| **Senior Postdoc** | **The Postdoc Agent** | The intellectual bridge. Critiques PI ideas, formalizes testable **Hypotheses**, designs **Experiments**, and interprets **Insights**. |
+| **Lab Technician** | **The Execution Agent** | Strictly executes Level 3 **Experiments**. Manages the interface with HPC resources (VASP, MLIP). |
+| **Strategic Collaborator** | **The Expert Consultant** | Translates natural language intent into structured research goals for the PI. |
 | **Research Governor** | **The Lab Manager** | Enforces objectives, hard budget safety ceilings, and chemical constraints (e.g. charge neutrality). |
-| **Optimization Strategist** | **The Senior Postdoc** | Operates the Surrogate Model and selects the optimal next experiment via Bayesian Optimization. |
 | **Structure Builder** | **The PhD Student** | Builds 3D atomic structures, enforcing symmetry-aware distortions and stoichiometric constraints. |
-| **Compute Manager** | **The Lab Technician** | Orchestrates HPC execution (VASP, MLIP) with backend abstraction and autonomous recovery. |
 | **Evaluation Agent** | **The Data Analyst** | Parses raw outputs and anchors calculated rewards to NIST-benchmarked thermochemical data. |
 
 ---
 
-## How CLASDE Works: The Discovery Loop
+## How CLASDE Works: The Knowledge Transformation Loop
 
-CLASDE operates through a self-correcting feedback loop centered on the Principal Investigator (PI). This loop elevates the system from simple optimization to autonomous scientific discovery.
+CLASDE operates through a self-correcting hierarchical feedback loop. Unlike simple optimization, it enforces a "scientific compiler" approach where ideas must be formalised into testable objects before execution.
 
 ```mermaid
 graph TD
     User((User Intent)) -->|Natural Language| Agent1[Strategic Collaborator]
-    Agent1 -->|Campaign Config| Agent2[Research Governor]
+    Agent1 -->|Goal| Agent2[PI Agent]
     
-    subgraph Autonomous_Loop [The Hypothesis-Driven Loop]
-        Agent2 -->|Budget & Constraints| Agent3[Optimization Strategist]
-        Agent3 -->|Observation| Memory[(Knowledge Graph)]
-        Memory -->|Prior Data| Agent3
-        Agent3 -->|Candidate Surface| Agent4[Research Planner]
-        Agent5[Principal Investigator] -->|Active Hypothesis| Agent4
-        Agent4 -->|Structured DAG| Agent6[Workflow Executor]
-        Agent6 -->|HPC Execution| VASP[VASP/ASE Backend]
-        VASP -->|Raw Outputs| Agent7[Evaluation Agent]
-        Agent7 -->|Physical Observables| Memory
-        Memory -->|Trends & Patterns| Agent5
-        Agent5 -->|Verification| Memory
-        Agent5 -->|Evolved Hypothesis| Agent4
+    subgraph Autonomous_Loop [The Lab Discovery Loop]
+        Agent2 -->|ResearchIdea| Agent3[Postdoc Agent]
+        Agent3 -->|Critique/Revision| Agent2
+        Agent3 -->|Hypothesis| Agent3
+        Agent3 -->|Experiment Design| Agent4[Execution Agent]
+        Agent4 -->|HPC Execution| VASP[VASP/ASE Backend]
+        VASP -->|Raw Results| Agent4
+        Agent4 -->|Experimental Data| Agent3
+        Agent3 -->|Analysis & Insight| Agent3
+        Agent3 -->|Update Memory| Memory[(Knowledge Graph)]
     end
     
     Memory -->|Discovery Report| Output((Scientific Insights))
 ```
 
-### Implementation Logic
-1. **Literature Ingestion**: The engine identifies relevant scientific claims from the local `LiteratureDatabase`.
-2. **Hypothesis Formulation**: The **Principal Investigator (PI)** Agent synthesizes these claims into a formal Scientific Hypothesis.
-3. **Strategic Selection**: The **Strategist** uses Bayesian Optimization to identify the next surface configuration that most effectively tests the current belief state.
-4. **DAG Planning**: The **Research Planner** translates the PI's hypothesis and the Strategist's selected action into a formal Directed Acyclic Graph (DAG) of tasks.
-5. **Autonomous Execution**: The **Campaign Manager** orchestrates the loop, delegating task sequencing to the Planner and execution to the Workflow Executor.
-6. **Verification & Evolution**: The **PI** reviews the findings, verifies or falsifies the current theory, and evolves the hypothesis for the next cycle.
+### Transformation Rules
+1. **Rule 1: Hierarchical Flow**: PI cannot talk to execution directly. Knowledge must be transformed by the Postdoc.
+2. **Rule 2: Postdoc Critique**: Every **ResearchIdea** from the PI is critiqued for combinatorial sanity and physical validity before formalization.
+3. **Rule 3: Testable Hypothesis**: Postdoc converts ideas into a **Hypothesis** with a controllable variable and a measurable metric (e.g., E_ads).
+4. **Rule 4: Design to Execution**: The Postdoc designs a batch of **Experiments** (Level 3 objects) which are handed to the Technician for execution.
+5. **Rule 5: Insight Extraction**: After execution, the Postdoc interprets the raw data into an **Insight**, updating the lab's collective memory.
 
 ---
 

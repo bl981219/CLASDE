@@ -1,18 +1,13 @@
 import logging
 import numpy as np
+import uuid
+import json
 from typing import List, Dict, Any, Optional
-from pydantic import BaseModel, Field
+from pydantic import ValidationError
+from core.hypothesis import Hypothesis, HypothesisType, HypothesisResult
 from science.experiment_graph import KnowledgeGraph
 
 logger = logging.getLogger(__name__)
-
-class ScientificHypothesis(BaseModel):
-    """A formal scientific theory being tested by the engine."""
-    theory_statement: str
-    target_property: str
-    predicted_trend: str # e.g., "Increasing" or "Decreasing"
-    supporting_literature: List[str] = Field(default_factory=list)
-    status: str = "untested" # untested, verified, falsified, inconclusive
 
 class HypothesisAgent:
     """
@@ -21,92 +16,116 @@ class HypothesisAgent:
     The creative and critical lead. Formulates hypotheses from literature 
     and determines if they are supported by empirical data.
     """
-    def __init__(self, knowledge_graph: KnowledgeGraph, hypothesis_db: Any):
+    def __init__(self, knowledge_graph: KnowledgeGraph, hypothesis_db: Any, llm_client: Optional[Any] = None):
         self.kg = knowledge_graph
         self.hyp_db = hypothesis_db
+        self.llm = llm_client
 
-    def formulate_initial_hypothesis(self, literature_claims: List[str], research_goal: str) -> ScientificHypothesis:
+    def formulate_initial_hypothesis(self, literature_claims: List[str], research_goal: str) -> Hypothesis:
         """
         Synthesizes prior knowledge and user intent into a testable hypothesis.
         """
         logger.info("[PI] Reviewing literature and formulating initial hypothesis...")
         
-        # Logic: In production, this uses the LLM to reason over claims.
-        # Placeholder: Generate a theory based on the most common trend in claims.
-        theory = f"Based on literature, the {research_goal} will be determined by surface cation arrangement."
-        
-        hypothesis = ScientificHypothesis(
-            theory_statement=theory,
-            target_property="adsorption_energy",
-            predicted_trend="nonlinear",
-            supporting_literature=literature_claims
-        )
+        # In a real system, we'd call the LLM here.
+        # For now, we simulate the LLM output.
+        simulated_response = {
+            "id": str(uuid.uuid4()),
+            "description": f"Surface cation arrangement determines {research_goal}.",
+            "type": "mechanism",
+            "predicted_effect": "optimize adsorption energy",
+            "target_metric": "adsorption_energy",
+            "direction": "nonlinear",
+            "falsification_condition": "no correlation found between cation site and energy",
+            "source": "LLM",
+            "confidence": 0.6
+        }
+
+        try:
+            hypothesis = Hypothesis(**simulated_response)
+        except ValidationError as e:
+            logger.error(f"Failed to validate hypothesis: {e}")
+            # In production, trigger retry logic here
+            raise
+
         self.hyp_db.add_hypothesis(
-            hypothesis=hypothesis.theory_statement,
-            evidence_ids=[], # Initial hypothesis has no empirical evidence yet
-            confidence=0.5   # Baseline confidence
+            hypothesis=hypothesis.description,
+            evidence_ids=[], 
+            confidence=hypothesis.confidence
         )
         return hypothesis
 
-    def verify_current_hypothesis(self, current_hyp: ScientificHypothesis, dataset: List[Dict[str, Any]]) -> str:
+    def evaluate_hypothesis(self, hypothesis: Hypothesis, dataset: List[Dict[str, Any]]) -> HypothesisResult:
         """
-        Critical Review: Compares experimental results against the hypothesis.
-        Analyzes energy trends and reward optimization.
+        Compares experimental results against the hypothesis to produce a formal result.
         """
         if len(dataset) < 2:
-            return "Insufficient data for formal verification."
+            return HypothesisResult(
+                hypothesis_id=hypothesis.id,
+                supported=False,
+                effect_size=0.0,
+                confidence=hypothesis.confidence,
+                summary="Insufficient data for evaluation."
+            )
 
-        logger.info(f"[PI] Verifying Hypothesis: {current_hyp.theory_statement}")
+        logger.info(f"[PI] Evaluating Hypothesis: {hypothesis.description}")
         
-        # 1. Check for improvement trend
         rewards = [d.get("reward", -1e9) for d in dataset if d.get("reward") is not None]
-        if not rewards: return "No rewards found in dataset."
-        
+        if not rewards:
+             return HypothesisResult(
+                hypothesis_id=hypothesis.id,
+                supported=False,
+                effect_size=0.0,
+                confidence=0.0,
+                summary="No valid rewards found."
+            )
+            
         initial_reward = rewards[0]
         max_reward = max(rewards)
         improvement = max_reward - initial_reward
         
-        # 2. Heuristic verification
-        if improvement > 0.1: # Significant optimization found
-            current_hyp.status = "verified"
-            return f"Hypothesis SUPPORTED. Found configuration with reward {max_reward:.4f} (Improvement: {improvement:.4f} eV)."
-        elif len(dataset) > 5:
-            current_hyp.status = "falsified"
-            return "Hypothesis NOT supported after 5+ iterations. Redefining search space."
-        else:
-            current_hyp.status = "untested"
-            return "Initial results inconclusive. Continuing exploration."
+        supported = improvement > 0.1
+        
+        return HypothesisResult(
+            hypothesis_id=hypothesis.id,
+            supported=supported,
+            effect_size=float(improvement),
+            confidence=0.8 if supported else 0.3,
+            summary=f"Improvement of {improvement:.4f} eV found." if supported else "No significant improvement found."
+        )
 
-    def evolve_hypothesis(self, old_hyp: ScientificHypothesis, dataset: List[Dict[str, Any]]) -> ScientificHypothesis:
+    def evolve_hypothesis(self, old_hyp: Hypothesis, dataset: List[Dict[str, Any]]) -> Hypothesis:
         """Generates the next hypothesis based on the feedback loop discovery."""
         rewards = [d.get("reward", -1e9) for d in dataset]
         best_idx = int(np.argmax(rewards))
         best_state = dataset[best_idx]['state']
         
-        # Extract features of the best configuration
         comp_summary = "".join([f"{k}{v}" for k, v in best_state.bulk_composition.items()])
         
-        new_statement = f"The {comp_summary} arrangement has demonstrated local stability. Next, we test if Oxygen vacancy concentration further stabilizes this specific cation distribution."
+        new_description = f"The {comp_summary} arrangement is stable; Oxygen vacancy concentration further stabilizes it."
         
-        new_hyp = ScientificHypothesis(
-            theory_statement=new_statement,
-            target_property=old_hyp.target_property,
-            predicted_trend="increasing stability with vacancy count",
-            status="untested"
+        new_hyp = Hypothesis(
+            id=str(uuid.uuid4()),
+            description=new_description,
+            type=HypothesisType.PRIOR,
+            predicted_effect="increase stability",
+            target_metric="stability",
+            direction="increase",
+            falsification_condition="vacancy count does not correlate with stability",
+            source="LLM",
+            confidence=0.7
         )
         
         self.hyp_db.add_hypothesis(
-            hypothesis=new_hyp.theory_statement,
+            hypothesis=new_hyp.description,
             evidence_ids=[best_state.get_id()], 
-            confidence=0.7 # High confidence in the local lead
+            confidence=new_hyp.confidence
         )
         return new_hyp
 
     def analyze_graph(self) -> List[Dict[str, Any]]:
         """
         Scans the knowledge graph for statistical patterns.
-        Used by the TheoryBuilder to finalize discoveries.
         """
         logger.info("[PI] Analyzing Knowledge Graph for emergent patterns...")
-        # Placeholder: In a full system, this performs graph queries for correlations
         return []
