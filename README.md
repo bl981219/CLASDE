@@ -52,7 +52,7 @@ CLASDE/
 
 ## How CLASDE Works: The Knowledge Transformation Loop
 
-CLASDE operates through a strict hierarchical feedback loop. It enforces a "scientific compiler" approach where ideas must be formalised and critiqued before execution.
+CLASDE operates through a strict hierarchical feedback loop called the **Knowledge Transformer Loop**. It enforces a "scientific compiler" approach where ideas must be formalised, critiqued, and iteratively refined before execution.
 
 ```mermaid
 graph TD
@@ -61,26 +61,28 @@ graph TD
     subgraph Autonomous_Loop [The Lab Discovery Loop]
         Agent1 -->|ResearchIdea| Agent2["Postdoc Agent (The Gatekeeper)"]
         Agent2 -->|Mandatory Memory Check| Memory[(Storage)]
-        Agent2 -->|Critique/Revision| Agent1
+        Agent2 -- "Epistemic Cycle (Critique/Revision)" --> Agent1
         Agent2 -->|Falsifiable Hypothesis| Agent2
         Agent2 -->|Experiment Design| Agent3["Execution Agent (PhD Student)"]
         Agent3 -->|Backend Dispatch| Backend[Slurm/Local]
         Backend -->|Raw Results| Agent3
         Agent3 -->|Experimental Data| Agent2
         Agent2 -->|Insight & Falsification| Agent2
-        Agent2 -->|Update Memory| Memory
+        Agent2 -->|Update Memory & Vector Index| Memory
     end
     
-    Memory -->|Discovery Report| Output((Scientific Insights))
+    Agent2 -->|Knowledge Graph| TB["Theory Builder"]
+    TB -->|Pattern Discovery| Report((Scientific Discovery Report))
     Autonomous_Loop -->|Telemetry| Logs[(Structured JSONL)]
 ```
 
 ### Transformation Rules
-1. **Rule 1: Postdoc Authority**: The Postdoc MUST critique the PI's idea. It has the power to reject or revise plans based on physical validity and memory.
-2. **Rule 2: Mandatory Memory Reasoning**: Before designing experiments, the Postdoc MUST analyze trends from the `ExperimentDatabase`.
-3. **Rule 3: Falsifiable Hypothesis**: Knowledge is passed as strict `Hypothesis` objects containing a variable, manipulation, and a clear `falsification_condition`.
-4. **Rule 4: Decoupled Execution**: The `ExecutionAgent` interacts with hardware through an `ExecutionBackend` interface, ensuring portability and reliability.
-5. **Rule 5: Knowledge Tracing**: Every step of the transformation (Idea -> Critique -> Hypothesis -> Result) is logged as a `KnowledgeTrace` for full auditability.
+1. **Rule 1: Postdoc Authority (The Gatekeeper)**: The Postdoc MUST critique the PI's idea. It has the power to reject plans based on physical validity and memory, triggering an **Epistemic Cycle** of revision.
+2. **Rule 2: Mandatory Memory Reasoning**: Before designing experiments, the Postdoc MUST analyze trends from the `ExperimentDatabase` using vector similarity search to ensure novelty and relevance.
+3. **Rule 3: Falsifiable Hypothesis**: Knowledge is passed as strict `Hypothesis` objects containing a physical variable, a specific manipulation, and a clear `falsification_condition`.
+4. **Rule 4: Decoupled Execution**: The `ExecutionAgent` (PhD Student) interacts with hardware through an `ExecutionBackend` interface, managing job submission and telemetry.
+5. **Rule 5: Knowledge Tracing**: Every step of the transformation (Idea -> Critique -> Hypothesis -> Result -> Insight) is logged as a `KnowledgeTrace` for full scientific auditability.
+6. **Rule 6: Theory Induction**: Upon campaign completion, the **Theory Builder** scans the Knowledge Graph for scaling relations and termination biases to synthesize formal scientific laws.
 
 ---
 
