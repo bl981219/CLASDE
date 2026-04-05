@@ -5,7 +5,7 @@ from optimization.surrogate_models import SurrogateModel
 from optimization.acquisition_functions import AcquisitionFunction
 from core.state import SurfaceState
 from core.action import MutationAction
-from core.hypothesis import Hypothesis, HypothesisType
+from core.lab_objects import Hypothesis, KnowledgeLevel as HypothesisType
 
 logger = logging.getLogger(__name__)
 

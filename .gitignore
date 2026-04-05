@@ -42,3 +42,5 @@ billrun.sh
 .gemini/
 GEMINI.md
 examples/teaching_results/
+campaign_log_test_lscf_poisoning.txt
+examples/lsf_segregation_results/

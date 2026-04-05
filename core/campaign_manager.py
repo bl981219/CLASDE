@@ -67,6 +67,9 @@ class CampaignManager:
         # Load state
         self._initialize_baseline_if_needed()
 
+        consecutive_errors = 0
+        max_consecutive_errors = 5
+
         while self.governor.should_continue(latest_reward=self.system_state.current_best_reward):
             try:
                 # 1. PI Proposes Idea & Postdoc Critiques (Epistemic Cycle)
@@ -122,14 +125,19 @@ class CampaignManager:
                 
                 self.system_state.iteration += 1
                 self.storage.save_all()
+                consecutive_errors = 0 # Reset on success
                 
             except Exception as e:
-                logger.error(f"[LAB] Fatal error in knowledge loop: {e}", exc_info=True)
-                # Instead of silently continuing forever, we raise if it's a structural failure
+                consecutive_errors += 1
+                logger.error(f"[LAB] Error in knowledge loop (Error {consecutive_errors}/{max_consecutive_errors}): {e}", exc_info=True)
+                
+                if consecutive_errors >= max_consecutive_errors:
+                    logger.error("[LAB] Too many consecutive errors. Terminating loop for safety.")
+                    raise RuntimeError(f"Campaign terminated after {max_consecutive_errors} consecutive failures.") from e
+
                 if isinstance(e, (KeyboardInterrupt, SystemExit)):
                     raise
                 time.sleep(5)
-                # Optionally break if too many consecutive errors
                 continue
 
         self._finalize()

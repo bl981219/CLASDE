@@ -32,9 +32,8 @@ class GaussianProcessModel(SurrogateModel):
         self.use_pca = use_pca
         self.n_components = n_components
         self.pca = PCA(n_components=n_components) if use_pca else None
+        self.pca_active = False # Tracks if PCA was actually used in the last fit
         
-        # We delay kernel initialization until we know the input dimension (X.shape[1])
-        # especially if we use ARD
         self.kernel_template = kernel
         self.model = None
         self.is_fitted = False
@@ -43,15 +42,13 @@ class GaussianProcessModel(SurrogateModel):
         if self.kernel_template is not None:
             kernel = self.kernel_template
         else:
-            # Automatic Relevance Determination (ARD) kernel
-            # Different length scale for each feature
             ls = np.ones(n_features)
             ls_bounds = (1e-2, 1e3)
             kernel = C(1.0, (1e-3, 1e3)) * RBF(ls, ls_bounds) + WhiteKernel(noise_level=1e-5, noise_level_bounds=(1e-10, 1e-1))
         
         self.model = GaussianProcessRegressor(
             kernel=kernel, 
-            n_restarts_optimizer=5, # Reduced from 25 for efficiency
+            n_restarts_optimizer=5,
             normalize_y=True
         )
 
@@ -65,18 +62,20 @@ class GaussianProcessModel(SurrogateModel):
             X_raw.append(features)
             y.append(entry['reward'])
             
-        if len(X_raw) < 2:
+        if len(X_raw) == 0:
             return
 
         X = np.array(X_raw)
-        if self.use_pca:
-            # Ensure n_components is not larger than n_samples
+        self.pca_active = False
+        if self.use_pca and X.shape[0] >= 2:
             n_comp = min(self.n_components, X.shape[0])
             if self.pca.n_components != n_comp:
                 self.pca = PCA(n_components=n_comp)
             X = self.pca.fit_transform(X)
+            self.pca_active = True
 
-        if self.model is None:
+        if self.model is None or self.model.kernel.n_dims != X.shape[1]:
+            # Re-init model if dimension changed (e.g. PCA components increased)
             self._init_model(X.shape[1])
             
         self.model.fit(X, np.array(y))
@@ -88,7 +87,7 @@ class GaussianProcessModel(SurrogateModel):
             return 0.0, 1.0
             
         X = np.array([state.get_feature_vector()])
-        if self.use_pca:
+        if self.pca_active:
             X = self.pca.transform(X)
             
         mu, sigma = self.model.predict(X, return_std=True)
