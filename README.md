@@ -23,6 +23,7 @@ CLASDE/
 │   ├── campaign_manager.py   # Central Loop Orchestrator
 │   ├── lab_objects.py        # Formal Knowledge Layers (Idea, Hypothesis, Exp)
 │   ├── telemetry.py          # System Observability & Metrics
+│   ├── orchestration/        # Orchestration services (loop/baseline/result/finalize/trace)
 │   └── schemas.py            # Data Contracts & Type Safety
 │
 ├── science/            # DOMAIN OBJECTS (The "What")
@@ -56,24 +57,33 @@ CLASDE operates through a strict hierarchical feedback loop called the **Knowled
 
 ```mermaid
 graph TD
-    User((User Intent)) -->|Goal| Agent1["PI Agent (The Visionary)"]
-    
+    User((User Intent)) -->|Prompt| Collaborator["LLMCollaborator"]
+    Collaborator -->|Campaign Config| Manager["CampaignManager (composition root)"]
+    Manager --> Orchestrator["CampaignOrchestrator"]
+
     subgraph Autonomous_Loop [The Lab Discovery Loop]
-        Agent1 -->|ResearchIdea| Agent2["Postdoc Agent (The Gatekeeper)"]
-        Agent2 -->|Mandatory Memory Check| Memory[(Storage)]
-        Agent2 -- "Epistemic Cycle (Critique/Revision)" --> Agent1
-        Agent2 -->|Falsifiable Hypothesis| Agent2
-        Agent2 -->|Experiment Design| Agent3["Execution Agent (PhD Student)"]
-        Agent3 -->|Backend Dispatch| Backend[Slurm/Local]
-        Backend -->|Raw Results| Agent3
-        Agent3 -->|Experimental Data| Agent2
-        Agent2 -->|Insight & Falsification| Agent2
-        Agent2 -->|Update Memory & Vector Index| Memory
+        Orchestrator -->|If no prior data| Baseline["BaselineInitializer"]
+        Baseline --> Exec0["ComputeManager / ExecutionBackend"]
+        Exec0 -->|results.json| ResultProc["ResultProcessor"]
+        ResultProc --> Memory[(StorageRegistry: ExperimentDB + VectorIndex)]
+        ResultProc --> Governor["ResearchGovernor (budget/stop)"]
+
+        Orchestrator -->|ResearchIdea| Agent1["PI Agent (Visionary)"]
+        Agent1 -->|Idea| Agent2["Postdoc Agent (Gatekeeper)"]
+        Agent2 -- "Critique/Revision cycle" --> Agent1
+        Agent2 -->|Hypothesis + Experiments| Agent3["Execution Agent (Technician)"]
+        Agent3 -->|submit_job/fetch_results| Exec["ComputeManager (ASE/Slurm)"]
+        Exec -->|Raw Results| Agent3
+        Agent3 -->|Results| Agent2
+        Agent2 -->|Insight| Trace["TraceLogger (KnowledgeTrace JSONL)"]
+        Orchestrator -->|process each result| ResultProc
+        Orchestrator -->|save_all| Memory
     end
-    
-    Agent2 -->|Knowledge Graph| TB["Theory Builder"]
-    TB -->|Pattern Discovery| Report((Scientific Discovery Report))
-    Autonomous_Loop -->|Telemetry| Logs[(Structured JSONL)]
+
+    Orchestrator -->|Stop condition reached| Finalizer["CampaignFinalizer"]
+    Finalizer --> TB["TheoryBuilder"]
+    TB -->|Generate report.md| Report((Scientific Discovery Report))
+    Exec -->|job_submitted events| Logs[(Telemetry JSONL)]
 ```
 
 ### Transformation Rules
