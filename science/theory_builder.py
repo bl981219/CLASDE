@@ -112,7 +112,15 @@ class TheoryBuilder:
         
         report += "\n" + self._get_interpretation(rows) + "\n\n"
 
-        # 5. Technical Metadata
+        # 5. Discovered Patterns (New section)
+        report += "## 4. Discovered Scientific Patterns\n"
+        if self.discovered_laws:
+            for law in self.discovered_laws:
+                report += f"- **{law['type'].title()}:** {self.build_theory(law)} (Confidence: {law['confidence']:.2f})\n"
+        else:
+            report += "*No statistically significant patterns were discovered in this campaign.*\n\n"
+
+        # 6. Technical Metadata
         fidelities = set()
         for node in self.kg.nodes.values():
             if node.node_type == NodeType.CALCULATION:

@@ -119,12 +119,12 @@ class PostdocAgent(BaseAgent):
         You are a senior Postdoc. Propose 3 candidate experimental actions to test the given hypothesis.
         Each action must be a mutation of the current surface state.
         
-        Action Types: ['substitutional_dopant', 'vacancy_induction', 'adsorbate_placement']
+        Action Types: ['substitutional_dopant', 'introduce_vacancy', 'change_adsorbate']
         
         Output JSON: {
             "proposals": [
                 {
-                    "action_type": str,
+                    "action_type": "substitutional_dopant" | "introduce_vacancy" | "change_adsorbate",
                     "parameters": dict,
                     "rationale": str,
                     "fidelity": "DFT" | "MLIP"

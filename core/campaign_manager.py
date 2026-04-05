@@ -2,6 +2,7 @@ import logging
 import os
 import time
 import json
+import numpy as np
 from typing import Dict, Any, List, Optional, Tuple
 from core.state import SurfaceState
 from core.action import MutationAction
@@ -49,7 +50,11 @@ class CampaignManager:
         self.postdoc = PostdocAgent(self.surrogate, self.storage)
         self.technician = ExecutionAgent(self.compute_manager)
         
-        self.theory_builder = TheoryBuilder(self.storage.get_knowledge_graph(), budget=self.governor.max_evaluations)
+        self.theory_builder = TheoryBuilder(
+            self.storage.get_knowledge_graph(), 
+            original_prompt=self.config.get("original_prompt", ""),
+            budget=self.governor.max_evaluations
+        )
         self.system_state = SystemState()
         
         # For backward compatibility with stale tests
@@ -183,13 +188,31 @@ class CampaignManager:
         if reward > self.system_state.current_best_reward:
             self.system_state.current_best_reward = reward
         
+        state = result["state"]
         self.storage.experiment_db.add_experiment(
-            state=result["state"], 
+            state=state, 
             results={**result["observables"], "reward": reward}, 
             action=result.get("action")
         )
+        
+        # Update vector index for live memory retrieval
+        feat = np.array(state.get_feature_vector())
+        self.storage.vector_index.add_item(feat, {"state_id": state.get_id()})
+        
         self.governor.consume_budget()
 
     def _finalize(self):
-        logger.info("[LAB] Discovery complete. Report generated.")
+        logger.info("[LAB] Discovery complete. Generating Report.")
+        
+        # 1. Pattern Discovery
+        self.theory_builder.identify_electronic_descriptors()
+        self.theory_builder.identify_termination_bias()
+        
+        # 2. Report Generation
+        report = self.theory_builder.generate_report()
+        report_path = os.path.join(self.results_dir, "discovery_report.md")
+        with open(report_path, "w") as f:
+            f.write(report)
+            
         self.storage.save_all()
+        logger.info(f"[LAB] Discovery Report saved to {report_path}")

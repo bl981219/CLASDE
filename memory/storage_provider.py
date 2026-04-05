@@ -36,11 +36,11 @@ class StorageRegistry:
         data = self.experiment_db.get_training_data()
         if not self.vector_index.embeddings and data:
             logger.info("Rebuilding vector index from experiment database...")
-            for i, entry in enumerate(data):
+            for entry in data:
                 state = entry['state']
                 if isinstance(state, SurfaceState):
                     feat = np.array(state.get_feature_vector())
-                    self.vector_index.add_item(feat, {"db_index": i})
+                    self.vector_index.add_item(feat, {"state_id": state.get_id()})
         
         self.is_loaded = True
         logger.info(f"All scientific databases loaded. Memory enabled: {self.use_memory}")
@@ -67,22 +67,27 @@ class StorageRegistry:
         if not self.use_memory or not self.is_loaded:
             return []
         
-        data = self.experiment_db.get_training_data()
-        if not data:
-            return []
-
         # Case 1: Semantic search via feature vectors
         if isinstance(query, SurfaceState):
             feat = np.array(query.get_feature_vector())
             hits = self.vector_index.search(feat, top_k=top_k)
-            return [data[hit[0]["db_index"]] for hit in hits]
+            results = []
+            for hit in hits:
+                state_id = hit[0]["state_id"]
+                exp = self.experiment_db.get_by_id(state_id)
+                if exp:
+                    results.append(exp)
+            return results
             
+        data = self.experiment_db.get_training_data()
+        if not data:
+            return []
+
         # Case 2: String query (Keyword-ish fallback or just recent)
         if isinstance(query, str):
             query_lower = query.lower()
             results = []
             for entry in data:
-                # Check for simple keyword matches in summary or intuition
                 if query_lower in entry['state'].get_summary().lower():
                     results.append(entry)
             if results:

@@ -90,6 +90,21 @@ class ExperimentDatabase:
             res = conn.execute("SELECT MAX(reward) FROM experiments").fetchone()
             return float(res[0]) if res and res[0] is not None else -1e9
 
+    def get_by_id(self, state_id: str) -> Optional[Dict[str, Any]]:
+        """Retrieve a single experiment by its SHA-256 ID."""
+        with sqlite3.connect(self.db_path) as conn:
+            conn.row_factory = sqlite3.Row
+            row = conn.execute("SELECT * FROM experiments WHERE state_id = ?", (state_id,)).fetchone()
+            if not row:
+                return None
+            state = SurfaceState(**json.loads(row["state_json"]))
+            return {
+                "state": state,
+                "reward": row["reward"],
+                "fidelity": row["fidelity"],
+                "observables": json.loads(row["observables_json"])
+            }
+
     def save(self):
         """No-op for SQL as it is persistent by default."""
         pass

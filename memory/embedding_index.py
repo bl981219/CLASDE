@@ -30,12 +30,22 @@ class EmbeddingIndex:
         if not self.embeddings:
             return []
             
+        # Guard against zero-norm vectors
+        query_norm = np.linalg.norm(query_vector)
+        if query_norm < 1e-9:
+            logger.warning("Search query vector has near-zero norm. Returning empty.")
+            return []
+
         # Stack embeddings into a matrix
         matrix = np.vstack(self.embeddings)
+        matrix_norms = np.linalg.norm(matrix, axis=1, keepdims=True)
+        
+        # Guard against zero-norm stored embeddings
+        matrix_norms[matrix_norms < 1e-9] = 1.0 
         
         # Normalize
-        norm_query = query_vector / np.linalg.norm(query_vector)
-        norm_matrix = matrix / np.linalg.norm(matrix, axis=1, keepdims=True)
+        norm_query = query_vector / query_norm
+        norm_matrix = matrix / matrix_norms
         
         # Dot product for cosine similarity
         similarities = np.dot(norm_matrix, norm_query)
