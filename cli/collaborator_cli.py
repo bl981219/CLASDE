@@ -1,10 +1,14 @@
 import os
 import argparse
 import json
+from dotenv import load_dotenv
 from agents.collaborator_agent import LLMCollaborator
 from core.campaign_manager import CampaignManager
 
 def main():
+    # Ensure .env credentials are available when running from project root.
+    load_dotenv()
+
     parser = argparse.ArgumentParser(description="CLASDE Collaborator: Natural Language Research Interface")
     parser.add_argument("--prompt", type=str, help="Your research question or goal.")
     parser.add_argument("--key", type=str, help="Google API Key (optional, or use GOOGLE_API_KEY env var).")
