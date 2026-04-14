@@ -18,21 +18,32 @@ class ChemistryPhysicist:
         Uses relative comparisons of electronegativity and atomic radii to 
         distinguish sites, ensuring robustness across different chemical systems.
         """
-        if not composition: return [], []
-        
-        elements = [Element(s) for s in composition.keys() if s != "O"]
-        if not elements: return [], []
+        if not composition:
+            return [], []
 
-        # Sort by atomic radius (descending)
-        # In Perovskites, A is significantly larger than B
-        sorted_els = sorted(elements, key=lambda x: x.atomic_radius or 0, reverse=True)
-        
-        # Heuristic: The largest half of cations are likely A-sites
-        # (For simple ABO3, it picks the 1st as A, 2nd as B)
-        mid = max(1, len(sorted_els) // 2)
-        a_sites = [el.symbol for el in sorted_els[:mid]]
-        b_sites = [el.symbol for el in sorted_els[mid:]]
-                
+        elements = [Element(s) for s in composition.keys() if s != "O"]
+        if not elements:
+            return [], []
+
+        # Chemistry-based assignment:
+        # A-sites: rare earths (La, Y, Ce…) and alkaline/alkali earths (Ba, Sr, Ca…)
+        # B-sites: transition metals (Fe, Co, Ni, Mn, Ti…)
+        # Fallback for anything else (e.g. Pb, Bi): assign to B-site
+        a_sites, b_sites = [], []
+        for el in elements:
+            if el.is_rare_earth or el.is_alkaline or el.is_alkali:
+                a_sites.append(el.symbol)
+            else:
+                b_sites.append(el.symbol)
+
+        # Safety fallback: if all elements landed on one side (e.g. pure metal),
+        # revert to the radius-based heuristic so the function always returns both lists.
+        if not a_sites or not b_sites:
+            sorted_els = sorted(elements, key=lambda x: x.atomic_radius or 0, reverse=True)
+            mid = max(1, len(sorted_els) // 2)
+            a_sites = [el.symbol for el in sorted_els[:mid]]
+            b_sites = [el.symbol for el in sorted_els[mid:]]
+
         return a_sites, b_sites
 
     @staticmethod

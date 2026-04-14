@@ -146,12 +146,12 @@ class TheoryBuilder:
         xa, xb = zip(*pairs)
         slope, intercept, r_value, p_value, _ = stats.linregress(xa, xb)
         
-        if abs(r_value) > 0.8:
+        if abs(r_value) > 0.8 and p_value < 0.05:
             return {
                 "species": (species_a, species_b),
                 "r_squared": float(r_value**2),
                 "equation": f"E_{species_b} = {slope:.2f}*E_{species_a} + {intercept:.2f}",
-                "confidence": float(1-p_value)
+                "confidence": float(1 - p_value)
             }
         return {}
 
@@ -163,7 +163,10 @@ class TheoryBuilder:
         
         if len(results) < 5: return []
         y = [r.get(target_property, 0.0) for r in results]
-        
+
+        # Bonferroni correction: divide α by number of simultaneous tests
+        alpha = 0.05 / max(len(descriptors), 1)
+
         for desc in descriptors:
             x = [r.get(desc) for r in results]
             pairs = [(xi, yi) for xi, yi in zip(x, y) if xi is not None]
@@ -171,8 +174,8 @@ class TheoryBuilder:
             xi_clean, yi_clean = zip(*pairs)
             if np.std(xi_clean) < 1e-6: continue
             r, p = stats.pearsonr(xi_clean, yi_clean)
-            if abs(r) > 0.7:
-                discovery = {"type": "descriptor", "descriptor": desc, "correlation": float(r), "confidence": float(1-p)}
+            if abs(r) > 0.7 and p < alpha:
+                discovery = {"type": "descriptor", "descriptor": desc, "correlation": float(r), "confidence": float(1 - p)}
                 self.discovered_laws.append(discovery)
                 discovered.append(discovery)
         return discovered

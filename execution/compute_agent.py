@@ -235,6 +235,23 @@ class ComputeManager:
         if job_id.startswith("prev_"): return JobStatus.COMPLETED
         return self.backend.monitor_job(job_id)
 
+    def poll_for_completion(
+        self, job_id: str, timeout: int = 3600, poll_interval: int = 30
+    ) -> JobStatus:
+        """Poll until job reaches a terminal state (COMPLETED/FAILED) or times out."""
+        deadline = time.time() + timeout
+        while time.time() < deadline:
+            status = self.get_job_status(job_id)
+            if status in (JobStatus.COMPLETED, JobStatus.FAILED):
+                return status
+            logger.debug(
+                "[Compute] Job %s status: %s. Polling again in %ds.",
+                job_id, status, poll_interval,
+            )
+            time.sleep(poll_interval)
+        logger.warning("[Compute] Job %s timed out after %ds.", job_id, timeout)
+        return JobStatus.TIMEOUT
+
     def fetch_results(self, job_id: str) -> str:
         if job_id in self.active_jobs: return self.active_jobs[job_id]["dir"]
         state_id = job_id.split("_")[-1]

@@ -48,7 +48,11 @@ class CampaignOrchestrator:
         """Execute the strict hierarchical discovery loop."""
         logger.info("--- [CLASDE V5] Starting Hierarchical Discovery Loop ---")
 
-        self.on_initialize_baseline()
+        try:
+            self.on_initialize_baseline()
+        except Exception as e:
+            logger.error("[LAB] Baseline initialization failed: %s", e, exc_info=True)
+            raise RuntimeError("Cannot start campaign: baseline initialization failed.") from e
 
         consecutive_errors = 0
         max_consecutive_errors = 5
@@ -140,7 +144,9 @@ class CampaignOrchestrator:
 
                 if isinstance(e, (KeyboardInterrupt, SystemExit)):
                     raise
-                time.sleep(5)
+                wait = min(5 * (2 ** (consecutive_errors - 1)), 60)
+                logger.info("[LAB] Retrying in %ds...", wait)
+                time.sleep(wait)
                 continue
 
         self.on_finalize()

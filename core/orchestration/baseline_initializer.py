@@ -11,7 +11,7 @@ import os
 from typing import Any, Dict
 
 from core.state import SurfaceState
-from execution.compute_agent import SimulationType
+from execution.compute_agent import JobStatus, SimulationType
 
 logger = logging.getLogger(__name__)
 
@@ -57,10 +57,19 @@ class BaselineInitializer:
             slab, initial_state, SimulationType.MLIP, iteration=0
         )
 
+        job_status = self.compute_manager.poll_for_completion(job_id)
+        if job_status != JobStatus.COMPLETED:
+            raise RuntimeError(
+                f"Baseline job {job_id} ended with status {job_status}. "
+                "Check compute environment."
+            )
+
         calc_dir = self.compute_manager.fetch_results(job_id)
         res_path = os.path.join(calc_dir, "results.json")
         if not os.path.exists(res_path):
-            raise RuntimeError("Baseline calculation failed. Check compute environment.")
+            raise RuntimeError(
+                f"Baseline job {job_id} completed but results.json not found in {calc_dir}."
+            )
 
         with open(res_path, "r") as f:
             raw_data = json.load(f)

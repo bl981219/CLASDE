@@ -5,6 +5,7 @@ import json
 from dotenv import load_dotenv
 from google import genai
 from pydantic import BaseModel
+from tenacity import retry, stop_after_attempt, wait_exponential
 
 logger = logging.getLogger(__name__)
 
@@ -57,17 +58,11 @@ class LLMCollaborator:
         config = None
         if self.api_key:
             try:
-                response = self.client.models.generate_content(
-                    model=self.model_id,
-                    contents=f"User Goal: {prompt}",
-                    config={
-                        "system_instruction": system_instruction,
-                        "response_mime_type": "application/json"
-                    }
-                )
-                config = json.loads(response.text)
+                config = self._call_llm(prompt, system_instruction)
             except Exception as e:
-                logger.error(f"LLM translation failed: {e}. Falling back to internal heuristics.")
+                logger.warning(
+                    "LLM translation failed after retries: %s. Falling back to internal heuristics.", e
+                )
 
         if not config:
             config = self._mock_translation(prompt)
@@ -88,6 +83,19 @@ class LLMCollaborator:
                 config["description"] = prior_text + "\n\n" + config.get("description", "")
         
         return config
+
+    @retry(stop=stop_after_attempt(3), wait=wait_exponential(min=1, max=10), reraise=True)
+    def _call_llm(self, prompt: str, system_instruction: str) -> Dict[str, Any]:
+        """Makes the LLM API call with automatic retries on transient failures."""
+        response = self.client.models.generate_content(
+            model=self.model_id,
+            contents=f"User Goal: {prompt}",
+            config={
+                "system_instruction": system_instruction,
+                "response_mime_type": "application/json"
+            }
+        )
+        return json.loads(response.text)
 
     def _mock_translation(self, prompt: str) -> Dict[str, Any]:
         """

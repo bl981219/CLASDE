@@ -4,7 +4,7 @@ Typed configuration models using Pydantic.
 Provides type-safe, validated configuration for campaigns.
 """
 
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, field_validator, ConfigDict
 from typing import Dict, Any, Optional, List, Literal
 
 
@@ -14,7 +14,8 @@ class ObjectiveConfig(BaseModel):
     target_e_ads: Optional[float] = None
     adsorbate: Optional[str] = None
     
-    @validator("type")
+    @field_validator("type")
+    @classmethod
     def validate_type(cls, v):
         allowed = [
             "stability", "adsorption_tuning", "bandgap",
@@ -38,7 +39,8 @@ class ConstraintsConfig(BaseModel):
     facet: List[int] = Field(..., description="Miller indices of surface facet")
     bulk: Dict[str, float] = Field(..., description="Bulk composition")
     
-    @validator("facet")
+    @field_validator("facet")
+    @classmethod
     def validate_facet(cls, v):
         if len(v) != 3:
             raise ValueError("Facet must be 3 Miller indices")
@@ -65,8 +67,7 @@ class VASPConfig(BaseModel):
     IBRION: int = 2
     LORBIT: Optional[int] = 11
     
-    class Config:
-        extra = "allow"  # Allow additional VASP params
+    model_config = ConfigDict(extra="allow")
 
 
 class ComputeConfig(BaseModel):
@@ -115,10 +116,10 @@ class CampaignConfig(BaseModel):
     results_dir: str = Field("data/results", description="Output directory")
     original_prompt: Optional[str] = Field(None, description="Natural language goal")
     
-    class Config:
-        extra = "allow"  # Allow additional fields for extensibility
-    
-    @validator("results_dir")
+    model_config = ConfigDict(extra="allow")
+
+    @field_validator("results_dir")
+    @classmethod
     def validate_results_dir(cls, v):
         """Ensure results directory path is clean."""
         return v.rstrip("/")

@@ -1,5 +1,5 @@
 import logging
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from typing import List, Dict, Optional, Tuple, Any
 import hashlib
 import json
@@ -64,8 +64,7 @@ class SurfaceState(BaseModel):
     
     metadata: Dict = Field(default_factory=dict)
 
-    class Config:
-        arbitrary_types_allowed = True
+    model_config = ConfigDict(arbitrary_types_allowed=True)
 
     def to_json(self) -> str:
         """Serialize state to a canonical JSON string."""

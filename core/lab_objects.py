@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, field_validator
 from typing import List, Dict, Optional, Any, Union
 from enum import Enum
 import uuid
@@ -40,7 +40,8 @@ class Hypothesis(BaseModel):
     status: str = "untested"
     confidence: float = 0.5
 
-    @validator("metric")
+    @field_validator("metric")
+    @classmethod
     def metric_must_exist(cls, v):
         allowed = [
             "E_ads", "stability", "reward", "adsorption_energy", 

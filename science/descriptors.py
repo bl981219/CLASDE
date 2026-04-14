@@ -19,20 +19,28 @@ class SurfaceDescriptors:
         return len(neighbors)
 
     @staticmethod
-    def get_generalized_coordination_number(structure: Structure, site_idx: int, cutoff: float = 3.0) -> float:
+    def get_generalized_coordination_number(
+        structure: Structure, site_idx: int,
+        cutoff: float = 3.0, cn_max: float = 12.0
+    ) -> float:
         """
         Calculates the Generalized Coordination Number (GCN).
         GCN = sum(cn_i / cn_max) for all neighbors i.
+
+        Args:
+            structure: Pymatgen Structure object.
+            site_idx: Index of the target site.
+            cutoff: Neighbor search radius in Angstroms.
+            cn_max: Maximum coordination number of the reference bulk environment.
+                    Use 12 for FCC/HCP metals (default), 8 for BCC, 6 for
+                    octahedrally coordinated B-sites in perovskites.
         """
         try:
             site = structure[site_idx]
             neighbors = structure.get_neighbors(site, r=cutoff)
-            if not neighbors: return 0.0
-            
-            # Simple heuristic for cn_max: 12 for most close-packed systems
-            # In future, this could be species-dependent from a bulk reference
-            cn_max = 12.0
-            
+            if not neighbors:
+                return 0.0
+
             gcn = 0.0
             for n in neighbors:
                 n_cn = len(structure.get_neighbors(n, r=cutoff))
@@ -67,8 +75,28 @@ class SurfaceDescriptors:
         return SurfaceDescriptors.calculate_band_moment(energies, p_dos, order=1)
 
     @staticmethod
-    def get_surface_atom_indices(structure: Structure, skin_depth: float = 1.5) -> List[int]:
-        """Identifies indices of atoms in the surface layer."""
+    def get_surface_atom_indices(structure: Structure, skin_depth: float = None) -> List[int]:
+        """
+        Identifies indices of atoms in the surface layer.
+
+        Args:
+            structure: Pymatgen Structure object (slab, z-axis perpendicular to surface).
+            skin_depth: Depth in Angstroms defining the surface layer. When None
+                        (default), the interlayer spacing is auto-detected from the
+                        z-coordinate distribution so all surface atoms are captured
+                        regardless of slab rumpling or material type.
+        """
         z_coords = structure.cart_coords[:, 2]
         z_max = np.max(z_coords)
+
+        if skin_depth is None:
+            # Cluster z-coords at 0.3 Å resolution to detect atomic layers
+            z_binned = np.round(z_coords / 0.3) * 0.3
+            unique_z = np.sort(np.unique(z_binned))
+            if len(unique_z) >= 2:
+                # Gap from topmost bin to the next lower bin, plus one bin width
+                skin_depth = float(unique_z[-1] - unique_z[-2]) + 0.3
+            else:
+                skin_depth = 1.5  # single-layer fallback
+
         return [i for i, z in enumerate(z_coords) if z > z_max - skin_depth]

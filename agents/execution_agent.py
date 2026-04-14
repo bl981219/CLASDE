@@ -1,8 +1,9 @@
+import json
 import logging
 import os
 from typing import List, Dict, Any, Optional
 from core.lab_objects import Experiment
-from execution.compute_agent import ComputeManager, SimulationType
+from execution.compute_agent import ComputeManager, JobStatus, SimulationType
 
 logger = logging.getLogger(__name__)
 
@@ -38,10 +39,17 @@ class ExecutionAgent:
                 iteration=iteration
             )
             
-            # Fetch and format result (Simplified: synchronous polling)
+            # Wait for job to reach a terminal state before reading results
+            job_status = self.compute.poll_for_completion(job_id)
+            if job_status != JobStatus.COMPLETED:
+                logger.warning("[Technician] Job %s ended with status %s.", job_id, job_status)
+                results.append({
+                    "id": exp.id, "status": "failed",
+                    "error": f"Job {job_id} ended with status {job_status}",
+                })
+                continue
+
             calc_dir = self.compute.fetch_results(job_id)
-            # In a real loop, this would poll. For now, we assume ComputeManager handles results.json
-            import json
             res_path = os.path.join(calc_dir, "results.json")
             if os.path.exists(res_path):
                 with open(res_path, "r") as f:
@@ -49,13 +57,13 @@ class ExecutionAgent:
                     results.append({
                         "id": exp.id,
                         "status": raw_data.get("status", "completed"),
-                        "reward": raw_data.get("total_energy", 0.0), # Simplified mapping
+                        "reward": raw_data.get("total_energy", 0.0),
                         "observables": raw_data,
                         "metadata": {"job_id": job_id, "fidelity": method},
                         "state": state,
                         "action": action
                     })
             else:
-                 results.append({"id": exp.id, "status": "failed", "error": "No results.json found"})
+                results.append({"id": exp.id, "status": "failed", "error": "No results.json found"})
         
         return results
